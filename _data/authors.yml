@@ -1,0 +1,40 @@
+# Authors
+
+Shelly Cadora:
+  name        : "Shelly Cadora"
+  email       : "scadora@cisco.com"
+  bio         : "Technical Marketing Engineer, Cisco"
+  avatar      : "scadora16.jpeg"
+  twitter     : "scadora"
+  github      : "scadora"
+
+Akshat Sharma:
+  name        : "Akshat Sharma"
+  github      : "akshshar"
+  email       : "akshshar@cisco.com"
+  bio         : "Evangelist, tinkerer, dog-lover and Technical Marketing Engineer, Web Solutions, Cisco."
+  avatar      : "akshat_bio_photo.jpeg"
+  twitter     : "irakshat"
+
+Mike Korshunov:
+  name        : "Mike Korshunov"
+  github      : "maikor"
+  email       : "mkorshun@cisco.com"
+  bio         : "Good guy"
+  avatar      : "Mike_pic.jpg"
+
+Jose Liste:
+  name        : "Jose Liste"
+  github      : "joseliste"
+  email       : "jliste@cisco.com"
+  avatar      : "jliste_bio.jpg"
+  bio         : "A (blue collar) Technical Marketing Engineer, Web Solutions, Cisco."
+  twitter     : "jliste2002"
+
+Cisco Web Team:
+  name        : "Cisco Web Team"
+  uri         : "https://developer.cisco.com/site/ios-xr"
+  github      : "ios-xr"
+  bio         : "A Team of coders and network engineers determined to build the best network operating system for Web-Scale Service Providers."
+  avatar      : "cloud-scale-networking-team.png"
+  twitter     : "CiscoDevNet"
