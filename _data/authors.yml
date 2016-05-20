@@ -30,6 +30,13 @@ Jose Liste:
   avatar      : "jliste_bio.jpg"
   bio         : "A (blue collar) Technical Marketing Engineer, Web Solutions, Cisco."
   twitter     : "jliste2002"
+  
+Bruce McDougall:
+  name        : "Bruce McDougall"
+  github      : "brmcdoug"
+  email       : "brmcdoug@cisco.com"
+  avatar      : "brucemc_bio.jpg"
+  bio         : "Systems Engineer, Web Solutions, Cisco."
 
 Cisco Web Team:
   name        : "Cisco Web Team"
