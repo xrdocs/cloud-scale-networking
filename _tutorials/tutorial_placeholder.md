@@ -1,7 +1,7 @@
 ---
 title: Test Tutorial
 author: Jose Liste
-published: true
+published: false
 permalink: "/tutorials/test-tutorial"
 excerpt: "Testing out tutorials on the new cloud-scale-networking site"
 date: "2016-05-18 15:12 -0700"
@@ -11,4 +11,3 @@ Tutorial Placeholder!
 
 Blah Blah Blah
 Bleh Bleh Bleh
-
