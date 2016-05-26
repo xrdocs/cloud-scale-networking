@@ -206,7 +206,8 @@ In the previous example, both interfaces had the same configuration statements (
 
 This example will cover the case where the original and new interfaces have "different" configuration statements and the user desires to only apply the config from the original interface and not the merge
 
-We start with an initial config where interface gig 0/0/0/0 and gig 0/0/0/2 have different configuration statements (see non-default mtu on gig 0/0/0/2)
+We start with an initial config where interface gig 0/0/0/0 and gig 0/0/0/2 have different configuration statements (see non-default mtu on gig 0/0/0/2)  
+
 ```
 RP/0/0/CPU0:iosxrv-1#show runn
 
