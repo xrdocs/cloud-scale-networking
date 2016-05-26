@@ -38,7 +38,8 @@ RP/0/0/CPU0:PE1(config)#replace interface <ifid_1> with <ifid_2> ?
 
 ### Example 1
 
-In this example, the operator wants to move all configuration located under interface gig 0/0/0/0 to interface gig 0/0/0/2. In addition, all other references to the former interface (say in routing protocols, lpd, etc) also need to be replaced with the new interface (gig 0/0/0/2)
+In this example, the operator wants to move all configuration located under interface gig 0/0/0/0 to interface gig 0/0/0/2.  
+In addition, all other references to the former interface (say in routing protocols, mpls lpd, etc) also need to be replaced with the new interface (gig 0/0/0/2)
 
 Below is the original router configuration
 
