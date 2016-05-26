@@ -20,7 +20,7 @@ If so, keep on reading ...
 {: .notice--info}
 
 ```
-RP/0/0/CPU0:PE1(config)#replace ?
+RP/0/0/CPU0:PE1(config)#**replace** ?
   interface  replace configuration for an interface
   pattern    replace a string pattern in configuration
 ```
