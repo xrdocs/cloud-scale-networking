@@ -11,8 +11,8 @@ position: hidden
 In IOS XR 5.3.1, a customer favorite feature was implemented - **Global Configuration Replace**
 This feature allows for easy manipulation of router configuration
 
-* Ever wanted the ability to move interface configuration around?
-* Or, rather wanted to change all repetitions of a given pattern in your router configuration?
+*  Ever wanted the ability to move interface configuration around?
+*  Or, rather wanted to change all repetitions of a given pattern in your router configuration?
 
 If so, keep on reading ...
 
