@@ -11,13 +11,15 @@ position: hidden
 >
 In IOS XR 5.3.1, a customer favorite feature was implemented - **Global Configuration Replace**  
 >
-This feature allows for easy manipulation of router configuration
+This feature allows convenient manipulation of router configuration
 >
-*  Ever wanted the ability to easily move configuration from one interface to another?
+*  Ever wanted to easily move configuration from one interface to another?
 *  Or, rather wanted to change all repetitions of a given pattern in your router configuration?
 >
 If so, keep on reading ...
 {: .notice--info}
+
+## Introduction
 
 ```
 RP/0/0/CPU0:PE1#configure
@@ -26,7 +28,7 @@ RP/0/0/CPU0:PE1(config)#replace ?
   pattern    replace a string pattern in configuration
 ```
 
-xxx
+## Interface-based Replace operation
 
 ```
 RP/0/0/CPU0:PE1(config)#replace interface <ifid_1> with <ifid_2> ?
@@ -34,7 +36,7 @@ RP/0/0/CPU0:PE1(config)#replace interface <ifid_1> with <ifid_2> ?
   <cr>
 ```
 
-xxx
+## Pattern-based Replace operation
 
 ```
 RP/0/0/CPU0:PE1(config)#replace pattern ?
@@ -44,6 +46,8 @@ RP/0/0/CPU0:PE1(config)#replace pattern 'regex_1' with 'regex_2' ?
   dry-run  execute the command without loading the replace config
   <cr>  
 ```
+
+## Examples
 
 ```
 RP/0/0/CPU0:PE1(config)#replace interface gigabitEthernet 0/0/0/0 with gigabitEthernet 0/0/0/1 dry-run
