@@ -29,7 +29,7 @@ xxx
 
 ```
 RP/0/0/CPU0:PE1#configure
-RP/0/0/CPU0:PE1(config)#replace interface gigabitEthernet 0/0/0/0 with gigabitEthernet 0/0/0/1 ?
+RP/0/0/CPU0:PE1(config)#replace interface <ifid_1> with <ifid_2> ?
   dry-run  execute the command without loading the replace config
   <cr>
 ```
@@ -43,6 +43,10 @@ RP/0/0/CPU0:PE1(config)#replace pattern ?
 RP/0/0/CPU0:PE1(config)#replace pattern 'regex_1' with 'regex_2' ?
   dry-run  execute the command without loading the replace config
   <cr>  
+```
+
+```
+RP/0/0/CPU0:PE1(config)#replace interface gigabitEthernet 0/0/0/0 with gigabitEthernet 0/0/0/1 dry-run
 ```
 
 xxx
