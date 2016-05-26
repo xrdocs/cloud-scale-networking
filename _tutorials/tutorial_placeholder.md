@@ -321,8 +321,12 @@ In the second mode of operation, the user can provide string patterns
 Note that the input is considered a regex string; e.g. replace pattern 'x' with 'y'  
 So if you are trying to replace an IPv4 address such as 1.2.3.4, remember to escape the '.' as otherwise it would match any char  
 
+```
 Example: replace pattern '1.2.3.4' with '25.26.27.28' will match and replace both 1.2.3.4 and 10203040  
 Example: replace pattern '1\.2\.3\.4' with '25.26.27.28' will match only 1.2.3.4 and not 10203040
+```
+
+xxx
 
 ```
 RP/0/0/CPU0:PE1(config)#replace pattern ?
