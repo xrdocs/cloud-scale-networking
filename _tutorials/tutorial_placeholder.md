@@ -194,10 +194,11 @@ end
 ```
 
 ### Example 2:
-In the previous example, both interfaces had same configuration statements (description and IPv4 address). Effectivelly, with the replace operation, the config from interface gig 0/0/0/1 was moved / merged with the config under interface gig 0/0/0/2
+In the previous example, both interfaces had same configuration statements (description and IPv4 address). With the replace operation, the config from interface gig 0/0/0/1 was moved / merged with the config under interface gig 0/0/0/2
 
-This scenario will cover the case where the original and new interfaces have "different" configuration statements and the user desires to wipe out
+This example will cover the case where the original and new interfaces have "different" configuration statements and the user desires to only apply the config from the original interface and not the merge
 
+We start with an initial config where interface gig 0/0/0/0 and gig 0/0/0/2 have different configuration statements (non-default mtu on gig 0/0/0/2)
 ```
 RP/0/0/CPU0:iosxrv-1#show runn
 
@@ -218,7 +219,7 @@ interface GigabitEthernet0/0/0/2
 end
 ```
 
-xxx
+To achieve the goal, the user ...
 
 ```
 RP/0/0/CPU0:iosxrv-1#conf t
