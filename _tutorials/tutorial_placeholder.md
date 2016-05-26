@@ -36,30 +36,24 @@ RP/0/0/CPU0:PE1(config)#replace interface <ifid_1> with <ifid_2> ?
   <cr>
 ```
 
+### Example
+
+In this example, the operator wants to move all configuration located under interface gig 0/0/0/0 to interface gig 0/0/0/2. In addition, all other references to the former interface (say in routing protocols, lpd, etc) also need to be replaced with the new interface (gig 0/0/0/2)
+
+Below is the original router configuration
+
 ```
 RP/0/0/CPU0:iosxrv-1#show run
-Thu May 26 05:46:16.760 UTC
-Building configuration...
-!! IOS XR Configuration 6.1.1.14I
-!! Last configuration change at Thu May 26 05:46:11 2016 by cisco
-!
-hostname iosxrv-1
-interface MgmtEth0/0/CPU0/0
- shutdown
+
+<snip>
 !
 interface GigabitEthernet0/0/0/0
  description first
  ipv4 address 10.20.30.40 255.255.255.0
 !
-interface GigabitEthernet0/0/0/1
- shutdown
-!
 interface GigabitEthernet0/0/0/2
  description second
  ipv4 address 10.20.50.60 255.255.255.0
-!
-interface GigabitEthernet0/0/0/3
- shutdown
 !
 router ospf 10
  area 0
@@ -72,9 +66,16 @@ mpls ldp
  interface GigabitEthernet0/0/0/0
   igp sync delay on-session-up 5
  !
+ 
+<snip> 
 !
 end
 ```
+
+Below the operator runs the replace command using the interface identifiers.
+In this first trial, the user decides to give the command a try and specifies the "**dry-run**" keyword to validate the results
+
+Remember that the goal here is to move all configuration associated with gig 0/0/0/0 to gig 0/0/0/2
 
 ```
 RP/0/0/CPU0:iosxrv-1(config)#replace interface gigabitEthernet 0/0/0/0 with gigabitEthernet 0/0/0/2 dry-run
@@ -92,7 +93,11 @@ mpls ldp
  interface GigabitEthernet0/0/0/2
   igp sync delay on-session-up 5
 end
-end
+```
+
+
+
+```
 RP/0/0/CPU0:iosxrv-1(config)#
 RP/0/0/CPU0:iosxrv-1(config)#show
 Thu May 26 05:48:51.519 UTC
