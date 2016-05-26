@@ -20,22 +20,19 @@ If so, keep on reading ...
 {: .notice--info}
 
 ```
-<pre>
-RP/0/0/CPU0:PE1(config)#<b>replace</b> ?
+RP/0/0/CPU0:PE1(config)#replace ?
   interface  replace configuration for an interface
   pattern    replace a string pattern in configuration
-</pre>
 ```
 
 xxx
 
-```
 RP/0/0/CPU0:PE1#configure
 Thu May 26 01:11:41.326 UTC
 RP/0/0/CPU0:PE1(config)#replace interface gigabitEthernet 0/0/0/0 with gigabitEthernet 0/0/0/1 ?
   dry-run  execute the command without loading the replace config
   <cr>
-```
+{: .notice}
 
 ```
 RP/0/0/CPU0:PE1(config)#replace pattern ?
