@@ -73,9 +73,9 @@ end
 ```
 
 Below the operator runs the replace command using the interface identifiers.
-In this first trial, the user decides to give the command a try and specifies the "**dry-run**" keyword to validate the results
+In the first attempt, the user decides to give the command a try and specifies the "**dry-run**" keyword in order to validate the results
 
-Remember that the goal here is to move all configuration associated with gig 0/0/0/0 to gig 0/0/0/2
+Remember that the goal is to move all configuration and references associated with gig 0/0/0/0 to gig 0/0/0/2
 
 ```
 RP/0/0/CPU0:iosxrv-1(config)#replace interface gigabitEthernet 0/0/0/0 with gigabitEthernet 0/0/0/2 dry-run
