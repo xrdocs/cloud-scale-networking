@@ -1,5 +1,5 @@
 ---
-title: Test Tutorial
+title: IOS XR Global Config Replace
 author: Jose Liste
 published: true
 permalink: "/tutorials/ios-xr-global-config-replace"
