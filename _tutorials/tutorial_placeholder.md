@@ -27,4 +27,20 @@ RP/0/0/CPU0:PE1(config)#replace ?
 
 xxx
 
+```
+RP/0/0/CPU0:PE1#configure
+Thu May 26 01:11:41.326 UTC
+RP/0/0/CPU0:PE1(config)#replace interface gigabitEthernet 0/0/0/0 with gigabitEthernet 0/0/0/1 ?
+  dry-run  execute the command without loading the replace config
+  <cr>
+```
+
+```
+RP/0/0/CPU0:PE1(config)#replace pattern ?
+  regex-string  pattern to be replaced within single quotes
+```
+
+xxx
+
+
 
