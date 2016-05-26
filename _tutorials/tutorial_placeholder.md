@@ -58,10 +58,10 @@ xxx
 *  Replacing interface "X" with "Y" will cause sub-interfaces (e.g. "X.abc", "X.def") to also be replaced   
 Example: replace Gig0/0/0/1 with Gig0/0/0/11 would cause sub-interface Gig0/0/0/1.100 to be replaced to Gig0/0/0/11.100
 
-*  For pattern-based replace, the input is considered a regex string; e.g. replace pattern 'x' with 'y'
+*  For pattern-based replace, the input is considered a regex string; e.g. replace pattern 'x' with 'y'  
 So if you are trying to replace 1.2.3.4 remember to escape the '.' as otherwise it would match any char 
 Example: replace pattern '1.2.3.4' with '25.26.27.28' will match and replace both 1.2.3.4 and 10203040  
-Example: replace pattern '1\.2\.3\.4' with '25.26.27.28' will match only 1.2.3.4 and not 10203040
+Example: replace pattern '1\.2\.3\.4' with '25.26.27.28' will match only 1.2.3.4 and not 10203040  
 
 *  Renaming class-maps or flex-cli groups itself with replace may not go thru the commit due to classmap interdependecy on policymap etc.
 
