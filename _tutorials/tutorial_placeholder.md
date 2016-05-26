@@ -36,7 +36,7 @@ RP/0/0/CPU0:PE1(config)#replace interface <ifid_1> with <ifid_2> ?
   <cr>
 ```
 
-### Example
+### Example 1
 
 In this example, the operator wants to move all configuration located under interface gig 0/0/0/0 to interface gig 0/0/0/2. In addition, all other references to the former interface (say in routing protocols, lpd, etc) also need to be replaced with the new interface (gig 0/0/0/2)
 
@@ -95,7 +95,7 @@ mpls ldp
 end
 ```
 
-By specifying the "dry-run" keyword, below we can see thar NO config changes were loaded into the candidate config buffer
+By specifying the "dry-run" keyword, below we can see that NO config changes were actually loaded into the candidate config buffer
 
 ```
 RP/0/0/CPU0:iosxrv-1(config)#
@@ -106,14 +106,14 @@ Building configuration...
 end
 ```
 
-
+Now the operator is ready to proceed and re-runs the replace operation. This time without using the "dry-run" keyword
 
 ```
 RP/0/0/CPU0:iosxrv-1(config)#replace interface gigabitEthernet 0/0/0/0 with gigabitEthernet 0/0/0/2
 Loading.
 365 bytes parsed in 1 sec (357)bytes/sec
-RP/0/0/CPU0:iosxrv-1(config)#
-RP/0/0/CPU0:iosxrv-1(config)#
+
+
 RP/0/0/CPU0:iosxrv-1(config)#show
 Thu May 26 05:49:10.598 UTC
 Building configuration...
@@ -142,6 +142,7 @@ end
 RP/0/0/CPU0:iosxrv-1(config)#commit
 Thu May 26 05:49:21.767 UTC
 RP/0/0/CPU0:iosxrv-1(config)#exit
+
 RP/0/0/CPU0:iosxrv-1#show configuration commit changes last 1
 Thu May 26 05:49:38.816 UTC
 Building configuration...
