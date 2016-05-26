@@ -194,7 +194,9 @@ end
 ```
 
 ### Example 2:
-In the previous example, the new interface (gig 0/0/0/2)
+In the previous example, both interfaces had same configuration statements (description and IPv4 address). Effectivelly, with the replace operation, the config from interface gig 0/0/0/1 was moved / merged with the config under interface gig 0/0/0/2
+
+This scenario will cover the case where the new interface
 
 ```
 RP/0/0/CPU0:iosxrv-1#show runn
