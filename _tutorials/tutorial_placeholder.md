@@ -20,6 +20,7 @@ If so, keep on reading ...
 {: .notice--info}
 
 ```
+RP/0/0/CPU0:PE1#configure
 RP/0/0/CPU0:PE1(config)#replace ?
   interface  replace configuration for an interface
   pattern    replace a string pattern in configuration
@@ -28,7 +29,6 @@ RP/0/0/CPU0:PE1(config)#replace ?
 xxx
 
 ```
-RP/0/0/CPU0:PE1#configure
 RP/0/0/CPU0:PE1(config)#replace interface <ifid_1> with <ifid_2> ?
   dry-run  execute the command without loading the replace config
   <cr>
