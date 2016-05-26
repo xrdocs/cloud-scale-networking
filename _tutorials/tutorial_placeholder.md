@@ -72,7 +72,7 @@ mpls ldp
 end
 ```
 
-Below the operator runs the replace command using the interface identifiers.
+Below the operator runs the replace command using the interface identifiers.  
 In the first attempt, the user decides to give the command a try and specifies the "**dry-run**" keyword in order to validate the results and without loading any config changes
 
 Remember that the goal is to move all configuration and references associated with gig 0/0/0/0 to gig 0/0/0/2
@@ -95,7 +95,7 @@ mpls ldp
 end
 ```
 
-By specifying the "dry-run" keyword, below we can see that NO config changes were actually loaded into the candidate config buffer
+By specifying the "dry-run" keyword, we can see below that NO config changes were actually loaded into the candidate config buffer
 
 ```
 RP/0/0/CPU0:iosxrv-1(config)#
@@ -106,71 +106,89 @@ Building configuration...
 end
 ```
 
-Now the operator is ready to proceed and re-runs the replace operation. This time without using the "dry-run" keyword
+Now the operator is ready to proceed and re-runs the replace operation without using the "dry-run" keyword
 
 ```
 RP/0/0/CPU0:iosxrv-1(config)#replace interface gigabitEthernet 0/0/0/0 with gigabitEthernet 0/0/0/2
 Loading.
 365 bytes parsed in 1 sec (357)bytes/sec
-
-
-RP/0/0/CPU0:iosxrv-1(config)#show
-Thu May 26 05:49:10.598 UTC
+RP/0/0/CPU0:iosxrv-1(config)#
+RP/0/0/CPU0:iosxrv-1(config)#show commit changes diff
+Thu May 26 07:02:34.026 UTC
 Building configuration...
 !! IOS XR Configuration 6.1.1.14I
-no interface GigabitEthernet0/0/0/0
-interface GigabitEthernet0/0/0/2
- description first
- ipv4 address 10.20.30.40 255.255.255.0
-!
-router ospf 10
- area 0
-  no interface GigabitEthernet0/0/0/0
-  interface GigabitEthernet0/0/0/2
-   transmit-delay 5
-  !
- !
-!
-mpls ldp
- no interface GigabitEthernet0/0/0/0
- interface GigabitEthernet0/0/0/2
-  igp sync delay on-session-up 5
- !
-!
+-  interface GigabitEthernet0/0/0/0
+-   description first
+-   ipv4 address 10.20.30.40 255.255.255.0
+   !
+   interface GigabitEthernet0/0/0/2
+<-  description second
++>  description first
+<-  ipv4 address 10.20.50.60 255.255.255.0
++>  ipv4 address 10.20.30.40 255.255.255.0
+   !
+   router ospf 10
+    area 0
+-    interface GigabitEthernet0/0/0/0
+-     transmit-delay 5
+     !
++    interface GigabitEthernet0/0/0/2
++     transmit-delay 5
+     !
+    !
+   !
+   mpls ldp
+-   interface GigabitEthernet0/0/0/0
+-    igp sync delay on-session-up 5
+    !
++   interface GigabitEthernet0/0/0/2
++    igp sync delay on-session-up 5
+    !
+   !
 end
 
+RP/0/0/CPU0:iosxrv-1(config)#
 RP/0/0/CPU0:iosxrv-1(config)#commit
-Thu May 26 05:49:21.767 UTC
+Thu May 26 07:02:48.775 UTC
+RP/0/0/CPU0:iosxrv-1(config)#
+RP/0/0/CPU0:iosxrv-1(config)#
+RP/0/0/CPU0:iosxrv-1(config)#
 RP/0/0/CPU0:iosxrv-1(config)#exit
-
-RP/0/0/CPU0:iosxrv-1#show configuration commit changes last 1
-Thu May 26 05:49:38.816 UTC
+RP/0/0/CPU0:iosxrv-1#
+RP/0/0/CPU0:iosxrv-1#
+RP/0/0/CPU0:iosxrv-1#show run
+Thu May 26 07:02:54.045 UTC
 Building configuration...
 !! IOS XR Configuration 6.1.1.14I
-interface GigabitEthernet0/0/0/0
- no description first
+!! Last configuration change at Thu May 26 07:02:48 2016 by cisco
 !
-no interface GigabitEthernet0/0/0/0
+hostname iosxrv-1
+interface MgmtEth0/0/CPU0/0
+ shutdown
+!
+interface GigabitEthernet0/0/0/1
+ shutdown
+!
 interface GigabitEthernet0/0/0/2
  description first
  ipv4 address 10.20.30.40 255.255.255.0
 !
+interface GigabitEthernet0/0/0/3
+ shutdown
+!
 router ospf 10
  area 0
-  no interface GigabitEthernet0/0/0/0
   interface GigabitEthernet0/0/0/2
    transmit-delay 5
   !
  !
 !
 mpls ldp
- no interface GigabitEthernet0/0/0/0
  interface GigabitEthernet0/0/0/2
   igp sync delay on-session-up 5
  !
 !
 end
-
 ```
 
 ### Example 2:
