@@ -21,6 +21,8 @@ If so, keep on reading ...
 
 ## Introduction
 
+The feature allows the user to replace configuration based on an interface identifier or based on a string pattern
+
 ```
 RP/0/0/CPU0:PE1#configure
 RP/0/0/CPU0:PE1(config)#replace ?
@@ -30,13 +32,15 @@ RP/0/0/CPU0:PE1(config)#replace ?
 
 ## Interface-based Replace operation
 
+In the mode, the user provides the FROM interface identifier and the TO interface identifier; ifid_1 and ifid_2 respectively in the output below
+
 ```
 RP/0/0/CPU0:PE1(config)#replace interface <ifid_1> with <ifid_2> ?
   dry-run  execute the command without loading the replace config
   <cr>
 ```
 
-*  Replacing interface "X" with "Y" will cause sub-interfaces (e.g. "X.abc", "X.def") to also be replaced   
+Note that replacing interface "X" with "Y" will also cause sub-interfaces hosted under "X" (e.g. "X.abc", "X.def") to also be replaced  
 Example: replace Gig0/0/0/1 with Gig0/0/0/11 would cause sub-interface Gig0/0/0/1.100 to be replaced to Gig0/0/0/11.100
 
 
