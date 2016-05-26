@@ -36,6 +36,10 @@ RP/0/0/CPU0:PE1(config)#replace interface <ifid_1> with <ifid_2> ?
   <cr>
 ```
 
+*  Replacing interface "X" with "Y" will cause sub-interfaces (e.g. "X.abc", "X.def") to also be replaced   
+Example: replace Gig0/0/0/1 with Gig0/0/0/11 would cause sub-interface Gig0/0/0/1.100 to be replaced to Gig0/0/0/11.100
+
+
 ### Example 1
 
 In this example, the operator wants to move all configuration located under interface gig 0/0/0/0 to interface gig 0/0/0/2.  
@@ -194,11 +198,11 @@ end
 ```
 
 ### Example 2:
-In the previous example, both interfaces had same configuration statements (description and IPv4 address). With the replace operation, the config from interface gig 0/0/0/1 was moved / merged with the config under interface gig 0/0/0/2
+In the previous example, both interfaces had the same configuration statements (description and IPv4 address). With the replace operation, the config from interface gig 0/0/0/1 was moved / merged with the config under interface gig 0/0/0/2
 
 This example will cover the case where the original and new interfaces have "different" configuration statements and the user desires to only apply the config from the original interface and not the merge
 
-We start with an initial config where interface gig 0/0/0/0 and gig 0/0/0/2 have different configuration statements (non-default mtu on gig 0/0/0/2)
+We start with an initial config where interface gig 0/0/0/0 and gig 0/0/0/2 have different configuration statements (see non-default mtu on gig 0/0/0/2)
 ```
 RP/0/0/CPU0:iosxrv-1#show runn
 
@@ -219,7 +223,8 @@ interface GigabitEthernet0/0/0/2
 end
 ```
 
-To achieve the goal, the user ...
+To achieve the goal, the user destroys the interface gig 0/0/0/2 by using the "no" command
+This is "immediately" followed by the replace operation
 
 ```
 RP/0/0/CPU0:iosxrv-1#conf t
@@ -232,7 +237,7 @@ Loading.
 RP/0/0/CPU0:iosxrv-1(config)#
 ```
 
-
+Observe that ...
 
 ```
 RP/0/0/CPU0:iosxrv-1(config)#show commit changes diff
@@ -306,6 +311,8 @@ RP/0/0/CPU0:iosxrv-1#
 
 ## Pattern-based Replace operation
 
+xxx
+
 ```
 RP/0/0/CPU0:PE1(config)#replace pattern ?
   regex-string  pattern to be replaced within single quotes
@@ -314,6 +321,15 @@ RP/0/0/CPU0:PE1(config)#replace pattern 'regex_1' with 'regex_2' ?
   dry-run  execute the command without loading the replace config
   <cr>  
 ```
+
+*  For pattern-based replace, the input is considered a regex string; e.g. replace pattern 'x' with 'y'  
+So if you are trying to replace 1.2.3.4 remember to escape the '.' as otherwise it would match any char  
+Example: replace pattern '1.2.3.4' with '25.26.27.28' will match and replace both 1.2.3.4 and 10203040  
+Example: replace pattern '1\.2\.3\.4' with '25.26.27.28' will match only 1.2.3.4 and not 10203040  
+
+*  Renaming class-maps or flex-cli groups itself with replace may not go thru the commit due to classmap interdependecy on policymap etc.
+
+*  Always use replace “dry-run” keyboard in order to validate changes that would be performed by the replace operation
 
 ## Examples
 
@@ -325,19 +341,9 @@ RP/0/0/CPU0:PE1(config)#replace pattern 'GigabitEthernet0/1/0/([0-4])' with 'Ten
 
 xxx
 
-## Some Caveats and Considerations
 
-*  Replacing interface "X" with "Y" will cause sub-interfaces (e.g. "X.abc", "X.def") to also be replaced   
-Example: replace Gig0/0/0/1 with Gig0/0/0/11 would cause sub-interface Gig0/0/0/1.100 to be replaced to Gig0/0/0/11.100
 
-*  For pattern-based replace, the input is considered a regex string; e.g. replace pattern 'x' with 'y'  
-So if you are trying to replace 1.2.3.4 remember to escape the '.' as otherwise it would match any char  
-Example: replace pattern '1.2.3.4' with '25.26.27.28' will match and replace both 1.2.3.4 and 10203040  
-Example: replace pattern '1\.2\.3\.4' with '25.26.27.28' will match only 1.2.3.4 and not 10203040  
 
-*  Renaming class-maps or flex-cli groups itself with replace may not go thru the commit due to classmap interdependecy on policymap etc.
-
-*  Always use replace “dry-run” keyboard in order to validate changes that would be performed by the replace operation
 
 
 
