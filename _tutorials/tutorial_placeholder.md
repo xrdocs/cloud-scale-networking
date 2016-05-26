@@ -107,13 +107,14 @@ Building configuration...
 end
 ```
 
-Now the operator is ready to proceed and re-runs the replace operation without using the "dry-run" keyword
+Now the operator is ready to proceed and re-run the replace operation without using the "dry-run" keyword
 
 ```
 RP/0/0/CPU0:iosxrv-1(config)#replace interface gigabitEthernet 0/0/0/0 with gigabitEthernet 0/0/0/2
 Loading.
 365 bytes parsed in 1 sec (357)bytes/sec
 RP/0/0/CPU0:iosxrv-1(config)#
+
 RP/0/0/CPU0:iosxrv-1(config)#show commit changes diff
 Thu May 26 07:02:34.026 UTC
 Building configuration...
@@ -152,11 +153,11 @@ RP/0/0/CPU0:iosxrv-1(config)#
 RP/0/0/CPU0:iosxrv-1(config)#commit
 Thu May 26 07:02:48.775 UTC
 RP/0/0/CPU0:iosxrv-1(config)#
-RP/0/0/CPU0:iosxrv-1(config)#
-RP/0/0/CPU0:iosxrv-1(config)#
 RP/0/0/CPU0:iosxrv-1(config)#exit
-RP/0/0/CPU0:iosxrv-1#
-RP/0/0/CPU0:iosxrv-1#
+```
+After committing the configuration we observe the new configuration and references to interface gig 0/0/0/2
+
+```
 RP/0/0/CPU0:iosxrv-1#show run
 Thu May 26 07:02:54.045 UTC
 Building configuration...
@@ -193,6 +194,7 @@ end
 ```
 
 ### Example 2:
+In the previous example, the new interface (gig 0/0/0/2)
 
 ```
 RP/0/0/CPU0:iosxrv-1#show runn
