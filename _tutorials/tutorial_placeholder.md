@@ -198,29 +198,17 @@ In the previous example, the new interface (gig 0/0/0/2)
 
 ```
 RP/0/0/CPU0:iosxrv-1#show runn
-Thu May 26 06:55:38.005 UTC
-Building configuration...
-!! IOS XR Configuration 6.1.1.14I
-!! Last configuration change at Thu May 26 06:37:14 2016 by cisco
-!
-hostname iosxrv-1
-interface MgmtEth0/0/CPU0/0
- shutdown
+
+<snip>
 !
 interface GigabitEthernet0/0/0/0
  description first
  ipv4 address 10.20.30.40 255.255.255.0
 !
-interface GigabitEthernet0/0/0/1
- shutdown
-!
 interface GigabitEthernet0/0/0/2
  description second
  mtu 9000
  ipv4 address 10.20.50.60 255.255.255.0
-!
-interface GigabitEthernet0/0/0/3
- shutdown
 !
 router ospf 10
  area 0
@@ -235,7 +223,9 @@ mpls ldp
  !
 !
 end
+```
 
+```
 RP/0/0/CPU0:iosxrv-1#conf t
 Thu May 26 06:55:50.674 UTC
 RP/0/0/CPU0:iosxrv-1(config)#no interface GigabitEthernet0/0/0/2
