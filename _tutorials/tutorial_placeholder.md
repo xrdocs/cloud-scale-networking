@@ -40,8 +40,8 @@ RP/0/0/CPU0:PE1(config)#replace interface <ifid_1> with <ifid_2> ?
   <cr>
 ```
 
-Note that replacing interface "X" with "Y" will also cause sub-interfaces hosted under "X" (e.g. "X.abc", "X.def") to also be replaced  
-Example: replace Gig0/0/0/1 with Gig0/0/0/11 would cause sub-interface Gig0/0/0/1.100 to be replaced to Gig0/0/0/11.100
+Note that replacing interface "X" with "Y" will also cause sub-interfaces hosted under "X" (e.g. interface "X.abc", "X.def") to also be replaced with "Y"
+Example: replace Gig0/0/0/1 with Gig0/0/0/2 would cause sub-interface Gig0/0/0/1.100 to be replaced to Gig0/0/0/2.100
 
 
 ### Example 1
