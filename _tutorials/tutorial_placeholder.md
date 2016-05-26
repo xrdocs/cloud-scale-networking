@@ -19,5 +19,12 @@ This feature allows for easy manipulation of router configuration
 If so, keep on reading ...
 {: .notice--info}
 
+```
+RP/0/0/CPU0:PE1(config)#replace ?
+  interface  replace configuration for an interface
+  pattern    replace a string pattern in configuration
+```
+
+xxx
 
 
