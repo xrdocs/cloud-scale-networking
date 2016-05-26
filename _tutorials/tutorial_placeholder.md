@@ -47,6 +47,8 @@ RP/0/0/CPU0:PE1(config)#replace pattern 'regex_1' with 'regex_2' ?
 
 ```
 RP/0/0/CPU0:PE1(config)#replace interface gigabitEthernet 0/0/0/0 with gigabitEthernet 0/0/0/1 dry-run
+RP/0/0/CPU0:PE1(config)#replace pattern '10\.20\.30\.40' with '100.200.250.225‘
+RP/0/0/CPU0:PE1(config)#replace pattern 'GigabitEthernet0/1/0/([0-4])' with 'TenGigE0/3/0/\1'
 ```
 
 xxx
