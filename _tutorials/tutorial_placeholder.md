@@ -39,6 +39,10 @@ xxx
 ```
 RP/0/0/CPU0:PE1(config)#replace pattern ?
   regex-string  pattern to be replaced within single quotes
+  
+RP/0/0/CPU0:PE1(config)#replace pattern 'regex_1' with 'regex_2' ?
+  dry-run  execute the command without loading the replace config
+  <cr>  
 ```
 
 xxx
