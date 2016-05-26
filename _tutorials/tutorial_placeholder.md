@@ -315,7 +315,13 @@ RP/0/0/CPU0:iosxrv-1#
 
 ## Pattern-based Replace operation
 
-xxx
+In the second mode of operation, the user can provide string patterns
+
+Note that the input is considered a regex string; e.g. replace pattern 'x' with 'y'  
+So if you are trying to replace an IPv4 address such as 1.2.3.4, remember to escape the '.' as otherwise it would match any char  
+
+Example: replace pattern '1.2.3.4' with '25.26.27.28' will match and replace both 1.2.3.4 and 10203040  
+Example: replace pattern '1\.2\.3\.4' with '25.26.27.28' will match only 1.2.3.4 and not 10203040
 
 ```
 RP/0/0/CPU0:PE1(config)#replace pattern ?
@@ -324,18 +330,13 @@ RP/0/0/CPU0:PE1(config)#replace pattern ?
 RP/0/0/CPU0:PE1(config)#replace pattern 'regex_1' with 'regex_2' ?
   dry-run  execute the command without loading the replace config
   <cr>  
-```
-
-*  For pattern-based replace, the input is considered a regex string; e.g. replace pattern 'x' with 'y'  
-So if you are trying to replace 1.2.3.4 remember to escape the '.' as otherwise it would match any char  
-Example: replace pattern '1.2.3.4' with '25.26.27.28' will match and replace both 1.2.3.4 and 10203040  
-Example: replace pattern '1\.2\.3\.4' with '25.26.27.28' will match only 1.2.3.4 and not 10203040  
+```  
 
 *  Renaming class-maps or flex-cli groups itself with replace may not go thru the commit due to classmap interdependecy on policymap etc.
 
 *  Always use replace “dry-run” keyboard in order to validate changes that would be performed by the replace operation
 
-## Examples
+## Example 3:
 
 ```
 RP/0/0/CPU0:PE1(config)#replace interface gigabitEthernet 0/0/0/0 with gigabitEthernet 0/0/0/1 dry-run
