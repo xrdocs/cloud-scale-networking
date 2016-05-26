@@ -36,6 +36,134 @@ RP/0/0/CPU0:PE1(config)#replace interface <ifid_1> with <ifid_2> ?
   <cr>
 ```
 
+```
+RP/0/0/CPU0:iosxrv-1#show run
+Thu May 26 05:46:16.760 UTC
+Building configuration...
+!! IOS XR Configuration 6.1.1.14I
+!! Last configuration change at Thu May 26 05:46:11 2016 by cisco
+!
+hostname iosxrv-1
+interface MgmtEth0/0/CPU0/0
+ shutdown
+!
+interface GigabitEthernet0/0/0/0
+ description first
+ ipv4 address 10.20.30.40 255.255.255.0
+!
+interface GigabitEthernet0/0/0/1
+ shutdown
+!
+interface GigabitEthernet0/0/0/2
+ description second
+ ipv4 address 10.20.50.60 255.255.255.0
+!
+interface GigabitEthernet0/0/0/3
+ shutdown
+!
+router ospf 10
+ area 0
+  interface GigabitEthernet0/0/0/0
+   transmit-delay 5
+  !
+ !
+!
+mpls ldp
+ interface GigabitEthernet0/0/0/0
+  igp sync delay on-session-up 5
+ !
+!
+end
+```
+
+```
+RP/0/0/CPU0:iosxrv-1(config)#replace interface gigabitEthernet 0/0/0/0 with gigabitEthernet 0/0/0/2 dry-run
+no interface GigabitEthernet0/0/0/0
+interface GigabitEthernet0/0/0/2
+ description first
+ ipv4 address 10.20.30.40 255.255.255.0
+router ospf 10
+ area 0
+  no interface GigabitEthernet0/0/0/0
+  interface GigabitEthernet0/0/0/2
+   transmit-delay 5
+mpls ldp
+ no interface GigabitEthernet0/0/0/0
+ interface GigabitEthernet0/0/0/2
+  igp sync delay on-session-up 5
+end
+end
+RP/0/0/CPU0:iosxrv-1(config)#
+RP/0/0/CPU0:iosxrv-1(config)#show
+Thu May 26 05:48:51.519 UTC
+Building configuration...
+!! IOS XR Configuration 6.1.1.14I
+end
+
+RP/0/0/CPU0:iosxrv-1(config)#replace interface gigabitEthernet 0/0/0/0 with gigabitEthernet 0/0/0/2
+Loading.
+365 bytes parsed in 1 sec (357)bytes/sec
+RP/0/0/CPU0:iosxrv-1(config)#
+RP/0/0/CPU0:iosxrv-1(config)#
+RP/0/0/CPU0:iosxrv-1(config)#show
+Thu May 26 05:49:10.598 UTC
+Building configuration...
+!! IOS XR Configuration 6.1.1.14I
+no interface GigabitEthernet0/0/0/0
+interface GigabitEthernet0/0/0/2
+ description first
+ ipv4 address 10.20.30.40 255.255.255.0
+!
+router ospf 10
+ area 0
+  no interface GigabitEthernet0/0/0/0
+  interface GigabitEthernet0/0/0/2
+   transmit-delay 5
+  !
+ !
+!
+mpls ldp
+ no interface GigabitEthernet0/0/0/0
+ interface GigabitEthernet0/0/0/2
+  igp sync delay on-session-up 5
+ !
+!
+end
+
+RP/0/0/CPU0:iosxrv-1(config)#commit
+Thu May 26 05:49:21.767 UTC
+RP/0/0/CPU0:iosxrv-1(config)#exit
+RP/0/0/CPU0:iosxrv-1#show configuration commit changes last 1
+Thu May 26 05:49:38.816 UTC
+Building configuration...
+!! IOS XR Configuration 6.1.1.14I
+interface GigabitEthernet0/0/0/0
+ no description first
+!
+no interface GigabitEthernet0/0/0/0
+interface GigabitEthernet0/0/0/2
+ description first
+ ipv4 address 10.20.30.40 255.255.255.0
+!
+router ospf 10
+ area 0
+  no interface GigabitEthernet0/0/0/0
+  interface GigabitEthernet0/0/0/2
+   transmit-delay 5
+  !
+ !
+!
+mpls ldp
+ no interface GigabitEthernet0/0/0/0
+ interface GigabitEthernet0/0/0/2
+  igp sync delay on-session-up 5
+ !
+!
+end
+
+```
+
+
 ## Pattern-based Replace operation
 
 ```
