@@ -73,7 +73,7 @@ end
 ```
 
 Below the operator runs the replace command using the interface identifiers.
-In the first attempt, the user decides to give the command a try and specifies the "**dry-run**" keyword in order to validate the results
+In the first attempt, the user decides to give the command a try and specifies the "**dry-run**" keyword in order to validate the results and without loading any config changes
 
 Remember that the goal is to move all configuration and references associated with gig 0/0/0/0 to gig 0/0/0/2
 
@@ -95,7 +95,7 @@ mpls ldp
 end
 ```
 
-
+By specifying the "dry-run" keyword, below we can see thar NO config changes were loaded into the candidate config buffer
 
 ```
 RP/0/0/CPU0:iosxrv-1(config)#
@@ -104,7 +104,11 @@ Thu May 26 05:48:51.519 UTC
 Building configuration...
 !! IOS XR Configuration 6.1.1.14I
 end
+```
 
+
+
+```
 RP/0/0/CPU0:iosxrv-1(config)#replace interface gigabitEthernet 0/0/0/0 with gigabitEthernet 0/0/0/2
 Loading.
 365 bytes parsed in 1 sec (357)bytes/sec
