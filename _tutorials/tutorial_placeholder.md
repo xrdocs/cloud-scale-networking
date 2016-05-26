@@ -8,7 +8,7 @@ date: "2016-05-18 15:12 -0700"
 position: hidden
 ---
 
-Tutorial Placeholder!
+In IOS XR 5.3.1, a customer favorite feature was implemented - **Global Configuration Replace**
+This feature allows for easy manipulation of router configuration
 
-Blah Blah Blah
-Bleh Bleh Bleh
+
