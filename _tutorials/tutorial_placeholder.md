@@ -55,8 +55,8 @@ xxx
 
 ## Some Caveats and Considerations
 
-*  Replace interface X with Y causes sub-interfaces X.0, X.1, etc to also be replaced.
-*    Example: replace Gig0/0/0/1 with Gig0/0/0/11 will cause sub-interface Gig0/0/0/1.100 to be replaced to Gig0/0/0/11.100
+*  Replacing interface "X" with "Y" causes sub-interfaces "X.0", "X.1", etc. to also be replaced   
+Example: replace Gig0/0/0/1 with Gig0/0/0/11 will cause sub-interface Gig0/0/0/1.100 to be replaced to Gig0/0/0/11.100
 
 *  For pattern replace, the input is considered a regex string; e.g. replace pattern 'x' with 'y'
 So if you are trying to replace 1.2.3.4 remember to escape the '.' as otherwise it would match any char
