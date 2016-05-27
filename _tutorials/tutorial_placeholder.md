@@ -347,6 +347,155 @@ RP/0/0/CPU0:PE1(config)#replace pattern 'regex_1' with 'regex_2' ?
 
 ```
 RP/0/0/CPU0:iosxrv-1#show run
+Fri May 27 08:12:48.938 UTC
+Building configuration...
+!! IOS XR Configuration 6.1.1.14I
+!! Last configuration change at Fri May 27 08:12:32 2016 by cisco
+!
+hostname iosxrv-1
+interface Bundle-Ether1000
+ bandwidth 1990656
+ ipv4 address 13.5.6.5 255.255.255.0
+ load-interval 30
+!
+interface MgmtEth0/0/CPU0/0
+ shutdown
+!
+interface GigabitEthernet0/0/0/0
+ bundle id 1000 mode active
+ shutdown
+!
+interface GigabitEthernet0/0/0/1
+ bundle id 1000 mode active
+ shutdown
+!
+interface GigabitEthernet0/0/0/2
+ description first
+ ipv4 address 10.20.30.40 255.255.255.0
+!
+interface GigabitEthernet0/0/0/3
+ shutdown
+!
+router ospf 10
+ area 0
+  interface GigabitEthernet0/0/0/2
+   transmit-delay 5
+  !
+ !
+!
+mpls ldp
+ interface GigabitEthernet0/0/0/2
+  igp sync delay on-session-up 5
+ !
+!
+end
+
+RP/0/0/CPU0:iosxrv-1#conf t
+Fri May 27 08:12:52.678 UTC
+RP/0/0/CPU0:iosxrv-1(config)#replace pattern '1000' with '2000' dry-run
+no interface Bundle-Ether1000
+interface Bundle-Ether2000
+ bandwidth 1990656
+ ipv4 address 13.5.6.5 255.255.255.0
+ load-interval 30
+interface GigabitEthernet0/0/0/0
+ no bundle id 1000 mode active
+ bundle id 2000 mode active
+interface GigabitEthernet0/0/0/1
+ no bundle id 1000 mode active
+ bundle id 2000 mode active
+end
+RP/0/0/CPU0:iosxrv-1(config)#
+RP/0/0/CPU0:iosxrv-1(config)#replace pattern '1000' with '2000'
+Loading.
+319 bytes parsed in 1 sec (312)bytes/sec
+RP/0/0/CPU0:iosxrv-1(config)#
+RP/0/0/CPU0:iosxrv-1(config)#
+RP/0/0/CPU0:iosxrv-1(config)#show commit changes diff
+Fri May 27 08:13:38.485 UTC
+Building configuration...
+!! IOS XR Configuration 6.1.1.14I
+-  interface Bundle-Ether1000
+-   bandwidth 1990656
+-   ipv4 address 13.5.6.5 255.255.255.0
+-   load-interval 30
+   !
++  interface Bundle-Ether2000
++   bandwidth 1990656
++   ipv4 address 13.5.6.5 255.255.255.0
++   load-interval 30
+   !
+   interface GigabitEthernet0/0/0/0
+<-  bundle id 1000 mode active
++>  bundle id 2000 mode active
+   !
+   interface GigabitEthernet0/0/0/1
+<-  bundle id 1000 mode active
++>  bundle id 2000 mode active
+   !
+end
+
+RP/0/0/CPU0:iosxrv-1(config)#
+RP/0/0/CPU0:iosxrv-1(config)#commit
+Fri May 27 08:13:45.555 UTC
+RP/0/0/CPU0:iosxrv-1(config)#show commit changes diff
+Fri May 27 08:13:47.914 UTC
+Building configuration...
+!! IOS XR Configuration 6.1.1.14I
+end
+
+RP/0/0/CPU0:iosxrv-1(config)#exit
+RP/0/0/CPU0:iosxrv-1#
+RP/0/0/CPU0:iosxrv-1#show run
+Fri May 27 08:13:56.764 UTC
+Building configuration...
+!! IOS XR Configuration 6.1.1.14I
+!! Last configuration change at Fri May 27 08:13:45 2016 by cisco
+!
+hostname iosxrv-1
+interface Bundle-Ether2000
+ bandwidth 1990656
+ ipv4 address 13.5.6.5 255.255.255.0
+ load-interval 30
+!
+interface MgmtEth0/0/CPU0/0
+ shutdown
+!
+interface GigabitEthernet0/0/0/0
+ bundle id 2000 mode active
+ shutdown
+!
+interface GigabitEthernet0/0/0/1
+ bundle id 2000 mode active
+ shutdown
+!
+interface GigabitEthernet0/0/0/2
+ description first
+ ipv4 address 10.20.30.40 255.255.255.0
+!
+interface GigabitEthernet0/0/0/3
+ shutdown
+!
+router ospf 10
+ area 0
+  interface GigabitEthernet0/0/0/2
+   transmit-delay 5
+  !
+ !
+!
+mpls ldp
+ interface GigabitEthernet0/0/0/2
+  igp sync delay on-session-up 5
+ !
+!
+end
+
+RP/0/0/CPU0:iosxrv-1#
+
+```
+
+```
+RP/0/0/CPU0:iosxrv-1#show run
 
 <snip>
 interface Bundle-Ether1000
