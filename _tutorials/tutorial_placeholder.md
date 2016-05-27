@@ -237,9 +237,10 @@ Loading.
 RP/0/0/CPU0:iosxrv-1(config)#
 ```
 
-Observe below the diffs applied on the candidate config buffer. Note that in fact, the target interface gigabitEthernet 0/0/0/2 was not deleted but instead the minimal set of changes was automatically applied; i.e. description and IPv4 addresses updated and non-default MTU automatically removed
+Observe below the diffs applied on the candidate config buffer. Note that in fact, the target interface gigabitEthernet 0/0/0/2 was not deleted but instead the minimal set of changes were automatically applied; i.e. description and IPv4 addresses updated and non-default MTU automatically removed
 
-A new feature introduced in IOS XR 5.3.2
+With a new behavior introduced in IOS XR 5.3.2, a **DELETE** followed by a **RECREATE** of an interface translates in the backend as a **SET** of minimal changes between original and target interface configuration. This way the user does not have to one-by-one remove unwanted configurations, plus in addition avoids interface flaps
+{: .notice--warning}
 
 ```
 RP/0/0/CPU0:iosxrv-1(config)#show commit changes diff
