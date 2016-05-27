@@ -167,7 +167,7 @@ Thu May 26 07:02:48.775 UTC
 RP/0/0/CPU0:iosxrv-1(config)#
 RP/0/0/CPU0:iosxrv-1(config)#exit
 ```
-After committing the configuration we observe the new configuration and references to interface gig 0/0/0/2
+After committing the configuration, we can see the new configuration and updated references to interface gig 0/0/0/2
 
 ```
 RP/0/0/CPU0:iosxrv-1#show run
