@@ -49,8 +49,8 @@ Example: `replace interface gigabitEthernet 0/0/0/1 with gigabitEthernet 0/0/0/2
 
 ### Example 1
 
-In this example, the operator wants to move all configuration located under interface gig 0/0/0/0 to interface gig 0/0/0/2.  
-In addition, all other references to the former interface (say in routing protocols, mpls lpd, etc) also need to be replaced with the new interface (gig 0/0/0/2)
+In this example, the operator wants to move all configuration located under interface gig 0/0/0/0 to interface gig 0/0/0/2  
+In addition, all other references to the former interface (say in routing protocols, mpls lpd, rsvp, etc) also need to be replaced with the new interface (gig 0/0/0/2)
 
 Below is the original router configuration
 
