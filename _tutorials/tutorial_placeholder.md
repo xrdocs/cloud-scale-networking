@@ -287,7 +287,7 @@ Thu May 26 06:56:54.169 UTC
 RP/0/0/CPU0:iosxrv-1(config)#
 ```
 
-Lastly, below we can see the resulting configuration
+Lastly, below we can see the resulting configuration completely replacing the configuration under interface gigabitEthernet 0/0/0/2 with the one previously found on gigabitEthernet 0/0/0/1
 
 ```
 RP/0/0/CPU0:iosxrv-1#show run
