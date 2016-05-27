@@ -287,6 +287,7 @@ Thu May 26 06:56:54.169 UTC
 RP/0/0/CPU0:iosxrv-1(config)#
 ```
 
+Lastly, below we can see the resulting configuration
 
 ```
 RP/0/0/CPU0:iosxrv-1#show run
