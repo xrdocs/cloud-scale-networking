@@ -125,7 +125,8 @@ RP/0/0/CPU0:iosxrv-1(config)#replace interface gigabitEthernet 0/0/0/0 with giga
 Loading.
 365 bytes parsed in 1 sec (357)bytes/sec
 RP/0/0/CPU0:iosxrv-1(config)#
-
+```
+```
 RP/0/0/CPU0:iosxrv-1(config)#show commit changes diff
 Thu May 26 07:02:34.026 UTC
 Building configuration...
