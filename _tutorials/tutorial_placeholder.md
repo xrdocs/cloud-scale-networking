@@ -223,8 +223,8 @@ interface GigabitEthernet0/0/0/2
 end
 ```
 
-To achieve the goal, the user destroys the interface gig 0/0/0/2 by using the "no" command
-This is "immediately" followed by the replace operation
+To achieve the goal, the user first deletes the interface gig 0/0/0/2 by using the "no" command
+And subsequently followed by the "replace" operation
 
 ```
 RP/0/0/CPU0:iosxrv-1#conf t
@@ -237,7 +237,9 @@ Loading.
 RP/0/0/CPU0:iosxrv-1(config)#
 ```
 
-Observe that ...
+Observe below the diffs applied on the candidate config buffer. Note that in fact, the target interface gigabitEthernet 0/0/0/2 was not deleted but instead the minimal set of changes was automatically applied; i.e. description and IPv4 addresses updated and non-default MTU automatically removed
+
+A new feature introduced in IOS XR 5.3.2
 
 ```
 RP/0/0/CPU0:iosxrv-1(config)#show commit changes diff
