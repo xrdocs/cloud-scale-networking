@@ -21,7 +21,7 @@ If so, keep on reading ...
 
 ## Introduction
 
-The feature allows the user to replace configuration based on an interface identifier or based on a string pattern
+The feature allows the user to replace configuration based on an interface identifier or a string pattern
 
 ```
 RP/0/0/CPU0:PE1#configure
@@ -350,11 +350,3 @@ RP/0/0/CPU0:PE1(config)#replace pattern 'GigabitEthernet0/1/0/([0-4])' with 'Ten
 ```
 
 xxx
-
-
-
-
-
-
-
-
