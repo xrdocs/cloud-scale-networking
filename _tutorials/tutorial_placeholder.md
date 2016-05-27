@@ -171,17 +171,8 @@ After committing the configuration, we can see the new configuration and updated
 
 ```
 RP/0/0/CPU0:iosxrv-1#show run
-Thu May 26 07:02:54.045 UTC
-Building configuration...
-!! IOS XR Configuration 6.1.1.14I
-!! Last configuration change at Thu May 26 07:02:48 2016 by cisco
-!
-hostname iosxrv-1
-interface MgmtEth0/0/CPU0/0
- shutdown
-!
-interface GigabitEthernet0/0/0/1
- shutdown
+
+<snip>
 !
 interface GigabitEthernet0/0/0/2
  description first
