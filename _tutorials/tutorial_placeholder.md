@@ -199,7 +199,7 @@ end
 ### Example 2:
 In the previous example, both interfaces had the same configuration statements (description and IPv4 address). With the replace operation, the config from interface gig 0/0/0/1 was moved and effectively merged with the config under interface gig 0/0/0/2
 
-This example will cover the case where the original and new interfaces have "different" configuration statements and the user desires to only apply the config from the original interface and not to merge
+This example will cover the case where the original and new interfaces have "different" configuration statements. This time the user desires to only apply the config from the original interface and not to merge
 
 We start with an initial config where interface gig 0/0/0/0 and gig 0/0/0/2 have different configuration statements (note the presence of a non-default mtu on gig 0/0/0/2)  
 
