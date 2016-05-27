@@ -204,7 +204,7 @@ This example will cover the case where the original and new interfaces have "dif
 We start with an initial config where interface gig 0/0/0/0 and gig 0/0/0/2 have different configuration statements (note the presence of a non-default mtu on gig 0/0/0/2)  
 
 ```
-RP/0/0/CPU0:iosxrv-1#show runn
+RP/0/0/CPU0:iosxrv-1#show run
 
 <snip>
 !
