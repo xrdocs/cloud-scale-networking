@@ -16,7 +16,7 @@ feature_row2:
   - image_path: blog.png
     alt: "fully responsive"
     title: "Blogs"
-    excerpt: 'Periodic Blogs to keep you updated on the latest events, updates and architectural changes to IOS-XR's Cloud-scale Networking stack'
+    excerpt: 'Periodic Blogs to keep you updated on the latest events, updates and architectural changes to the Cloud-scale Networking stack of IOS-XR'
     url: "/blogs"
     btn_label: "Check out the Blogs!"
     btn_class: "btn--inverse"
