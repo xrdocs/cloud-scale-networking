@@ -8,7 +8,7 @@ feature_row1:
   - image_path: techdoc.jpg
     alt: "fully responsive"
     title: "Technical Documentation"
-    excerpt: 'Detailed Technical Documentation IOS-XR's upcoming Networking features and Capabilities"
+    excerpt: 'Detailed Technical Documentation on the upcoming Networking features and Capabilities of IOS-XR"
     url: "/techdocs"
     btn_label: "Check out the docs!"
     btn_class: "btn--inverse"
