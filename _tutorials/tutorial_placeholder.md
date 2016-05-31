@@ -320,7 +320,7 @@ RP/0/0/CPU0:iosxrv-1#
 
 In the second mode of operation, the user can provide string patterns
 
-The input entered in teh repllace command is considered a regex string; e.g. replace pattern 'x' with 'y'  
+The input entered in the replace command is considered a regex string; e.g. replace pattern 'x' with 'y'  
 So if you are trying to replace an IPv4 address such as 1.2.3.4, remember to escape the '.' as otherwise it would match any char  
 
 ```
@@ -369,7 +369,8 @@ interface GigabitEthernet0/0/0/1
 end
 ```
 
-
+Repetitions of pattern '1000' are modified to '2000'
+User specifies the "**dry-run**" keyboard to validate the changes without an actual commit
 
 ```
 RP/0/0/CPU0:iosxrv-1#conf t
