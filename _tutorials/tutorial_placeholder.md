@@ -332,7 +332,7 @@ RP/0/0/CPU0:PE1(config)#replace pattern 'regex_1' with 'regex_2' ?
 ```  
 
 Note that the input entered in the replace command is considered a regex string
-So if you are trying to replace an IPv4 address such as 1.2.3.4, remember to escape the '.' as otherwise it would match any char
+So for example, if you are trying to replace an IPv4 address (e.g. 1.2.3.4, remember to escape the '.' as otherwise it would match any character
 {: .notice--warning}
 
 ```
