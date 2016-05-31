@@ -240,7 +240,7 @@ RP/0/0/CPU0:iosxrv-1(config)#
 Observe below the diffs applied on the candidate config buffer. Note that in fact, the target interface gigabitEthernet 0/0/0/2 was not deleted (even though the "no interface" command was issued) but instead the minimal set of changes were automatically applied by the backend; i.e. description and IPv4 addresses were updated and non-default MTU was automatically removed
 
 >
-With a new behavior introduced in IOS XR 5.3.2, a **DELETE** followed by a **RECREATE** of an interface translates in the backend to a **SET** of minimal changes between original and target interface configuration. This way the user does not have to one-by-one remove unwanted configurations while avoiding unnecessary interface flaps
+With a new behavior introduced in IOS XR 5.3.2, a **DELETE** followed by a **RECREATE** of an interface translates to a **SET** of minimal changes between original and target interface configuration. This way the user does not have to one-by-one remove unwanted configurations while avoiding unnecessary interface flaps
 >
 Stay tune for an upcoming tutorial detailing this new behavior !!
 {: .notice--warning}
