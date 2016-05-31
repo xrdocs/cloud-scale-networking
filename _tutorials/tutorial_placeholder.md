@@ -399,7 +399,7 @@ Loading.
 319 bytes parsed in 1 sec (312)bytes/sec
 ```
 
-
+Below observe the changes in the target configuration buffer
 
 ```
 RP/0/0/CPU0:iosxrv-1(config)#show commit changes diff
@@ -429,6 +429,9 @@ end
 RP/0/0/CPU0:iosxrv-1(config)#
 RP/0/0/CPU0:iosxrv-1(config)#commit
 ```
+
+After "commit", then entire Bundle-Ether1000 config (including bundle members) has been moved to Bundle-Ether2000
+
 ```
 RP/0/0/CPU0:iosxrv-1#show run
 
