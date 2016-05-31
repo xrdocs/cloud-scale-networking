@@ -337,11 +337,9 @@ RP/0/0/CPU0:PE1(config)#replace pattern 'string_1' with 'string_2' ?
 
 ### REGEX string matching considerations
 
->
-Note that the input entered in the replace command is considered a **regex string**
->
+The input entered in the replace command is considered a **regex string**
+
 So for example, if you are trying to replace an IPv4 address (e.g. 1.2.3.4), remember to escape the '.' as otherwise it would match any character
-{: .notice--warning}
 
 Using an IMPROPER input regex string would match undesired statements  
 For example, consider a router configuration that includes an interface with ipv4 address 1.2.3.4 and an interface description 10203040  
