@@ -482,47 +482,64 @@ RP/0/0/CPU0:iosxrv-1(config)#replace pattern 'bundle id 1000 mode active' with '
 ## Example 4:
 
 ```
-interface GigabitEthernet0/1/0/0
- ipv4 address 20.0.0.10 255.255.0.0
+RP/0/0/CPU0:iosxrv-1#show run
+
+<snip>
 !
-interface GigabitEthernet0/1/0/1
- ipv4 address 21.0.0.11 255.255.0.0
-!
-interface GigabitEthernet0/1/0/2
- ipv4 address 22.0.0.12 255.255.0.0
-!
-interface GigabitEthernet0/1/0/3
- ipv4 address 23.0.0.13 255.255.0.0
-!
-interface GigabitEthernet0/1/0/4
- ipv4 address 24.0.0.14 255.255.0.0
-!
-interface TenGigE0/3/0/0
+interface GigabitEthernet0/0/0/0
+ bundle id 2000 mode active
  shutdown
 !
-interface TenGigE0/3/0/1
+interface GigabitEthernet0/0/0/1
+ bundle id 2000 mode active
  shutdown
 !
-interface TenGigE0/3/0/2
- shutdown
+interface GigabitEthernet0/0/0/2
+ description first
+ ipv4 address 10.20.30.40 255.255.255.0
 !
-interface TenGigE0/3/0/3
- shutdown
+<snip>
 !
-interface TenGigE0/3/0/4
- shutdown
+router ospf 10
+ area 0
+  interface GigabitEthernet0/0/0/2
+   transmit-delay 5
+  !
+ !
 !
-interface TenGigE0/3/0/5
- shutdown
-!
-interface TenGigE0/3/0/6
- shutdown
+mpls ldp
+ interface GigabitEthernet0/0/0/2
+  igp sync delay on-session-up 5
+ !
 !
 end
 ```
+  
 
 ```
-
+RP/0/0/CPU0:iosxrv-1#conf t
+RP/0/0/CPU0:iosxrv-1(config)#replace pattern 'GigabitEthernet0/0/0/([0-2])' with 'TenGigE0/3/0/\1' dry-run
+no interface GigabitEthernet0/0/0/0
+interface TenGigE0/3/0/0
+ bundle id 2000 mode active
+ shutdown
+no interface GigabitEthernet0/0/0/1
+interface TenGigE0/3/0/1
+ bundle id 2000 mode active
+ shutdown
+no interface GigabitEthernet0/0/0/2
+interface TenGigE0/3/0/2
+ description first
+ ipv4 address 10.20.30.40 255.255.255.0
+router ospf 10
+ area 0
+  no interface GigabitEthernet0/0/0/2
+  interface TenGigE0/3/0/2
+   transmit-delay 5
+mpls ldp
+ no interface GigabitEthernet0/0/0/2
+ interface TenGigE0/3/0/2
+  igp sync delay on-session-up 5
 ```
 
 And there you have it !!!  
