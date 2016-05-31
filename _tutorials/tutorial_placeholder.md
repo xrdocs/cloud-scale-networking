@@ -335,6 +335,8 @@ RP/0/0/CPU0:PE1(config)#replace pattern 'string_1' with 'string_2' ?
   <cr>  
 ```  
 
+### REGEX string mtaching considerations
+
 >
 Note that the input entered in the replace command is considered a **regex string**
 >
