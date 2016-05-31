@@ -341,7 +341,6 @@ Example: replace pattern '1\.2\.3\.4' with '25.26.27.28' will match only 1.2.3.4
 ```
 
 ```
-RP/0/0/CPU0:PE1(config)#replace pattern '10\.20\.30\.40' with '100.200.250.225‘
 RP/0/0/CPU0:PE1(config)#replace pattern 'GigabitEthernet0/1/0/([0-4])' with 'TenGigE0/3/0/\1'
 ```
 
