@@ -480,6 +480,9 @@ RP/0/0/CPU0:iosxrv-1(config)#replace pattern 'bundle id 1000 mode active' with '
 ```
 
 ## Example 4:
+In this example, the goal is to move the configuration under interfaces GigabitEthernet 0/0/0/0, 0/0/0/1 and 0/0/0/2 to interface TenGigE 0/3/0/0, 0/3/0/1 and 0/3/0/2  
+
+Below is teh original router configuration
 
 ```
 RP/0/0/CPU0:iosxrv-1#show run
