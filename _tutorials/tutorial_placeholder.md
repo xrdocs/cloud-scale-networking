@@ -118,7 +118,7 @@ Building configuration...
 end
 ```
 
-Now the operator is ready to proceed with the change. The replace operation is run without using the "dry-run" keyword
+Now, the operator is ready to proceed with the change. The replace operation is run without using the "dry-run" keyword
 
 ```
 RP/0/0/CPU0:iosxrv-1(config)#replace interface gigabitEthernet 0/0/0/0 with gigabitEthernet 0/0/0/2
