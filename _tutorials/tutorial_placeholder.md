@@ -347,6 +347,7 @@ RP/0/0/CPU0:PE1(config)#replace pattern 'regex_1' with 'regex_2' ?
 In this example, we will use string pattern replace to move the configuration under Bundle-Ether1000 to a new Bundle-Ether2000 interface
 Configuring bundle interfaces requires both configuration of the logical interface itself as well as the bundle members. Using the "replace interface" command alone as previously, would have achieved the former but not the latter. Therefore, we would turn to "replace pattern" to achieve our goal
 
+Below is the original router configuration
 ```
 RP/0/0/CPU0:iosxrv-1#show run
 
