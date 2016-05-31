@@ -466,5 +466,4 @@ RP/0/0/CPU0:iosxrv-1(config)#replace pattern 'bundle id 1000 mode active' with '
 ```
 
 And that is it !!!  
-Hope that you find this posting useful, but more importantly that you good uses to this new IOS-XR functionality
-Feel free to let me know
+I hope that you find this posting useful, but more importantly that you benefit from this new IOS-XR functionality
