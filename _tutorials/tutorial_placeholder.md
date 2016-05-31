@@ -391,13 +391,16 @@ interface GigabitEthernet0/0/0/1
 end
 ```
 
-
+Replace command is re-executed without the "dry-run" keyboard
 
 ```
 RP/0/0/CPU0:iosxrv-1(config)#replace pattern '1000' with '2000'
 Loading.
 319 bytes parsed in 1 sec (312)bytes/sec
 ```
+
+
+
 ```
 RP/0/0/CPU0:iosxrv-1(config)#show commit changes diff
 Fri May 27 08:13:38.485 UTC
