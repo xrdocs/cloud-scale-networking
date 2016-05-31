@@ -458,7 +458,7 @@ interface GigabitEthernet0/0/0/1
 end
 ```
 
-
+Note that instead of a single operation, this example could have been achieved with two (2) replace operations
 
 ```
 RP/0/0/CPU0:iosxrv-1(config)#replace interface Bundle-Ether1000 with Bundle-Ether2000
