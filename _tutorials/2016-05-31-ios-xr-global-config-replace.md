@@ -43,11 +43,11 @@ RP/0/0/CPU0:PE1(config)#replace interface <ifid_1> with <ifid_2> ?
   <cr>
 ```
 
->
-Note that replacing interface "X" with "Y" will also cause sub-interfaces hosted under "X" (e.g. "X.abc", "X.def") to also be replaced with "Y"  
->
+### Sub-Interface considerations
+
+Replacing interface "X" with "Y" will also cause all sub-interfaces hosted under "X" (e.g. "X.abc", "X.def") to also be replaced with "Y"  
+
 Example: `replace interface gigabitEthernet 0/0/0/1 with gigabitEthernet 0/0/0/2` would cause sub-interface gigabitEthernet 0/0/0/1.100 to be replaced to  gigabitEthernet 0/0/0/2.100
-{: .notice--warning}
 
 
 ### Example 1
@@ -549,4 +549,3 @@ mpls ldp
 
 And there you have it !!!  
 I hope that you find this posting useful, but more importantly that you benefit from this new IOS-XR functionality
-
