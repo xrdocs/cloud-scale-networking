@@ -390,6 +390,9 @@ interface GigabitEthernet0/0/0/1
  bundle id 2000 mode active
 end
 ```
+
+
+
 ```
 RP/0/0/CPU0:iosxrv-1(config)#replace pattern '1000' with '2000'
 Loading.
