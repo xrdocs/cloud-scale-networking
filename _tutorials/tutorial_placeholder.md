@@ -458,7 +458,7 @@ interface GigabitEthernet0/0/0/1
 end
 ```
 
-Note that instead of a single operation, this example could have been achieved with two (2) replace operations
+As an alternative, note that instead of a single operation, this example could have also been achieved with the following two (2) replace operations
 {: .notice--warning}
 
 ```
