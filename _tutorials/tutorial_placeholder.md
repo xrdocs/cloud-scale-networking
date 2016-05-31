@@ -350,19 +350,9 @@ replace pattern '1.2.3.4' with '25.26.27.28' ---> *** DO NOT USE THIS ***
 replace pattern '1\.2\.3\.4' with '25.26.27.28' ---> *** USE THIS INSTEAD ***
 ```
 
-
-```
-  
-replace pattern '1\.2\.3\.4' with '25.26.27.28' will match only 1.2.3.4 and not 10203040
-```
-
 ```
 RP/0/0/CPU0:PE1(config)#replace pattern 'GigabitEthernet0/1/0/([0-4])' with 'TenGigE0/3/0/\1'
 ```
-
-xxx
-
-
 
 *  Renaming class-maps or flex-cli groups itself with replace may not go thru the commit due to classmap interdependecy on policymap etc.
 
