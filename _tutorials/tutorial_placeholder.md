@@ -357,9 +357,9 @@ replace pattern '1\.2\.3\.4' with '25.26.27.28' ---> *** USE THIS INSTEAD ***
 ```
 
 >
-Renaming certain configuration objects with replace operation MAY fail due to interdependencies checks  
+Renaming certain configuration objects with replace operation MAY fail to commit due to interdependency checks performed by IOS XR
 >
-For example, renaming a class-maps with replace may not go thru the commit due to classmap interdependecy on policymap etc
+For example, renaming a class-maps that is referenced by a policy-map will not go thru commit (% Object is in use: Class-map "CMAP-TEST" of type "qos" is used by policy-map(s). Delete failed.)
 {: .notice--warning} 
 
 
