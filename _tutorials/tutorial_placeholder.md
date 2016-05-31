@@ -344,6 +344,8 @@ RP/0/0/CPU0:PE1(config)#replace pattern 'regex_1' with 'regex_2' ?
 *  Always use replace “dry-run” keyboard in order to validate changes that would be performed by the replace operation
 
 ## Example 4:
+In this example, we will use string pattern replace to move teh configuration of Bundle-Ether1000 to a new Bundle-Ether2000 interface
+Configuring bundle interfaces requires both configuration of the logical interface itself as well as the members
 
 ```
 RP/0/0/CPU0:iosxrv-1#show run
