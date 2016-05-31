@@ -224,7 +224,7 @@ end
 ```
 
 To achieve the goal, the user first deletes the interface gig 0/0/0/2 by using the "no" command
-And subsequently follow it by the "replace" operation
+And subsequently follow it with the "replace" operation
 
 ```
 RP/0/0/CPU0:iosxrv-1#conf t
