@@ -346,11 +346,14 @@ Example: IMPROPER input regex string - the following would use will match and re
 replace pattern '1.2.3.4' with '25.26.27.28' ---> *** DO NOT USE THIS ***
 ```
 
+```
+replace pattern '1\.2\.3\.4' with '25.26.27.28' ---> *** USE THIS INSTEAD ***
+```
 
 
 ```
   
-Example: replace pattern '1\.2\.3\.4' with '25.26.27.28' will match only 1.2.3.4 and not 10203040
+replace pattern '1\.2\.3\.4' with '25.26.27.28' will match only 1.2.3.4 and not 10203040
 ```
 
 ```
