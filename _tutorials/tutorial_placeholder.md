@@ -335,12 +335,21 @@ RP/0/0/CPU0:PE1(config)#replace pattern 'string_1' with 'string_2' ?
   <cr>  
 ```  
 
+
 Note that the input entered in the replace command is considered a **regex string**
 So for example, if you are trying to replace an IPv4 address (e.g. 1.2.3.4), remember to escape the '.' as otherwise it would match any character
 {: .notice--warning}
 
+Example: IMPROPER use will match and replace both 1.2.3.4 and 10203040
+
 ```
-Example: replace pattern '1.2.3.4' with '25.26.27.28' will match and replace both 1.2.3.4 and 10203040  
+replace pattern '1.2.3.4' with '25.26.27.28'
+```
+
+
+
+```
+  
 Example: replace pattern '1\.2\.3\.4' with '25.26.27.28' will match only 1.2.3.4 and not 10203040
 ```
 
