@@ -324,7 +324,7 @@ RP/0/0/CPU0:iosxrv-1#
 
 In the second mode of operation, the user can provide string patterns with the "replace" command
 
-As it was the case before, the command also provides a “**dry-run**” keyboard that allows the user to validate the changes that would be performed by the replace operation without issuing an actual commit
+As it was the case before, the command provides a “**dry-run**” keyboard that allows the user to validate the changes that would be performed by the replace operation without issuing an actual commit
 
 ```
 RP/0/0/CPU0:PE1(config)#replace pattern ?
