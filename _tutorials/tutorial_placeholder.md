@@ -359,7 +359,6 @@ replace pattern '1\.2\.3\.4' with '25.26.27.28' ---> *** USE THIS INSTEAD ***
 
 *  Renaming class-maps or flex-cli groups itself with replace may not go thru the commit due to classmap interdependecy on policymap etc.
 
-*  Always use replace “dry-run” keyboard in order to validate changes that would be performed by the replace operation
 
 ## Example 3:
 In this example, we will use string pattern replace to move the configuration under Bundle-Ether1000 to a new Bundle-Ether2000 interface  
@@ -482,7 +481,7 @@ RP/0/0/CPU0:iosxrv-1(config)#replace pattern 'bundle id 1000 mode active' with '
 ## Example 4:
 In this example, the goal is to move the configuration under interfaces GigabitEthernet 0/0/0/0, 0/0/0/1 and 0/0/0/2 to interface TenGigE 0/3/0/0, 0/3/0/1 and 0/3/0/2  
 
-Below is teh original router configuration
+Below is the original router configuration
 
 ```
 RP/0/0/CPU0:iosxrv-1#show run
@@ -517,7 +516,8 @@ mpls ldp
 !
 end
 ```
-  
+
+Below we apply the replace pattern command using regex strings 'GigabitEthernet0/0/0/([0-2])' and 'TenGigE0/3/0/\1'
 
 ```
 RP/0/0/CPU0:iosxrv-1#conf t
