@@ -340,7 +340,7 @@ Note that the input entered in the replace command is considered a **regex strin
 So for example, if you are trying to replace an IPv4 address (e.g. 1.2.3.4), remember to escape the '.' as otherwise it would match any character
 {: .notice--warning}
 
-Example: IMPROPER input regex string - the following would use will match and replace both 1.2.3.4 and 10203040
+An IMPROPER input regex string would match undesired statements. For example, consider a router configuration that includes an interface with ipv4 address 1.2.3.4 and an interface description 10203040  
 
 ```
 replace pattern '1.2.3.4' with '25.26.27.28' ---> *** DO NOT USE THIS ***
