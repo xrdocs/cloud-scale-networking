@@ -32,7 +32,7 @@ RP/0/0/CPU0:PE1(config)#replace ?
 
 ## Interface-based Replace operation
 
-In the mode, the user provides the FROM interface identifier and the TO interface identifier; ifid_1 and ifid_2 respectively in the output below
+In the mode, the user specifies the source and destination interfaces respectively
 
 ```
 RP/0/0/CPU0:PE1(config)#replace interface <ifid_1> with <ifid_2> ?
