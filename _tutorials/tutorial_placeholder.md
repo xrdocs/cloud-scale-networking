@@ -356,9 +356,6 @@ The following string pattern will match ONLY occurrences of 1.2.3.4
 replace pattern '1\.2\.3\.4' with '25.26.27.28' ---> *** USE THIS INSTEAD ***
 ```
 
-```
-RP/0/0/CPU0:PE1(config)#replace pattern 'GigabitEthernet0/1/0/([0-4])' with 'TenGigE0/3/0/\1'
-```
 
 *  Renaming class-maps or flex-cli groups itself with replace may not go thru the commit due to classmap interdependecy on policymap etc.
 
@@ -482,5 +479,51 @@ RP/0/0/CPU0:iosxrv-1(config)#replace interface Bundle-Ether1000 with Bundle-Ethe
 RP/0/0/CPU0:iosxrv-1(config)#replace pattern 'bundle id 1000 mode active' with 'bundle id 2000 mode active'
 ```
 
-And that is it !!!  
+## Example 4:
+
+```
+interface GigabitEthernet0/1/0/0
+ ipv4 address 20.0.0.10 255.255.0.0
+!
+interface GigabitEthernet0/1/0/1
+ ipv4 address 21.0.0.11 255.255.0.0
+!
+interface GigabitEthernet0/1/0/2
+ ipv4 address 22.0.0.12 255.255.0.0
+!
+interface GigabitEthernet0/1/0/3
+ ipv4 address 23.0.0.13 255.255.0.0
+!
+interface GigabitEthernet0/1/0/4
+ ipv4 address 24.0.0.14 255.255.0.0
+!
+interface TenGigE0/3/0/0
+ shutdown
+!
+interface TenGigE0/3/0/1
+ shutdown
+!
+interface TenGigE0/3/0/2
+ shutdown
+!
+interface TenGigE0/3/0/3
+ shutdown
+!
+interface TenGigE0/3/0/4
+ shutdown
+!
+interface TenGigE0/3/0/5
+ shutdown
+!
+interface TenGigE0/3/0/6
+ shutdown
+!
+end
+```
+
+```
+
+```
+
+And there you have it !!!  
 I hope that you find this posting useful, but more importantly that you benefit from this new IOS-XR functionality
