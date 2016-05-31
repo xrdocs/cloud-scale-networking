@@ -356,8 +356,11 @@ The following string pattern will match ONLY occurrences of 1.2.3.4
 replace pattern '1\.2\.3\.4' with '25.26.27.28' ---> *** USE THIS INSTEAD ***
 ```
 
-
-*  Renaming class-maps or flex-cli groups itself with replace may not go thru the commit due to classmap interdependecy on policymap etc.
+>
+Renaming certain configuration objects with replace operation MAY fail due to interdependencies checks  
+>
+For example, renaming a class-maps with replace may not go thru the commit due to classmap interdependecy on policymap etc
+{: .notice--warning} 
 
 
 ## Example 3:
