@@ -371,7 +371,7 @@ interface GigabitEthernet0/0/0/1
 end
 ```
 
-Repetitions of pattern '1000' are modified to '2000'
+Repetitions of pattern '1000' are modified to '2000'  
 User specifies the "**dry-run**" keyboard to validate the changes without an actual commit
 
 ```
