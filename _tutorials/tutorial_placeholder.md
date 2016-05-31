@@ -465,5 +465,6 @@ RP/0/0/CPU0:iosxrv-1(config)#replace interface Bundle-Ether1000 with Bundle-Ethe
 RP/0/0/CPU0:iosxrv-1(config)#replace pattern 'bundle id 1000 mode active' with 'bundle id 2000 mode active'
 ```
 
-
-xxx
+And that is it !!!  
+Hope that you find this posting useful, but more importantly that you good uses to this new IOS-XR functionality
+Feel free to let me know
