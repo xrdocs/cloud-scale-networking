@@ -242,7 +242,7 @@ Observe below the diffs applied on the candidate config buffer. Note that in fac
 >
 With a new behavior introduced in IOS XR 5.3.2, a **DELETE** followed by a **RECREATE** of an interface translates in the backend to a **SET** of minimal changes between original and target interface configuration. This way the user does not have to one-by-one remove unwanted configurations, plus in addition avoids interface flaps
 >
-Stay tune for an upcoming tutorial detailing this new behavior !!!
+Stay tune for an upcoming tutorial detailing this new behavior !!
 {: .notice--warning}
 
 ```
