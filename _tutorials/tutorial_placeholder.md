@@ -36,6 +36,8 @@ RP/0/0/CPU0:PE1(config)#replace ?
 
 In the mode, the user specifies the source and destination interfaces respectively
 
+The command also provides a “**dry-run**” keyboard that allows the user to validate the changes that would be performed by the replace operation without performing an actual commit
+
 ```
 RP/0/0/CPU0:PE1(config)#replace interface <ifid_1> with <ifid_2> ?
   dry-run  execute the command without loading the replace config
