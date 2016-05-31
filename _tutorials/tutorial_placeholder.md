@@ -343,10 +343,7 @@ So for example, if you are trying to replace an IPv4 address (e.g. 1.2.3.4), rem
 Example: IMPROPER input regex string - the following would use will match and replace both 1.2.3.4 and 10203040
 
 ```
-
-*** DO NOT USE THIS ***
-
-replace pattern '1.2.3.4' with '25.26.27.28'
+replace pattern '1.2.3.4' with '25.26.27.28' ---> *** DO NOT USE THIS ***
 ```
 
 
