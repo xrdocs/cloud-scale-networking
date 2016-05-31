@@ -453,6 +453,8 @@ interface GigabitEthernet0/0/0/1
 end
 ```
 
+
+
 ```
 RP/0/0/CPU0:iosxrv-1(config)#replace interface Bundle-Ether1000 with Bundle-Ether2000
 RP/0/0/CPU0:iosxrv-1(config)#replace pattern 'bundle id 1000 mode active' with 'bundle id 2000 mode active'
