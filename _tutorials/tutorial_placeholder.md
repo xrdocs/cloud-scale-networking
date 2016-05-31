@@ -517,7 +517,7 @@ mpls ldp
 end
 ```
 
-Below we apply the replace pattern command using regex strings 'GigabitEthernet0/0/0/([0-2])' and 'TenGigE0/3/0/\1'
+Below we apply the replace pattern command using regex strings `GigabitEthernet0/0/0/([0-2])` and `TenGigE0/3/0/\1`
 
 ```
 RP/0/0/CPU0:iosxrv-1#conf t
