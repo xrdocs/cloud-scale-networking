@@ -1,10 +1,10 @@
 ---
 published: true
 date: '2016-05-31 07:45 -0700'
-title: IOS XR Global Config Replace
+title: IOS XR Global Pattern Config Replace
 permalink: /tutorials/xr-global-config-replace
 author: Jose Liste
-excerpt: An overview of IOS XR Global Config Replace feature
+excerpt: An overview of IOS XR Global Pattern Config Replace feature
 tags:
   - iosxr
   - config replace
@@ -12,7 +12,7 @@ tags:
 ---
 
 >
-In IOS XR 5.3.1, a customer favorite feature was implemented - **Global Configuration Replace**  
+In IOS XR 5.3.1, a customer favorite feature was implemented - **Global Pattern Configuration Replace**  
 >
 This feature allows convenient manipulation of router configuration. Consider the following use cases:
 >
