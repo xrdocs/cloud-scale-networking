@@ -1,10 +1,14 @@
 ---
 published: true
-date: "2016-05-31 07:45 -0700"
+date: '2016-05-31 07:45 -0700'
 title: IOS XR Global Config Replace
-permalink: "/tutorials/xr-global-config-replace"
+permalink: /tutorials/xr-global-config-replace
 author: Jose Liste
 excerpt: An overview of IOS XR Global Config Replace feature
+tags:
+  - iosxr
+  - config replace
+  - string replace
 ---
 
 >
