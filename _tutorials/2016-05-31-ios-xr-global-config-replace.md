@@ -28,7 +28,7 @@ The feature allows the user to replace configuration based on an interface ident
 
 Under the global config mode, enter the new **replace** keyboard
 
-```shell
+```
 RP/0/0/CPU0:PE1#configure
 RP/0/0/CPU0:PE1(config)#replace ?
   interface  replace configuration for an interface
