@@ -11,6 +11,7 @@ tags:
   - string replace
 ---
 
+{% include toc icon="table" title="IOS XR Pattern Config Replace" 
 >
 In IOS XR 5.3.1, a customer favorite feature was implemented - **Pattern Configuration Replace**  
 >
