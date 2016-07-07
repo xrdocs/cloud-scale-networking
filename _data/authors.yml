@@ -30,6 +30,13 @@ Jose Liste:
   avatar      : "jliste_bio.jpg"
   bio         : "A (blue collar) Technical Marketing Engineer, Web Solutions, Cisco."
   twitter     : "jliste2002"
+
+Marco Umer:
+  name        : "Marco Umer"
+  github      : "marumer"
+  email       : "marumer@cisco.com"
+  avatar      : "marumer_bio.png"
+  bio         : "Technology, martial arts and nature are my passions"
   
 Bruce McDougall:
   name        : "Bruce McDougall"
