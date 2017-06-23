@@ -3,7 +3,7 @@ published: true
 date: '2016-05-31 07:45 -0700'
 title: IOS XR Pattern Config Replace
 permalink: /tutorials/xr-global-config-replace
-author: Jose Liste
+author: Nicolas Fevrier
 excerpt: An overview of IOS XR Global Pattern Config Replace feature
 tags:
   - iosxr
