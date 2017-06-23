@@ -31,6 +31,14 @@ Jose Liste:
   bio         : "A (blue collar) Technical Marketing Engineer, Web Solutions, Cisco."
   twitter     : "jliste2002"
 
+Nicolas Fevrier:
+  name        : "Nicolas Fevrier"
+  github      : "nfevrier"
+  email       : "nifevrie@cisco.com"
+  avatar      : "nfevrier_bio.jpg"
+  bio         : "Technical Leader, Cloud Scale Networking, Cisco"
+  twitter     : "CiscoIOSXR"
+  
 Marco Umer:
   name        : "Marco Umer"
   github      : "marumer"
