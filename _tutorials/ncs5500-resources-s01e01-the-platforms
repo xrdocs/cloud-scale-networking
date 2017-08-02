@@ -11,7 +11,7 @@ tags:
   - TCAM
   - eTCAM
   - ncs 5500
-position: top
+position: hidden
 ---
 In the marketing datasheet, you probably read that NCS5501-SE supports up to 2.7M+ routes or that NCS5502 support up to 1.1M routes. It's true, but it's actually a bit more complex since it will not be 2.7M of any kind of routes. So, the logical question will be: how many routes can I actually use ? And one more time, the answer will be: it depends.
 
