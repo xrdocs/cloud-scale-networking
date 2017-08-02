@@ -15,7 +15,6 @@ tags:
 position: hidden
 ---
 
-# Understanding NCS5500 Resources
 
 ## S01E01 The Platforms
 
