@@ -3,7 +3,9 @@ published: true
 date: '2017-07-26 16:44 +0200'
 title: Understanding NCS5500 Resources (S01E01 - The platforms)
 author: Nicolas Fevrier
-excerpt: First episode of a series of posts on NCS 5500 memory resources
+excerpt: >-
+  First episode of a series of posts on NCS 5500 memory resources, today we
+  describe the platforms.
 tags:
   - ncs5500
   - LEM
@@ -13,6 +15,20 @@ tags:
   - ncs 5500
 position: hidden
 ---
+{% include toc icon="table" title="IOS XR Pattern Config Replace" %}  
+
+>
+In IOS XR 5.3.1, a customer favorite feature was implemented - **Pattern Configuration Replace**  
+>
+This feature allows convenient manipulation of router configuration. Consider the following use cases:
+>
+*  Ever wanted to conveniently move configuration from one interface to another?
+*  Or, rather change all repetitions of a given pattern in your router configuration?
+>
+If so, keep on reading ...
+{: .notice--info}
+
+
 In the marketing datasheet, you probably read that NCS5501-SE supports up to 2.7M+ routes or that NCS5502 support up to 1.1M routes. It's true, but it's actually a bit more complex since it will not be 2.7M of any kind of routes. So, the logical question will be: how many routes can I actually use ? And one more time, the answer will be: it depends.
 
 This series of posts aim at explaining in details how NCS5500 routers use the different memory resources available for each type of features or prefixes. But we will go further than just discussing "how many routes" and we will try to identify how other type of data (Next-hop, load balancing information, ACL entries, ...) are affecting the scale.
