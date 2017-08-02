@@ -19,11 +19,11 @@ position: hidden
 
 ## S01E01 The Platforms
 
-In the marketing datasheet, you probably read that NCS5501-SE supports up to 2.7M+ routes or that NCS5502 support up to 1.1M routes. It's true, but it's actually a bit more complex since it will not be 2.7M of any kind of routes. So, the logical question will be: how many routes can I actually use ? And one more time, the answer will be: it depends.
+In the marketing datasheet, you probably read that NCS5501-SE supports up to 2.7M+ routes or that NCS5502 support up to 1.1M routes. It's true, but it's actually a bit more complex since it will not be 2.7M of any kind of routes. So, how many routes can I actually use ? Well, it depends...
 
-This series of posts aim at explaining in details how NCS5500 routers use the different memory resources available for each type of features or prefixes. But we will go further than just discussing "how many routes" and we will try to identify how other type of data (Next-hop, load balancing information, ACL entries, ...) are affecting the scale.
+This series of posts aim at explaining in details how NCS5500 routers use the different memory resources available for each type of features or prefixes. But we will go further than just discussing "how many routes" and we will try to identify how other data types (Next-hop, load balancing information, ACL entries, ...) are affecting the scale.
 
-Today, we will start describing the hardware implementation then we will explain how “databases” are used, how are working with profiles, how they can be monitored and troubleshot.
+Today, we will start describing the hardware implementation then we will explain how “databases” are used, which profiles can be enabled and how they can be monitored and troubleshot.
 
 ## NCS5500 Portfolio
 
@@ -33,52 +33,51 @@ In August 2017, with one exception covered in a followi-up xrdocs post, we are l
 
 We can categorize these systems and line cards in two families:
 
-![Base vs Scale]({{site.baseurl}}/images/base-scale.jpg)
-
+![Base vs Scale]({{site.baseurl}}/images/base-scale.jpg){: .align-center}
 
 ### Using external TCAM (named “Scale" and identified with -SE in the product ID)
 
 - NCS5501-SE
 
-![NCS5501-SE]({{site.baseurl}}/images/5501-se.jpg)
+![NCS5501-SE]({{site.baseurl}}/images/5501-se.jpg){: .align-center}
 
 - NCS5502-SE
 
-![NCS5502 ]({{site.baseurl}}/images/5502-.jpg)
+![NCS5502 ]({{site.baseurl}}/images/5502-.jpg){: .align-center}
   
 - NC55-24X100G-SE
 
-![NC55-24X100G-SE]({{site.baseurl}}/images/24x100-se.jpg)
+![NC55-24X100G-SE]({{site.baseurl}}/images/24x100-se.jpg){: .align-center}
 
 - NC55-24H12F-SE
 
-![NC55-24H12F-SE]({{site.baseurl}}/images/24h12f-se.jpg)
+![NC55-24H12F-SE]({{site.baseurl}}/images/24h12f-se.jpg){: .align-center}
 
 ### Not using external TCAM but only the memories inside the FA (named “Base")
 
 - NCS5501
 
-![NCS5501]({{site.baseurl}}/images/5501.jpg)
+![NCS5501]({{site.baseurl}}/images/5501.jpg){: .align-center}
 
 - NCS5502
 
-![NCS5502 ]({{site.baseurl}}/images/5502-.jpg)
+![NCS5502 ]({{site.baseurl}}/images/5502-.jpg){: .align-center}
 
 - NC55-36X100G
 
-![NC55-36X100G]({{site.baseurl}}/images/36x100.jpg)
+![NC55-36X100G]({{site.baseurl}}/images/36x100.jpg){: .align-center}
 
 - NC55-18H18F
 
-![NC55-18H18F]({{site.baseurl}}/images/18h18f.jpg)
+![NC55-18H18F]({{site.baseurl}}/images/18h18f.jpg){: .align-center}
 
 - NC55-36x100G-S (MACsec card)
 
-![NC55-36X100G-S]({{site.baseurl}}/images/36x100MACsec.jpg)
+![NC55-36X100G-S]({{site.baseurl}}/images/36x100MACsec.jpg){: .align-center}
 
 - NC55-6X200-DWDM-S (Coherent card)
 
-![NC55-6X200G-DWDM-S]({{site.baseurl}}/images/6x200 COH.jpg)
+![NC55-6X200G-DWDM-S]({{site.baseurl}}/images/6x200 COH.jpg){: .align-center}
 
 
 **Note**: Inside a modular chassis, we can mix and match eTCAM and non-eTCAM line cards. A feature is available to decide where the prefixes should be programmed (differentiating IGP and BGP, and using specific ext-communities).
@@ -98,7 +97,7 @@ Each forwarding ASIC is made of two cores (0 and 1). Also we have an ingress and
 Each pipeline itself is made of different blocks. 
 For clarity and intellectual property reasons, we will simplify the description and represent the series of blocks as just a Packet Processor (PP) and a Traffic Manager (TM).
 
-![Resources]({{site.baseurl}}/images/resources.jpg)
+![Resources]({{site.baseurl}}/images/resources.jpg){: .align-center}
 
 Along the pipeline, the different blocks can access (read or write) different “databases”.
 They are memory entities used to store specific type of information.
