@@ -118,13 +118,13 @@ RP/0/RP0/CPU0:Router#
 **Note**: Inside a modular chassis, we can mix and match eTCAM and non-eTCAM line cards. A feature is available to decide where the prefixes should be programmed (differentiating IGP and BGP, and using specific ext-communities).
 {: .notice--info}
 
-So basically, this external memory used to extend the scale in term of routes and classifiers (Access-lit entries for instance) is what differentiates the systems and line cards. eTCAM should not be confused with the 4GB external packet buffer which is present on the side of each FA, regardless the type of system or line card. The eTCAM only handles prefixes and ACEs, not packets. The external packet buffer will be used in case of queue congestion only. It’s a very rapid graphical memory specifically used for packets.
+So basically, this external memory used to extend the scale in term of routes and classifiers (Access-list entries for instance) is what differentiates the systems and line cards. eTCAM should not be confused with the 4GB external packet buffer which is present on the side of each FA, regardless the type of system or line card. The eTCAM only handles prefixes and ACEs, not packets. The external packet buffer will be used in case of queue congestion only. It’s a very rapid graphical memory specifically used for packets.
 
 If you are familiar with traditional IOS XR routers, there are some similarities and some differences with the classification of line cards "-SE vs -TR" on ASR9000, or "-FP vs -MSC vs -LSP" on CRS routers: 
 - route and feature scales can be different among the different types of LC
 - but not the number of queues or the capability to support Hierarchical QoS (it's not the case for NCS5500 routers, QoS capability is the same on -SE and non-SE)
 
-We have two eTCAM blocks per FA offering up to 2M extra routes in total and they are soldered to the board. It’s not a field-replaceable part, that means you can not convert a NC55-36X100G non-eTCAM card into an eTCAM card.
+We have two eTCAM blocks per FA offering up to 2M additional routes and they are soldered to the board. It’s not a field-replaceable part, that means you can not convert a NC55-36X100G non-eTCAM card into an eTCAM card.
 
 ## Resources / Memories
 
