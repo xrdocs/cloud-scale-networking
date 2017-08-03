@@ -28,7 +28,7 @@ Today, we will start describing the hardware implementation then we will explain
 
 Routers in the NCS5500 portfolio offer diverse form-factors. Some are fixed (1RU, 2RU), some others are modular (4-slot, 8-slot, 16-slot) with multiple line cards types.
 
-In August 2017, with one exception covered in a followi-up xrdocs post, we are leveraging Qumran-MX or Jericho forwarding ASICs (FA). Qumran is used for System-on-Chip (SoC) routers like NCS5501 and NCS5501-SE, all others systems are using several Jerichos interconnected via Fabric Engines.
+In August 2017, with one exception covered in a follow-up xrdocs post, we are leveraging Qumran-MX or Jericho forwarding ASICs (FA). Qumran is used for System-on-Chip (SoC) routers like NCS5501 and NCS5501-SE, all others systems are using several Jerichos interconnected via Fabric Engines.
 
 We can categorize these systems and line cards in two families:
 
@@ -52,18 +52,22 @@ We can categorize these systems and line cards in two families:
 
 ![NC55-24H12F-SE]({{site.baseurl}}/images/24h12f-se.jpg){: .align-center}
 
-```
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
 RP/0/RP0/CPU0:Router#sh platform | i XR RUN
-0/RP0/CPU0        **NCS-5501-SE**(Active)        IOS XR RUN        NSHUT
+0/RP0/CPU0        <mark>NCS-5501-SE</mark>(Active)        IOS XR RUN        NSHUT
 RP/0/RP0/CPU0:Router#
 
 RP/0/RP0/CPU0:Router#sh plat | i XR RUN
-0/6/CPU0          **NC55-24H12F-SE**             IOS XR RUN        NSHUT
-0/7/CPU0          **NC55-24X100G-SE**            IOS XR RUN        NSHUT
+0/6/CPU0          <mark>NC55-24H12F-SE</mark>             IOS XR RUN        NSHUT
+0/7/CPU0          <mark>NC55-24X100G-SE</mark>            IOS XR RUN        NSHUT
 0/RP0/CPU0        NC55-RP(Active)            IOS XR RUN        NSHUT
 0/RP1/CPU0        NC55-RP(Standby)           IOS XR RUN        NSHUT
 RP/0/RP0/CPU0:Router#
-```
+</code>
+</pre>
+</div>
 
 ### Not using external TCAM but only the memories inside the FA (named “Base")
 
@@ -91,18 +95,22 @@ RP/0/RP0/CPU0:Router#
 
 ![NC55-6X200G-DWDM-S]({{site.baseurl}}/images/6x200 COH.jpg){: .align-center}
 
-```
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
 RP/0/RP0/CPU0:Router#show platform | i XR RUN
-0/RP0/CPU0        **NCS-5501**(Active)           IOS XR RUN        NSHUT
+0/RP0/CPU0        <mark>NCS-5501</mark>(Active)           IOS XR RUN        NSHUT
 RP/0/RP0/CPU0:Router#
 
 RP/0/RP0/CPU0:Router#sh platform | i XR RUN
-0/0/CPU0          **NC55-36X100G**               IOS XR RUN        NSHUT
-0/1/CPU0          **NC55-18H18F**                IOS XR RUN        NSHUT
+0/0/CPU0          <mark>NC55-36X100G</mark>               IOS XR RUN        NSHUT
+0/1/CPU0          <mark>NC55-18H18F</mark>                IOS XR RUN        NSHUT
 0/RP0/CPU0        NC55-RP(Active)            IOS XR RUN        NSHUT
 0/RP1/CPU0        NC55-RP(Standby)           IOS XR RUN        NSHUT
 RP/0/RP0/CPU0:Router#
-```
+</code>
+</pre>
+</div>
 
 **Note**: Inside a modular chassis, we can mix and match eTCAM and non-eTCAM line cards. A feature is available to decide where the prefixes should be programmed (differentiating IGP and BGP, and using specific ext-communities).
 {: .notice--info}
@@ -138,11 +146,13 @@ All these databases are present inside the Forwarding ASIC.
 
 - The external TCAMs (eTCAM) are only present in the -SE line cards and systems and, as the name implies, are not a resource inside the Forwarding ASIC. They are used to extend unicast route and ACL / classifiers scale (up to 2M IPv4 entries).
 
-```
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
 RP/0/RP0/CPU0:NCS5501-622#show contr npu resources all location 0/0/CPU0
 
 HW Resource Information
-    Name                            : **lem**
+    Name                            : <mark>lem</mark>
 
 OOR Information
     NPU-0
@@ -159,7 +169,7 @@ Current Usage
         mplslabel                   : XXXXX    (X %)
 
 HW Resource Information
-    Name                            : **lpm**
+    Name                            : <mark>lpm</mark>
 
 OOR Information
     NPU-0
@@ -176,7 +186,7 @@ Current Usage
         ipmcroute                   : XXXXX    (X %)
 
 HW Resource Information
-    Name                            : **encap**
+    Name                            : <mark>encap</mark>
 
 OOR Information
     NPU-0
@@ -193,7 +203,7 @@ Current Usage
         mplsnh                      : XXX      (X %)
 
 HW Resource Information
-    Name                            : **ext_tcam_ipv4**
+    Name                            : <mark>ext_tcam_ipv4</mark>
 
 OOR Information
     NPU-0
@@ -209,7 +219,7 @@ Current Usage
         ipmcroute                   : XXXXX    (X %)
 
 HW Resource Information
-    Name                            : **ext_tcam_ipv6_short**
+    Name                            : <mark>ext_tcam_ipv6_short</mark>
 
 OOR Information
     NPU-0
@@ -224,7 +234,7 @@ Current Usage
         ip6route                    : XXXXX    (X %)
 
 HW Resource Information
-    Name                            : **ext_tcam_ipv6_long**
+    Name                            : <mark>ext_tcam_ipv6_long</mark>
 
 OOR Information
     NPU-0
@@ -239,7 +249,7 @@ Current Usage
         ip6route                    : XXXXX    (X %)
 
 HW Resource Information
-    Name                            : **fec**
+    Name                            : <mark>fec</mark>
 
 OOR Information
     NPU-0
@@ -255,7 +265,7 @@ Current Usage
         ip6nhgroup                  : XXXX     (X %)
 
 HW Resource Information
-    Name                            : **ecmp_fec**
+    Name                            : <mark>ecmp_fec</mark>
 
 OOR Information
     NPU-0
@@ -271,6 +281,8 @@ Current Usage
         ip6nhgroup                  : XXXXX    (X %)
 
 RP/0/RP0/CPU0:NCS5501-622#
-```
+</code>
+</pre>
+</div>
 
 Depending on the address family (IPv4 or IPv6), but also depending on the prefix subnet length, routes will be sorted and stored in LEM, LPM or eTCAM. Route handling will dependant on the platform type, the IOS XR released running and the profile activated. That's what we will detail in the next episode.
