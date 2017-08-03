@@ -15,6 +15,7 @@ tags:
 position: top
 ---
 
+{% include toc icon="table" title="Understanding NCS5500 Resources" %} 
 
 ## S01E01 The Platforms
 
@@ -34,7 +35,8 @@ We can categorize these systems and line cards in two families:
 
 ![Base vs Scale]({{site.baseurl}}/images/base-scale.jpg){: .align-center}
 
-### Using external TCAM (named “Scale" and identified with -SE in the product ID)
+### Using external TCAM  
+**(named “Scale" and identified with -SE in the product ID)**
 
 - NCS5501-SE
 
@@ -69,7 +71,8 @@ RP/0/RP0/CPU0:Router#
 </pre>
 </div>
 
-### Not using external TCAM but only the memories inside the FA (named “Base")
+### Not using external TCAM  
+**only the memories inside the FA (named “Base")**
 
 - NCS5501
 
