@@ -52,6 +52,19 @@ We can categorize these systems and line cards in two families:
 
 ![NC55-24H12F-SE]({{site.baseurl}}/images/24h12f-se.jpg){: .align-center}
 
+```
+RP/0/RP0/CPU0:Router#sh platform | i XR RUN
+0/RP0/CPU0        NCS-5501-SE(Active)        IOS XR RUN        NSHUT
+RP/0/RP0/CPU0:Router#
+
+RP/0/RP0/CPU0:Router#sh plat | i XR RUN
+0/6/CPU0          NC55-24H12F-SE             IOS XR RUN        NSHUT
+0/7/CPU0          NC55-24X100G-SE            IOS XR RUN        NSHUT
+0/RP0/CPU0        NC55-RP(Active)            IOS XR RUN        NSHUT
+0/RP1/CPU0        NC55-RP(Standby)           IOS XR RUN        NSHUT
+RP/0/RP0/CPU0:Router#
+```
+
 ### Not using external TCAM but only the memories inside the FA (named “Base")
 
 - NCS5501
@@ -78,6 +91,18 @@ We can categorize these systems and line cards in two families:
 
 ![NC55-6X200G-DWDM-S]({{site.baseurl}}/images/6x200 COH.jpg){: .align-center}
 
+```
+RP/0/RP0/CPU0:Router#show platform | i XR RUN
+0/RP0/CPU0        NCS-5501(Active)           IOS XR RUN        NSHUT
+RP/0/RP0/CPU0:Router#
+
+RP/0/RP0/CPU0:Router#sh platform | i XR RUN
+0/0/CPU0          NC55-36X100G               IOS XR RUN        NSHUT
+0/1/CPU0          NC55-18H18F                IOS XR RUN        NSHUT
+0/RP0/CPU0        NC55-RP(Active)            IOS XR RUN        NSHUT
+0/RP1/CPU0        NC55-RP(Standby)           IOS XR RUN        NSHUT
+RP/0/RP0/CPU0:Router#
+```
 
 **Note**: Inside a modular chassis, we can mix and match eTCAM and non-eTCAM line cards. A feature is available to decide where the prefixes should be programmed (differentiating IGP and BGP, and using specific ext-communities).
 {: .notice--info}
@@ -112,5 +137,140 @@ In follow up posts, we will describe in details how are they used, but let’s i
 All these databases are present inside the Forwarding ASIC.
 
 - The external TCAMs (eTCAM) are only present in the -SE line cards and systems and, as the name implies, are not a resource inside the Forwarding ASIC. They are used to extend unicast route and ACL / classifiers scale (up to 2M IPv4 entries).
+
+```
+RP/0/RP0/CPU0:NCS5501-622#show contr npu resources all location 0/0/CPU0
+
+HW Resource Information
+    Name                            : lem
+
+OOR Information
+    NPU-0
+        Estimated Max Entries       : 786432  
+        Red Threshold               : 95 %
+        Yellow Threshold            : 80 %
+        OOR State                   : Green
+
+Current Usage
+    NPU-0
+        Total In-Use                : XXXXX    (X %)
+        iproute                     : XXXXX    (X %)
+        ip6route                    : XXXXX    (X %)
+        mplslabel                   : XXXXX    (X %)
+
+HW Resource Information
+    Name                            : lpm
+
+OOR Information
+    NPU-0
+        Estimated Max Entries       : 351346  
+        Red Threshold               : 95 %
+        Yellow Threshold            : 80 %
+        OOR State                   : Green
+
+Current Usage
+    NPU-0
+        Total In-Use                : XXXXX    (X %)
+        iproute                     : XXXXX    (X %)
+        ip6route                    : XXXXX    (X %)
+        ipmcroute                   : XXXXX    (X %)
+
+HW Resource Information
+    Name                            : encap
+
+OOR Information
+    NPU-0
+        Estimated Max Entries       : 100000  
+        Red Threshold               : 95 %
+        Yellow Threshold            : 80 %
+        OOR State                   : Green
+
+Current Usage
+    NPU-0
+        Total In-Use                : XXX      (X %)
+        ipnh                        : XXX      (X %)
+        ip6nh                       : XXX      (X %)
+        mplsnh                      : XXX      (X %)
+
+HW Resource Information
+    Name                            : ext_tcam_ipv4
+
+OOR Information
+    NPU-0
+        Estimated Max Entries       : 2048000 
+        Red Threshold               : 95 %
+        Yellow Threshold            : 80 %
+        OOR State                   : Green
+
+Current Usage
+    NPU-0
+        Total In-Use                : XXXXXX   (X %)
+        iproute                     : XXXXXX   (X %)
+        ipmcroute                   : XXXXX    (X %)
+
+HW Resource Information
+    Name                            : ext_tcam_ipv6_short
+
+OOR Information
+    NPU-0
+        Estimated Max Entries       : 0       
+        Red Threshold               : 95 %
+        Yellow Threshold            : 80 %
+        OOR State                   : Green
+
+Current Usage
+    NPU-0
+        Total In-Use                : XXXXX    (X %)
+        ip6route                    : XXXXX    (X %)
+
+HW Resource Information
+    Name                            : ext_tcam_ipv6_long
+
+OOR Information
+    NPU-0
+        Estimated Max Entries       : 0       
+        Red Threshold               : 95 %
+        Yellow Threshold            : 80 %
+        OOR State                   : Green
+
+Current Usage
+    NPU-0
+        Total In-Use                : XXXXX    (X %)
+        ip6route                    : XXXXX    (X %)
+
+HW Resource Information
+    Name                            : fec
+
+OOR Information
+    NPU-0
+        Estimated Max Entries       : 126976  
+        Red Threshold               : 95 %
+        Yellow Threshold            : 80 %
+        OOR State                   : Green
+
+Current Usage
+    NPU-0
+        Total In-Use                : XXXX     (X %)
+        ipnhgroup                   : XXXX     (X %)
+        ip6nhgroup                  : XXXX     (X %)
+
+HW Resource Information
+    Name                            : ecmp_fec
+
+OOR Information
+    NPU-0
+        Estimated Max Entries       : 4096    
+        Red Threshold               : 95 %
+        Yellow Threshold            : 80 %
+        OOR State                   : Green
+
+Current Usage
+    NPU-0
+        Total In-Use                : XXXXX    (X %)
+        ipnhgroup                   : XXXXX    (X %)
+        ip6nhgroup                  : XXXXX    (X %)
+
+RP/0/RP0/CPU0:NCS5501-622#
+```
 
 Depending on the address family (IPv4 or IPv6), but also depending on the prefix subnet length, routes will be sorted and stored in LEM, LPM or eTCAM. Route handling will dependant on the platform type, the IOS XR released running and the profile activated. That's what we will detail in the next episode.
