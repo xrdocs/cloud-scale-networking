@@ -12,7 +12,7 @@ tags:
   - LPM
   - LEM
   - eTCAM
-position: hidden
+position: top
 ---
 
 
@@ -54,12 +54,12 @@ We can categorize these systems and line cards in two families:
 
 ```
 RP/0/RP0/CPU0:Router#sh platform | i XR RUN
-0/RP0/CPU0        NCS-5501-SE(Active)        IOS XR RUN        NSHUT
+0/RP0/CPU0        **NCS-5501-SE**(Active)        IOS XR RUN        NSHUT
 RP/0/RP0/CPU0:Router#
 
 RP/0/RP0/CPU0:Router#sh plat | i XR RUN
-0/6/CPU0          NC55-24H12F-SE             IOS XR RUN        NSHUT
-0/7/CPU0          NC55-24X100G-SE            IOS XR RUN        NSHUT
+0/6/CPU0          **NC55-24H12F-SE**             IOS XR RUN        NSHUT
+0/7/CPU0          **NC55-24X100G-SE**            IOS XR RUN        NSHUT
 0/RP0/CPU0        NC55-RP(Active)            IOS XR RUN        NSHUT
 0/RP1/CPU0        NC55-RP(Standby)           IOS XR RUN        NSHUT
 RP/0/RP0/CPU0:Router#
@@ -93,12 +93,12 @@ RP/0/RP0/CPU0:Router#
 
 ```
 RP/0/RP0/CPU0:Router#show platform | i XR RUN
-0/RP0/CPU0        NCS-5501(Active)           IOS XR RUN        NSHUT
+0/RP0/CPU0        **NCS-5501**(Active)           IOS XR RUN        NSHUT
 RP/0/RP0/CPU0:Router#
 
 RP/0/RP0/CPU0:Router#sh platform | i XR RUN
-0/0/CPU0          NC55-36X100G               IOS XR RUN        NSHUT
-0/1/CPU0          NC55-18H18F                IOS XR RUN        NSHUT
+0/0/CPU0          **NC55-36X100G**               IOS XR RUN        NSHUT
+0/1/CPU0          **NC55-18H18F**                IOS XR RUN        NSHUT
 0/RP0/CPU0        NC55-RP(Active)            IOS XR RUN        NSHUT
 0/RP1/CPU0        NC55-RP(Standby)           IOS XR RUN        NSHUT
 RP/0/RP0/CPU0:Router#
@@ -142,7 +142,7 @@ All these databases are present inside the Forwarding ASIC.
 RP/0/RP0/CPU0:NCS5501-622#show contr npu resources all location 0/0/CPU0
 
 HW Resource Information
-    Name                            : lem
+    Name                            : **lem**
 
 OOR Information
     NPU-0
@@ -159,7 +159,7 @@ Current Usage
         mplslabel                   : XXXXX    (X %)
 
 HW Resource Information
-    Name                            : lpm
+    Name                            : **lpm**
 
 OOR Information
     NPU-0
@@ -176,7 +176,7 @@ Current Usage
         ipmcroute                   : XXXXX    (X %)
 
 HW Resource Information
-    Name                            : encap
+    Name                            : **encap**
 
 OOR Information
     NPU-0
@@ -193,7 +193,7 @@ Current Usage
         mplsnh                      : XXX      (X %)
 
 HW Resource Information
-    Name                            : ext_tcam_ipv4
+    Name                            : **ext_tcam_ipv4**
 
 OOR Information
     NPU-0
@@ -209,7 +209,7 @@ Current Usage
         ipmcroute                   : XXXXX    (X %)
 
 HW Resource Information
-    Name                            : ext_tcam_ipv6_short
+    Name                            : **ext_tcam_ipv6_short**
 
 OOR Information
     NPU-0
@@ -224,7 +224,7 @@ Current Usage
         ip6route                    : XXXXX    (X %)
 
 HW Resource Information
-    Name                            : ext_tcam_ipv6_long
+    Name                            : **ext_tcam_ipv6_long**
 
 OOR Information
     NPU-0
@@ -239,7 +239,7 @@ Current Usage
         ip6route                    : XXXXX    (X %)
 
 HW Resource Information
-    Name                            : fec
+    Name                            : **fec**
 
 OOR Information
     NPU-0
@@ -255,7 +255,7 @@ Current Usage
         ip6nhgroup                  : XXXX     (X %)
 
 HW Resource Information
-    Name                            : ecmp_fec
+    Name                            : **ecmp_fec**
 
 OOR Information
     NPU-0
