@@ -288,6 +288,7 @@ prose:
   media: 'images'
   ignore:
     - index.md
+    - .gitmodules
     - _config.yml
     - /_sass
     - /_techdocs
