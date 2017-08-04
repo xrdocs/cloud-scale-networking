@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 date: '2017-08-03 17:41 +0200'
 title: Understanding NCS5500 Resources (S01E02)
 author: Nicolas Fevrier
