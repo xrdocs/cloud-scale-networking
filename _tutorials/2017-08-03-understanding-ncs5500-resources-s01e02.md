@@ -44,7 +44,7 @@ Hardware programming is done through an abstraction layer: Data-Plane Agent (DPA
 
 Also, it's important to remember we are not talking about BGP paths here but about FIB entries: if we have 10 internet transit providers advertising more or less the same 700k-ish routes (with 10 next-hop addresses), we don't have 7M entries in the FIB but 700k. Few exceptions exist (like using different VRFs for each transit provider) but they are out of the scope of this post.
 
-Originally, IPv4/32 are going in LEM and all other prefix length (/31-/0) are stored in LPM.
+Originally, IPv4/32 are going in LEM and all other prefix length (IPv4/31-/0) are stored in LPM.
 We changed this default behavior by implementing FIB profiles: *Host-optimized* or *Internet-Optimized*.
 
 <div class="highlighter-rouge">
@@ -66,36 +66,34 @@ For a base line card (those without -SE in the product ID), we will have the fol
 ![IPv4 Host Optimized Order]({{site.baseurl}}/images/Host-Optimized-IPv4.jpg){: .align-center}
 
 When a packet is received, the FA performs a lookup on the destination address:
-- first lookup is performed in the LEM searching for a /32 exact match
-- second lookup is accessing the LPM searching for a variable length match between /31 and /25
-- third lookup is done in the LEM again searching for a /24 exact match
-- finally, the fourth lookup is checking the LPM a second time searching for a variable length match between /23 and /0
+- first lookup is performed in the LEM searching for a IPv4/32 exact match
+- second lookup is accessing the LPM searching for a variable length match between IPv4/31 and IPv4/25
+- third lookup is done in the LEM again searching for a IPv4/24 exact match
+- finally, the fourth lookup is checking the LPM a second time searching for a variable length match between IPv4/23 and /0
 
 All is done in one single clock tick, it doesn't require any kind of recirculation and doesn't impact the performance (in bandwidth or in packet per second).
 
 ![IPv4 Host-optimized Allocation]({{site.baseurl}}/images/non-eTCAM-IPv4-HostOpt--.jpg){: .align-center}
 
-This mode is particularly useful with a large number of v4/32 and v4/24 in the routing table. It could be the case for hosting companies or data centers.
+This mode is particularly useful with a large number of IPv4/32 and IPv4/24 in the routing table. It could be the case for hosting companies or data centers.
 
 Using the configuration above, you can decide to enable the Internet-optimized mode. This is a feature activated globally and not per line card. After reload, you will see a very different order of operation and prefix distribution in the various databases with base line cards and systems:
 
 ![IPv4 Internet Optimized Order]({{site.baseurl}}/images/non-SE-Int-Optimized-IPv4.jpg){: .align-center}
 
 The order of operation LEM/LPM/LEM/LPM is now replaced by an LPM/LEM/LEM/LPM approach.
-- first lookup is in LPM searching for a match between /32 and /25
-- second lookup is performed in LEM for an exact match on /24 and /23.
-- third lookup is done in LEM too and this time for also an exact match on /20
-- fourth and final step, a variable length lookup is executed in LPM for everything between /22 and /0
+- first lookup is in LPM searching for a match between IPv4/32 and IPv4/25
+- second lookup is performed in LEM for an exact match on IPv4/24 and IPv4/23.
+- third lookup is done in LEM too and this time for also an exact match on IPv4/20
+- fourth and final step, a variable length lookup is executed in LPM for everything between IPv4/22 and /0
 
 Here again, everything is performed in one cycle and the activation of the Internet Optimized mode doesn't impact the forwarding performance.
 
 ![non-eTCAM-IPv4-IntOpt-.jpg]({{site.baseurl}}/images/non-eTCAM-IPv4-IntOpt-.jpg){: .align-center}
 
-As the name implies, this profile has been optimized to move the largest route population present on the Internet (v4/24, v4/23, v4/20) in the largest memory database: the LEM. And we introduced specific improvements and pre-processing to handle the v4/23 and v4/20 optimally.
+As the name implies, this profile has been optimized to move the largest route population present on the Internet (IPv4/24, IPv4/23, IPv4/20) in the largest memory database: the LEM. If you followed carefully, you noticed that a couple of improvement are needed to implement this sequence of lookup. 
 
-If you followed carefully, you noticed that a couple of improvement are needed to implement this sequence of lookup. 
-
-First, the match on LEM needs to be on an exact prefix length but the step two is done on IPv4/24 and IPv4/23. Indeed a function in DPA splits all IPv4/23 received from the upper FIB process in two. Each /23 is programmed as two sub-sequent /24s in hardware. We will illustrate this case with an example in the lab later in this post, advertising 300,000 IPv4/23.
+First, the match on LEM needs to be on an exact prefix length but the step two is done on IPv4/24 and IPv4/23. Indeed a function in DPA splits all IPv4/23 received from the upper FIB process in two. Each IPv4/23 is programmed as two sub-sequent IPv4/24s in hardware. We will illustrate this case with an example in the lab later in this post, advertising 300,000 IPv4/23.
 
 Second, the exact match in step 3 for IPv4/20 in LEM is only possible if we don't have any IPv4/22 or IPv4/21 prefixes overlapping with this IPv4/20. This implies the system performs another pro-active check to verify we don't have overlap. If an overlap happens, the IPv4/20 prefix is moved from LEM to LPM dynamically. We will illustrate this mechanism later in the post, advertising 100,000 IPv4/20 first, then advertising 100,000 IPv4/21 overlapping on the IPv4/20. We will see the IPv4/20 moved in LPM automatically.
 
@@ -113,8 +111,8 @@ The two optimized profiles described earlier don't impact the lookup process on 
 ![eTCAM IPv4 Order]({{site.baseurl}}/images/-SE-IPv4-order.jpg){: .align-center}
 
 Just a two-step lookup here:
-- first lookup is in LEM for an exact match on /32
-- second and last lookup in the large eTCAM for everything between /31 and /0
+- first lookup is in LEM for an exact match on IPv4/32
+- second and last lookup in the large eTCAM for everything between IPv4/31 and /0
 
 Needless to say, all done in one operation in the Forwarding ASIC.
 
@@ -160,7 +158,7 @@ __200k IPv4 /32 routes__
 
 Let's get started with the advertisement of 200,000 IPv4/32 prefixes.
 
-On **base line cards** running **Host-optimized** profile, /32 routes are going to LEM.
+On **base line cards** running **Host-optimized** profile, IPv4/32 routes are going to LEM.
 
 ![host-32.jpg]({{site.baseurl}}/images/host-32.jpg){: .align-center}
 
@@ -227,7 +225,7 @@ RP/0/RP0/CPU0:NCS5500-614#
 Estimated Max Entries (and the Current Usage percentage derived from it) are only estimations provided by the Forwarding ASIC based on the current memory occupation and prefix distribution. It's not always linear and should  be taken with a grain of salt.
 {: .notice--info}
 
-On **base line cards** running **Internet-optimized** profile, /32 routes are going to LPM:
+On **base line cards** running **Internet-optimized** profile, IPv4/32 routes are going to LPM:
 
 ![internet-32.jpg]({{site.baseurl}}/images/internet-32.jpg){: .align-center}
 
@@ -279,7 +277,7 @@ RP/0/RP0/CPU0:NCS5500-614#
 </pre>
 </div>
 
-Finaly, on **scale line card**, regardless the profile enabled, the /32 are stored in LEM and not eTCAM:
+Finaly, on **scale line card**, regardless the profile enabled, the IPv4/32 are stored in LEM and not eTCAM:
 
 ![eTCAM-32.jpg]({{site.baseurl}}/images/eTCAM-32.jpg){: .align-center}
 
@@ -537,7 +535,8 @@ Only 261k IPv4/23 prefixes out of the 300k were programmed then we reached the m
 
 Let's enable the **Internet-optimized** profile (and reload).
 
-This time, the 300,000 IPv4/23 will be split in two, making 600,000 IPv4/24 that will be moved to the LEM:
+This time, the 300,000 IPv4/23 will be split in two, making 600,000 IPv4/24 that will be moved to the LEM.
+Note: the routes are not split in RIB/FIB but just when programmed in the hardware. That's why a show route will display 300,000 entries and the show contr npu resource will display 600,000.
 
 ![internet-24-23.jpg]({{site.baseurl}}/images/internet-24-23.jpg){: .align-center}
 
