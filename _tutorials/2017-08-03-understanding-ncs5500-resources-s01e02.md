@@ -108,6 +108,7 @@ The two optimized profiles described earlier don't impact the lookup process on 
 Just a two-step lookup here:
 - first lookup is in LEM for an exact match on /32
 - second and last lookup in the large eTCAM for everything between /31 and /0
+
 Needless to say, all done in one operation in the Forwarding ASIC.
 
 ![eTCAM-IPv4-.jpg]({{site.baseurl}}/images/eTCAM-IPv4-.jpg){: .align-center}
@@ -119,7 +120,7 @@ Needless to say, all done in one operation in the Forwarding ASIC.
 
 ### Lab verification
 
-Let's try to illustrate it in the lab, injecting different types of IPv4 routes in the routers. 
+Let's try to illustrate it in the lab, injecting different types of IPv4 routes. 
 
 On NCS5500, the IOS XR CLI to verify the resource utilization is "show controller npu resources all location 0/x/CPU0". 
 
@@ -202,8 +203,6 @@ OOR Information
         Yellow Threshold            : 80 %
         OOR State                   : Green
 
-[…]
-
 Current Usage
     NPU-0
         Total In-Use                : 148      (0 %)
@@ -216,7 +215,7 @@ RP/0/RP0/CPU0:NCS5500-614#
 </pre>
 </div>
 
-Estimated Max Entries (and the Current Usage percentage derived from it) are only estimation provided by the Forwarding ASIC based on the current prefix-length distribution. It's not always linear and should always be taken with a grain of salt.
+Estimated Max Entries (and the Current Usage percentage derived from it) are only estimations provided by the Forwarding ASIC based on the current memory occupation and prefix distribution. It's not always linear and should  be taken with a grain of salt.
 {: .notice--info}
 
 On base line cards running **Internet-optimized** profile, /32 routes are going to LPM:
@@ -320,7 +319,7 @@ RP/0/RP0/CPU0:NCS5500-614#
 __500k IPv4 /24 routes__
 
 In this second example, we announce 500,000 IPv4/24 prefixes.
-With both host-optimized and internet-optimized profile on base cards, we will see these prefixes moved to the LEM.
+With both host-optimized and internet-optimized profiles on base line cards, we will see these prefixes moved to the LEM.
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -370,7 +369,7 @@ RP/0/RP0/CPU0:NCS5500-614#
 </pre>
 </div>
 
-On scale line cards, the only the /32s are going to LEM, the rest (including the 500,000 /24s) will be pushed to the external TCAM:
+On scale line cards, the only the IPv4/32s are going to LEM, the rest (that includes our 500,000 IPv4/24s) will be pushed to the external TCAM:
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -386,7 +385,6 @@ OOR Information
         Red Threshold               : 95 %
         Yellow Threshold            : 80 %
         OOR State                   : Green
-[...]
 
 Current Usage
     NPU-0
@@ -394,7 +392,6 @@ Current Usage
         iproute                     : <mark>24</mark>       (0 %)
         ip6route                    : 0        (0 %)
         mplslabel                   : 102      (0 %)
-[...]
 
 RP/0/RP0/CPU0:NCS5500-614#sh contr npu resources lpm location 0/6/CPU0
 
@@ -407,7 +404,6 @@ OOR Information
         Red Threshold               : 95 %
         Yellow Threshold            : 80 %
         OOR State                   : Green
-[...]
 
 Current Usage
     NPU-0
@@ -415,7 +411,6 @@ Current Usage
         iproute                     : <mark>0</mark>        (0 %)
         ip6route                    : 117      (0 %)
         ipmcroute                   : 50       (0 %)
-[...]
 
 RP/0/RP0/CPU0:NCS5500-614#sh contr npu resources exttcamipv4 location 0/6/CPU0
 
@@ -428,14 +423,12 @@ OOR Information
         Red Threshold               : 95 %
         Yellow Threshold            : 80 %
         OOR State                   : Green
-[...]
 
 Current Usage
     NPU-0
         Total In-Use                : 500010   (24 %)
         iproute                     : <mark>500010</mark>   (24 %)
         ipmcroute                   : 0        (0 %)
-[...]
 
 RP/0/RP0/CPU0:NCS5500-614#
 </code>
@@ -520,9 +513,10 @@ RP/0/RP0/CPU0:NCS5500-614#
 </pre>
 </div>
 
-Only 261k /23 prefixes are creating a saturation (we removed the error messages reporting that extra entries have not been programmed in hardware because the LPM capacity is exceeded).
+Only 261k IPv4/23 prefixes out of the 300k were programmed then we reached the max of the memory capacity (we removed the error messages reporting that extra entries have not been programmed in hardware because the LPM capacity is exceeded).
 
 Let's enable the Internet-optimized profiles (and reload).
+
 This time, the 300,000 IPv4/23 will be split in two, making 600,000 IPv4/24 that will be moved to the LEM:
 
 <div class="highlighter-rouge">
