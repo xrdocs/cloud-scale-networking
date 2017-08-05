@@ -3,7 +3,7 @@ published: true
 date: '2017-08-03 17:41 +0200'
 title: Understanding NCS5500 Resources (S01E02)
 author: Nicolas Fevrier
-excerpt: Second post on the NCS5500 Resource focusing on IPv4 prefixes
+excerpt: Second post on the NCS5500 Resources focusing on IPv4 prefixes
 tags:
   - NCS5500
   - NCS 5500
@@ -21,7 +21,7 @@ position: top
 
 ### Previously in "Understanding NCS5500 Resources"
 
-In the [previous post](https://xrdocs.github.io/cloud-scale-networking/tutorials/2017-08-02-understanding-ncs5500-resources-s01e01/), we introduced the different routers and line cards in NCS5500 portfolio. We classified them in two categories: with or without external TCAM (eTCAM). And we introduced the different databases available to store information, inside and outside the Forwarding ASIC (FA).
+In the [previous post](https://xrdocs.github.io/cloud-scale-networking/tutorials/2017-08-02-understanding-ncs5500-resources-s01e01/), we introduced the different routers and line cards in NCS5500 portfolio. We classified them into two categories: with or without external TCAM (eTCAM). And we introduced the different databases available to store information, inside and outside the Forwarding ASIC (FA).
 
 All the principles described below and the examples used to illustrate them were validated in August 2017 with Jericho-based systems, using scale (with eTCAM) and base (without eTCAM) line cards and running the two IOS XR releases available: 6.1.4 and 6.2.2. Jericho+ based systems will be used in a follow up post in the same series (season 2 ;)
 {: .notice--info}
@@ -32,7 +32,7 @@ A quick refresh will be very useful to understand how routes are stored in NCS55
 
 ![Resources]({{site.baseurl}}/images/resources.jpg){: .align-center}
 
-- **LPM**: Longest Prefix Match Database (sometimes referred as KAPS for KBP Assisted Prefix Search, KBP being itself Knowledge Based Processor) is an SRAM used to store IPv4 and IPv6 prefixes. Scale: variable from 128k to 400k entries. We can perform variable length prefix lookup in LPM.
+- **LPM**: Longest Prefix Match Database (sometimes referred to as KAPS for KBP Assisted Prefix Search, KBP being itself Knowledge Based Processor) is an SRAM used to store IPv4 and IPv6 prefixes. Scale: variable from 128k to 400k entries. We can perform variable length prefix lookup in LPM.
 - **LEM**: Large Exact Match Database also used to store specific IPv4 and IPv6 routes, plus MAC addresses and MPLS labels. Scale: 786k entries. We perform exact match lookup in LEM.
 - **eTCAM**: external TCAMs, only present in the -SE "scale" line cards and systems. As the name implies, they are not a resource inside the Forwarding ASIC, it's an additional memory used to extend unicast route and ACL / classifiers scale. Scale: 2M IPv4 entries. We can also perform variable length prefix lookup in eTCAM.
 
@@ -44,7 +44,7 @@ Hardware programming is done through an abstraction layer: Data-Plane Agent (DPA
 
 Also, it's important to remember we are not talking about BGP paths here but about FIB entries: if we have 10 internet transit providers advertising more or less the same 700k-ish routes (with 10 next-hop addresses), we don't have 7M entries in the FIB but 700k. Few exceptions exist (like using different VRFs for each transit provider) but they are out of the scope of this post.
 
-Originally, IPv4/32 are going in LEM and all other prefix length (IPv4/31-/0) are stored in LPM.
+Originally, IPv4/32 are going in LEM and all other prefix lengths (IPv4/31-/0) are stored in LPM.
 We changed this default behavior by implementing FIB profiles: *Host-optimized* or *Internet-Optimized*.
 
 <div class="highlighter-rouge">
@@ -68,7 +68,7 @@ For a base line card (those without -SE in the product ID), we will have the fol
 When a packet is received, the FA performs a lookup on the destination address:
 - first lookup is performed in the LEM searching for a IPv4/32 exact match
 - second lookup is accessing the LPM searching for a variable length match between IPv4/31 and IPv4/25
-- third lookup is done in the LEM again searching for a IPv4/24 exact match
+- third lookup is done in the LEM again, searching for a IPv4/24 exact match
 - finally, the fourth lookup is checking the LPM a second time searching for a variable length match between IPv4/23 and /0
 
 All is done in one single clock tick, it doesn't require any kind of recirculation and doesn't impact the performance (in bandwidth or in packet per second).
@@ -77,25 +77,25 @@ All is done in one single clock tick, it doesn't require any kind of recirculati
 
 This mode is particularly useful with a large number of IPv4/32 and IPv4/24 in the routing table. It could be the case for hosting companies or data centers.
 
-Using the configuration above, you can decide to enable the Internet-optimized mode. This is a feature activated globally and not per line card. After reload, you will see a very different order of operation and prefix distribution in the various databases with base line cards and systems:
+Using the configuration above, you can decide to enable the **Internet-optimized** mode. This is a feature activated globally and not per line card. After reload, you will see a very different order of operation and prefix distribution in the various databases with base line cards and systems:
 
 ![IPv4 Internet Optimized Order]({{site.baseurl}}/images/non-SE-Int-Optimized-IPv4.jpg){: .align-center}
 
 The order of operation LEM/LPM/LEM/LPM is now replaced by an LPM/LEM/LEM/LPM approach.
 - first lookup is in LPM searching for a match between IPv4/32 and IPv4/25
 - second lookup is performed in LEM for an exact match on IPv4/24 and IPv4/23.
-- third lookup is done in LEM too and this time for also an exact match on IPv4/20
+- third lookup is done in LEM too, and this time for also an exact match on IPv4/20
 - fourth and final step, a variable length lookup is executed in LPM for everything between IPv4/22 and /0
 
 Here again, everything is performed in one cycle and the activation of the Internet Optimized mode doesn't impact the forwarding performance.
 
 ![non-eTCAM-IPv4-IntOpt-.jpg]({{site.baseurl}}/images/non-eTCAM-IPv4-IntOpt-.jpg){: .align-center}
 
-As the name implies, this profile has been optimized to move the largest route population present on the Internet (IPv4/24, IPv4/23, IPv4/20) in the largest memory database: the LEM. If you followed carefully, you noticed that a couple of improvement are needed to implement this sequence of lookup. 
+As the name implies, this profile has been optimized to move the largest route population present on the Internet (IPv4/24, IPv4/23, IPv4/20) into the largest memory database: the LEM. If you followed carefully, you noticed that a couple of improvement are needed to implement this sequence of lookup. 
 
 First, the match on LEM needs to be on an exact prefix length but the step two is done on IPv4/24 and IPv4/23. Indeed a function in DPA splits all IPv4/23 received from the upper FIB process in two. Each IPv4/23 is programmed as two sub-sequent IPv4/24s in hardware. We will illustrate this case with an example in the lab later in this post, advertising 300,000 IPv4/23.
 
-Second, the exact match in step 3 for IPv4/20 in LEM is only possible if we don't have any IPv4/22 or IPv4/21 prefixes overlapping with this IPv4/20. This implies the system performs another pro-active check to verify we don't have overlap. If an overlap happens, the IPv4/20 prefix is moved from LEM to LPM dynamically. We will illustrate this mechanism later in the post, advertising 100,000 IPv4/20 first, then advertising 100,000 IPv4/21 overlapping on the IPv4/20. We will see the IPv4/20 moved in LPM automatically.
+Second, the exact match in step 3 for IPv4/20 in LEM is only possible if we don't have any IPv4/22 or IPv4/21 prefixes overlapping with this IPv4/20. This implies the system performs another pro-active check to verify we don't have overlap. If an overlap happens, the IPv4/20 prefix is moved from LEM to LPM dynamically. We will illustrate this mechanism later in the post, advertising 100,000 IPv4/20 first, then advertising 100,000 IPv4/21 overlapping on the IPv4/20. We will see the IPv4/20 moved into LPM automatically.
 
 With this Internet Optimized profile activated, it's possible to store a full internet view on base systems and line cards (we will present a couple of examples at the end of the documents).
 
@@ -114,7 +114,7 @@ Just a two-step lookup here:
 - first lookup is in LEM for an exact match on IPv4/32
 - second and last lookup in the large eTCAM for everything between IPv4/31 and /0
 
-Needless to say, all done in one operation in the Forwarding ASIC.
+Needless to say, it is all done in one single operation in the Forwarding ASIC.
 
 ![eTCAM-IPv4-.jpg]({{site.baseurl}}/images/eTCAM-IPv4-.jpg){: .align-center}
 
@@ -150,7 +150,7 @@ RP/0/RP0/CPU0:NCS5500#
 </pre>
 </div>
 
-Despite common belief, it's not an ideal situation. On the contrary, algorithmic memories (like LPM) will be capable of much higher scale with real internet prefix-length distribution. Nevertheless, it's still an ok approach to demonstrate where the prefixes are stored based on the subnet length.
+Despite common belief, it's not an ideal situation. On the contrary, algorithmic memories (like LPM) will be capable of much higher scale with real internet prefix-length distribution. Nevertheless, it's still an ok approach to demonstrate where the prefixes are stored (based on the subnet length).
 
 We will take a look at two systems using scale line cards (24H12F) in slot 0/6 and base line cards (18H18F) in slot 0/0, and running two different IOS XR releases (6.1.4 and 6.2.2).
   
@@ -277,7 +277,7 @@ RP/0/RP0/CPU0:NCS5500-614#
 </pre>
 </div>
 
-Finaly, on **scale line card**, regardless the profile enabled, the IPv4/32 are stored in LEM and not eTCAM:
+Finaly, on **scale line card**, regardless of the profile enabled, the IPv4/32 are stored in LEM and not eTCAM:
 
 ![eTCAM-32.jpg]({{site.baseurl}}/images/eTCAM-32.jpg){: .align-center}
 
@@ -330,7 +330,7 @@ RP/0/RP0/CPU0:NCS5500-614#
 __500k IPv4 /24 routes__
 
 In this second example, we announce 500,000 IPv4/24 prefixes.
-With both **host-optimized** and **internet-optimized** profiles on base line cards, we will see these prefixes moved to the LEM.
+With both **host-optimized** and **internet-optimized** profiles on base line cards, we will see these prefixes moved into LEM.
 
 ![host-24.jpg]({{site.baseurl}}/images/host-24.jpg){: .align-center}
 ![internet-24-23.jpg]({{site.baseurl}}/images/internet-24-23.jpg){: .align-center}
@@ -383,7 +383,7 @@ RP/0/RP0/CPU0:NCS5500-614#
 </pre>
 </div>
 
-On **scale line cards**, only IPv4/32s are going to LEM, the rest (that includes our 500,000 IPv4/24s) will be pushed to the external TCAM:
+On **scale line cards**, only IPv4/32s are going to LEM. The rest (that includes our 500,000 IPv4/24s) will be pushed to the external TCAM:
 
 ![eTCAM-32.jpg]({{site.baseurl}}/images/eTCAM-32.jpg){: .align-center}
 
@@ -531,12 +531,12 @@ RP/0/RP0/CPU0:NCS5500-614#
 </pre>
 </div>
 
-Only 261k IPv4/23 prefixes out of the 300k were programmed then we reached the max of the memory capacity (we removed the error messages reporting that extra entries have not been programmed in hardware because the LPM capacity is exceeded).
+Only 261k IPv4/23 prefixes out of the 300k were programmed. Then, we reached the max of the memory capacity (we removed the error messages reporting that extra entries have not been programmed in hardware because the LPM capacity was exceeded).
 
 Let's enable the **Internet-optimized** profile (and reload).
 
-This time, the 300,000 IPv4/23 will be split in two, making 600,000 IPv4/24 that will be moved to the LEM.
-Note: the routes are not split in RIB/FIB but just when programmed in the hardware. That's why a show route will display 300,000 entries and the show contr npu resource will display 600,000.
+This time, the 300,000 IPv4/23 will be split into two, creating 600,000 IPv4/24. And we will move them into LEM.
+Note: routes are not split into RIB/FIB but just when programmed into the hardware. That's why a show route will display 300,000 entries and the show contr npu resource will display 600,000.
 
 ![internet-24-23.jpg]({{site.baseurl}}/images/internet-24-23.jpg){: .align-center}
 
@@ -588,7 +588,7 @@ RP/0/RP0/CPU0:NCS5500-614#
 </pre>
 </div>
 
-The same example with **scale line cards** will not be dependant on the optimized profile activated, all the IPv4/23 routes will be stored in the external TCAM:
+The same example with **scale line cards** will not be dependant on the optimized profile activated, all the IPv4/23 routes will be stored in external TCAM:
 
 ![eTCAM-rest.jpg]({{site.baseurl}}/images/eTCAM-rest.jpg){: .align-center}
 
@@ -660,7 +660,7 @@ __100k IPv4 /20 routes__
 
 In this last example, we announce 100,000 IPv4/20 prefixes.
 You got it, so no need to describe:
-- the **host-optimized** profile on **base line cards** where these 100k will be stored in the LPM 
+- the **host-optimized** profile on **base line cards** where these 100k will be stored in LPM 
 - the **scale cards** where these routes will be pushed to the external TCAM
 
 Let's focus on the behavior with **base line cards** running an **Internet-optimized** profile.
@@ -732,7 +732,7 @@ RP/0/RP0/CPU0:NCS5500-614#
 </pre>
 </div>
 
-If we now advertise 100,000 new routes, all IPv4/21 overlapping the IPv4/20 we announced earlier, the IPv4/20 will no longer be stored in LEM but will be moved in LPM, for a total of 200,000 entries:
+Now, we advertise 100,000 new IPv4/21 routes. All are overlapping the IPv4/20 we announced earlier. The IPv4/20 will no longer be stored in LEM but will be moved into LPM, for a total of 200,000 entries:
 
 ![internet-20-overlap.jpg]({{site.baseurl}}/images/internet-20-overlap.jpg){: .align-center}
 
@@ -815,7 +815,7 @@ RP/0/RP0/CPU0:NCS5500-614#
 
 To conclude, let's illustrate with real but anonymized use-cases.
 
-On a **base system** running IOS XR 6.2.2 with internet-optimized profile and a “small” internet table.
+On a **base system** running IOS XR 6.2.2 with **internet-optimized** profile and a “small” internet table.
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -999,7 +999,7 @@ Current Usage
 
 Examples above show it's possible to store a full internet view in a **base system**. 
 
-With a relatively small table of 616k routes, we have LEM used at approximatively 65%. But it's frequent to see larger internet tables (closer to 700k in August 2017), with many peering routes and internal routes, it still fits in but doesn't give much room for future growth. 
+With a relatively small table of 616k routes, we have LEM used at approximatively 65%. But it's frequent to see larger internet tables (closer to 700k in August 2017), with many peering routes and internal routes. It still fits in but doesn't give much room for future growth. 
 
 We advise to prefer **scale line cards and systems** for such use-cases.
 
