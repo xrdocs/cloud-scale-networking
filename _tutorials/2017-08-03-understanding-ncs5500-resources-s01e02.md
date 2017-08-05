@@ -36,13 +36,13 @@ A quick refresh will be very useful to understand how routes are stored in NCS55
 - **LEM**: Large Exact Match Database also used to store specific IPv4 and IPv6 routes, plus MAC addresses and MPLS labels. Scale: 786k entries. We perform exact match lookup in LEM.
 - **eTCAM**: external TCAMs, only present in the -SE "scale" line cards and systems. As the name implies, they are not a resource inside the Forwarding ASIC, it's an additional memory used to extend unicast route and ACL / classifiers scale. Scale: 2M IPv4 entries. We can also perform variable length prefix lookup in eTCAM.
 
-The origin of the prefix is not important. They can be received from OSPF, ISIS, BGP but also static routes. It doesn't impact which database will be used to store them. 
+The origin of the prefixes is not relevant. They can be received from OSPF, ISIS, BGP but also static routes. It doesn't influence which database will be used to store them. Only the address-family (IPv4 in this discussion) and the subnet length of the prefix will be used in the decision process.
 
 Hardware programming is done through an abstraction layer: Data-Plane Agent (DPA)
 
 ![DPA]({{site.baseurl}}/images/DPA.jpg){: .align-center}
 
-Also, it's important to remind that we are not talking about BGP Paths here but about FIB entries: if we have 10 internet up-stream providers advertising the same 700k-ish routes (with 10 next-hop addresses), we don't have 7M entries in the FIB but 700k. Few exceptions exist (like using different VRFs for each transit provider) but they are out of the scope of this post.
+Also, it's important to remember we are not talking about BGP paths here but about FIB entries: if we have 10 internet transit providers advertising more or less the same 700k-ish routes (with 10 next-hop addresses), we don't have 7M entries in the FIB but 700k. Few exceptions exist (like using different VRFs for each transit provider) but they are out of the scope of this post.
 
 Originally, IPv4/32 are going in LEM and all other prefix length (/31-/0) will be stored in LPM.
 We changed this default behavior by implementing FIB profiles: *Host-optimized* or *Internet-Optimized*.
@@ -73,11 +73,11 @@ When a packet is received, the FA performs a lookup on the destination address:
 
 All is done in one single clock tick, it doesn't require any kind of recirculation and doesn't impact the performance (in bandwidth or in packet per second).
 
-![IPv4 Host Opt Allocation]({{site.baseurl}}/images/non-eTCAM-IPv4-HostOpt-.jpg =400x){: .align-center}
+![IPv4 Host-optimized Allocation]({{site.baseurl}}/images/non-eTCAM-IPv4-HostOpt--.jpg){: .align-center}
 
-This mode is particularly useful if you are using a routing table with a large number of v4/32 and v4/24. It could be the case for hosting companies or in data centers.
+This mode is particularly useful with a large number of v4/32 and v4/24 in the routing table. It could be the case for hosting companies or data centers.
 
-Using the configuration shown above, you can decide to enable the Internet-optimized mode. This is a feature activated on a chassis globally and not per line card. After reload, you will see a very different order of operation and prefix distribution in the various databases with base line cards and systems:
+Using the configuration above, you can decide to enable the Internet-optimized mode. This is a feature activated globally and not per line card. After reload, you will see a very different order of operation and prefix distribution in the various databases with base line cards and systems:
 
 ![IPv4 Internet Optimized Order]({{site.baseurl}}/images/non-SE-Int-Optimized-IPv4.jpg){: .align-center}
 
@@ -89,9 +89,9 @@ The order of operation LEM/LPM/LEM/LPM is now replaced by an LPM/LEM/LEM/LPM app
 
 Here again, everything is performed in one cycle and the activation of the Internet Optimized mode doesn't impact the forwarding performance.
 
-![non-eTCAM-IPv4-IntOpt.jpg]({{site.baseurl}}/images/non-eTCAM-IPv4-IntOpt.jpg =400x450){: .align-center}
+![non-eTCAM-IPv4-IntOpt-.jpg]({{site.baseurl}}/images/non-eTCAM-IPv4-IntOpt-.jpg){: .align-center}
 
-As the name implies, this profile has been optimized to move the largest route population (v4/24, v4/23, v4/20) in the largest memory database: the LEM. And we introduced specific improvements and pre-processing to handle the v4/23 and v4/20 optimally. 
+As the name implies, this profile has been optimized to move the largest route population present on the Internet (v4/24, v4/23, v4/20) in the largest memory database: the LEM. And we introduced specific improvements and pre-processing to handle the v4/23 and v4/20 optimally.
 With this Internet Optimized profile activated, it's possible to store a full internet view on base systems and line cards (we will present a couple of examples at the end of the documents).
 
 - LEM is 786k large
@@ -110,7 +110,7 @@ Just a two-step lookup here:
 - second and last lookup in the large eTCAM for everything between /31 and /0
 Needless to say, all done in one operation in the Forwarding ASIC.
 
-![eTCAM-IPv4.jpg]({{site.baseurl}}/images/eTCAM-IPv4.jpg){: .align-center}
+![eTCAM-IPv4-.jpg]({{site.baseurl}}/images/eTCAM-IPv4-.jpg){: .align-center}
 
 - LEM is 786k large
 - eTCAM can offer up to 2M IPv4 entries
@@ -119,7 +119,11 @@ Needless to say, all done in one operation in the Forwarding ASIC.
 
 ### Lab verification
 
-Nothing better than an example and some show commands to illustrate it. On NCS5500, the IOS XR CLI to verify the resource utilization is "show controller npu resources all location 0/x/CPU0". In the lab, we will inject prefixes and check the memory utilization. It's not an ideal approach because, for the sake of simplicity, we advertise through BGP very ordered routes:
+Let's try to illustrate it in the lab, injecting different types of IPv4 routes in the routers. 
+
+On NCS5500, the IOS XR CLI to verify the resource utilization is "show controller npu resources all location 0/x/CPU0". 
+
+We will advertise prefixes from a test device and check the memory utilization. It's not an ideal approach because, for the sake of simplicity, the routes advertised through BGP are contiguous:
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -140,11 +144,10 @@ RP/0/RP0/CPU0:NCS5500#
 </pre>
 </div>
 
-Despite common belief, it's not an ideal situation. On the contrary, algorithmic memories (like LPM) will show much higher scale with real internet prefix-length distribution.
+Despite common belief, it's not an ideal situation. On the contrary, algorithmic memories (like LPM) will be capable of much higher scale with real internet prefix-length distribution. Nevertheless, it's still an ok approach to demonstrate where the prefixes are stored based on the subnet length.
 
-Nevertheless, it's still an ok approach to demonstrate where the prefixes are stored based on the subnet length.
-We will take a look at two systems using scale line cards (24H12F) in slot 0/6 and base line cards (18H18F) in slot 0/0, and running two different IOS XR releases (6.1.4 and 6.2.2). We will only specify it, if the output is different between the two releases.
-
+We will take a look at two systems using scale line cards (24H12F) in slot 0/6 and base line cards (18H18F) in slot 0/0, and running two different IOS XR releases (6.1.4 and 6.2.2).
+  
 __200k IPv4 /32 routes__
 
 Let's get started with the advertisement of 200,000 IPv4/32 prefixes.
@@ -313,7 +316,7 @@ RP/0/RP0/CPU0:NCS5500-614#
 </code>
 </pre>
 </div>
-
+  
 __500k IPv4 /24 routes__
 
 In this second example, we announce 500,000 IPv4/24 prefixes.
@@ -438,7 +441,7 @@ RP/0/RP0/CPU0:NCS5500-614#
 </code>
 </pre>
 </div>
-
+  
 __300k IPv4 /23 routes__
 
 In this third example, we announce 300,000 IPv4/23 prefixes.
@@ -635,7 +638,7 @@ RP/0/RP0/CPU0:NCS5500-614#
 </code>
 </pre>
 </div>
-
+  
 __100k IPv4 /20 routes__
 
 In this last example, we announce 100,000 IPv4/20 prefixes.
@@ -793,7 +796,7 @@ RP/0/RP0/CPU0:NCS5500-614#
 
 ### Real use-cases
 
-Finally, let's illustrate this with real but anonymized use-cases.
+To conclude, let's illustrate with real but anonymized use-cases.
 
 On a base system running IOS XR 6.2.2 with internet-optimized profile and a “small” internet table.
 
@@ -853,7 +856,7 @@ OOR Information
 Current Usage
     NPU-0
         Total In-Use                : 498080   (63 %)
-        iproute                     : <mark>507304   (65 %)</mark>
+        iproute                     : <mark>507304</mark>   (65 %)
         ip6route                    : 12818    (2 %)
         mplslabel                   : 677      (0 %)
 
@@ -977,6 +980,10 @@ Current Usage
 </pre>
 </div>
 
-Examples above show it's possible to store a full internet view in a base system. With a relatively small table of 616k routes, we have LEM used at approximatively 65%. But it's frequent to see larger internet tables (closer to 700k in August 2017), with many peering routes and internal routes, it still fits in but doesn't give much room for future growth. We advise to prefer scale line cards and systems for such use-cases.
+Examples above show it's possible to store a full internet view in a base system. 
+
+With a relatively small table of 616k routes, we have LEM used at approximatively 65%. But it's frequent to see larger internet tables (closer to 700k in August 2017), with many peering routes and internal routes, it still fits in but doesn't give much room for future growth. 
+
+We advise to prefer scale line cards and systems for such use-cases.
 
 In the next episode, we will cover IPv6 prefixes. Stay tuned.
