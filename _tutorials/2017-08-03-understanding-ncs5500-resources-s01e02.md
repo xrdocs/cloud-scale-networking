@@ -44,7 +44,7 @@ Hardware programming is done through an abstraction layer: Data-Plane Agent (DPA
 
 Also, it's important to remember we are not talking about BGP paths here but about FIB entries: if we have 10 internet transit providers advertising more or less the same 700k-ish routes (with 10 next-hop addresses), we don't have 7M entries in the FIB but 700k. Few exceptions exist (like using different VRFs for each transit provider) but they are out of the scope of this post.
 
-Originally, IPv4/32 are going in LEM and all other prefix length (/31-/0) will be stored in LPM.
+Originally, IPv4/32 are going in LEM and all other prefix length (/31-/0) are stored in LPM.
 We changed this default behavior by implementing FIB profiles: *Host-optimized* or *Internet-Optimized*.
 
 <div class="highlighter-rouge">
@@ -83,8 +83,8 @@ Using the configuration above, you can decide to enable the Internet-optimized m
 
 The order of operation LEM/LPM/LEM/LPM is now replaced by an LPM/LEM/LEM/LPM approach.
 - first lookup is in LPM searching for a match between /32 and /25
-- second lookup is performed in LEM for an exact match on /24. But a pro-active process already split all the /23 received from the upper FIB process. Each /23 is presented as two sub-sequent /24s.
-- third lookup is done in LEM too and this time for also an exact match on /20. This implies the system performed another pro-active check to verify that we don't have any /22 or /21 prefixes overlapping with this /20. If it's the case, the /20 prefix is moved in the LPM and will be matched during the last lookup step.
+- second lookup is performed in LEM for an exact match on /24 and /23.
+- third lookup is done in LEM too and this time for also an exact match on /20
 - fourth and final step, a variable length lookup is executed in LPM for everything between /22 and /0
 
 Here again, everything is performed in one cycle and the activation of the Internet Optimized mode doesn't impact the forwarding performance.
@@ -92,6 +92,13 @@ Here again, everything is performed in one cycle and the activation of the Inter
 ![non-eTCAM-IPv4-IntOpt-.jpg]({{site.baseurl}}/images/non-eTCAM-IPv4-IntOpt-.jpg){: .align-center}
 
 As the name implies, this profile has been optimized to move the largest route population present on the Internet (v4/24, v4/23, v4/20) in the largest memory database: the LEM. And we introduced specific improvements and pre-processing to handle the v4/23 and v4/20 optimally.
+
+If you followed carefully, you noticed that a couple of improvement are needed to implement this sequence of lookup. 
+
+First, the match on LEM needs to be on an exact prefix length but the step two is done on IPv4/24 and IPv4/23. Indeed a function in DPA splits all IPv4/23 received from the upper FIB process in two. Each /23 is programmed as two sub-sequent /24s in hardware. We will illustrate this case with an example in the lab later in this post, advertising 300,000 IPv4/23.
+
+Second, the exact match in step 3 for IPv4/20 in LEM is only possible if we don't have any IPv4/22 or IPv4/21 prefixes overlapping with this IPv4/20. This implies the system performs another pro-active check to verify we don't have overlap. If an overlap happens, the IPv4/20 prefix is moved from LEM to LPM dynamically. We will illustrate this mechanism later in the post, advertising 100,000 IPv4/20 first, then advertising 100,000 IPv4/21 overlapping on the IPv4/20. We will see the IPv4/20 moved in LPM automatically.
+
 With this Internet Optimized profile activated, it's possible to store a full internet view on base systems and line cards (we will present a couple of examples at the end of the documents).
 
 - LEM is 786k large
@@ -153,7 +160,9 @@ __200k IPv4 /32 routes__
 
 Let's get started with the advertisement of 200,000 IPv4/32 prefixes.
 
-On base line cards running **Host-optimized** profile, /32 routes are going to LEM 
+On **base line cards** running **Host-optimized** profile, /32 routes are going to LEM.
+
+![]({{site.baseurl}}/images/host-32.jpg){: .align-center}
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -218,7 +227,9 @@ RP/0/RP0/CPU0:NCS5500-614#
 Estimated Max Entries (and the Current Usage percentage derived from it) are only estimations provided by the Forwarding ASIC based on the current memory occupation and prefix distribution. It's not always linear and should  be taken with a grain of salt.
 {: .notice--info}
 
-On base line cards running **Internet-optimized** profile, /32 routes are going to LPM:
+On **base line cards** running **Internet-optimized** profile, /32 routes are going to LPM:
+
+![internet-32.jpg]({{site.baseurl}}/images/internet-32.jpg){: .align-center}
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -268,7 +279,9 @@ RP/0/RP0/CPU0:NCS5500-614#
 </pre>
 </div>
 
-Finaly, on scale line card, regardless the profile enabled, the /32 are stored in LEM and not eTCAM:
+Finaly, on **scale line card**, regardless the profile enabled, the /32 are stored in LEM and not eTCAM:
+
+![eTCAM-32.jpg]({{site.baseurl}}/images/eTCAM-32.jpg){: .align-center}
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -319,7 +332,9 @@ RP/0/RP0/CPU0:NCS5500-614#
 __500k IPv4 /24 routes__
 
 In this second example, we announce 500,000 IPv4/24 prefixes.
-With both host-optimized and internet-optimized profiles on base line cards, we will see these prefixes moved to the LEM.
+With both **host-optimized** and **internet-optimized** profiles on base line cards, we will see these prefixes moved to the LEM.
+
+![host-24.jpg]({{site.baseurl}}/images/host-24.jpg){: .align-center}
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -369,7 +384,9 @@ RP/0/RP0/CPU0:NCS5500-614#
 </pre>
 </div>
 
-On scale line cards, the only the IPv4/32s are going to LEM, the rest (that includes our 500,000 IPv4/24s) will be pushed to the external TCAM:
+On **scale line cards**, only IPv4/32s are going to LEM, the rest (that includes our 500,000 IPv4/24s) will be pushed to the external TCAM:
+
+![eTCAM-32.jpg]({{site.baseurl}}/images/eTCAM-32.jpg){: .align-center}
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -438,7 +455,9 @@ RP/0/RP0/CPU0:NCS5500-614#
 __300k IPv4 /23 routes__
 
 In this third example, we announce 300,000 IPv4/23 prefixes.
-With the Host-optimized profiles on base line cards, they will be moved to the LPM.
+With the **Host-optimized** profiles on **base line cards**, they will be moved to the LPM.
+
+![host-23-20.jpg]({{site.baseurl}}/images/host-23-20.jpg){: .align-center}
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -515,9 +534,11 @@ RP/0/RP0/CPU0:NCS5500-614#
 
 Only 261k IPv4/23 prefixes out of the 300k were programmed then we reached the max of the memory capacity (we removed the error messages reporting that extra entries have not been programmed in hardware because the LPM capacity is exceeded).
 
-Let's enable the Internet-optimized profiles (and reload).
+Let's enable the **Internet-optimized** profile (and reload).
 
 This time, the 300,000 IPv4/23 will be split in two, making 600,000 IPv4/24 that will be moved to the LEM:
+
+![internet-24-23.jpg]({{site.baseurl}}/images/internet-24-23.jpg){: .align-center}
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -567,7 +588,9 @@ RP/0/RP0/CPU0:NCS5500-614#
 </pre>
 </div>
 
-The same example with scale line cards will not be dependant on the optimized profile activated, all the IPv4/23 routes will be stored in the external TCAM:
+The same example with **scale line cards** will not be dependant on the optimized profile activated, all the IPv4/23 routes will be stored in the external TCAM:
+
+![eTCAM-rest.jpg]({{site.baseurl}}/images/eTCAM-rest.jpg){: .align-center}
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -637,16 +660,17 @@ __100k IPv4 /20 routes__
 
 In this last example, we announce 100,000 IPv4/20 prefixes.
 You got it, so no need to describe:
-- the host-optimized profile on base cards where these 100k will be stored in the LPM 
-- the scale cards where these routes will be pushed to the external TCAM
+- the **host-optimized** profile on **base line cards** where these 100k will be stored in the LPM 
+- the **scale cards** where these routes will be pushed to the external TCAM
 
-Let's focus on the behavior with base cards running an internet-optimized profile.
+Let's focus on the behavior with **base line cards** running an **Internet-optimized** profile.
 We only advertise IPv4/20 routes and no overlapping routes, they will be all stored in LEM.
+
+![internet-20-no-overlap.jpg]({{site.baseurl}}/images/internet-20-no-overlap.jpg){: .align-center}
 
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
-
 RP/0/RP0/CPU0:NCS5500-614#sh bgp sum
 [...]
 Neighbor        Spk    AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down  St/PfxRcd
@@ -704,17 +728,17 @@ Current Usage
         ipmcroute                   : 0        (0 %)
         
 RP/0/RP0/CPU0:NCS5500-614#
-
 </code>
 </pre>
 </div>
 
-If we now advertise 100,000 new routes, all IPv4/21 overlapping the /20 we announced earlier, the /20 will no longer be stored in LEM but will be moved in LPM, for a total of 200,000 entries:
+If we now advertise 100,000 new routes, all IPv4/21 overlapping the IPv4/20 we announced earlier, the IPv4/20 will no longer be stored in LEM but will be moved in LPM, for a total of 200,000 entries:
+
+![internet-20-overlap.jpg]({{site.baseurl}}/images/internet-20-overlap.jpg){: .align-center}
 
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
-
 RP/0/RP0/CPU0:NCS5500-614#sh bgp sum
 
 Neighbor        Spk    AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down  St/PfxRcd
@@ -782,7 +806,6 @@ Current Usage
         ipmcroute                   : 0        (0 %)
 
 RP/0/RP0/CPU0:NCS5500-614#
-
 </code>
 </pre>
 </div>
@@ -792,7 +815,7 @@ RP/0/RP0/CPU0:NCS5500-614#
 
 To conclude, let's illustrate with real but anonymized use-cases.
 
-On a base system running IOS XR 6.2.2 with internet-optimized profile and a “small” internet table.
+On a **base system** running IOS XR 6.2.2 with internet-optimized profile and a “small” internet table.
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -833,7 +856,7 @@ Prefix   Actual       Prefix   Actual
  /28      17           /29      13          
  /30      229          /31      0           
  /32      368         
-[…]
+[...]
 
 RP/0/RP0/CPU0:5501#show contr npu resources all location 0/0/CPU0
  
@@ -875,7 +898,7 @@ Current Usage
 </pre>
 </div>
 
-Same route distribution on a scale system running IOS XR 6.2.2:
+Same route distribution on a **scale system** running IOS XR 6.2.2:
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -974,10 +997,10 @@ Current Usage
 </pre>
 </div>
 
-Examples above show it's possible to store a full internet view in a base system. 
+Examples above show it's possible to store a full internet view in a **base system**. 
 
 With a relatively small table of 616k routes, we have LEM used at approximatively 65%. But it's frequent to see larger internet tables (closer to 700k in August 2017), with many peering routes and internal routes, it still fits in but doesn't give much room for future growth. 
 
-We advise to prefer scale line cards and systems for such use-cases.
+We advise to prefer **scale line cards and systems** for such use-cases.
 
 In the next episode, we will cover IPv6 prefixes. Stay tuned.
