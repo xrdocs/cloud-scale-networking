@@ -89,7 +89,7 @@ The order of operation LEM/LPM/LEM/LPM is now replaced by an LPM/LEM/LEM/LPM app
 
 Here again, everything is performed in one cycle and the activation of the Internet Optimized mode doesn't impact the forwarding performance.
 
-![non-eTCAM-IPv4-IntOpt.jpg]({{site.baseurl}}/images/non-eTCAM-IPv4-IntOpt.jpg =400x){: .align-center}
+![non-eTCAM-IPv4-IntOpt.jpg]({{site.baseurl}}/images/non-eTCAM-IPv4-IntOpt.jpg =400x450){: .align-center}
 
 As the name implies, this profile has been optimized to move the largest route population (v4/24, v4/23, v4/20) in the largest memory database: the LEM. And we introduced specific improvements and pre-processing to handle the v4/23 and v4/20 optimally. 
 With this Internet Optimized profile activated, it's possible to store a full internet view on base systems and line cards (we will present a couple of examples at the end of the documents).
@@ -103,7 +103,7 @@ What about the scale line cards and routers (NCS5501-SE, NCS5502-SE and all the 
 
 The two optimized profiles described earlier don't impact the lookup process on scale systems, which will always follow this order of operation:
 
-![eTCAM IPv4 Order]({{site.baseurl}}/images/-SE-IPv4-order.jpg =400x){: .align-center}
+![eTCAM IPv4 Order]({{site.baseurl}}/images/-SE-IPv4-order.jpg){: .align-center}
 
 Just a two-step lookup here:
 - first lookup is in LEM for an exact match on /32
@@ -793,7 +793,7 @@ RP/0/RP0/CPU0:NCS5500-614#
 
 ### Real use-cases
 
-Finally, let's illustrate this with concrete by anonymized use-cases.
+Finally, let's illustrate this with real but anonymized use-cases.
 
 On a base system running IOS XR 6.2.2 with internet-optimized profile and a “small” internet table.
 
