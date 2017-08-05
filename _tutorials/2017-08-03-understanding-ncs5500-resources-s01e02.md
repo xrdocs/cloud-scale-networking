@@ -162,7 +162,7 @@ Let's get started with the advertisement of 200,000 IPv4/32 prefixes.
 
 On **base line cards** running **Host-optimized** profile, /32 routes are going to LEM.
 
-![]({{site.baseurl}}/images/host-32.jpg){: .align-center}
+![host-32.jpg]({{site.baseurl}}/images/host-32.jpg){: .align-center}
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -335,6 +335,7 @@ In this second example, we announce 500,000 IPv4/24 prefixes.
 With both **host-optimized** and **internet-optimized** profiles on base line cards, we will see these prefixes moved to the LEM.
 
 ![host-24.jpg]({{site.baseurl}}/images/host-24.jpg){: .align-center}
+![internet-24-23.jpg]({{site.baseurl}}/images/internet-24-23.jpg){: .align-center}
 
 <div class="highlighter-rouge">
 <pre class="highlight">
