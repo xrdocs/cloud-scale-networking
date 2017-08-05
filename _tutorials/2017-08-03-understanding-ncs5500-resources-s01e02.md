@@ -13,7 +13,7 @@ tags:
   - XR
   - IOSXR
   - Memory
-position: hidden
+position: top
 ---
 {% include toc icon="table" title="Understanding NCS5500 Resources" %} 
 
