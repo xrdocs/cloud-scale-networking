@@ -288,4 +288,4 @@ RP/0/RP0/CPU0:NCS5501-622#
 </pre>
 </div>
 
-Depending on the address family (IPv4 or IPv6), but also depending on the prefix subnet length, routes will be sorted and stored in LEM, LPM or eTCAM. Route handling will dependant on the platform type, the IOS XR released running and the profile activated. That's what we will detail in the next episode.
+Depending on the address family (IPv4 or IPv6), but also depending on the prefix subnet length, routes will be sorted and stored in LEM, LPM or eTCAM. Route handling will dependant on the platform type, the IOS XR released running and the profile activated. That's what we will detail in the [next episode](https://xrdocs.github.io/cloud-scale-networking/tutorials/2017-08-03-understanding-ncs5500-resources-s01e02/).
