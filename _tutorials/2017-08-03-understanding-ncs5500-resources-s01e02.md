@@ -19,7 +19,7 @@ position: top
 
 ## S01E02 IPv4 Prefixes
 
-### Previously in "Understanding NCS5500 Resources"
+### Previously on "Understanding NCS5500 Resources"
 
 In the [previous post](https://xrdocs.github.io/cloud-scale-networking/tutorials/2017-08-02-understanding-ncs5500-resources-s01e01/), we introduced the different routers and line cards in NCS5500 portfolio. We classified them into two categories: with or without external TCAM (eTCAM). And we introduced the different databases available to store information, inside and outside the Forwarding ASIC (FA).
 
