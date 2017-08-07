@@ -385,7 +385,7 @@ RP/0/RP0/CPU0:NCS5500-614#
 
 On **scale line cards**, only IPv4/32s are going to LEM. The rest (that includes our 500,000 IPv4/24s) will be pushed to the external TCAM:
 
-![eTCAM-32.jpg]({{site.baseurl}}/images/eTCAM-32.jpg){: .align-center}
+![eTCAM-rest.jpg]({{site.baseurl}}/images/eTCAM-rest.jpg){: .align-center}
 
 <div class="highlighter-rouge">
 <pre class="highlight">
