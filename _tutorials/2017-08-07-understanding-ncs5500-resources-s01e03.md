@@ -491,6 +491,24 @@ RP/0/RP0/CPU0:NCS5508-1-614#
 </pre>
 </div>
 
+80,000 IPv6/128 prefixes:
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:NCS5508-1-614#sh route ipv6 bgp | i /128 | utility wc -l
+60000
+RP/0/RP0/CPU0:NCS5508-1-614#sh contr npu resources lpm location 0/0/CPU0 | i "(Estim|In-Use)"
+        Estimated Max Entries       : 181075
+        Total In-Use                : 80173    (44 %)
+RP/0/RP0/CPU0:NCS5508-1-614#sh contr npu resources lpm location 0/6/CPU0 | i "(Estim|In-Use)"
+        Estimated Max Entries       : 181219
+        Total In-Use                : 80145    (44 %)
+RP/0/RP0/CPU0:NCS5508-1-614#
+</code>
+</pre>
+</div>
+
 100,000 IPv6/128 prefixes:
 
 <div class="highlighter-rouge">
@@ -522,3 +540,38 @@ RP/0/RP0/CPU0:NCS5508-1-614#
 </code>
 </pre>
 </div>
+
+| Pfx | Base Max Pfx | Scale Max Pfx |
+|------|------|-------|
+| 20k IPv6/32 | LPM: 489,903 | LPM: 492,387 |
+| 40k IPv6/32 | LPM: 475,663 | LPM: 478,583 |
+| 60k IPv6/32 | LPM: 458,713 | LPM: 460,693 |
+| 80k IPv6/32 | LPM: 440,257 | LPM: 440,929 |
+| 100k IPv6/32 | LPM: 421,187 | LPM: 421,733 |
+| 200k IPv6/32 | LPM: 322,395 | LPM: 323,017 |
+| 250k IPv6/32 | LPM: 272,903 | LPM: 273,141 |
+| 20k IPv6/48 | LEM: 786,432 | LEM: 786,432 |
+| 40k IPv6/48 | LEM: 786,432 | LEM: 786,432 |
+| 60k IPv6/48 | LEM: 786,432 | LEM: 786,432 |
+| 80k IPv6/48 | LEM: 786,432 | LEM: 786,432 |
+| 100k IPv6/48 | LEM: 786,432 | LEM: 786,432 |
+| 200k IPv6/48 | LEM: 786,432 | LEM: 786,432 |
+| 20k IPv6/56 | LPM: 486,773 | LPM: 489,223 |
+| 40k IPv6/56 | LPM: 474,051 | LPM: 475,331 |
+| 60k IPv6/56 | LPM: 457,623 | LPM: 458,501 |
+| 80k IPv6/56 | LPM: 439,433 | LPM: 440,103 |
+| 100k IPv6/56 | LPM: 420,525 | LPM: 421,069 |
+| 200k IPv6/56 | LPM: 322,061 | LPM: 322,349 |
+| 250k IPv6/56 | LPM: 272,637 | LPM: 272,873 |
+| 20k IPv6/64 | LPM: 239,675 | LPM: 489,223 |
+| 40k IPv6/64 | LPM: 220,605 | LPM: 475,331 |
+| 60k IPv6/64 | LPM: 201,195 | LPM: 458,501 |
+| 80k IPv6/64 | LPM: 181,283 | LPM: 440,103 |
+| 100k IPv6/64 | LPM: 161,503 | LPM: 421,069 |
+| 120k IPv6/64 | LPM: 141,511 | LPM: 401,163 |
+| 20k IPv6/128 | LPM: 238,848 | LPM: 239,330 |
+| 40k IPv6/128 | LPM: 220,186 | LPM: 220,446 |
+| 60k IPv6/128 | LPM: 200,914 | LPM: 201,098 |
+| 80k IPv6/128 | LPM: 181,075 | LPM: 181,219 |
+| 100k IPv6/128 | LPM: 161,334 | LPM: 161,456 |
+| 120k IPv6/128 | LPM: 141,370 | LPM: 141,476 |
