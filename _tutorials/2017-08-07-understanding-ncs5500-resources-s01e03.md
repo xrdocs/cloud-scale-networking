@@ -386,6 +386,15 @@ __IPv6/64 Routes__
 <pre class="highlight">
 <code>
 
+RP/0/RP0/CPU0:NCS5508-1-614#sh route ipv6 bgp | i /64 | utility wc -l
+20000
+RP/0/RP0/CPU0:NCS5508-1-614#sh contr npu resources lpm location 0/0/CPU0 | i "(Estim|In-Use)"
+        Estimated Max Entries       : 239664
+        Total In-Use                : 20172    (8 %)
+RP/0/RP0/CPU0:NCS5508-1-614#sh contr npu resources lpm location 0/6/CPU0 | i "(Estim|In-Use)"
+        Estimated Max Entries       : 489198
+        Total In-Use                : 20144    (4 %)
+RP/0/RP0/CPU0:NCS5508-1-614#        
 </code>
 </pre>
 </div>
@@ -395,7 +404,15 @@ __IPv6/64 Routes__
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
-
+RP/0/RP0/CPU0:NCS5508-1-614#sh route ipv6 bgp | i /64 | utility wc -l
+40000
+RP/0/RP0/CPU0:NCS5508-1-614#sh contr npu resources lpm location 0/0/CPU0 | i "(Estim|In-Use)"
+        Estimated Max Entries       : 220600
+        Total In-Use                : 40172    (18 %)
+RP/0/RP0/CPU0:NCS5508-1-614#sh contr npu resources lpm location 0/6/CPU0 | i "(Estim|In-Use)"
+        Estimated Max Entries       : 475320
+        Total In-Use                : 40144    (8 %)
+RP/0/RP0/CPU0:NCS5508-1-614#
 </code>
 </pre>
 </div>
@@ -405,7 +422,15 @@ __IPv6/64 Routes__
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
-
+RP/0/RP0/CPU0:NCS5508-1-614#sh route ipv6 bgp | i /64 | utility wc -l
+60000
+RP/0/RP0/CPU0:NCS5508-1-614#sh contr npu resources lpm location 0/0/CPU0 | i "(Estim|In-Use)"
+        Estimated Max Entries       : 201192
+        Total In-Use                : 60172    (30 %)
+RP/0/RP0/CPU0:NCS5508-1-614#sh contr npu resources lpm location 0/6/CPU0 | i "(Estim|In-Use)"
+        Estimated Max Entries       : 458492
+        Total In-Use                : 60144    (13 %)
+RP/0/RP0/CPU0:NCS5508-1-614#
 </code>
 </pre>
 </div>
@@ -417,7 +442,15 @@ __IPv6/128 Routes__
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
-
+RP/0/RP0/CPU0:NCS5508-1-614#sh route ipv6 bgp | i /128 | utility wc -l
+20000
+RP/0/RP0/CPU0:NCS5508-1-614#sh contr npu resources lpm location 0/0/CPU0 | i "(Estim|In-Use)"
+        Estimated Max Entries       : 238848
+        Total In-Use                : 20172    (8 %)
+RP/0/RP0/CPU0:NCS5508-1-614#sh contr npu resources lpm location 0/6/CPU0 | i "(Estim|In-Use)"
+        Estimated Max Entries       : 239330
+        Total In-Use                : 20144    (8 %)
+RP/0/RP0/CPU0:NCS5508-1-614#
 </code>
 </pre>
 </div>
@@ -427,7 +460,15 @@ __IPv6/128 Routes__
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
-
+RP/0/RP0/CPU0:NCS5508-1-614#sh route ipv6 bgp | i /128 | utility wc -l
+40000
+RP/0/RP0/CPU0:NCS5508-1-614#sh contr npu resources lpm location 0/0/CPU0 | i "(Estim|In-Use)"
+        Estimated Max Entries       : 220186
+        Total In-Use                : 40172    (18 %)
+RP/0/RP0/CPU0:NCS5508-1-614#sh contr npu resources lpm location 0/6/CPU0 | i "(Estim|In-Use)"
+        Estimated Max Entries       : 220446
+        Total In-Use                : 40144    (18 %)
+RP/0/RP0/CPU0:NCS5508-1-614#
 </code>
 </pre>
 </div>
@@ -437,17 +478,15 @@ __IPv6/128 Routes__
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
-
-</code>
-</pre>
-</div>
-
-80,000 IPv6/128 prefixes:
-
-<div class="highlighter-rouge">
-<pre class="highlight">
-<code>
-
+RP/0/RP0/CPU0:NCS5508-1-614#sh route ipv6 bgp | i /128 | utility wc -l
+60000
+RP/0/RP0/CPU0:NCS5508-1-614#sh contr npu resources lpm location 0/0/CPU0 | i "(Estim|In-Use)"
+        Estimated Max Entries       : 200914
+        Total In-Use                : 60172    (30 %)
+RP/0/RP0/CPU0:NCS5508-1-614#sh contr npu resources lpm location 0/6/CPU0 | i "(Estim|In-Use)"
+        Estimated Max Entries       : 201098
+        Total In-Use                : 60144    (30 %)
+RP/0/RP0/CPU0:NCS5508-1-614#
 </code>
 </pre>
 </div>
@@ -457,9 +496,29 @@ __IPv6/128 Routes__
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
-
+RP/0/RP0/CPU0:NCS5508-1-614#sh contr npu resources lpm location 0/0/CPU0 | i "(Estim|In-Use)"
+        Estimated Max Entries       : 161334
+        Total In-Use                : 100172   (62 %)
+RP/0/RP0/CPU0:NCS5508-1-614#sh contr npu resources lpm location 0/6/CPU0 | i "(Estim|In-Use)"
+        Estimated Max Entries       : 161456
+        Total In-Use                : 100144   (62 %)
+RP/0/RP0/CPU0:NCS5508-1-614#
 </code>
 </pre>
 </div>
 
+120,000 IPv6/128 prefixes:
 
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:NCS5508-1-614#sh contr npu resources lpm location 0/0/CPU0 | i "(Estim|In-Use)"
+        Estimated Max Entries       : 141370
+        Total In-Use                : 120172   (85 %)
+RP/0/RP0/CPU0:NCS5508-1-614#sh contr npu resources lpm location 0/6/CPU0 | i "(Estim|In-Use)"
+        Estimated Max Entries       : 141476
+        Total In-Use                : 120144   (85 %)
+RP/0/RP0/CPU0:NCS5508-1-614#
+</code>
+</pre>
+</div>
