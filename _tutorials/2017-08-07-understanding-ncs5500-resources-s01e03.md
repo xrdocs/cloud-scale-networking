@@ -1,10 +1,18 @@
 ---
-published: false
+published: true
 date: '2017-08-07 13:46 +0200'
 title: Understanding NCS5500 Resources (S01E03)
 author: Nicolas Fevrier
 excerpt: Third post on the NCS5500 Resources focusing on IPv6 prefixes
 position: hidden
+tags:
+  - ncs5500
+  - ncs 5500
+  - lpm
+  - lem
+  - routes
+  - prefixes
+  - eTCAM
 ---
 {% include toc icon="table" title="Understanding NCS5500 Resources" %} 
 
