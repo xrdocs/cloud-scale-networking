@@ -4,7 +4,7 @@ date: '2017-08-07 13:46 +0200'
 title: Understanding NCS5500 Resources (S01E03)
 author: Nicolas Fevrier
 excerpt: Third post on the NCS5500 Resources focusing on IPv6 prefixes
-position: hidden
+position: top
 tags:
   - ncs5500
   - ncs 5500
@@ -27,7 +27,7 @@ All the principles described below and the examples used to illustrate them were
 
 ### IPv6 routes and FIB Profiles
 
-Spend a few minutes to read the S01E02 to understand the different databases used to store routes in NCS5500:
+Please take a few minutes to read the [S01E02](https://xrdocs.github.io/cloud-scale-networking/tutorials/2017-08-03-understanding-ncs5500-resources-s01e02/) to understand the different databases used to store routes in NCS5500:
 
 ![Resources]({{site.baseurl}}/images/resources.jpg){: .align-center}
 
@@ -39,27 +39,28 @@ We explained how the different profiles influenced the prefixes storing in diffe
 
 ![IPv6-order.jpg]({{site.baseurl}}/images/IPv6-order.jpg){: .align-center}
 
-The logic behind this decision is that IPv6/48 prefixes are by far the largest population of the public table:
+The logic behind this decision: IPv6/48 prefixes are by far the largest population of the public table.
 
 ![ipv6-table.jpg]({{site.baseurl}}/images/ipv6-table.jpg){: .align-center}
-(From https://twitter.com/bgp6_table){: .align-center}
+(From [BGPv6 table on Twitter](https://twitter.com/bgp6_table))
 
-To avoid any misunderstanding, let's review the IPv6 resource allocation / distribution for each profile and line card type quickly:
+To avoid any misunderstanding, let's review the IPv6 resource allocation / distribution for each profile and line card type quickly, starting with the **Base systems** with **Host-optimized** FIB profile:
 
 ![IPv6-base-host-distr.jpg]({{site.baseurl}}/images/IPv6-base-host-distr.jpg){: .align-center}
-Base systems with Host-optimized FIB profile{: .align-center}
+
+**Base systems** with **Internet-optimized** FIB profile:
 
 ![IPv6-base-internet-distr.jpg]({{site.baseurl}}/images/IPv6-base-internet-distr.jpg){: .align-center}
-Base systems with Internet-optimized FIB profile{: .align-center}
+
+**Scale systems** regardless of FIB profile:
 
 ![IPv6-scale-distribution.jpg]({{site.baseurl}}/images/IPv6-scale-distribution.jpg){: .align-center}
-Scale systems regardless of FIB profile{: .align-center}
 
 See ? Pretty easy. By default, IPv6/48 are moved into LEM and the all other IPv6 prefixes are pushed into LPM.
 
 ### Lab verification
 
-LPM is an algorithmic memory. That means, the capacity will depend on the prefix distribution. We will use a couple of examples below to illustrate below how the routes are moved but you should not rely on the "estimated capacity" to based your capacity planning. Only a real internet table will give you a reliable estimation of the available space.
+LPM is an algorithmic memory. That means, the capacity will depend on the prefix distribution and how many have been programmed at a given moment. We will use a couple of examples below to illustrate below how the routes are moved but you should not rely on the "estimated capacity" to based your capacity planning. Only a real internet table will give you a reliable idea of the available space.
 
 In slot 0/0, we have a **base line card** (18H18F) using an Internet-optimized profile. In slot 0/6, we use a **scale line card** (24H12F-SE).
 
@@ -583,3 +584,7 @@ RP/0/RP0/CPU0:NCS5508-1-614#
 | 80k IPv6/128 | LPM: 181,075 | LPM: 181,219 |
 | 100k IPv6/128 | LPM: 161,334 | LPM: 161,456 |
 | 120k IPv6/128 | LPM: 141,370 | LPM: 141,476 |
+
+Again this chart is just provided for information with "aligned"/"sorted" routes, not really representing a real internet distribution. Take a look at the [former post for a production router with public view IPv4+IPv6](https://xrdocs.github.io/cloud-scale-networking/tutorials/2017-08-03-understanding-ncs5500-resources-s01e02/).
+
+In next posts, we will cover Encapsulation database, FEC and ECMP FEC database, MPLS use-cases and the classifiers/ACLs. Stay tuned.
