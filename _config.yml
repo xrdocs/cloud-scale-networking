@@ -120,7 +120,7 @@ exclude:
   - Rakefile
   - README
   - tmp
-exclude: ["vendor"]  
+ 
 keep_files:
   - .git
   - .svn
@@ -323,6 +323,10 @@ prose:
     - CHANGELOG.md
     - README.md
     - feed.xml
+    - .travis.yml
+    - _config.travis.yml
+    - .gitmodules
+    - _data
   metadata:
     _blogs:
       - name: "title"
