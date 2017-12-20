@@ -34,9 +34,6 @@ In August 2017, with one exception covered in a follow-up xrdocs post, we are le
 **Update**: In December 2017, Jericho+ systems are available in line cards (36x 100G with NG eTCAM) and in fixed formed 1RU (36x 100G with or without NG eTCAM, 24x 100G with a larger internal memory). They will be described in follow-up posts.
 {: .notice--info}
 
-**Note**: Inside a modular chassis, we can mix and match eTCAM and non-eTCAM line cards. A feature is available to decide where the prefixes should be programmed (differentiating IGP and BGP, and using specific ext-communities).
-{: .notice--info}
-
 We can categorize these systems and line cards in two families:
 
 ![Base vs Scale]({{site.baseurl}}/images/base-scale.jpg){: .align-center}
