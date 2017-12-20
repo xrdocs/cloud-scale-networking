@@ -31,6 +31,8 @@ Routers in the NCS5500 portfolio offer diverse form-factors. Some are fixed (1RU
 
 In August 2017, with one exception covered in a follow-up xrdocs post, we are leveraging Qumran-MX or Jericho forwarding ASICs (FA). Qumran is used for System-on-Chip (SoC) routers like NCS5501 and NCS5501-SE, all other systems are using several Jerichos interconnected via Fabric Engines.
 
+**Update**: In December 2017, Jericho+ systems are available in line cards (36x 100G with NG eTCAM) and in fixed formed 1RU (36x 100G with or without NG eTCAM, 24x 100G with a larger internal memory). They will be described in follow-up posts. {: .notice--info}
+
 We can categorize these systems and line cards in two families:
 
 ![Base vs Scale]({{site.baseurl}}/images/base-scale.jpg){: .align-center}
