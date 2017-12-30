@@ -38,12 +38,11 @@ Let's illustrate how we can handle a full IPv4 and IPv6 Internet view on base sy
 Following YouTube video will demonstrate we can handle multiple internet peers in the global routing table (15 full views on our demo) on base systems with the appropriate optimizatios.  
 We will demo how we can monitor the important resources used to store routing information and finally we will project what could be the internet size if it follows 2017 trends and how long the systems will be handle the full v4/v6 views.
 
-<!-- YouTube video link -->
 [![NCS5500 Route Scale Demo](https://img.youtube.com/vi/8Tq4nyP2wuA/0.jpg)](https://www.youtube.com/watch?v=8Tq4nyP2wuA){: .align-center}
 
 [https://www.youtube.com/watch?v=8Tq4nyP2wuA](https://www.youtube.com/watch?v=8Tq4nyP2wuA)
 
-This video shows NCS5500 using Jericho-based line cards (also valid for fixed-form systems) handling the current internet table with still significant growth margin.
+This video shows NCS5500 using Jericho-based line cards without external TCAM (also valid for fixed-form systems) handling the current internet table with still significant growth margin.
 
 ### Config and CLI
 
