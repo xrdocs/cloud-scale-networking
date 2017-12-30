@@ -38,9 +38,11 @@ Let's illustrate how we can handle a full IPv4 and IPv6 Internet view on base sy
 Following YouTube video will demonstrate we can handle multiple internet peers in the global routing table (15 full views on our demo) on base systems with the appropriate optimizatios.  
 We will demo how we can monitor the important resources used to store routing information and finally we will project what could be the internet size if it follows 2017 trends and how long the systems will be handle the full v4/v6 views.
 
+<!-- YouTube video link -->
 [![NCS5500 Route Scale Demo](https://img.youtube.com/vi/8Tq4nyP2wuA/0.jpg)]
-(/https://www.youtube.com/watch?v=8Tq4nyP2wuA "NCS5500 Route Scale")
+(/https://www.youtube.com/watch?v=8Tq4nyP2wuA "Watch NCS5500 Route Scale Demo")
 
+This video shows NCS5500 using Jericho-based line cards (also valid for fixed-form systems) handling the current internet table with still significant growth margin.
 
 ### Config and CLI
 
@@ -617,6 +619,96 @@ RP/0/RP0/CPU0:NCS5508#
 
 ## "Wet-finger" Internet Growth Projection
 
+We take the data graciously provided by Darren's (https://twitter.com/mellowdrifter) twitter pages:
+- https://twitter.com/bgp4_table 
+- https://twitter.com/bgp6_table 
 
+Date|%/24|%/23|%/22|%/21-/19|%18-16
+:---:| :---:| :---:| :---:| :---:| :---:
+15/12/2016|56,1|10|11,7|16,8|5,4
+18/01/2017|56,2|10|11,7|16,7|5,4
+15/02/2017|56,4|10,1|11,7|16,5|5,3
+15/03/2017|56,4|10|11,8|16,4|5,4
+12/04/2017|56,5|10|11,8|16,3|5,4
+17/05/2017|56,6|10|11,8|16,2|5,3
+14/06/2017|56,5|10,1|11,9|16,2|5,3
+12/07/2017|56,5|10,1|11,9|16,1|5,3
+16/08/2017|56,6|10,1|12|16,1|5,3
+13/09/2017|56,7|10,1|12,1|15,9|5,2
+10/10/2017|56,6|10,1|12,1|15,9|5,2
+15/11/2017|56,6|10,1|12,1|15,9|5,2
 
+Which can be converted in numbers of prefixes per prefix-length:
 
+Date|Total v4|/24|/23|/22|/21-/19|/18-/16
+:---:| :---:| :---:| :---:| :---:| :---:| :---:
+15/12/2016|638707|358315|63871|74729|107303|34491
+18/01/2017|643504|361650|64351|75290|107466|34750
+15/02/2017|650916|367117|65743|76158|107402|34499
+15/03/2017|652062|367763|65207|76944|106939|35212
+12/04/2017|658828|372238|65883|77742|107389|35577
+17/05/2017|663357|375461|66336|78277|107464|35158
+14/06/2017|666765|376723|67344|79346|108016|35339
+12/07/2017|669699|378380|67640|79695|107822|35495
+16/08/2017|673374|381130|68011|80805|108414|35689
+13/09/2017|677348|384057|68413|81960|107699|35223
+10/10/2017|679210|384433|68601|82185|107995|35319
+15/11/2017|684059|387178|69090|82772|108766|35572
+
+Same approach for IPv6 percents
+
+Date|%/48|%/32|%/44|%/40|%/36|%/29
+:—:|:—:|:—:|:—:|:—:|:—:|:—:
+15/12/2016|46,9|24|4,6|4,8|3,9|4,1
+18/01/2017|46,5|23,8|4,6|4,8|3,8|4,2
+15/02/2017|45,8|23,6|4,6|5,4|3,6|4,2
+15/03/2017|45,5|23,3|4,8|5,4|3,6|4,2
+12/04/2017|45,8|22,7|4,7|5,3|3,6|4,2
+17/05/2017|45,8|22,8|4,7|5,3|3,6|4,2
+14/06/2017|46,2|22,7|4,7|5,3|3,5|4,3
+12/07/2017|45,9|22,8|4,8|5,2|3,6|4,3
+16/08/2017|46,5|22,1|4,8|5,3|3,6|4,2
+13/09/2017|46,6|21,9|4,8|5,2|3,6|4,2
+18/10/2017|46,5|22,1|5|5,1|3,6|4,3
+15/11/2017|46,3|22,1|5,2|5,3|3,7|4,3
+
+And IPv6 prefixes
+
+Date|Total v6|/48|/32|/44|/40|/36|/29|Rest
+:—:|:—:|:—:|:—:|:—:|:—:|:—:|:—:|:—:
+15/12/2016|35118|16471|8429|1616|1686|1370|1440|4144
+18/01/2017|35970|16727|8561|1655|1727|1367|1511|4425
+15/02/2017|36801|16855|8686|1693|1988|1325|1546|4674
+15/03/2017|37826|17211|8814|1816|2043|1362|1589|5031
+12/04/2017|39152|17932|8888|1841|2076|1410|1645|5403
+17/05/2017|40147|18388|9154|1887|2128|1446|1687|5460
+14/06/2017|40737|18821|9248|1915|2160|1426|1752|5459
+12/07/2017|40860|18755|9317|1962|2125|1471|1757|5517
+16/08/2017|42911|19954|9484|2060|2275|1545|1803|5879
+13/09/2017|43540|20290|9536|2090|2265|1568|1829|5965
+18/10/2017|43389|20176|9589|2170|2213|1563|1866|5771
+15/11/2017|44025|20384|9730|2290|2334|1629|1894|5812
+
+Which gives us the following graphs:
+
+![2017-v4-growth]({{site.baseurl}}/images/growth-v4.jpg)
+
+![2017-v6-growth]({{site.baseurl}}/images/growth-v6.jpg)
+
+We can extrapolate the route count in LEM and LPM now.
+
+Year|LEM|LPM
+:--:|:--:|:--:
+2017|545742|274488
+2018|592543|296045
+2019|639344|317602
+2020|686145|339159
+2021|732946|360717
+2022|779747|382274
+2023|826548|403832
+2024|873349|425389
+2025|920150|446947
+
+![LEM and LPM utilization projection]({{site.baseurl}}/images/projection.jpg)
+
+It's certainly a very simplistic approach, feel free to provide other sources or your own growth projection in the comments, we will re-do the math with it.
