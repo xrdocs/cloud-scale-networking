@@ -39,7 +39,7 @@ Following YouTube video will demonstrate we can handle multiple internet peers i
 We will demo how we can monitor the important resources used to store routing information and finally we will project what could be the internet size if it follows 2017 trends and how long the systems will be handle the full v4/v6 views.
 
 <!-- YouTube video link -->
-![NCS5500 Route Scale Demo]([https://img.youtube.com/vi/8Tq4nyP2wuA/0.jpg](https://www.youtube.com/watch?v=8Tq4nyP2wuA)){: .align-center}
+![NCS5500 Route Scale Demo](https://www.youtube.com/watch?v=8Tq4nyP2wuA){: .align-center}
 
 [https://www.youtube.com/watch?v=8Tq4nyP2wuA](https://www.youtube.com/watch?v=8Tq4nyP2wuA){: .align-center}
 
