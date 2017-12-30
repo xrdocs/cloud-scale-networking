@@ -25,12 +25,12 @@ position: hidden
 
 ### Previously on "Understanding NCS5500 Resources"
 
-In previous posts, we introduced:
+In previous posts, we presented:
 - the [different routers and line cards in NCS5500 portfolio](https://xrdocs.github.io/cloud-scale-networking/tutorials/2017-08-02-understanding-ncs5500-resources-s01e01/)  
 - we explained [how IPv4 prefixes are sorted in LEM, LPM and eTCAM](https://xrdocs.github.io/cloud-scale-networking/tutorials/2017-08-03-understanding-ncs5500-resources-s01e02/)
 - and [how IPv6 prefixes are stored in the same databases](https://xrdocs.github.io/cloud-scale-networking/tutorials/2017-08-07-understanding-ncs5500-resources-s01e03/).
 
-Let's illustrate how we can handle a full IPv4 and IPv6 Internet view on base systems and line cards (i.e. without external TCAM, only using LEM and LPM).
+Let's illustrate how we can handle a full IPv4 and IPv6 Internet view on base systems and line cards (i.e. without external TCAM, only using the LEM and LPM internal to the forwarding ASIC).
 
 
 ### The demo
@@ -39,7 +39,8 @@ Following YouTube video will demonstrate we can handle multiple internet peers i
 We will demo how we can monitor the important resources used to store routing information and finally we will project what could be the internet size if it follows 2017 trends and how long the systems will be handle the full v4/v6 views.
 
 <!-- YouTube video link -->
-![NCS5500 Route Scale Demo](https://img.youtube.com/vi/8Tq4nyP2wuA/0.jpg){: .align-center}
+![NCS5500 Route Scale Demo]([https://img.youtube.com/vi/8Tq4nyP2wuA/0.jpg](https://www.youtube.com/watch?v=8Tq4nyP2wuA)){: .align-center}
+
 [https://www.youtube.com/watch?v=8Tq4nyP2wuA](https://www.youtube.com/watch?v=8Tq4nyP2wuA){: .align-center}
 
 This video shows NCS5500 using Jericho-based line cards (also valid for fixed-form systems) handling the current internet table with still significant growth margin.
@@ -652,7 +653,7 @@ Date|Total v4|/24|/23|/22|/21-/19|/18-/16
 10/10/2017|679210|384433|68601|82185|107995|35319
 15/11/2017|684059|387178|69090|82772|108766|35572
 
-Same approach for IPv6 percents
+Same approach for IPv6:
 
 Date|%/48|%/32|%/44|%/40|%/36|%/29
 :---:|:---:|:---:|:---:|:---:|:---:|:---:
@@ -668,8 +669,6 @@ Date|%/48|%/32|%/44|%/40|%/36|%/29
 13/09/2017|46,6|21,9|4,8|5,2|3,6|4,2
 18/10/2017|46,5|22,1|5|5,1|3,6|4,3
 15/11/2017|46,3|22,1|5,2|5,3|3,7|4,3
-
-And IPv6 prefixes
 
 Date|Total v6|/48|/32|/44|/40|/36|/29|Rest
 :---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:
