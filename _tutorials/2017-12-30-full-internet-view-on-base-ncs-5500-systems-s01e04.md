@@ -39,8 +39,8 @@ Following YouTube video will demonstrate we can handle multiple internet peers i
 We will demo how we can monitor the important resources used to store routing information and finally we will project what could be the internet size if it follows 2017 trends and how long the systems will be handle the full v4/v6 views.
 
 <!-- YouTube video link -->
-[![NCS5500 Route Scale Demo](https://img.youtube.com/vi/8Tq4nyP2wuA/0.jpg)]
-(/https://www.youtube.com/watch?v=8Tq4nyP2wuA "Watch NCS5500 Route Scale Demo")
+![NCS5500 Route Scale Demo](https://img.youtube.com/vi/8Tq4nyP2wuA/0.jpg){: .align-center}
+https://www.youtube.com/watch?v=8Tq4nyP2wuA{: .align-center}
 
 This video shows NCS5500 using Jericho-based line cards (also valid for fixed-form systems) handling the current internet table with still significant growth margin.
 
@@ -120,7 +120,6 @@ BGP NSR/ISSU Sync-Group versions 64373/0
 BGP scan interval 60 secs
  
 BGP is operating in STANDALONE mode.
- 
  
 Process       RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer
 Speaker           64373      64373      64373      64373       64373       64373
@@ -574,7 +573,6 @@ Configuration to enable streaming telemetry for the counters used for this video
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
-
 RP/0/RP0/CPU0:NCS5508#sh run telemetry model-driven
     telemetry model-driven
      destination-group DGroup1
@@ -611,7 +609,6 @@ RP/0/RP0/CPU0:NCS5508#sh run telemetry model-driven
   destination-id DGroup1
  !
 !
-     
 RP/0/RP0/CPU0:NCS5508#
 </code>
 </pre>
@@ -624,7 +621,7 @@ We take the data graciously provided by Darren's (https://twitter.com/mellowdrif
 - https://twitter.com/bgp6_table 
 
 Date|%/24|%/23|%/22|%/21-/19|%18-16
-:---:| :---:| :---:| :---:| :---:| :---:
+:---:|:---:|:---:|:---:|:---:|:---:
 15/12/2016|56,1|10|11,7|16,8|5,4
 18/01/2017|56,2|10|11,7|16,7|5,4
 15/02/2017|56,4|10,1|11,7|16,5|5,3
@@ -641,7 +638,7 @@ Date|%/24|%/23|%/22|%/21-/19|%18-16
 Which can be converted in numbers of prefixes per prefix-length:
 
 Date|Total v4|/24|/23|/22|/21-/19|/18-/16
-:---:| :---:| :---:| :---:| :---:| :---:| :---:
+:---:|:---:|:---:|:---:|:---:|:---:|:---:
 15/12/2016|638707|358315|63871|74729|107303|34491
 18/01/2017|643504|361650|64351|75290|107466|34750
 15/02/2017|650916|367117|65743|76158|107402|34499
@@ -658,7 +655,7 @@ Date|Total v4|/24|/23|/22|/21-/19|/18-/16
 Same approach for IPv6 percents
 
 Date|%/48|%/32|%/44|%/40|%/36|%/29
-:—:|:—:|:—:|:—:|:—:|:—:|:—:
+:---:|:---:|:---:|:---:|:---:|:---:|:---:
 15/12/2016|46,9|24|4,6|4,8|3,9|4,1
 18/01/2017|46,5|23,8|4,6|4,8|3,8|4,2
 15/02/2017|45,8|23,6|4,6|5,4|3,6|4,2
@@ -675,7 +672,7 @@ Date|%/48|%/32|%/44|%/40|%/36|%/29
 And IPv6 prefixes
 
 Date|Total v6|/48|/32|/44|/40|/36|/29|Rest
-:—:|:—:|:—:|:—:|:—:|:—:|:—:|:—:|:—:
+:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:
 15/12/2016|35118|16471|8429|1616|1686|1370|1440|4144
 18/01/2017|35970|16727|8561|1655|1727|1367|1511|4425
 15/02/2017|36801|16855|8686|1693|1988|1325|1546|4674
@@ -691,14 +688,14 @@ Date|Total v6|/48|/32|/44|/40|/36|/29|Rest
 
 Which gives us the following graphs:
 
-![2017-v4-growth]({{site.baseurl}}/images/growth-v4.jpg)
+![2017-v4-growth]({{site.baseurl}}/images/growth-v4.jpg){: .align-center}
 
-![2017-v6-growth]({{site.baseurl}}/images/growth-v6.jpg)
+![2017-v6-growth]({{site.baseurl}}/images/growth-v6.jpg){: .align-center}
 
 We can extrapolate the route count in LEM and LPM now.
 
 Year|LEM|LPM
-:--:|:--:|:--:
+:---:|:---:|:---:
 2017|545742|274488
 2018|592543|296045
 2019|639344|317602
@@ -709,6 +706,6 @@ Year|LEM|LPM
 2024|873349|425389
 2025|920150|446947
 
-![LEM and LPM utilization projection]({{site.baseurl}}/images/projection.jpg)
+![LEM and LPM utilization projection]({{site.baseurl}}/images/projection.jpg){: .align-center}
 
 It's certainly a very simplistic approach, feel free to provide other sources or your own growth projection in the comments, we will re-do the math with it.
