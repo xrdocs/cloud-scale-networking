@@ -1,9 +1,11 @@
 ---
-published: false
+published: true
 date: '2017-12-30 10:31 +0100'
 title: Full Internet View on "Base" NCS 5500 Systems (S01E04)
 author: Nicolas Fevrier
-excerpt: 'Post #4 on the NCS5500 Resources with a YT video to illustrate full internet '
+excerpt: >-
+  Post #4 on the NCS5500 Resources with a YT video to illustrate full internet
+  support on non-eTCAM systems
 tags:
   - ncs5500
   - ncs 5500
@@ -40,7 +42,7 @@ We will demo how we can monitor the important resources used to store routing in
 (/https://www.youtube.com/watch?v=8Tq4nyP2wuA "NCS5500 Route Scale")
 
 
-### More details?
+### Config and CLI
 
 On this line card we have:
 
@@ -267,7 +269,7 @@ Origin codes: i - IGP, e - EGP, ? - incomplete
 ...
  
 RP/0/RP0/CPU0:NCS5508#sh dpa resources iproute loc 0/2/CPU0
- 
+
 "iproute" DPA Table (Id: 21, Scope: Global)
 --------------------------------------------------
 IPv4 Prefix len distribution
@@ -612,4 +614,9 @@ RP/0/RP0/CPU0:NCS5508#
 </code>
 </pre>
 </div>
+
+## "Wet-finger" Internet Growth Projection
+
+
+
 
