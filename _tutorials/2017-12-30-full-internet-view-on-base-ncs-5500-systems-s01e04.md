@@ -40,7 +40,7 @@ We will demo how we can monitor the important resources used to store routing in
 
 <!-- YouTube video link -->
 ![NCS5500 Route Scale Demo](https://img.youtube.com/vi/8Tq4nyP2wuA/0.jpg){: .align-center}
-https://www.youtube.com/watch?v=8Tq4nyP2wuA{: .align-center}
+[https://www.youtube.com/watch?v=8Tq4nyP2wuA](https://www.youtube.com/watch?v=8Tq4nyP2wuA){: .align-center}
 
 This video shows NCS5500 using Jericho-based line cards (also valid for fixed-form systems) handling the current internet table with still significant growth margin.
 
