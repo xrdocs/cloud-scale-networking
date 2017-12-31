@@ -616,9 +616,9 @@ RP/0/RP0/CPU0:NCS5508#
 
 ## "Wet-finger" Internet Growth Projection
 
-We take the data graciously provided by Darren's (https://twitter.com/mellowdrifter) twitter pages:
-- https://twitter.com/bgp4_table 
-- https://twitter.com/bgp6_table 
+We take the data graciously provided by Darren's ([https://twitter.com/mellowdrifter](https://twitter.com/mellowdrifter)) twitter pages:
+- [https://twitter.com/bgp4_table](https://twitter.com/bgp4_table) 
+- [https://twitter.com/bgp6_table](https://twitter.com/bgp6_table) 
 
 Date|%/24|%/23|%/22|%/21-/19|%18-16
 :---:|:---:|:---:|:---:|:---:|:---:
