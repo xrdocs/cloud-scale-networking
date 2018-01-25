@@ -357,7 +357,6 @@ Current Usage
         ipmcroute                   : 0        (0 %)
 
 RP/0/RP0/CPU0:TME-5508-6.2.3#
-
 </code>
 </pre>
 </div>
@@ -375,7 +374,6 @@ We can verify the current carving status with the following:
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
-
 RP/0/RP0/CPU0:TME-5508-6.2.3#sh contr npu externaltcam loc 0/6/CPU0
 
 External TCAM Resource Information
@@ -412,7 +410,6 @@ NPU  Bank   Entry  Owner       Free     Per-DB  DB   DB
 3    5      80b    FLP         28672    0       80   INGRESS_IP_SRC_PORT_EXT
 3    6      80b    FLP         28672    0       81   INGRESS_IPV6_SRC_PORT_EXT
 RP/0/RP0/CPU0:TME-5508-6.2.3#
-
 </code>
 </pre>
 </div>
