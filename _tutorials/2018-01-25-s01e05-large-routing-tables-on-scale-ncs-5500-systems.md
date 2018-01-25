@@ -52,12 +52,11 @@ In this YouTube video, we will:
 ### CLI outputs
 
 We jump directly to the larger use-case: large internet table from 2025 with 436k IPv4 host routes.
-Such large number of host routes can be caused by DDoS mitigation systems (the /32s being used to divert the traffic targeted to specific victims) or by L3 migration of VMs between domains.
+Such large number of host routes can be caused by DDoS mitigation systems (the /32s being used to divert the traffic targeted to specific victims) or by L3 VMs migration between domains.
 
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
-
 RP/0/RP0/CPU0:TME-5508-6.2.3#sh route sum
 
 Route Source                     Routes     Backup     Deleted     Memory(bytes)
@@ -66,7 +65,7 @@ connected                        2          0          0           480
 bgp 100                          1612272    0          0           386945280
 dagr                             0          0          0           0
 static                           0          0          0           0
-Total                            1612276    0          0           386946240
+Total                            <mark>1612276</mark>    0          0           386946240
 
 RP/0/RP0/CPU0:TME-5508-6.2.3#sh route ipv6 un sum
 
@@ -76,7 +75,7 @@ connected                        2          0          0           528
 connected l2tpv3_xconnect        0          0          0           0
 bgp 100                          108243     0          0           28576152
 static                           0          1          0           264
-Total                            108247     1          0           28577472
+Total                            <mark>108247</mark>     1          0           28577472
 
 RP/0/RP0/CPU0:TME-5508-6.2.3#sh dpa resources iproute loc 0/6/CPU0
 
@@ -100,9 +99,9 @@ Prefix   Actual            Capacity    Prefix   Actual            Capacity
  /26      3362              3603         /27      5736              2620
  /28      15909             2292         /29      17377             5568
  /30      42507             2292         /31      112               163
- /32      435847            16
+ /32      <mark>435847</mark>            16
                           NPU ID: NPU-0           NPU-1           NPU-2           NPU-3
-                          In Use: 1612298         1612298         1612298         1612298
+                          In Use: <mark>1612298</mark>         1612298         1612298         1612298
                  Create Requests
                            Total: 2285630         2285630         2285630         2285630
                          Success: 2285630         2285630         2285630         2285630
@@ -152,7 +151,7 @@ Prefix   Actual       Prefix   Actual
  /42      417          /43      129
  /44      7899         /45      187
  /46      1498         /47      376
- /48      52338        /49      13
+ /48      <mark>52338</mark>        /49      13
  /50      12           /51      4
  /52      16           /53      0
  /54      1            /55      8
@@ -194,7 +193,7 @@ Prefix   Actual       Prefix   Actual
  /126     24           /127     18
  /128     731
                           NPU ID: NPU-0           NPU-1           NPU-2           NPU-3
-                          In Use: 108265          108265          108265          108265
+                          In Use: <mark>108265</mark>          108265          108265          108265
                  Create Requests
                            Total: 171646          171646          171646          171646
                          Success: 171646          171646          171646          171646
@@ -217,7 +216,7 @@ Prefix   Actual       Prefix   Actual
 RP/0/RP0/CPU0:TME-5508-6.2.3#sh contr npu resources lem loc 0/6/CPU0
 
 HW Resource Information
-    Name                            : lem
+    Name                            : <mark>lem</mark>
 
 OOR Information
     NPU-0
@@ -243,7 +242,7 @@ OOR Information
 
 Current Usage
     NPU-0
-        Total In-Use                : 488186   (62 %)
+        Total In-Use                : <mark>488186</mark>   (<mark>62 %</mark>)
         iproute                     : 435847   (55 %)
         ip6route                    : 52338    (7 %)
         mplslabel                   : 0        (0 %)
@@ -266,7 +265,7 @@ Current Usage
 RP/0/RP0/CPU0:TME-5508-6.2.3#sh contr npu resources lpm loc 0/6/CPU0
 
 HW Resource Information
-    Name                            : lpm
+    Name                            : <mark>lpm</mark>
 
 OOR Information
     NPU-0
@@ -292,7 +291,7 @@ OOR Information
 
 Current Usage
     NPU-0
-        Total In-Use                : 55950    (12 %)
+        Total In-Use                : <mark>55950</mark>    (<mark>12 %</mark>)
         iproute                     : 0        (0 %)
         ip6route                    : 55927    (12 %)
         ipmcroute                   : 0        (0 %)
@@ -315,7 +314,7 @@ Current Usage
 RP/0/RP0/CPU0:TME-5508-6.2.3#sh contr npu resources exttcamipv4 loc 0/6/CPU0
 
 HW Resource Information
-    Name                            : ext_tcam_ipv4
+    Name                            : <mark>ext_tcam_ipv4</mark>
 
 OOR Information
     NPU-0
@@ -341,7 +340,7 @@ OOR Information
 
 Current Usage
     NPU-0
-        Total In-Use                : 1176451  (72 %)
+        Total In-Use                : <mark>1176451</mark>  (<mark>72 %</mark>)
         iproute                     : 1176451  (72 %)
         ipmcroute                   : 0        (0 %)
     NPU-1
@@ -366,7 +365,9 @@ RP/0/RP0/CPU0:TME-5508-6.2.3#
 The 2025 internet estimation [is described in the previous post](https://xrdocs.github.io/cloud-scale-networking/tutorials/2017-12-30-full-internet-view-on-base-ncs-5500-systems-s01e04/). As mentioned in this post and in the video, the method is certainly a matter of debate. Let's take it for what it is: an estimation.
 
 In these use-cases with large public routing table and extreme amount of host routes, we are far from reaching the limits of the systems based on Jericho ASICs with External TCAMs.
+
 We are using 62% of LEM, 12% of LPM and 72% of eTCAM.
+
 Important to understand that default carving in IOS XR 6.2.3 is allocating 20% for hybrid ACLs. This default behavior will change in releases 6.3.x onwards where we will allocate 100% of the space to IPv4 prefixes and it will be only when configuring hybrid ACLs that we will re-carve to allocation eTCAM space.
 
 We can verify the current carving status with the following:
@@ -382,7 +383,7 @@ External TCAM Resource Information
 NPU  Bank   Entry  Owner       Free     Per-DB  DB   DB
      Id     Size               Entries  Entry   ID   Name
 =============================================================
-0    0      80b    FLP         461952   1176448  15   IPV4 DC
+0    0      80b    FLP         <mark>461952</mark>   <mark>1176448</mark>  15   <mark>IPV4 DC</mark>
 0    1      80b    FLP         28672    0       76   INGRESS_IPV4_SRC_IP_EXT
 0    2      80b    FLP         28672    0       77   INGRESS_IPV4_DST_IP_EXT
 0    3      160b   FLP         26624    0       78   INGRESS_IPV6_SRC_IP_EXT
