@@ -367,6 +367,11 @@ In these use-cases with large public routing table and extreme amount of host ro
 
 We are using 62% of LEM, 12% of LPM and 72% of eTCAM.
 
+All these counters can be streamed with telemetry. Example of visualization with Grafana:
+
+![grafana.png]({{site.baseurl}}/images/grafana.png)
+
+
 Important to understand that default carving in IOS XR 6.2.3 is allocating 20% for hybrid ACLs. This default behavior will change in releases 6.3.x onwards where we will allocate 100% of the space to IPv4 prefixes and it will be only when configuring hybrid ACLs that we will re-carve to allocation eTCAM space.
 
 We can verify the current carving status with the following:
