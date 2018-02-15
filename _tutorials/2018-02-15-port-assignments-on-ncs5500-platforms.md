@@ -62,7 +62,7 @@ NCS5502s are made of 8 Jericho ASICs interconnected with 2x fabric engine (FE360
 ![NCS5502-scale.jpg]({{site.baseurl}}/images/NCS5502-scale.jpg) ![NCS5502-base.jpg]({{site.baseurl}}/images/NCS5502-base.jpg)
 
 | Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core |
-| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
 |  Hu0/0/0/0 | 0 / 1 | Hu0/0/0/12 | 2 / 1 | Hu0/0/0/24 | 4 / 1 | Hu0/0/0/36 | 6 / 1 |
 | Hu0/0/0/1 | 0 / 1 | Hu0/0/0/13 | 2 / 1 | Hu0/0/0/25 | 4 / 1 | Hu0/0/0/37 | 6 / 1 |
 | Hu0/0/0/2 | 0 / 1 | Hu0/0/0/14 | 2 / 0 | Hu0/0/0/26 | 4 / 1 | Hu0/0/0/38 | 6 / 1 |
@@ -83,7 +83,7 @@ NCS55A1-24H is made of two Jericho+ connected back-to-back (no fabric engine)
 ![NCS5500-24H.jpg]({{site.baseurl}}/images/NCS5500-24H.jpg)
 
 | Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core |
-| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
 | Hu0/0/0/0 | 0 / 1 | Hu0/0/0/9 | 0 / 0 | Hu0/0/0/18 | 1 / 1 |
 | Hu0/0/0/1 |0 / 0 | Hu0/0/0/10 | 0 / 1 | Hu0/0/0/19 | 1 / 0 |
 | Hu0/0/0/2 | 0 / 1 | Hu0/0/0/11 | 0 / 0 | Hu0/0/0/20 | 1 / 1 |
@@ -101,7 +101,7 @@ NCSA1-36Hs are made of 4 Jericho+ ASICs interconnected through a FE3600 ASIC.
 ![NCS5500-36H.jpg]({{site.baseurl}}/images/NCS5500-36H.jpg)
 
 | Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core |
-| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
 | Hu0/0/0/1 | 0 / 0 | Hu0/0/0/9 | 1 / 0 | Hu0/0/0/18 | 2 / 0 | Hu0/0/0/27 | 3 / 0 |
 | Hu0/0/0/1 | 0 / 0 | Hu0/0/0/10 | 1 / 0 | Hu0/0/0/19 | 2 / 0 | Hu0/0/0/28 | 3 / 0 |
 | Hu0/0/0/2 | 0 / 0 | Hu0/0/0/11 | 1 / 0 | Hu0/0/0/20 | 2 / 0 | Hu0/0/0/29 | 3 / 0 |
@@ -120,7 +120,7 @@ In these cards we have 6 Jericho ASICs.
 ![NC55-36X100G-S.jpg]({{site.baseurl}}/images/NC55-36X100G-S.jpg)
 
 | Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core |
-| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
 | Hu0/x/0/0 | 0 / 1 | Hu0/x/0/9 | 1 / 0 | Hu0/x/0/18 | 3 / 1 | Hu0/x/0/27 | 4 / 0
 | Hu0/x/0/1 | 0 / 1 | Hu0/x/0/10 | 1 / 0 | Hu0/x/0/19 | 3 / 1 | Hu0/x/0/28 | 4 / 0 
 | Hu0/x/0/2 | 0 / 1 | Hu0/x/0/11 | 1 / 0 | Hu0/x/0/20 | 3 / 1 | Hu0/x/0/29 | 4 / 0
@@ -138,7 +138,7 @@ The scale 24x100G are made of 4 Jericho ASICs.
 ![NC55-24X100G-SE.jpg]({{site.baseurl}}/images/NC55-24X100G-SE.jpg)
 
 | Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core |
-| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
 | Hu0/x/0/0 | 0 / 1 | Hu0/x/0/6 | 1 / 1 | Hu0/x/0/12 | 2 / 1 | Hu0/x/0/18 | 3 / 1 |
 | Hu0/x/0/1 | 0 / 1 | Hu0/x/0/7 | 1 / 1 | Hu0/x/0/13 | 2 / 1 | Hu0/x/0/19 | 3 / 1 |
 | Hu0/x/0/2 | 0 / 1 | Hu0/x/0/8 | 1 / 1 | Hu0/x/0/14 | 2 / 1 | Hu0/x/0/20 | 3 / 1 |
@@ -154,7 +154,7 @@ This line card is made of 3 Jericho ASICs.
 ![NC55-18H18F.jpg]({{site.baseurl}}/images/NC55-18H18F.jpg)
 
 | Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core |
-| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
 | Fo0/x/0/0 | 0 / 0 | Hu0/x/0/9 | 0 / 0 | Hu0/x/0/18 | 1 / 1 | Fo0/x/0/27 | 2 / 1 |
 | Fo0/x/0/1 | 0 / 0 | Hu0/x/0/10 | 0 / 0 | Hu0/x/0/19 | 1 / 1 | Fo0/x/0/28 | 2 / 0 |
 | Fo0/x/0/2 | 0 / 1 | Hu0/x/0/11 | 0 / 0 | Hu0/x/0/20 | 1 / 1 | Fo0/x/0/29 | 2 / 1 |
@@ -173,7 +173,7 @@ This line card is made of 4 Jericho ASICs with eTCAM.
 ![NC55-24H12F-SE.jpg]({{site.baseurl}}/images/NC55-24H12F-SE.jpg)
 
 | Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core |
-| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
 | Fo0/x/0/0 | 0 / 0  | Fo0/x/0/9 | 1 / 1 | Fo0/x/0/18 | 2 / 0 | Fo0/x/0/27 | 3 / 0 |
 | Fo0/x/0/1 | 0 / 0 | Fo0/x/0/10 | 1 / 0 | Fo0/x/0/19 | 2 / 0 | Fo0/x/0/28 | 3 / 0 |
 | Hu0/x/0/2 | 0 / 1 | Fo0/x/0/11 | 1 / 0 | Hu0/x/0/20 | 2 / 1| Fo0/x/0/29 | 3 / 1 |
@@ -192,7 +192,7 @@ Finally, this line card is using 4 Jericho+ with new generation eTCAM.
 ![NC55-36X100G-A-SE.jpg]({{site.baseurl}}/images/NC55-36X100G-A-SE.jpg)
 
 | Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core |
-| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
 | Hu0/x/0/0 | 0 / 1 | Hu0/x/0/9 | 1 / 1  | Hu0/x/0/18 | 2 / 1 | Hu0/x/0/27 | 3 / 1 |
 | Hu0/x/0/1 | 0 / 1 | Hu0/x/0/10 | 1 / 1 | Hu0/x/0/19 | 2 / 1 | Hu0/x/0/28 | 3 / 1 |
 | Hu0/x/0/2 | 0 / 1 | Hu0/x/0/11 | 1 / 1 | Hu0/x/0/20 | 2 / 1 | Hu0/x/0/29 | 3 / 1 |
