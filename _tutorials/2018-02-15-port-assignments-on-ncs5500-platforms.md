@@ -2,6 +2,13 @@
 published: false
 date: '2018-02-15 11:17 +0100'
 title: Port Assignments on NCS5500 Platforms
+author: Nicolas Fevrier
+excerpt: Brief post on port allocation / NPU for NCS5500
+tags:
+  - NCS5500
+  - ncs 5500
+  - Port
+position: top
 ---
 {% include toc icon="table" title="Netflow, Sampling-Interval and the Mythical Internet Packet Size" %} 
 
@@ -104,6 +111,110 @@ NCSA1-36Hs are made of 4 Jericho+ ASICs interconnected through a FE3600 ASIC.
 | Hu0/0/0/6 | 0 / 1 | Hu0/0/0/15 | 1 / 1 | Hu0/0/0/24 | 2 / 1 | Hu0/0/0/33 | 3 / 1 |
 | Hu0/0/0/7 | 0 / 1 | Hu0/0/0/16 | 1 / 1 | Hu0/0/0/25 | 2 / 1 | Hu0/0/0/34 | 3 / 1 |
 | Hu0/0/0/8 | 0 / 1 | Hu0/0/0/17 | 1 / 1 | Hu0/0/0/26 | 2 / 1 | Hu0/0/0/35 | 3 / 1 |
+
+### NCS55-36X100G and NC55-36X100G-S
+
+In these cards we have 6 Jericho ASICs.
+
+![NC55-36X100G.jpg]({{site.baseurl}}/images/NC55-36X100G.jpg)
+![NC55-36X100G-S.jpg]({{site.baseurl}}/images/NC55-36X100G-S.jpg)
+
+| Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| Hu0/x/0/0 | 0 / 1 | Hu0/x/0/9 | 1 / 0 | Hu0/x/0/18 | 3 / 1 | Hu0/x/0/27 | 4 / 0
+| Hu0/x/0/1 | 0 / 1 | Hu0/x/0/10 | 1 / 0 | Hu0/x/0/19 | 3 / 1 | Hu0/x/0/28 | 4 / 0 
+| Hu0/x/0/2 | 0 / 1 | Hu0/x/0/11 | 1 / 0 | Hu0/x/0/20 | 3 / 1 | Hu0/x/0/29 | 4 / 0
+| Hu0/x/0/3 | 0 / 0 | Hu0/x/0/12 | 2 / 1 | Hu0/x/0/21 | 3 / 0 | Hu0/x/0/30 | 5 / 1
+| Hu0/x/0/4 | 0 / 0 | Hu0/x/0/13 | 2 / 1 | Hu0/x/0/22 | 3 / 0 | Hu0/x/0/31 | 5 / 1
+| Hu0/x/0/5 | 0 / 0 | Hu0/x/0/14 | 2 / 1 | Hu0/x/0/23 | 3 / 0 | Hu0/x/0/32 | 5 / 1
+| Hu0/x/0/6 | 1 / 1 | Hu0/x/0/15 | 2 / 0 | Hu0/x/0/24 | 4 / 1 | Hu0/x/0/33 | 5 / 0
+| Hu0/x/0/7 | 1 / 1 | Hu0/x/0/16 | 2 / 0 | Hu0/x/0/25 | 4 / 1 | Hu0/x/0/34 | 5 / 0
+| Hu0/x/0/8 | 1 / 1 | Hu0/x/0/17 | 2 / 0 | Hu0/x/0/26 | 4 / 1 | Hu0/x/0/35 | 5 / 0
+
+### NCS55-24X100G-SE
+
+The scale 24x100G are made of 4 Jericho ASICs.
+
+![NC55-24X100G-SE.jpg]({{site.baseurl}}/images/NC55-24X100G-SE.jpg)
+
+| Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| Hu0/x/0/0 | 0 / 1 | Hu0/x/0/6 | 1 / 1 | Hu0/x/0/12 | 2 / 1 | Hu0/x/0/18 | 3 / 1 |
+| Hu0/x/0/1 | 0 / 1 | Hu0/x/0/7 | 1 / 1 | Hu0/x/0/13 | 2 / 1 | Hu0/x/0/19 | 3 / 1 |
+| Hu0/x/0/2 | 0 / 1 | Hu0/x/0/8 | 1 / 1 | Hu0/x/0/14 | 2 / 1 | Hu0/x/0/20 | 3 / 1 |
+| Hu0/x/0/3 | 0 / 0 | Hu0/x/0/9 | 1 / 0 | Hu0/x/0/15 | 2 / 0 | Hu0/x/0/21 | 3 / 0 |
+| Hu0/x/0/4 | 0 / 0 | Hu0/x/0/10 | 1 / 0 | Hu0/x/0/16 | 2 / 0 | Hu0/x/0/22 | 3 / 0 |
+| Hu0/x/0/5 | 0 / 0 | Hu0/x/0/11 | 1 / 0 | Hu0/x/0/17 | 2 / 0 | Hu0/x/0/23 | 3 / 0 |
+
+### NCS55-18H18F
+
+By default, the base combo card offers 36 ports 40G, and it's possible to upgrade half of them to 100G.
+This line card is made of 3 Jericho ASICs.
+
+![NC55-18H18F.jpg]({{site.baseurl}}/images/NC55-18H18F.jpg)
+
+| Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| Fo0/x/0/0 | 0 / 0 | Hu0/x/0/9 | 0 / 0 | Hu0/x/0/18 | 1 / 1 | Fo0/x/0/27 | 2 / 1 |
+| Fo0/x/0/1 | 0 / 0 | Hu0/x/0/10 | 0 / 0 | Hu0/x/0/19 | 1 / 1 | Fo0/x/0/28 | 2 / 0 |
+| Fo0/x/0/2 | 0 / 1 | Hu0/x/0/11 | 0 / 0 | Hu0/x/0/20 | 1 / 1 | Fo0/x/0/29 | 2 / 1 |
+| Fo0/x/0/3 | 0 / 1 | Fo0/x/0/12 | 1 / 0 | Hu0/x/0/21 | 1 / 0 | Hu0/x/0/30 | 2 / 1 |
+| Fo0/x/0/4 | 0 / 0 | Fo0/x/0/13 | 1 / 0 | Hu0/x/0/22 | 1 / 0 | Hu0/x/0/31 | 2 / 1 |
+| Fo0/x/0/5 | 0 / 1 | Fo0/x/0/14 | 1 / 1 | Hu0/x/0/23 | 1 / 0 | Hu0/x/0/32 | 2 / 1 |
+| Hu0/x/0/6 | 0 / 1 | Fo0/x/0/15 | 1 / 1 | Fo0/x/0/24 | 2 / 0 | Hu0/x/0/33 | 2 / 0 |
+| Hu0/x/0/7 | 0 / 1 | Fo0/x/0/16 | 1 / 0 | Fo0/x/0/25 | 2 / 0 | Hu0/x/0/34 | 2 / 0 |
+| Hu0/x/0/8 | 0 / 1 | Fo0/x/0/17 | 1 / 1 | Fo0/x/0/26 | 2 / 1 | Hu0/x/0/35 | 2 / 0 |
+
+### NCS55-24H12F-SE
+
+By default, the scale combo card offers 36 ports 40G, and it's possible to upgrade two third of them to 100G.
+This line card is made of 4 Jericho ASICs with eTCAM.
+
+![NC55-24H12F-SE.jpg]({{site.baseurl}}/images/NC55-24H12F-SE.jpg)
+
+| Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| Fo0/x/0/0 | 0 / 0  | Fo0/x/0/9 | 1 / 1 | Fo0/x/0/18 | 2 / 0 | Fo0/x/0/27 | 3 / 0 |
+| Fo0/x/0/1 | 0 / 0 | Fo0/x/0/10 | 1 / 0 | Fo0/x/0/19 | 2 / 0 | Fo0/x/0/28 | 3 / 0 |
+| Hu0/x/0/2 | 0 / 1 | Fo0/x/0/11 | 1 / 0 | Hu0/x/0/20 | 2 / 1| Fo0/x/0/29 | 3 / 1 |
+| Hu0/x/0/3 | 0 / 1 | Hu0/x/0/12 | 1 / 1 | Hu0/x/0/21 | 2 / 1 | Hu0/x/0/30 | 3 / 1 |
+| Hu0/x/0/4 | 0 / 1| Hu0/x/0/13 | 1 / 1 | Hu0/x/0/22 | 2 / 1 | Hu0/x/0/31 | 3 / 1 |
+| Hu0/x/0/5 | 0 / 0 | Hu0/x/0/14 | 1 / 1 | Hu0/x/0/23 | 2 / 0 | Hu0/x/0/32 | 3 / 1 |
+| Hu0/x/0/6 | 0 / 0 | Hu0/x/0/15 | 1 / 0 | Hu0/x/0/24 | 2 / 0 | Hu0/x/0/33 | 3 / 0 |
+| Hu0/x/0/7 | 0 / 0 | Hu0/x/0/16 | 1 / 0 | Hu0/x/0/25 | 2 / 0 | Hu0/x/0/34 | 3 / 0 |
+| Fo0/x/0/8 | 0 / 1 | Hu0/x/0/17 | 1 / 0 | Fo0/x/0/26 | 2 / 1 | Hu0/x/0/35 | 3 / 0 |
+
+
+### NCS55-36X100G-A-SE
+
+Finally, this line card is using 4 Jericho+ with new generation eTCAM.
+
+![NC55-36X100G-A-SE.jpg]({{site.baseurl}}/images/NC55-36X100G-A-SE.jpg)
+
+| Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| Hu0/x/0/0 | 0 / 1 | Hu0/x/0/9 | 1 / 1  | Hu0/x/0/18 | 2 / 1 | Hu0/x/0/27 | 3 / 1 |
+| Hu0/x/0/1 | 0 / 1 | Hu0/x/0/10 | 1 / 1 | Hu0/x/0/19 | 2 / 1 | Hu0/x/0/28 | 3 / 1 |
+| Hu0/x/0/2 | 0 / 1 | Hu0/x/0/11 | 1 / 1 | Hu0/x/0/20 | 2 / 1 | Hu0/x/0/29 | 3 / 1 |
+| Hu0/x/0/3 | 0 / 0 | Hu0/x/0/12 | 1 / 0 | Hu0/x/0/21 | 2 / 0 | Hu0/x/0/30 | 3 / 0 |
+| Hu0/x/0/4 | 0 / 0 | Hu0/x/0/13 | 1 / 0 | Hu0/x/0/22 | 2 / 0 | Hu0/x/0/31 | 3 / 0 |
+| Hu0/x/0/5 | 0 / 0 | Hu0/x/0/14 | 1 / 0 | Hu0/x/0/23 | 2 / 0 | Hu0/x/0/32 | 3 / 0 |
+| Hu0/x/0/6 | 0 / 0 | Hu0/x/0/15 | 1 / 0 | Hu0/x/0/24 | 2 / 0 | Hu0/x/0/33 | 3 / 0 |
+| Hu0/x/0/7 | 0 / 1 | Hu0/x/0/16 | 1 / 1 | Hu0/x/0/25 | 2 / 1 | Hu0/x/0/34 | 3 / 1 |
+| Hu0/x/0/8 | 0 / 0 | Hu0/x/0/17 | 1 / 0 | Hu0/x/0/26 | 2 / 0 | Hu0/x/0/35 | 3 / 0 |
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
