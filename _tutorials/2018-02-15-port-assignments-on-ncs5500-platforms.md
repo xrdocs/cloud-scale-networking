@@ -50,6 +50,8 @@ NCS5501 and NCS5501-SE are using a single Qumran-MX ASIC and all the SFP ports a
 
 ### NCS5502(-SE) (Base and Scale version)
 
+NCS5502s are made of 8 Jericho ASICs interconnected with 2x fabric engine (FE3600)
+
 ![NCS5502-scale.jpg]({{site.baseurl}}/images/NCS5502-scale.jpg) ![NCS5502-base.jpg]({{site.baseurl}}/images/NCS5502-base.jpg)
 
 | Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core |
@@ -66,6 +68,45 @@ NCS5501 and NCS5501-SE are using a single Qumran-MX ASIC and all the SFP ports a
 | Hu0/0/0/9 | 1 / 0 | Hu0/0/0/21 | 3 / 0 | Hu0/0/0/33 | 5 / 0 | Hu0/0/0/45 | 7 / 0 |
 | Hu0/0/0/10 | 1 / 0 | Hu0/0/0/22 | 3 / 0 | Hu0/0/0/34 | 5 / 0 | Hu0/0/0/46 | 7 / 0 |
 | Hu0/0/0/11 | 1 / 0 | Hu0/0/0/23 | 3 / 0 | Hu0/0/0/35 | 5 / 0 | Hu0/0/0/47 | 7 / 0 |
+
+### NCS55A1-24H
+
+NCS55A1-24H is made of two Jericho+ connected back-to-back (no fabric engine)
+
+![NCS5500-24H.jpg]({{site.baseurl}}/images/NCS5500-24H.jpg)
+
+| Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| Hu0/0/0/0 | 0 / 1 | Hu0/0/0/9 | 0 / 0 | Hu0/0/0/18 | 1 / 1 |
+| Hu0/0/0/1 |0 / 0 | Hu0/0/0/10 | 0 / 1 | Hu0/0/0/19 | 1 / 0 |
+| Hu0/0/0/2 | 0 / 1 | Hu0/0/0/11 | 0 / 0 | Hu0/0/0/20 | 1 / 1 |
+| Hu0/0/0/3 | 0 / 0 | Hu0/0/0/12 | 1 / 1 | Hu0/0/0/21 | 1 / 0 |
+| Hu0/0/0/4 | 0 / 1 | Hu0/0/0/13 | 1 / 0 | Hu0/0/0/22 | 1 / 1 |
+| Hu0/0/0/5 | 0 / 0 | Hu0/0/0/14 | 1 / 1 | Hu0/0/0/23 | 1 / 0 |
+| Hu0/0/0/6 | 0 / 1 | Hu0/0/0/15 | 1 / 0 |   |   | 
+| Hu0/0/0/7 | 0 / 0 | Hu0/0/0/16 | 1 / 1 |   |   |  
+| Hu0/0/0/8 | 0 / 1 | Hu0/0/0/17 | 1 / 0 |   |   |
+
+### NCS55A1-36H(-SE)
+
+NCSA1-36Hs are made of 4 Jericho+ ASICs interconnected through a FE3600 ASIC.
+
+![NCS5500-36H.jpg]({{site.baseurl}}/images/NCS5500-36H.jpg)
+
+| Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core |
+| ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| Hu0/0/0/1 | 0 / 0 | Hu0/0/0/9 | 1 / 0 | Hu0/0/0/18 | 2 / 0 | Hu0/0/0/27 | 3 / 0 |
+| Hu0/0/0/1 | 0 / 0 | Hu0/0/0/10 | 1 / 0 | Hu0/0/0/19 | 2 / 0 | Hu0/0/0/28 | 3 / 0 |
+| Hu0/0/0/2 | 0 / 0 | Hu0/0/0/11 | 1 / 0 | Hu0/0/0/20 | 2 / 0 | Hu0/0/0/29 | 3 / 0 |
+| Hu0/0/0/3 | 0 / 0 | Hu0/0/0/12 | 1 / 0 | Hu0/0/0/21 | 2 / 0 | Hu0/0/0/30 | 3 / 0 |
+| Hu0/0/0/4 | 0 / 1 | Hu0/0/0/13 | 1 / 1 | Hu0/0/0/22 | 2 / 1 | Hu0/0/0/31 | 3 / 1 |
+| Hu0/0/0/5 | 0 / 1 | Hu0/0/0/14 | 1 / 1 | Hu0/0/0/23 | 2 / 1 | Hu0/0/0/32 | 3 / 1 |
+| Hu0/0/0/6 | 0 / 1 | Hu0/0/0/15 | 1 / 1 | Hu0/0/0/24 | 2 / 1 | Hu0/0/0/33 | 3 / 1 |
+| Hu0/0/0/7 | 0 / 1 | Hu0/0/0/16 | 1 / 1 | Hu0/0/0/25 | 2 / 1 | Hu0/0/0/34 | 3 / 1 |
+| Hu0/0/0/8 | 0 / 1 | Hu0/0/0/17 | 1 / 1 | Hu0/0/0/26 | 2 / 1 | Hu0/0/0/35 | 3 / 1 |
+
+
+
 
 
 
