@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 date: '2018-02-15 11:17 +0100'
 title: Port Assignments on NCS5500 Platforms
 author: Nicolas Fevrier
@@ -202,22 +202,3 @@ Finally, this line card is using 4 Jericho+ with new generation eTCAM.
 | Hu0/x/0/6 | 0 / 0 | Hu0/x/0/15 | 1 / 0 | Hu0/x/0/24 | 2 / 0 | Hu0/x/0/33 | 3 / 0 |
 | Hu0/x/0/7 | 0 / 1 | Hu0/x/0/16 | 1 / 1 | Hu0/x/0/25 | 2 / 1 | Hu0/x/0/34 | 3 / 1 |
 | Hu0/x/0/8 | 0 / 0 | Hu0/x/0/17 | 1 / 0 | Hu0/x/0/26 | 2 / 0 | Hu0/x/0/35 | 3 / 0 |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
