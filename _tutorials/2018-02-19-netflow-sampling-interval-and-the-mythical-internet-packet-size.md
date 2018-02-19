@@ -8,8 +8,15 @@ title: 'Netflow, Sampling-Interval and the Mythical Internet Packet Size'
 ## Introduction
 
 In this post, we will try to clarify key concepts around Netflow technology and potentially correct some common misconceptions. Particularly we will explain why “what is the sampling-rate you support?” is not the right question.
+
 We will also describe in extensive details the NCS5500 implementation.
 We will share here what we measured in different networks in Europe and North America. This information will be helpful to understand one of the parameter of this complex equation.
+
+We will provide tools to answer questions like:
+- how many new flows per second?
+- how long live the flows?
+- are we dropping samples because of the protection shaper?
+
 It's certainly not meant to be a state-of-the-art but more an invitation to comment with your own findings.
 
 ## NCS5500 internals
@@ -399,8 +406,9 @@ RP/0/RP0/CPU0:R1#
 </pre>
 </div>
 
-(22581844681-22580788616)/(46+55)
-10456.089108910892
+Simple math now between the two measurements:
+ROUND [ (22581844681-22580788616) / (46+55) ] = 10456 new flows / second
+ROUND [ ( = samples with existing entries / second )
 
 ## Ok, that’s interesting, but what should I configure on my routers ?
 
@@ -425,3 +433,22 @@ This traffic will be rate-limited by the shaper we mentioned above: 133Mbps or 2
 
 Something we can not really anticipate is the ratio of sampled packets that will be <128B.
 
+
+
+RP/0/RP0/CPU0:R1#sh controllers npu stats voq base 32 instance all location 0/0/cpu0
+Tue Feb 13 08:26:24.313 CET
+ 
+Asic Instance     =            0
+VOQ Base          =           32
+       ReceivedPkts    ReceivedBytes   DroppedPkts     DroppedBytes
+-------------------------------------------------------------------
+COS0 = 55310403        7758153300      27477           27698890        
+COS1 = 149546732399    14520531988623  0               0               
+COS2 = 0               0               0               0               
+COS3 = 548460015       59478262961     516             687000          
+COS4 = 1116521770      260500021379    0               0               
+COS5 = 2600912         332916736       0               0               
+COS6 = 32346023        7592947280      0               0               
+COS7 = 183281          19901816        0               0               
+ 
+ 
