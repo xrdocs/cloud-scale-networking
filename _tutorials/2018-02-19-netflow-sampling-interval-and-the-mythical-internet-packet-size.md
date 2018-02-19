@@ -299,7 +299,7 @@ Let's take routers facing the internet and list the different types of interface
 We collected numbers from multiple ISP in the US and Western Europe, here are some numbers:
 
 | Peering/Transit | Ingress Avg | Egress Avg |
-|------|------|-------|
+|:------:|:------:|:-------:|
 | Cust 1 Transit 1 | 1136 | 328 |
 | Cust 1 Transit 2 | 927 | 526 |
 | Cust 1 Transit 3 | 1138 | 346 |
@@ -320,7 +320,7 @@ It seems difficult to derive a “rule” from these numbers but we can say:
 But other type of interfaces will short more “extreme” numbers, like the CDNs (and they represent the largest and fastest growing amount of traffic in networks today).
 
 | CDN / Content Providers | Ingress Avg | Egress Avg |
-|------|------|-------|
+|:------:|:------:|:-------:|
 | Cust 1 Google GGC | 1277 | 329 |
 | Cust 2 Google GGC | 1370 | 350 |
 | Cust 3 Google GGC | 1393 | 284 |
@@ -363,23 +363,34 @@ sampler-map SM random 1 out-of 2048
 </pre>
 </div>
 
-| Router | eq 1 | neq 1 |
-|%------%|%------%|%-------%|
-| R1 0/0 | 43680 | 11122 |
-| R2 0/0 | 39723 | 11421 |
-| R2 0/1 | 31907 | 8628 |
-| R2 0/2 | 35110 | 9168 |
-| R3 0/3 | 21563 | 6541 |  
+Let's check a couple of routers using sampling-interval of 1:2048
 
-Here, we have 
+| Router with 1:2048 | eq 1 | neq 1 | Ratio (%) |
+|:------:|:------:|:-------:|:-------:|
+| R1 0/0 | 43680 | 11122 | 75/25 |
+| R2 0/0 | 39723 | 11421 | 71/29 |
+| R2 0/1 | 31907 | 8628 | 73/27 |
+| R2 0/2 | 35110 | 9168 | 74/26 |
+| R3 0/3 | 21563 | 6541 | 70/30 |
 
+Some other routers with a sampling-interval of 1:4000
+
+| Router with 1:4000 | eq 1 | neq 1 | Ratio (%) |
+|:------:|:------:|:-------:|:-------:|
+| R1 | 11312 | 1725 | 85/15 |
+| R2 | 56321 | 15177 | 73/27 |
+
+We will let you run the test on your own devices, but it looks like the proportion of "1-packet flow" is more important than the others. It appears with 1:2000 but it's even clearer with 1:4000.
+It only proves that statistically, streams are less than 2000- or 4000-packets long for the most part.
+And that a large majority of the samples will generate new entries in the cache table instead of updating existing entries.
+The flow entries will be cleared out of the cache (and will generate a NF record) when reaching the inactive timer.
 
 ## New flows rate ?
 
-How to check the number of new flow per second?
+So, another interesting question: how to check the number of new flows per second?
 With the following show command, we can monitor the Cache Hits and Cache Misses.
-Hits: every time we sample a packet and it matches an existing entry in the cache, we update the counters.
-Misses: no entry in the cache for this flow, we create one
+- Hits: every time we sample a packet and it matches an existing entry in the cache, we update the counters.
+- Misses: no entry in the cache for this flow, we create a new one
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -407,8 +418,8 @@ RP/0/RP0/CPU0:R1#
 </div>
 
 Simple math now between the two measurements:
-ROUND [ (22581844681-22580788616) / (46+55) ] = 10456 new flows / second
-ROUND [ ( = samples with existing entries / second )
+ROUND [ (22581844681-22580788616) / (46+55) ] = 10456 samples creating new flow entries / second
+ROUND [ (9798220473-9797770256) / (46+55) ]   = 4458 samples with existing entries / second
 
 ## Ok, that’s interesting, but what should I configure on my routers ?
 
