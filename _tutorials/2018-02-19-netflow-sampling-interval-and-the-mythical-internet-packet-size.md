@@ -176,6 +176,27 @@ sysadmin-vm:0_RP0#
 To protect the line card CPU, each NPU is shaping the sampled traffic.
 In chassis line cards, this shaper is configured at 133Mbps while in fixed-form platforms, it’s configured at 200Mbps. This parameter is fixed and not configurable via CLI.
 
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:R1#sh flow platform pse policer-rate location 0/7/CPU0
+Npu id :0
+Netflow Platform Pse Policer Rate:
+Ingress Policer Rate:                     133 Mbps
+Npu id :1
+Netflow Platform Pse Policer Rate:
+Ingress Policer Rate:                     133 Mbps
+Npu id :2
+Netflow Platform Pse Policer Rate:
+Ingress Policer Rate:                     133 Mbps
+Npu id :3
+Netflow Platform Pse Policer Rate:
+Ingress Policer Rate:                     133 Mbps
+RP/0/RP0/CPU0:R1#
+</code>
+</pre>
+</div>
+
 We will come back later on this shaper since it will directly influence the netflow performance and capabilities.
 
 ## Netflow principles
@@ -190,7 +211,7 @@ The process can be described as such:
 ![todelete 4.jpg]({{site.baseurl}}/images/todelete 4.jpg)
 
 1- we sample packets (1 packet every x)
-2- we pick the first 128B of the packet and add internal header
+2- we pick the first 128B of the packet and add internal header (total: 144B per sampled packet)
 3- this sampled packet is passed to the LC CPU via the EPC switch
 4- we extract information for the IP header 
 5- we create cache entries representing flow accounting
@@ -355,7 +376,7 @@ It will be a very important parameter when discussing the sampling-interval we h
 
 I hope it convinced you that you can not simply take 350B or 500B as your average packet size, it will depend on the type on service you are connected to and the port allocation to NPUs.
 
-## Long-lived or short-lived flows ?
+## Long-lived or short-lived flows?
 
 Now that we understand the average packet size profiles for each type of services, it could be also very interesting to study how long the flows last. Or to put it differently, how many packets will represent a normal / average flows before it ends.
 Indeed, if we have very long streams, the cache entry will stay present for a long time and it will require the expiration of the active timer to generate a record and clear the entry. In the other hand, if we have just very short streams, very likely they will be represented by a single packet cache entry which will be flushed when we will reach the inactive timer limit.
@@ -402,7 +423,7 @@ It only proves that statistically, streams are less than 2000- or 4000-packets l
 And that a large majority of the samples will generate new entries in the cache table instead of updating existing entries.
 The flow entries will be cleared out of the cache (and will generate a NF record) when reaching the inactive timer.
 
-## New flows rate ?
+## New flows rate?
 
 So, another interesting question: how to check the number of new flows per second?
 With the following show command, we can monitor the Cache Hits and Cache Misses.
@@ -438,11 +459,11 @@ Simple math now between the two measurements:
 ROUND [ (22581844681-22580788616) / (46+55) ] = 10456 samples creating new flow entries / second
 ROUND [ (9798220473-9797770256) / (46+55) ]   = 4458 samples with existing entries / second
 
-## Ok, that’s "interesting", but what should I configure on my routers ?
+## Ok, that’s "interesting", but what should I configure on my routers?
 
-Indeed that was a lot of concepts, but what can I do more pratically ?
-We explained the netflow principles, we detailed the internals of NCS5500 routers and the potential bottlenecks and we provided couple of data points to redefine what is an internet packet average size, the proportion of 1-packet flows in the cache, etc.
+We explained the netflow principles, we detailed the internals of NCS5500 routers, reviewed the potential bottlenecks and we provided couple of data points to redefine what is an internet packet average size, the proportion of 1-packet flows in the cache, etc.
 
+Indeed that was a lot of concepts, but what can I do more pratically?
 It’s time to address a common misconception and recenter the discussion.
 
 A frequent question is “what is the sampling-rate you support?”.
@@ -488,22 +509,28 @@ Most aggressive sampling-interval = Total-BW / ( Avg-Pkt-Size x 133Mbps ) x ( 14
                                   = 852
 --> in this example, it will be possible to use an 1:852 sampling-interval before reaching the limit of the 133Mbps shaper.
 
-To check if your sampling is too aggressive and you are hitting the shaper limit, you need to look at the droppedPkts count of the COS3 in the following show command:
+To check if your sampling is too aggressive and you are hitting the shaper limit, you need to look at the droppedPkts count of the VOQ24 / COS2 in the following show command:
 
-RP/0/RP0/CPU0:R1#sh controllers npu stats voq base 32 instance all location 0/0/cpu0
- 
+RP/0/RP0/CPU0:5508-6.3.2#sh controllers npu stats voq base 24 instance 0 location 0/7/CPU0
+
 Asic Instance     =            0
-VOQ Base          =           32
+VOQ Base          =           24
        ReceivedPkts    ReceivedBytes   DroppedPkts     DroppedBytes
 -------------------------------------------------------------------
-COS0 = 55310403        7758153300      27477           27698890        
-COS1 = 149546732399    14520531988623  0               0               
-COS2 = 0               0               0               0               
-COS3 = 548460015       59478262961     516             687000          
-COS4 = 1116521770      260500021379    0               0               
-COS5 = 2600912         332916736       0               0               
-COS6 = 32346023        7592947280      0               0               
-COS7 = 183281          19901816        0               0
+COS0 = 0               0               0               0
+COS1 = 0               0               0               0
+COS2 = 904365472       90918812004     3070488403      308867834524
+COS3 = 14              1668            0               0
+COS4 = 1955            201438          0               0
+COS5 = 0               0               0               0
+COS6 = 0               0               0               0
+COS7 = 0               0               0               0
+RP/0/RP0/CPU0:5508-6.3.2#
+
+Having this COS 2 DroppedPkts counter increasing is the proof we are exceeding the shaper and you need to reduce the sampling-interval.
+
+**Note**: In releases before 6.3.x, Netflow was transported over VOQ 32 / COS3 so the CLI to use was "sh controllers npu stats voq base 32 instance 0 location 0/7/CPU0"
+{: .notice--info}
 
 ## Conclusion
 
@@ -512,7 +539,7 @@ Also, we hope we clarified some key concepts related to netflow v9 on NCS5500.
 Particularly, on the lack of relevance of the notion of "interval-rate" if we don't specify the traffic structure (let's move the discussion on the sampled traffic rate
 To make everything simpler, it will help we start quantifying 
 
-In a follow up post, we will perform stress and performance test on Netflow to illustrate all this, stay tuned.
+In a follow up post, we will perform stress and performance test on Netflow to illustrate all this. Stay tuned.
 
-Acknowledgements: Thanks a lot to the following people who helped preparing this article.
-Benoit Mercier des Rochettes, Thierry Quiniou, Serge Krier, Frederic Cuiller, Hari Baskar Sivasamy,  
+Acknowledgements: Thanks a lot to the following engineers who helped preparing this article.
+Benoit Mercier des Rochettes, Thierry Quiniou, Serge Krier, Frederic Cuiller, Hari Baskar Sivasamy, Jisu Bhattacharya
