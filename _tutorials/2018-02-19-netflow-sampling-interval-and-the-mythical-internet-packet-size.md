@@ -540,9 +540,7 @@ Let's take a couple of examples to illustrate the formulas above:
 So the math will be: 
 
 Most aggressive sampling-interval = Total-BW / ( Avg-Pkt-Size x 133Mbps ) x ( 144 x 8 )
-
                                   = 400,000,000,000 / ( 1400 x 8 x 133,000,000 ) x ( 144 x 8 )
-                                  
                                   = 309
                                   
 --> in this example, it will be possible to use an 1:309 sampling-interval before reaching the limit of the 133Mbps shaper.
@@ -555,15 +553,16 @@ Another example:
 That gives us:
 
 Most aggressive sampling-interval = Total-BW / ( Avg-Pkt-Size x 133Mbps ) x ( 144 x 8 )
-
                                   = 900,000,000,000 x 0.7 / ( 800 x 8 x 133,000,000 ) x ( 144 x 8 )
-                                  
                                   = 852
                                   
 --> in this example, it will be possible to use an 1:852 sampling-interval before reaching the limit of the 133Mbps shaper.
 
 To check if your sampling is too aggressive and you are hitting the shaper limit, you need to look at the droppedPkts count of the VOQ24 / COS2 in the following show command:
 
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
 RP/0/RP0/CPU0:5508-6.3.2#sh controllers npu stats voq base 24 instance 0 location 0/7/CPU0
 
 Asic Instance     =            0
@@ -579,6 +578,9 @@ COS5 = 0               0               0               0
 COS6 = 0               0               0               0
 COS7 = 0               0               0               0
 RP/0/RP0/CPU0:5508-6.3.2#
+</code>
+</pre>
+</div>
 
 Having this COS 2 DroppedPkts counter increasing is the proof we are exceeding the shaper and you need to reduce the sampling-interval.
 
