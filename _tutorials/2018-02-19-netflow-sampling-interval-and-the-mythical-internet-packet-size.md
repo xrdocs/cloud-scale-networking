@@ -536,10 +536,9 @@ Having this COS 2 DroppedPkts counter increasing is the proof we are exceeding t
 
 We hope this article helped provided useful information on the nature of packets and streams in Internet.
 Also, we hope we clarified some key concepts related to netflow v9 on NCS5500.
-Particularly, on the lack of relevance of the notion of "interval-rate" if we don't specify the traffic structure (let's move the discussion on the sampled traffic rate
-To make everything simpler, it will help we start quantifying 
+Particularly, the notion of "interval-rate" is irrelevant if we don't specify the traffic more precisely.
 
-In a follow up post, we will perform stress and performance test on Netflow to illustrate all this. Stay tuned.
+In a follow up post, we will perform stress and performance testing on Netflow to illustrate all this. Stay tuned.
 
 Acknowledgements: Thanks a lot to the following engineers who helped preparing this article.
 Benoit Mercier des Rochettes, Thierry Quiniou, Serge Krier, Frederic Cuiller, Hari Baskar Sivasamy, Jisu Bhattacharya
