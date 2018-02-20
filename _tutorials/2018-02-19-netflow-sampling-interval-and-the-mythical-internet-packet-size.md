@@ -13,7 +13,8 @@ tags:
 position: hidden
 ---
 {% include toc icon="table" title="Netflow, Sampling-Interval and the Mythical Internet Packet Size" %} 
-
+  
+test
 ## Introduction
 
 In this post, we will try to clarify key concepts around Netflow technology and potentially correct some common misconceptions. Particularly we will explain why the “what is the sampling-rate you support?” is not the right question.
