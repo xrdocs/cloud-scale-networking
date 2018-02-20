@@ -304,6 +304,7 @@ Let's take routers facing the internet and list the different types of interface
 - internet: peering and PNI
 - internet: transit providing a full internet view
 - internet or local cache engines from various CDN
+It's fairly easy to measure it, just collect the output of a "show interface" from the router, and devide the byte counter by the packet counter.
 
 We collected numbers from multiple ISP in the US and Western Europe, here are some numbers:
 
@@ -356,10 +357,12 @@ I hope it convinced you that you can not simply take 350B or 500B as your averag
 
 ## Long-lived or short-lived flows ?
 
-Now that we understand the average packet size profiles for each type of interfaces, it could be also very interesting to study how long the flows last. Or to put it differently, how many packets will represent a normal / average flows before it ends.
-Indeed, if we have very long streams, the cache entry will stay present for a long time and it will require the expiration of the active timer to generate a record and clear the entry.
+Now that we understand the average packet size profiles for each type of services, it could be also very interesting to study how long the flows last. Or to put it differently, how many packets will represent a normal / average flows before it ends.
+Indeed, if we have very long streams, the cache entry will stay present for a long time and it will require the expiration of the active timer to generate a record and clear the entry. In the other hand, if we have just very short streams, very likely they will be represented by a single packet cache entry which will be flushed when we will reach the inactive timer limit.
+The stress on the LC CPU will be higher if we have a larger proportion of 1-packet flow because it will imply we have to create entry in the cache (with all the appropriate fields) instead of just updating an existing entry.
 
 We can try to answer this with a statistical approach on some real production routers, simply by checking the number of packets we have for each flow entry present in the cache.
+
 Quick example:
 
 <div class="highlighter-rouge">
@@ -376,6 +379,7 @@ sampler-map SM random 1 out-of 2048
 </pre>
 </div>
 
+The first number of the output is representing the number of entries with just one packet (or more than one packet in the "neq" case).
 Let's check a couple of routers using sampling-interval of 1:2048
 
 | Router with 1:2048 | eq 1 | neq 1 | Ratio (%) |
@@ -434,19 +438,24 @@ Simple math now between the two measurements:
 ROUND [ (22581844681-22580788616) / (46+55) ] = 10456 samples creating new flow entries / second
 ROUND [ (9798220473-9797770256) / (46+55) ]   = 4458 samples with existing entries / second
 
-## Ok, that’s interesting, but what should I configure on my routers ?
+## Ok, that’s "interesting", but what should I configure on my routers ?
 
-We explained the netflow principles, we detailed the internals of NCS5500 routers and the potential bottlenecks and we provided couple of data points to redefine what is an internet packet average size. 
+Indeed that was a lot of concepts, but what can I do more pratically ?
+We explained the netflow principles, we detailed the internals of NCS5500 routers and the potential bottlenecks and we provided couple of data points to redefine what is an internet packet average size, the proportion of 1-packet flows in the cache, etc.
+
 It’s time to address a common misconception and recenter the discussion.
+
 A frequent question is “what is the sampling-rate you support?”.
-Since it’s the only parameter you can configure with CLI, it’s normal people wander what they can use but it’s inherently the wrong question. Because the answer “1:1” could be valid.
+Since it’s the only parameter you can configure with CLI, it’s normal people wonder what they can use but it’s inherently the wrong question. Because the answer “1:1” could be valid.
 But it doesn’t mean we can sample every single packet at every speed, on every interface, with every average packet size.
 It’s capital to understand that the only relevant parameter is the number of sampled packets we can send from the NPU to the line card CPU.
+
 This information can be easily derived from following parameters:
 - average packet size (depends on the charts presented above)
 - are we using ingress only or both ingress and egress
+- how the ports configured for netflow [are connected to the forwarding ASIC](https://xrdocs.github.io/cloud-scale-networking/tutorials/2018-02-15-port-assignments-on-ncs5500-platforms/)
 - sum of bandwidth for all the ports connected to the NPU (an estimation can be taken from peak hour traffic, or the projection of growth, or even the biggest DDoS attack)
-- the sampling-interval we configured
+- and finally, the sampling-interval we configured
 
 ![todelete 7.jpg]({{site.baseurl}}/images/todelete 7.jpg)
 
@@ -455,12 +464,33 @@ This traffic will be rate-limited by the shaper we mentioned above: 133Mbps or 2
 
 ![todelete 8.jpg]({{site.baseurl}}/images/todelete 8.jpg)
 
-Something we can not really anticipate is the ratio of sampled packets that will be <128B.
+Something we can not really anticipate is the ratio of sampled packets that will be <128B. But this number will not represent much, except in case of specific DDoS attack.
 
+Let's take a couple of examples to illustrate the formulas above:
+- you have 6 ports on the Jericho NPU but only 4 are used with Netflow
+- the average packet size on this ports connected to CDN is 1400B
+- the load is heavy and the ports are used at 70% total, at peak hour
+- but the customer would like to anticipate the worst case if all ports are transmitting line rate
+So the math will be: 
+Most aggressive sampling-interval = Total-BW / ( Avg-Pkt-Size x 133Mbps ) x ( 144 x 8 )
+                                  = 400,000,000,000 / ( 1400 x 8 x 133,000,000 ) x ( 144 x 8 )
+                                  = 309
+--> in this example, it will be possible to use an 1:309 sampling-interval before reaching the limit of the 133Mbps shaper.
 
+Another example:
+- you have 9 ports on the Jericho NPU+ all configured for NFv9
+- the average packet size on this ports connected to peering partners is 800B
+- the load not huge and the ports are used at a total of 40%  at peak hour
+- but the customer takes some margin of growth (and error) and pick 70%
+That gives us:
+Most aggressive sampling-interval = Total-BW / ( Avg-Pkt-Size x 133Mbps ) x ( 144 x 8 )
+                                  = 900,000,000,000 x 0.7 / ( 800 x 8 x 133,000,000 ) x ( 144 x 8 )
+                                  = 852
+--> in this example, it will be possible to use an 1:852 sampling-interval before reaching the limit of the 133Mbps shaper.
+
+To check if your sampling is too aggressive and you are hitting the shaper limit, you need to look at the droppedPkts count of the COS3 in the following show command:
 
 RP/0/RP0/CPU0:R1#sh controllers npu stats voq base 32 instance all location 0/0/cpu0
-Tue Feb 13 08:26:24.313 CET
  
 Asic Instance     =            0
 VOQ Base          =           32
@@ -474,3 +504,15 @@ COS4 = 1116521770      260500021379    0               0
 COS5 = 2600912         332916736       0               0               
 COS6 = 32346023        7592947280      0               0               
 COS7 = 183281          19901816        0               0
+
+## Conclusion
+
+We hope this article helped provided useful information on the nature of packets and streams in Internet.
+Also, we hope we clarified some key concepts related to netflow v9 on NCS5500.
+Particularly, on the lack of relevance of the notion of "interval-rate" if we don't specify the traffic structure (let's move the discussion on the sampled traffic rate
+To make everything simpler, it will help we start quantifying 
+
+In a follow up post, we will perform stress and performance test on Netflow to illustrate all this, stay tuned.
+
+Acknowledgements: Thanks a lot to the following people who helped preparing this article.
+Benoit Mercier des Rochettes, Thierry Quiniou, Serge Krier, Frederic Cuiller, Hari Baskar Sivasamy,  
