@@ -18,9 +18,9 @@ position: hidden
 
 In this post, we will try to clarify key concepts around Netflow technology and potentially correct some common misconceptions. Particularly we will explain why the “what is the sampling-rate you support?” is not the right question.
 
-We will also describe in extensive details the NCS5500 implementation.
+We will describe in extensive details the NCS5500 implementation too.
 
-Also, we will share here what we measured in different networks in Europe and North America. This information will be helpful to understand one of the parameter of this complex equation.
+Also, we will share what we measured in different networks in Europe and North America. This information will be helpful to understand the parameters of this equation.
 
 We will provide tools to answer questions like:
 - how many new flows per second?
@@ -29,14 +29,14 @@ We will provide tools to answer questions like:
 
 It's certainly not meant to be a state-of-the-art but more an invitation to comment with your own findings.
 
-To understand the basic of the technology, we invite you to read Xander's post on [Cisco supportforum](https://supportforums.cisco.com/t5/service-providers-documents/asr9000-xr-netflow-architecture-and-overview/ta-p/3137096).
-It has been written for ASR9000 five years ago, so multiple differences exist, but still it's a very good resource to get familiar with Netflow.
+To understand the basic of the technology, we invite you to start with Xander's post on [Cisco supportforum](https://supportforums.cisco.com/t5/service-providers-documents/asr9000-xr-netflow-architecture-and-overview/ta-p/3137096).
+It has been written for ASR9000 five years ago, so multiple differences exist, but it's still a very good resource to get familiar with Netflow.
 
 ## NCS5500 internals
 
 NCS5500 supports NetFlow v9 and IPFIX (not sFlow or former versions of Netflow).
 
-These technologies can be used to create a statistical view of the flow matrix from the router or line card perspective. 
+Netflow is used to create a statistical view of the flow matrix from the router or line card perspective. 
 
 In a chassis, Netflow activities will be performed at the line card level and will involve the NPU (for instance Qumran-MX, Jericho or Jericho+) and the Line Card CPU. Aside the configuration and show commands, nothing will be performed at the Route Processor level.
 
@@ -74,7 +74,7 @@ sysadmin-vm:0_RP0#
 
 The sampled packets and the netflow records will transit over the EPC network.
 
-The number of NPUs and the bandwidth of EPC/EOBC channels will vary between systems, here is a diagram representing a 24x100G w/ eTCAM with 4x Jericho ASICs and a 36x100G w/ eTCAM with 4x Jericho+.
+The number of NPUs and the bandwidth of EPC/EOBC channels will vary between systems. Here is a diagram representing a 24x100G w/ eTCAM with 4x Jericho ASICs and a 36x100G w/ eTCAM with 4x Jericho+.
 
 ![todelete 1.jpg]({{site.baseurl}}/images/todelete 1.jpg)
 
@@ -82,7 +82,7 @@ The number of NPUs and the bandwidth of EPC/EOBC channels will vary between syst
 <pre class="highlight">
 <code>
 sysadmin-vm:0_RP0# show controller switch summary location 0/LC7/LC-SW
-Thu Feb  8  14:52:50.546 UTC
+
 Rack  Card  Switch  Rack Serial Number
 --------------------------------------
 0     LC7   LC-SW   FGE194614HC
@@ -118,7 +118,7 @@ sysadmin-vm:0_RP0#
 <pre class="highlight">
 <code>
 sysadmin-vm:0_RP0# show controller switch summary location 0/LC1/LC-SW
-Thu Feb  8  14:55:08.977 UTC
+
 Rack  Card  Switch  Rack Serial Number
 --------------------------------------
 0     LC1   LC-SW   FGE194614HC
@@ -154,10 +154,10 @@ Inside the EPC switch, we have multiple VLANs to differentiate the Netflow sampl
 <pre class="highlight">
 <code>
 sysadmin-vm:0_RP0# show controller switch vlan information location 0/LC1/LC-SW
-Thu Feb  8  15:10:55.881 UTC
+
 Rack  Card  Switch  Rack Serial Number
 --------------------------------------
-0     LC1   LC-SW   FGE194614HC
+0     LC1   LC-SW   FGE19461XXX
 
 SDR
 Identifier  SDR Name     VLAN           VLAN Use
@@ -189,6 +189,7 @@ In chassis line cards, this shaper is configured at 133Mbps while in fixed-form 
 <pre class="highlight">
 <code>
 RP/0/RP0/CPU0:R1#sh flow platform pse policer-rate location 0/7/CPU0
+
 Npu id :0
 Netflow Platform Pse Policer Rate:
 Ingress Policer Rate:                     133 Mbps
@@ -211,25 +212,33 @@ We will come back later on this shaper since it will directly influence the netf
 ## Netflow principles
 
 Netflow is a technology ratified as an IETF standards in 2004 via the RFC 3954
-https://www.ietf.org/rfc/rfc3954.txt 
+[https://www.ietf.org/rfc/rfc3954.txt](https://www.ietf.org/rfc/rfc3954.txt) 
 
-It is used by routers to generate flow records from packet streams by extracting fields from sampled packets. A database, or cache, is used to store the current flows and their accounting information. Based on multiple criteria, we decide to “expire” a cache entry and generate a flow records which will be transmitted to an external collector.
+It is used on routing devices to generate flow records from packet streams by extracting fields from sampled packets. A database, or cache, is used to store the current flows and their accounting information. Based on multiple criteria, we decide to “expire” a cache entry and generate a flow records which will be transmitted to an external collector.
 
 The process can be described as such:
 
 ![todelete 4.jpg]({{site.baseurl}}/images/todelete 4.jpg)
 
 1- we sample packets (1 packet every x)
+
 2- we pick the first 128B of the packet and add internal header (total: 144B per sampled packet)
+
 3- this sampled packet is passed to the LC CPU via the EPC switch
+
 4- we extract information for the IP header 
+
 5- we create cache entries representing flow accounting
+
 6- every time a sampled packet of the same flow is received, we update the cache entry
+
 7- we maintain multiple timers and when one expires, a NF record is generated
+
 8- we send the record to the external collector(s)
 
 This concept of timers is very important since it will dictate how fast we flush the cache content, and inform the remote collector of the existence of a flow. In the case of DDoS attack detection, it’s key to speed up the process:
-- Inactive timer represents the time without receiving a sampled packet matching a particular cache entry. - - Active timer, in the other hand, represents the maximum time of existence of a particular cache entry, even if we still receive sampled packets matching it.
+- Inactive timer represents the time without receiving a sampled packet matching a particular cache entry. 
+- Active timer, in the other hand, represents the maximum time of existence of a particular cache entry, even if we still receive sampled packets matching it.
 
 The basic configuration for Netflow:
 
@@ -267,11 +276,19 @@ Several potential bottlenecks need to be understood when using Netflow in your n
 ![todelete 5.jpg]({{site.baseurl}}/images/todelete 5.jpg)
 
 - 133 Mbps or 200 Mbps shaper (not configurable)
-This shaper will have a direct impact on the amount of sampled packets we can pass to the LC CPU: 133-200Mbps / [ ( packet size up to 128B + 16B ) * 8]
-Ex: packets larger than 128B will give 133Mbps / (144*8) = 115,451 PPS per NPU
+
+This shaper will have a direct impact on the amount of sampled packets we can pass to the LC CPU: 
+
+133-200Mbps / [ ( packet size up to 101B + 43B ) * 8]
+
+Ex: packets larger than 101 Bytes @ Layer2 will represent 133Mbps / (144*8) = 115,451 PPS per NPU
+
 - Flow table size 
+
 Default 64k, configurable up to 1M per monitor-map
+
 - Export rate-limiter
+
 Default 2000 records / sec, configurable
 
 **Note**: the export "rate-limiter" name is often creating confusion in operator’s mind because we will not “drop” records if we exceed this limit, but instead we will keep the entry longer in the cache despite the timer expiration. At the potential risk of reaching the maximum size of this cache.
@@ -301,31 +318,37 @@ RP/0/RP0/CPU0:NCS5508#
 ![todelete 6.jpg]({{site.baseurl}}/images/todelete 6.jpg)
 
 1- NetFlow Manager (nfmgr) accepts configuration and maintains global objects .i.e. sampler, flow monitor, and flow exporter
+
 2- NetFlow MA (nfma) accepts the interface level configuration
+
 3- NetFlow EA (nfea) sends config to NF Server and ASIC
+
 4- NetFlow Producer receives NF packets from ASIC and adds them to the shared memory data ring for passing data to the NetFlow Server process
+
 5- NetFlow Server (nfsvr) 
-  receives NF record packets from nf_producer, 
-  creates a new flow cache if not already created, 
-  or update a existing flow cache (packet / byte count) for the flow monitor, 
-  periodically ages entries form the NF cache into NF export packets
-  sends the NF export packets to the NF collector using UDP
+  - receives NF record packets from nf_producer, 
+  - creates a new flow cache if not already created, 
+  - or update a existing flow cache (packet / byte count) for the flow monitor, 
+  - periodically ages entries form the NF cache into NF export packets
+  - sends the NF export packets to the NF collector using UDP
+
 6- show commands are polling information for nfsvr
+
 7- netio is used to transport the records
 
 ## Measured packet sizes
 
-“Average Internet packet size” or "IMIX packet sizes”... Those are concepts very frequently mentioned in the networking industry discussions. It's an important parameter when considering the forwarding performance of a device.
+“Average Internet packet size” or "IMIX packet sizes”... Those are concepts very frequently mentioned in the networking industry. It's an important parameter when considering the forwarding performance of a device.
 
-Indeed, the forwarding ASICs or Network Processing Units (NPUs) are often defined by their port density or bandwidth but also by their forwarding performance expressed in PPS (packets per second).
-It represents the numbers of packets we can route, filter, encapsulate or decapsulate, count, remark, ... every second.
-In the same vein, you may have heard about NDR (Non-Drop Rate) to express the minimal packet size you can forward at line rate on all ports simultaneously.
+Indeed, the forwarding ASICs or Network Processing Units (NPUs) are often characterized by their port density or bandwidth but also by their forwarding performance expressed in PPS (packets per second).
+It represents the numbers of packets we can route, filter, encapsulate or decapsulate, count, police, remark, ... every second.
+In the same vein, you may have heard about NDR (Non-Drop Rate) to express the minimal packet size a system can forward at line rate on all ports simultaneously.
 
 Packet size, NDR, bandwidth and performance in PPS are of course directly linked to each others.
 
-The average packet size parameter is very important to qualify the Netflow/IPFIX capability of a device and how far we can push in term of sampling-interval. It will be cover in the next part of this blog post.
+The average packet size parameter is very important to qualify the Netflow/IPFIX capability of a device and how far we can push in term of sampling-interval. It will be covered in the next part of this blog post.
 
-So, understanding the traffic profiles and the average packet size per link and per ASIC is important to qualify your network. Also it will be necessary to know precisely the port allocation to each ASIC, [something we documented in this post](https://xrdocs.github.io/cloud-scale-networking/tutorials/2018-02-15-port-assignments-on-ncs5500-platforms/).
+So, understanding the traffic profiles and the average packet size per link and per ASIC is mandatory to qualify your network. Also it will be necessary to know precisely the port allocation to each ASIC, [something we documented in this post](https://xrdocs.github.io/cloud-scale-networking/tutorials/2018-02-15-port-assignments-on-ncs5500-platforms/).
 
 You will find a large variety of answers in the litterature or when using your favorite search engine: commonly from 350 bytes to 500 bytes per packet. But the real answer should be, as usual: it depends.
 
@@ -334,9 +357,10 @@ Let's take routers facing the internet and list the different types of interface
 - internet: peering and PNI
 - internet: transit providing a full internet view
 - internet or local cache engines from various CDN
+
 It's fairly easy to measure it, just collect the output of a "show interface" from the router, and devide the byte counter by the packet counter.
 
-We collected numbers from multiple ISP in the US and Western Europe, here are some numbers:
+We collected numbers from multiple ISP in the US and Western Europe, here are some numbers (expressed in Bytes)
 
 | Peering/Transit | Ingress Avg | Egress Avg |
 |:------:|:------:|:-------:|
@@ -357,7 +381,7 @@ It seems difficult to derive a “rule” from these numbers but we can say:
 - transit traffic is usually more important in ingress from 900B to 1200B average while the egress is usually shorter from 250B to 500B
 - peering traffic is more balanced between ingress and egress, with an average packet size from 400B to 700B
 
-But other type of interfaces will short more “extreme” numbers, like the CDNs (and they represent the largest and fastest growing amount of traffic in networks today).
+But other type of interfaces will present more “extreme” numbers, like the CDNs (and they compose the largest and fastest growing amount of traffic in networks today).
 
 | CDN / Content Providers | Ingress Avg | Egress Avg |
 |:------:|:------:|:-------:|
@@ -380,18 +404,20 @@ But other type of interfaces will short more “extreme” numbers, like the CDN
 | Cust 2 Twitch | 1490 | 116 |
 | Cust 3 Twitch | 1328 | 395 |
 
-It’s showing very clearly that we have a traffic massively asymmetrical, which is totally expected considering the type of service they deliver. But also it’s showing that ingress traffic is very often “as large as your MTU”.
-It will be a very important parameter when discussing the sampling-interval we have to configure on our interfaces.
+It’s showing very clearly that we have a traffic very asymmetrical. Something totally expected considering the type of service they deliver. But also it’s showing that ingress traffic is very often “as large as your MTU”.
+It will be a key parameter when discussing the sampling-interval we have to configure on our interfaces.
 
-I hope it convinced you that you can not simply take 350B or 500B as your average packet size, it will depend on the type on service you are connected to and the port allocation to NPUs.
+I hope it convinced you that you can not simply take 350B or 500B as your average packet size. In reality, it will depend on the type on service you are connected to and the port allocation to NPUs.
 
 ## Long-lived or short-lived flows?
 
-Now that we understand the average packet size profiles for each type of services, it could be also very interesting to study how long the flows last. Or to put it differently, how many packets will represent a normal / average flows before it ends.
-Indeed, if we have very long streams, the cache entry will stay present for a long time and it will require the expiration of the active timer to generate a record and clear the entry. In the other hand, if we have just very short streams, very likely they will be represented by a single packet cache entry which will be flushed when we will reach the inactive timer limit.
-The stress on the LC CPU will be higher if we have a larger proportion of 1-packet flow because it will imply we have to create entry in the cache (with all the appropriate fields) instead of just updating an existing entry.
+Now that we understand the average packet size profiles for each type of services, it could be also interesting to study how long the flows last. Or to put it differently, how many packets will represent a normal / average flows before it ends.
 
-We can try to answer this with a statistical approach on some real production routers, simply by checking the number of packets we have for each flow entry present in the cache.
+Indeed, if we have very long streams, the cache entry will stay present for a long time and it will require the expiration of the active timer to generate a record and clear the entry. In the other hand, if we have just very short streams, very likely they will be represented by a single packet cache entry which will be flushed when we will reach the inactive timer limit.
+
+The stress on the LC CPU will be higher if we have a larger proportion of 1-packet flows because it will imply we have to create new entries in the cache (with all the appropriate fields) instead of just updating an existing entries.
+
+We can take a statistical approach, simply by checking the number of packets we have for each flow entry present in the cache of some real production routers.
 
 Quick example:
 
@@ -409,7 +435,9 @@ sampler-map SM random 1 out-of 2048
 </pre>
 </div>
 
-The first number of the output is representing the number of entries with just one packet (or more than one packet in the "neq" case).
+The first of the three figure of the output represents the number of entries with just one packet.
+With "neq", we count flows with more than one packet.
+
 Let's check a couple of routers using sampling-interval of 1:2048
 
 | Router with 1:2048 | eq 1 | neq 1 | Ratio (%) |
@@ -427,23 +455,27 @@ Some other routers with a sampling-interval of 1:4000
 | R1 | 11312 | 1725 | 85/15 |
 | R2 | 56321 | 15177 | 73/27 |
 
-We will let you run the test on your own devices, but it looks like the proportion of "1-packet flow" is more important than the others. It appears with 1:2000 but it's even clearer with 1:4000.
+We will let you run the test on your own devices, but it looks like the proportion of "1-packet flow" is more important than the others. 
+
+It appears with 1:2000 but it's even clearer with 1:4000.
 It only proves that statistically, streams are less than 2000- or 4000-packets long for the most part.
 And that a large majority of the samples will generate new entries in the cache table instead of updating existing entries.
+
 The flow entries will be cleared out of the cache (and will generate a NF record) when reaching the inactive timer.
 
 ## New flows rate?
 
-So, another interesting question: how to check the number of new flows per second?
+Another interesting question: how can I check the number of new flows per second?
+
 With the following show command, we can monitor the Cache Hits and Cache Misses.
-- Hits: every time we sample a packet and it matches an existing entry in the cache, we update the counters.
-- Misses: no entry in the cache for this flow, we create a new one
+- Hits: every time we sample a packet and it matches an existing entry in the cache, we update the counters
+- Misses: no entry in the cache for this sample, we create a new flow entry
 
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
 RP/0/RP0/CPU0:R1#sh flow monitor FM cache internal loc 0/0/CPU0 | i Cache
-Fri Feb  9 15:08:14.611 CET
+
 Cache summary for Flow Monitor :
 Cache size:                        1000000
 Cache Hits:                           9797770256
@@ -452,7 +484,7 @@ Cache Overflows:                               0
 Cache above hi water:                          0
 
 RP/0/RP0/CPU0:R1#sh flow monitor FM cache internal loc 0/0/CPU0 | i Cache
-Fri Feb  9 15:09:55.314 CET
+
 Cache summary for Flow Monitor :
 Cache size:                        1000000
 Cache Hits:                           9798220473
@@ -465,36 +497,40 @@ RP/0/RP0/CPU0:R1#
 </div>
 
 Simple math now between the two measurements:
-ROUND [ (22581844681-22580788616) / (46+55) ] = 10456 samples creating new flow entries / second
-ROUND [ (9798220473-9797770256) / (46+55) ]   = 4458 samples with existing entries / second
+- ROUND [ (22581844681-22580788616) / (46+55) ] = 10456 samples creating new flow entries / second
+- ROUND [ (9798220473-9797770256) / (46+55) ]   = 4458 samples with existing entries / second
 
 ## Ok, that’s "interesting", but what should I configure on my routers?
 
 We explained the netflow principles, we detailed the internals of NCS5500 routers, reviewed the potential bottlenecks and we provided couple of data points to redefine what is an internet packet average size, the proportion of 1-packet flows in the cache, etc.
 
-Indeed that was a lot of concepts, but what can I do more pratically?
-It’s time to address a common misconception and recenter the discussion.
+Indeed that was a lot of concepts, but what can I do more practically?
 
-A frequent question is “what is the sampling-rate you support?”.
-Since it’s the only parameter you can configure with CLI, it’s normal people wonder what they can use but it’s inherently the wrong question. Because the answer “1:1” could be valid.
+It’s time to address a common misconception and recenter the discussion. A frequent question is “what is the sampling-rate you support?”.
+
+Since it’s the only parameter you can configure with CLI, network operators wonder what they should use but it’s inherently the wrong question. 
+
+Because the answer “1:1” could be valid.
+
 But it doesn’t mean we can sample every single packet at every speed, on every interface, with every average packet size.
+
 It’s capital to understand that the only relevant parameter is the number of sampled packets we can send from the NPU to the line card CPU.
 
 This information can be easily derived from following parameters:
 - average packet size (depends on the charts presented above)
-- are we using ingress only or both ingress and egress
+- are we using ingress only or both ingress and egress (current not supported in NCS5500)
 - how the ports configured for netflow [are connected to the forwarding ASIC](https://xrdocs.github.io/cloud-scale-networking/tutorials/2018-02-15-port-assignments-on-ncs5500-platforms/)
 - sum of bandwidth for all the ports connected to the NPU (an estimation can be taken from peak hour traffic, or the projection of growth, or even the biggest DDoS attack)
 - and finally, the sampling-interval we configured
 
 ![todelete 7.jpg]({{site.baseurl}}/images/todelete 7.jpg)
 
-If we take the assumption that sampled packets will be mostly larger than 128B, we will transport 144B packets to the CPU.
+If we take the assumption that sampled packets will be mostly larger than 101B, we will transport 144B packets to the CPU.
 This traffic will be rate-limited by the shaper we mentioned above: 133Mbps or 200Mbps depending on the platform:
 
 ![todelete 8.jpg]({{site.baseurl}}/images/todelete 8.jpg)
 
-Something we can not really anticipate is the ratio of sampled packets that will be <128B. But this number will not represent much, except in case of specific DDoS attack.
+Something we can not really anticipate is the ratio of sampled packets that will be <101B. But this number will not represent much, except in case of specific DDoS attack.
 
 Let's take a couple of examples to illustrate the formulas above:
 - you have 6 ports on the Jericho NPU but only 4 are used with Netflow
@@ -502,9 +538,13 @@ Let's take a couple of examples to illustrate the formulas above:
 - the load is heavy and the ports are used at 70% total, at peak hour
 - but the customer would like to anticipate the worst case if all ports are transmitting line rate
 So the math will be: 
+
 Most aggressive sampling-interval = Total-BW / ( Avg-Pkt-Size x 133Mbps ) x ( 144 x 8 )
+
                                   = 400,000,000,000 / ( 1400 x 8 x 133,000,000 ) x ( 144 x 8 )
+                                  
                                   = 309
+                                  
 --> in this example, it will be possible to use an 1:309 sampling-interval before reaching the limit of the 133Mbps shaper.
 
 Another example:
@@ -513,9 +553,13 @@ Another example:
 - the load not huge and the ports are used at a total of 40%  at peak hour
 - but the customer takes some margin of growth (and error) and pick 70%
 That gives us:
+
 Most aggressive sampling-interval = Total-BW / ( Avg-Pkt-Size x 133Mbps ) x ( 144 x 8 )
+
                                   = 900,000,000,000 x 0.7 / ( 800 x 8 x 133,000,000 ) x ( 144 x 8 )
+                                  
                                   = 852
+                                  
 --> in this example, it will be possible to use an 1:852 sampling-interval before reaching the limit of the 133Mbps shaper.
 
 To check if your sampling is too aggressive and you are hitting the shaper limit, you need to look at the droppedPkts count of the VOQ24 / COS2 in the following show command:
@@ -545,7 +589,8 @@ Having this COS 2 DroppedPkts counter increasing is the proof we are exceeding t
 
 We hope this article helped provided useful information on the nature of packets and streams in Internet.
 Also, we hope we clarified some key concepts related to netflow v9 on NCS5500.
-Particularly, the notion of "interval-rate" is irrelevant if we don't specify the traffic more precisely.
+
+Particularly, the notion of "interval-rate" should be considered irrelevant if we don't specify the traffic more precisely.
 
 In a follow up post, we will perform stress and performance testing on Netflow to illustrate all this. Stay tuned.
 
