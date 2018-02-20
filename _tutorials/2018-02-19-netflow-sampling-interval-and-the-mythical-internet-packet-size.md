@@ -1,7 +1,16 @@
 ---
-published: false
+published: true
 date: '2018-02-19 10:14 +0100'
 title: 'Netflow, Sampling-Interval and the Mythical Internet Packet Size'
+author: Nicolas Fevrier
+excerpt: Blog post describing the NCS5500 Netflow implementation.
+tags:
+  - ncs5500
+  - ncs 5500
+  - netflow
+  - nf
+  - NFv9
+position: hidden
 ---
 {% include toc icon="table" title="Netflow, Sampling-Interval and the Mythical Internet Packet Size" %} 
 
