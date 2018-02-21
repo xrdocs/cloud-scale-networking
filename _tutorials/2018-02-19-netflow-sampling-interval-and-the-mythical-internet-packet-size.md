@@ -38,13 +38,16 @@ NCS5500 supports NetFlow v9 and IPFIX (not sFlow or former versions of Netflow).
 
 Netflow is used to create a statistical view of the flow matrix from the router or line card perspective. 
 
-In a chassis, Netflow activities will be performed at the line card level and will involve the NPU (for instance Qumran-MX, Jericho or Jericho+) and the Line Card CPU. Aside the configuration and show commands, nothing will be performed at the Route Processor level.
+In a chassis, Netflow activities will be performed at the line card level and will involve the NPU (for instance Qumran-MX, Jericho or Jericho+) and the Line Card CPU. Aside from the configuration and show commands, nothing will be performed at the Route Processor level.
 
 Before jumping into the Netflow specifics, let’s describe some key internal parts of an NCS5500 line card or system.
 
 Two internal “networks” exist and interconnect the various elements:
 - the EOBC network (for "Ethernet Out-of-Band Channel” used for inter-process communication
 - the EPC network (for "Ethernet Protocol Channel”) for all the punted packets.
+
+**Note:** the fixed-form systems like NCS5501(-SE), NCS55A1-24H, NCS55A1-36H(-SE)-S, we don't have similar internal design, you will not be able to use the "admin show controller switch xxx" CLI. It's valid for NCS5504, NCS5508 and NCS5516 chassis but also for NCS5502(-SE) systems.
+{: .notice--info}
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -85,7 +88,7 @@ sysadmin-vm:0_RP0# show controller switch summary location 0/LC7/LC-SW
 
 Rack  Card  Switch  Rack Serial Number
 --------------------------------------
-0     LC7   LC-SW   FGE194614HC
+0     LC7   LC-SW   FGE194XXXXX
 
       Phys   Admin  Port      Protocol  Forward
 Port  State  State  Speed     State     State       Connects To
@@ -96,7 +99,7 @@ Port  State  State  Speed     State     State       Connects To
 7     Up     Up     2.5-Gbps  -         Forwarding  LC CPU (EOBC)
 8     Up     Up     2.5-Gbps  -         Forwarding  NPU2
 9     Up     Up     2.5-Gbps  -         Forwarding  NPU1
-10    Up     Up     2.5-Gbps  -         Forwarding  NPU0
+10    Up     Up     <mark>2.5-Gbps</mark>  -         Forwarding  NPU0
 11    Up     Up     2.5-Gbps  -         Forwarding  NPU3
 12    Down   Down   1-Gbps    -         -           FC0
 13    Up     Up     1-Gbps    -         Forwarding  FC1
@@ -121,12 +124,12 @@ sysadmin-vm:0_RP0# show controller switch summary location 0/LC1/LC-SW
 
 Rack  Card  Switch  Rack Serial Number
 --------------------------------------
-0     LC1   LC-SW   FGE194614HC
+0     LC1   LC-SW   FGE194XXXXX
 
       Phys   Admin  Port      Protocol  Forward
 Port  State  State  Speed     State     State       Connects To
 -------------------------------------------------------------------
-4     Up     Up     2.5-Gbps  -         Forwarding  NPU0
+4     Up     Up     <mark>2.5-Gbps</mark>  -         Forwarding  NPU0
 5     Up     Up     2.5-Gbps  -         Forwarding  NPU1
 6     Up     Up     2.5-Gbps  -         Forwarding  NPU2
 7     Up     Up     2.5-Gbps  -         Forwarding  NPU3
@@ -157,7 +160,7 @@ sysadmin-vm:0_RP0# show controller switch vlan information location 0/LC1/LC-SW
 
 Rack  Card  Switch  Rack Serial Number
 --------------------------------------
-0     LC1   LC-SW   FGE19461XXX
+0     LC1   LC-SW   FGE194XXXXX
 
 SDR
 Identifier  SDR Name     VLAN           VLAN Use
@@ -165,7 +168,7 @@ Identifier  SDR Name     VLAN           VLAN Use
 1           sysadmin-vm  1     (0x001)  Platform EMON
                          17    (0x011)  Platform HOST
                          3073  (0xC01)  Calvados IPC
-2           default-sdr  1282  (0x502)  SDR 2 Platform Netflow 1
+2           default-sdr  <mark>1282  (0x502)  SDR 2 Platform Netflow 1</mark>
                          1298  (0x512)  SDR 2 Platform Netflow 2
                          1314  (0x522)  SDR 2 Platform Netflow 3
                          1330  (0x532)  SDR 2 Platform Netflow 4
@@ -183,7 +186,7 @@ sysadmin-vm:0_RP0#
 </div>
 
 To protect the line card CPU, each NPU is shaping the sampled traffic.
-In chassis line cards, this shaper is configured at 133Mbps while in fixed-form platforms, it’s configured at 200Mbps. This parameter is fixed and not configurable via CLI.
+In chassis line cards, this shaper is configured at 133Mbps while in fixed-form platforms, it’s configured at 200Mbps. This parameter is fixed and not configurable via CLI. This NPU shaper guarantees that CPU is not overloaded while processing the samples. It's expected to see high CPU utilization in some netflow process threads and it will not reach 100% of a CPU core.
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -192,7 +195,7 @@ RP/0/RP0/CPU0:R1#sh flow platform pse policer-rate location 0/7/CPU0
 
 Npu id :0
 Netflow Platform Pse Policer Rate:
-Ingress Policer Rate:                     133 Mbps
+Ingress Policer Rate:                     <mark>133 Mbps</mark>
 Npu id :1
 Netflow Platform Pse Policer Rate:
 Ingress Policer Rate:                     133 Mbps
@@ -291,7 +294,7 @@ Default 64k, configurable up to 1M per monitor-map
 
 Default 2000 records / sec, configurable
 
-**Note**: the export "rate-limiter" name is often creating confusion in operator’s mind because we will not “drop” records if we exceed this limit, but instead we will keep the entry longer in the cache despite the timer expiration. At the potential risk of reaching the maximum size of this cache.
+**Note:** the export "rate-limiter" name is often creating confusion in operator’s mind because we will not “drop” records if we exceed this limit, but instead we will keep the entry longer in the cache despite the timer expiration. At the potential risk of reaching the maximum size of this cache.
 {: .notice--info}
 
 ## Netflow processes
@@ -424,19 +427,19 @@ Quick example:
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
-RP/0/RP0/CPU0:R1#show flow monitor fmm cache match counters packets eq 1 include interface ingress location 0/1/cpu0 | utility wc
-  65308   65352 1110597
-RP/0/RP0/CPU0:R1#show flow monitor fmm cache match counters packets neq 1 include interface ingress location 0/1/cpu0 | utility wc
-  12498   12542  212827
+RP/0/RP0/CPU0:R1#show flow monitor fmm cache match counters packets eq 1 include interface ingress location 0/1/cpu0 | utility wc -l
+  <mark>65308</mark>
+RP/0/RP0/CPU0:R1#show flow monitor fmm cache match counters packets neq 1 include interface ingress location 0/1/cpu0 | utility wc -l
+  <mark>12498</mark>
 RP/0/RP0/CPU0:R1#sh run formal | i random
 Building configuration...
 sampler-map SM random 1 out-of 2048
+RP/0/RP0/CPU0:R1#
 </code>
 </pre>
 </div>
 
-The first of the three figure of the output represents the number of entries with just one packet.
-With "neq", we count flows with more than one packet.
+This output with "eq" represents the number of entries with just one packet. With "neq", we count flows with more than one packet.
 
 Let's check a couple of routers using sampling-interval of 1:2048
 
@@ -475,20 +478,20 @@ With the following show command, we can monitor the Cache Hits and Cache Misses.
 <pre class="highlight">
 <code>
 RP/0/RP0/CPU0:R1#sh flow monitor FM cache internal loc 0/0/CPU0 | i Cache
-
+Fri Feb  9 15:<mark>08:14.611</mark> CET
 Cache summary for Flow Monitor :
 Cache size:                        1000000
-Cache Hits:                           9797770256
-Cache Misses:                        22580788616
+Cache Hits:                           <mark>9797770256</mark>
+Cache Misses:                        <mark>22580788616</mark>
 Cache Overflows:                               0
 Cache above hi water:                          0
 
 RP/0/RP0/CPU0:R1#sh flow monitor FM cache internal loc 0/0/CPU0 | i Cache
-
+Fri Feb  9 15:<mark>09:55.314</mark> CET 
 Cache summary for Flow Monitor :
 Cache size:                        1000000
-Cache Hits:                           9798220473
-Cache Misses:                        22581844681
+Cache Hits:                           <mark>9798220473</mark>
+Cache Misses:                        <mark>22581844681</mark>
 Cache Overflows:                               0
 Cache above hi water:                          0
 RP/0/RP0/CPU0:R1#
@@ -497,8 +500,9 @@ RP/0/RP0/CPU0:R1#
 </div>
 
 Simple math now between the two measurements:
-- ROUND [ (22581844681-22580788616) / (46+55) ] = 10456 samples creating new flow entries / second
-- ROUND [ (9798220473-9797770256) / (46+55) ]   = 4458 samples with existing entries / second
+- Between the two show commands: 15:09:55.314-15:08:14.611 = (60+55)x1000+314-(14x1000+611) = <mark>100,703 ms</mark>
+- ROUND [ (22581844681-22580788616) / (100.703) ] = 10487 samples creating new flow entries / second
+- ROUND [ (9798220473-9797770256) / (100.703) ]   = 4471 samples with existing entries / second
 
 ## Ok, that’s "interesting", but what should I configure on my routers?
 
@@ -518,7 +522,7 @@ It’s capital to understand that the only relevant parameter is the number of s
 
 This information can be easily derived from following parameters:
 - average packet size (depends on the charts presented above)
-- are we using ingress only or both ingress and egress (current not supported in NCS5500)
+- are we using ingress only or both ingress and egress (currently egress NF is not supported in NCS5500)
 - how the ports configured for netflow [are connected to the forwarding ASIC](https://xrdocs.github.io/cloud-scale-networking/tutorials/2018-02-15-port-assignments-on-ncs5500-platforms/)
 - sum of bandwidth for all the ports connected to the NPU (an estimation can be taken from peak hour traffic, or the projection of growth, or even the biggest DDoS attack)
 - and finally, the sampling-interval we configured
@@ -571,7 +575,7 @@ VOQ Base          =           24
 -------------------------------------------------------------------
 COS0 = 0               0               0               0
 COS1 = 0               0               0               0
-COS2 = 904365472       90918812004     3070488403      308867834524
+COS2 = 904365472       90918812004     <mark>3070488403</mark>      <mark>308867834524</mark>
 COS3 = 14              1668            0               0
 COS4 = 1955            201438          0               0
 COS5 = 0               0               0               0
@@ -582,9 +586,9 @@ RP/0/RP0/CPU0:5508-6.3.2#
 </pre>
 </div>
 
-Having this COS 2 DroppedPkts counter increasing is the proof we are exceeding the shaper and you need to reduce the sampling-interval.
+Having this COS 2 DroppedPkts counter increasing is the proof we are exceeding the shaper and you need to reduce the sampling-interval. The "instance" here represents the NPU ASIC.
 
-**Note**: In releases before 6.3.x, Netflow was transported over VOQ 32 / COS3 so the CLI to use was "sh controllers npu stats voq base 32 instance 0 location 0/7/CPU0"
+**Note:** In releases before 6.3.x, Netflow was transported over VOQ 32 / COS3 so the CLI to use was "sh controllers npu stats voq base 32 instance 0 location 0/7/CPU0"
 {: .notice--info}
 
 ## Conclusion
