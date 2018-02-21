@@ -10,7 +10,7 @@ tags:
   - netflow
   - nf
   - NFv9
-position: hidden
+position: top
 ---
 {% include toc icon="table" title="Netflow, Sampling-Interval and the Mythical Internet Packet Size" %} 
 
@@ -93,9 +93,9 @@ Rack  Card  Switch  Rack Serial Number
       Phys   Admin  Port      Protocol  Forward
 Port  State  State  Speed     State     State       Connects To
 --------------------------------------------------------------------
-4     Up     Up     2.5-Gbps  -         Forwarding  LC CPU (EPC 0)
-5     Up     Up     2.5-Gbps  -         Forwarding  LC CPU (EPC 1)
-6     Up     Up     2.5-Gbps  -         Forwarding  LC CPU (EPC 2)
+4     Up     Up     <mark>2.5-Gbps</mark>  -         Forwarding  LC CPU (EPC 0)
+5     Up     Up     <mark>2.5-Gbps</mark>  -         Forwarding  LC CPU (EPC 1)
+6     Up     Up     <mark>2.5-Gbps</mark>  -         Forwarding  LC CPU (EPC 2)
 7     Up     Up     2.5-Gbps  -         Forwarding  LC CPU (EOBC)
 8     Up     Up     2.5-Gbps  -         Forwarding  NPU2
 9     Up     Up     2.5-Gbps  -         Forwarding  NPU1
@@ -133,7 +133,7 @@ Port  State  State  Speed     State     State       Connects To
 5     Up     Up     2.5-Gbps  -         Forwarding  NPU1
 6     Up     Up     2.5-Gbps  -         Forwarding  NPU2
 7     Up     Up     2.5-Gbps  -         Forwarding  NPU3
-8     Up     Up     10-Gbps   -         Forwarding  LC CPU (EPC)
+8     Up     Up     <mark>10-Gbps</mark>   -         Forwarding  LC CPU (EPC)
 9     Up     Up     10-Gbps   -         Forwarding  LC CPU (EOBC)
 12    Down   Down   1-Gbps    -         -           FC0
 13    Down   Down   1-Gbps    -         -           FC1
@@ -191,7 +191,7 @@ In chassis line cards, this shaper is configured at 133Mbps while in fixed-form 
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
-RP/0/RP0/CPU0:R1#sh flow platform pse policer-rate location 0/7/CPU0
+RP/0/RP0/CPU0:R1#sh flow platform pse policer-rate location 0/1/CPU0
 
 Npu id :0
 Netflow Platform Pse Policer Rate:
@@ -407,8 +407,7 @@ But other type of interfaces will present more “extreme” numbers, like the C
 | Cust 2 Twitch | 1490 | 116 |
 | Cust 3 Twitch | 1328 | 395 |
 
-It’s showing very clearly that we have a traffic very asymmetrical. Something totally expected considering the type of service they deliver. But also it’s showing that ingress traffic is very often “as large as your MTU”.
-It will be a key parameter when discussing the sampling-interval we have to configure on our interfaces.
+It’s showing very clearly that we have a very asymmetrical traffic distribution. Something totally expected considering the type of service they deliver (content). But also it’s showing that ingress traffic is very often “as large as your MTU”. It will be a key parameter when discussing the sampling-interval we have to configure on our interfaces.
 
 I hope it convinced you that you can not simply take 350B or 500B as your average packet size. In reality, it will depend on the type on service you are connected to and the port allocation to NPUs.
 
