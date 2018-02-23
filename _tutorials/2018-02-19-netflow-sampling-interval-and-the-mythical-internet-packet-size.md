@@ -77,7 +77,9 @@ sysadmin-vm:0_RP0#
 
 The sampled packets and the netflow records will transit over the EPC network.
 
-The number of NPUs and the bandwidth of EPC/EOBC channels will vary between systems. Here is a diagram representing a 24x100G w/ eTCAM with 4x Jericho ASICs and a 36x100G w/ eTCAM with 4x Jericho+.
+The number of NPUs and the bandwidth of EPC/EOBC channels will vary between systems. 
+
+Here is a diagram representing a line card 24x100G w/ eTCAM with 4x Jericho ASICs. Each NPU is connected at 2.5Gbps to the EPC switch and the LC CPU is connected with 3x 2.5 = 7.5Gbps to the same switch:
 
 ![todelete 1.jpg]({{site.baseurl}}/images/todelete 1.jpg)
 
@@ -114,6 +116,8 @@ sysadmin-vm:0_RP0#
 </code>
 </pre>
 </div>
+
+Here, we are representing a line card 36x100G w/ eTCAM with 4x Jericho+. Each NPU is connected at 2.5Gbps to the EPC switch and the LC CPU is connected at 10Gbps to the same switch:
 
 ![todelete 2.jpg]({{site.baseurl}}/images/todelete 2.jpg)
 
