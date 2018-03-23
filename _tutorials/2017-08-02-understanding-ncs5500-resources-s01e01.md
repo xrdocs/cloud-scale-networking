@@ -43,7 +43,7 @@ We can categorize these systems and line cards in two families:
 
 - NCS5501-SE
 
-![NCS5501-SE]({{site.baseurl}}/images/5501-se.jpg){: .align-center}
+![NCS5501-SE]({{site.baseurl}}/images/5501.jpg){: .align-center}
 
 - NCS5502-SE
 
@@ -79,7 +79,7 @@ RP/0/RP0/CPU0:Router#
 
 - NCS5501
 
-![NCS5501]({{site.baseurl}}/images/5501.jpg){: .align-center}
+![NCS5501]({{site.baseurl}}/images/5501-se.jpg){: .align-center}
 
 - NCS5502
 
