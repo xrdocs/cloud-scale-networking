@@ -20,7 +20,7 @@ tags:
   - access
   - service-provider
   - journey-to-the-web
-position: hidden
+position: top 
 ---
 
 {% include toc %}
