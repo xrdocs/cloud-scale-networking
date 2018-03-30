@@ -22,17 +22,17 @@ In previous posts, we presented:
 - the [different routers and line cards in NCS5500 portfolio](https://xrdocs.github.io/cloud-scale-networking/tutorials/2017-08-02-understanding-ncs5500-resources-s01e01/)  
 - we explained [how IPv4 prefixes are sorted in LEM, LPM and eTCAM](https://xrdocs.github.io/cloud-scale-networking/tutorials/2017-08-03-understanding-ncs5500-resources-s01e02/)
 - we covered [how IPv6 prefixes are stored in the same databases](https://xrdocs.github.io/cloud-scale-networking/tutorials/2017-08-07-understanding-ncs5500-resources-s01e03/).
-- [we demonstrated in a video](https://xrdocs.github.io/cloud-scale-networking/tutorials/2017-12-30-full-internet-view-on-base-ncs-5500-systems-s01e04/) how we can handle a full IPv4 and IPv6 Internet view on base systems and line cards (i.e. without external TCAM, only using the LEM and LPM internal to the forwarding ASIC)
+- [we demonstrated in a video](https://xrdocs.github.io/cloud-scale-networking/tutorials/2017-12-30-full-internet-view-on-base-ncs-5500-systems-s01e04/) how we can handle a full IPv4 and IPv6 Internet view on "Base" systems and line cards (i.e. without external TCAM, only using the LEM and LPM internal to the forwarding ASIC)
 - finally in the fifth post, [we demonstrated in another video](https://xrdocs.github.io/cloud-scale-networking/tutorials/2018-01-25-s01e05-large-routing-tables-on-scale-ncs-5500-systems/) the scale we can reach on Jericho-based systems with an external TCAM
 
-In this episode we will introduce a second generation of line cards and systems based on an evolution of the Forwarding ASIC.
+In this episode we will introduce and study a second generation of line cards and systems based on an evolution of the Forwarding ASIC.
 
 ### Jericho+
 
-This Forwarding ASIC re-uses most of the principles of the Jericho generation, simply extending some scales:
-- the **bandwidth capabilities** and then, the interfaces count: we can now accomodate 9x 100G interfaces line rate
-- the **forwarding capability** , extending it to 835MPPS (same performance with lookup in internal databases or external TCAM)
-- some resources like **LPM** (for certain models) and **EEDB**. Also we will use a **new generation eTCAM** (significantly larger).
+This Forwarding ASIC from Broadcom re-uses all of the principles of the Jericho generation, simply extending some scales:
+- the **bandwidth capabilities** and consequently, the interfaces count: we can now accomodate 9x 100G interfaces line rate per ASIC
+- the **forwarding capability** , extending it to 835MPPS (the performance is the same with lookups in internal databases or external TCAM)
+- some memories like **LPM** (for certain models) and **EEDB**. Also we will use a **new generation eTCAM** (significantly larger).
 
 "Certain models"? Yes, J+ exists in different flavors. Some are re-using the same LEM/LPM scale than Jericho and some others have a larger LPM memory (qualified for 1M to 1.3M instead of 256K to 350+K IPv4 entries).
 
@@ -44,7 +44,7 @@ Both Jericho and Jericho+ can be used with current Fabric Cards (FE3600). Some r
 
 In the modular chassis:
 
-Today, we have a single line card using Jericho+: the 36x100G-S (more LC are coming in the summer 2018).
+In March 2018, we have a single line card using Jericho+: the 36x100G-A-SE (more LC are coming in the summer).
 
 ![36x100G-SE.jpg]({{site.baseurl}}/images/36x100G-SE.jpg)
 
@@ -55,6 +55,7 @@ Internally, the line is composed of 4 Jericho+ (each one handling 9 ports QSFP).
 ![36x100G-SE-1.jpg]({{site.baseurl}}/images/36x100G-SE-1.jpg)
 
 We are also extending the fixed-form factor portfolio with 3 new 1RU options:
+
 - NCS55A1-36H-S
 - NCS55A1-36H-SE-S
 - NCS55A1-24H-S
@@ -71,7 +72,7 @@ Internally, the system is composed of 4 Jericho+ ASICs (each one handling 9 port
 
 ![NCS55A1-36H-SE-S-1.jpg]({{site.baseurl}}/images/NCS55A1-36H-SE-S-1.jpg)
 
-The third option is named NCS55A1-24H. It's a cost optimized, oversubscribbed, system that provides 24 ports QSFP. It is timing-capable but doesn't offer MACsec.
+The third router: NCS55A1-24H. It's a cost optimized, oversubscribbed, system that provides 24 ports QSFP. It is timing-capable but doesn't support MACsec.
 
 ![NCS55A1-24H.jpg]({{site.baseurl}}/images/NCS55A1-24H.jpg)
 
@@ -79,7 +80,7 @@ As shown in this diagram, the forwarding ASICs are connected back-to-back withou
 
 ![NCS55A1-24H-1.jpg]({{site.baseurl}}/images/NCS55A1-24H-1.jpg)
 
-We will describe it in more details in the next sections but this system uses the largest version of Jericho+ ASICs. It doesn't use external TCAM but has a large LPM (1M to 1.3M prefixes instead of the 256K-350K we use on other systems in chassis or in the 36H).
+We will describe it in more details in the next sections but this system uses the largest version of Jericho+ ASICs. It doesn't use external TCAM but has a large LPM (1M to 1.3M prefixes instead of the 256K-350K we use on other systems in chassis or in the NCS55A1-36H-S).
 
 ### Let's talk about route scale
 
@@ -337,7 +338,8 @@ OOR Information
         Red Threshold               : 95
         Yellow Threshold            : 80
         OOR State                   : Green
-<SNIP>
+
+-- SNIP --
 
 Current Usage
     NPU-0
@@ -346,7 +348,7 @@ Current Usage
         ip6route                    : 0        (0 %)
         ipmcroute                   : 0        (0 %)
         
-SNIP
+-- SNIP --
 
 RP/0/RP0/CPU0:5508-6.3.2#sh contr npu resources exttcamipv4 loc 0/1/CPU0
 
@@ -361,7 +363,7 @@ OOR Information
         OOR State                   : Red
         OOR State Change Time       : 2018.Mar.27 08:01:30 PDT
 
-SNIP
+-- SNIP --
 
 Current Usage
     NPU-0
@@ -369,7 +371,7 @@ Current Usage
         iproute                     : 788841   (100 %)
         ipmcroute                   : 0        (0 %)
 
-SNIP
+-- SNIP --
 
 RP/0/RP0/CPU0:5508-6.3.2#sh contr npu resources exttcamipv6short loc 0/1/CPU0
 
@@ -382,13 +384,15 @@ OOR Information
         Red Threshold               : 95
         Yellow Threshold            : 80
         OOR State                   : Green
-<SNIP>
+
+-- SNIP --
 
 Current Usage
     NPU-0
         Total In-Use                : <mark>73016</mark>    (100 %)
         ip6route                    : 73016    (100 %)
-<SNIP>
+
+-- SNIP --
 
 RP/0/RP0/CPU0:5508-6.3.2#sh contr npu resources exttcamipv6long loc 0/1/CPU0
 
@@ -401,13 +405,15 @@ OOR Information
         Red Threshold               : 95
         Yellow Threshold            : 80
         OOR State                   : Green
-<SNIP>
+
+-- SNIP --
 
 Current Usage
     NPU-0
         Total In-Use                : <mark>60</mark>       (100 %)
         ip6route                    : 60       (100 %)
-<SNIP>
+
+-- SNIP --
 
 RP/0/RP0/CPU0:5508-6.3.2#sh contr npu externaltcam loc 0/1/CPU0
 
@@ -427,7 +433,7 @@ NPU  Bank   Entry  Owner       Free     Per-DB  DB   DB
 0    8      80b    FLP         4096     0       85   INGRESS_IP_SRC_PORT_EXT
 0    9      80b    FLP         4096     0       86   INGRESS_IPV6_SRC_PORT_EXT
 
-<SNIP>
+-- SNIP --
 
 RP/0/RP0/CPU0:5508-6.3.2#
 </code>
@@ -480,3 +486,7 @@ With the host optimized mode:
 And with the internet optimized mode:
 
 ![24h-internet.jpg]({{site.baseurl}}/images/24h-internet.jpg)
+
+### Conclusion
+
+Three different options with the Jericho+ systems: J+ with Jericho-scale, J+ with large LPM, J+ with new generation eTCAM. They are used in one new line card offering very high route scalability (4M+ routes), and in three new 1RU systems. 
