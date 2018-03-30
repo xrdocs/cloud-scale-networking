@@ -489,4 +489,4 @@ And with the internet optimized mode:
 
 ### Conclusion
 
-Three different options with the Jericho+ systems: J+ with Jericho-scale, J+ with large LPM, J+ with new generation eTCAM. They are used in one new line card offering very high route scalability (4M+ routes), and in three new 1RU systems. 
+Three different options with the Jericho+ systems: J+ with Jericho-scale, J+ with large LPM, J+ with new generation eTCAM. They are used in one new line card offering very high route scalability (4M+ routes), and in three new 1RU systems.
