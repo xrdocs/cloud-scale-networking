@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 date: '2018-03-30 22:50 +0200'
 title: Understanding NCS5500 Jericho+ Systems and their scalability
 author: Nicolas Fevrier
