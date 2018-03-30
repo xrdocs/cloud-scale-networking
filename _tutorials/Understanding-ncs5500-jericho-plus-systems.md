@@ -58,11 +58,11 @@ We are also extending the fixed-form factor portfolio with 3 new 1RU options:
 
 - NCS55A1-36H-S
 - NCS55A1-36H-SE-S
-- NCS55A1-24H-S
+- NCS55A1-24H
 
 Let's get started with the 36 ports options.
 
-These standalone systems are MACsec + timing capable and are available in base (NCS55A1-36H-S) and scale versions (NCS55A1-36H-SE-S). Both have the same port density.
+These standalone systems are MACsec + timing capable and are available in base (**NCS55A1-36H-S**) and scale versions (**NCS55A1-36H-SE-S**). Both have the same port density.
 
 The base version shows the same route scale than a Jericho systems without external TCAM while the scale version uses a new generation eTCAM extending the scale to 4M IPv4 routes (potentially much more in the future).
 
@@ -72,11 +72,13 @@ Internally, the system is composed of 4 Jericho+ ASICs (each one handling 9 port
 
 ![NCS55A1-36H-SE-S-1.jpg]({{site.baseurl}}/images/NCS55A1-36H-SE-S-1.jpg)
 
-The third router: NCS55A1-24H. It's a cost optimized, oversubscribbed, system that provides 24 ports QSFP. It is timing-capable but doesn't support MACsec.
+The third router: **NCS55A1-24H**. 
+
+It's a cost optimized, oversubscribbed, system that provides 24 ports QSFP. It is timing-capable but doesn't support MACsec.
 
 ![NCS55A1-24H.jpg]({{site.baseurl}}/images/NCS55A1-24H.jpg)
 
-As shown in this diagram, the forwarding ASICs are connected back-to-back without using any fabric engine. Each ASIC handles 12 ports for 900Gbps forwarding capability (hence the oversubscription).
+As shown in this diagram, the forwarding ASICs are connected back-to-back without using any fabric engine. Each ASIC handles 12 ports for a 900Gbps forwarding capability (hence the oversubscription).
 
 ![NCS55A1-24H-1.jpg]({{site.baseurl}}/images/NCS55A1-24H-1.jpg)
 
@@ -110,14 +112,14 @@ I invite you take a look at the [second](https://xrdocs.github.io/cloud-scale-ne
 
 The NCS55A1-36H-SE-S is using the same Jericho+ ASIC but completed with a new generation and much larger external TCAM. In current release, it's certified for 4M IPv4 prefixes but the memory capabilities are significantly larger. We will decide in the future if it's necessary to increase the tested/validated scale.
 
-Also, please note that the way we sort routes is different between 6.3.15 and 6.3.2. It's very likely we will simplify everything in the next major release during the summer (Stay tuned).
+Also, please note that the way we sort routes is different between 6.3.15 and 6.3.2. It's very likely we will simplify everything in the next major release during the summer (stay tuned).
 
 ![36H-SE-S-6315-632.jpg]({{site.baseurl}}/images/36H-SE-S-6315-632.jpg)
 
-The uRPF does not affect the scale of this eTCAM (on the contrary of the first generation where it was necessary to disable the dual capacity feature, reducing the eTCAM to 1M entries). Also, the hybrid ACL are using a different zone of the eTCAM memory and don't affect the overall scale.
+The uRPF does not affect the scale of this eTCAM (on the contrary of the first generation where it was necessary to disable the dual capacity feature, reducing the eTCAM to 1M entries). Also, the hybrid ACLs are using a different zone of the eTCAM memory and don't affect the overall scale.
 {: .notice--info}
 
-Like it was the case with the LPM, the NG eTCAM is algorithmic and the free memory displayed in the following show commands will depend on the current table distribution (in prefix length), so don't be surprised to see numbers below 4M. Also the max estimated values are currently showing 100% regardless the number. It will be fixed in  next releases.
+The NG eTCAM is algorithmic and the free memory displayed in the following show commands will depend on the current table distribution (in prefix length), so don't be surprised to see numbers below 4M. Also the max estimated values are currently showing 100% regardless the number. It will be fixed in  next releases.
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -134,7 +136,7 @@ dagr                             0          0          0           0
 Total                            <mark>1224669</mark>    1          0           293920800
 
 RP/0/RP0/CPU0:5508-6.3.2#sh route ipv6 sum
-Fri Mar 30 14:09:37.867 PDT
+
 Route Source                     Routes     Backup     Deleted     Memory(bytes)
 local                            6          0          0           1584
 connected                        5          1          0           1584
@@ -472,7 +474,7 @@ OOR Information
 </pre>
 </div>
 
-Like the other non-eTCAM systems, we can use two different configuration: the host-optimized mode (default) and the internet-optimized mode.
+Like the other non-eTCAM systems, we can use two different configurations: the host-optimized mode (default) and the internet-optimized mode.
 
 ![24H-host-internet.jpg]({{site.baseurl}}/images/24H-host-internet.jpg)
 
