@@ -151,8 +151,8 @@ With URPF, we need these two accesses to check source and destination, it's no l
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
-RP/0/RP0/CPU0:NCS5500-631(config)#hw-module tcam fib ipv4 scaledisable
-RP/0/RP0/CPU0:NCS5500-631(config)#commit
+RP/0/RP0/CPU0:NCS5508-632(config)#hw-module tcam fib ipv4 scaledisable
+RP/0/RP0/CPU0:NCS5508-632(config)#commit
 </code>
 </pre>
 </div>
@@ -467,6 +467,21 @@ The Jericho+ w/ eTCAM systems don't need to disable the dual capacity mode to en
 The same configuration than above can be re-used (except the hw-module commands).
 
 The impact on scale is not null but is signficantly less than it was on the Jericho-based systems. Since the J+/eTCAM systems are qualified for 4M entries which is much less than its actual capacity, the 25% impact doesn't change the officially supported numbers: with URPF enabled we still support 4M routes in eTCAM.
+
+### Verification
+
+Packets dropped by URPF can be counted at the NPU level with:
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:NCS5508-6.3.2#show contr npu stats traps-all instance 0 location 0/7/CPU0 | inc Rpf
+
+<mark>RxTrapUcLooseRpfFail</mark>                          0    84   0x54        32035   0         0        
+<mark>RxTrapUcStrictRpfFail</mark>                         0    137  0x89        32035   0         0   
+</code>
+</pre>
+</div>
 
 ### Conclusion
 
