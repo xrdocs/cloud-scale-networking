@@ -6,7 +6,7 @@ author: Nicolas Fevrier
 excerpt: >-
   In this article, we analyse the configuration and impact of URPF on NCS5500
   systems
-position: hidden
+position: top
 tags:
   - ncs5500
   - urpf
@@ -50,9 +50,9 @@ Regardless of the Forwarding ASIC (Qumran-MX, Jericho or Jericho+), the NCS5500 
 
 Configuring URPF comes at a cost in term of scale on some of the NCS5500 family members. It will be detailed extensively in this article. That's why it's important to understand what are the benefits of enabling this features.
 
-As explained in the defintion section above, the loose mode simply verify that source addresses of the packets received on an interface are part of the routable space. So overcome this "protection", it's fairly easy for an attacker to pick source addresses part of existing routes when forging the packet instead of totally random addresses.
+As explained in the defintion section above, the loose mode simply verify that source addresses of the packets received on an interface are part of the routable space. To bypass this "protection", it's fairly easy for an attacker to pick source addresses part of existing routes when forging the packet instead of totally random addresses.
 
-We invite the operators to check how much traffic is currently dropped the URPF loose mode if it's enabled on existing routers. Example on an ASR9000:
+We invite the operators to check how much traffic is currently dropped by the URPF loose mode if they have it enabled on production routers. Example to check this on an ASR9000:
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -78,15 +78,15 @@ RP/0/RP0/CPU0:Router#show cef drops | i RPF drops
 </pre>
 </div>
 
-And compare these figures to the packet count per interface to understand how much traffic it represents. The scale impact it could have and the protection effiency it offers needs to be put in perspective before deciding enabling URPF.
+And compare these figures to the packet count per interface to understand how much traffic it represents. The impact it could have on route scale and the protection efficiency it offers needs to be put in perspective before deciding if it is worth enabling URPF.
 
 Now said, some other very good reasons to enable URPF loose mode exist. For example, it's a mandatory brick of a [Source-based Remotely Triggered Black Hole](https://www.cisco.com/c/dam/en_us/about/security/intelligence/blackhole.pdf) architecture (S-RTBH).
 
 ### NCS5500 Implementation
 
-We don't support URPF strict mode and we have no plans to add it in the future. URPF loose mode is available on NCS5500 since IOS XR 6.2.2 for IPv4 and IPv6. The feature is supported on Jericho and Jericho+ systems, with or without eTCAM.
+We don't support URPF strict mode and we have no plans to add it in the future on NCS5500. URPF loose mode is available on NCS5500 since IOS XR 6.2.2 for IPv4 and IPv6. The feature is supported on Jericho and Jericho+ systems, with or without eTCAM.
 
-The configuration implies to deactivate some profiles depending on base and scale systems. Then, the configuration is applied at the interface level.
+The configuration implies the deactivation of some profiles and they are differen on "base" and "scale" systems. After this preliminary operation, the configuration is applied at the interface level.
 
 Deactivating URPF on an interface implies to do it for both IPv4 and IPv6.
 
@@ -96,7 +96,7 @@ Allow-self-ping is the default mode and allow-default is not supported.
 
 On "base" systems (without external TCAM):
 
-Since URPF requires two accesses to the LEM (for source then for destination address in the packet header), we have to disable the optimizations that are present by default or after a configuration:
+Since URPF requires two accesses to the LEM (lookup for source address then for destination address in the packet header), we have to disable the optimizations present by default or after a configuration:
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -107,14 +107,14 @@ hw-module fib ipv6 scale internet-optimized-disable
 </pre>
 </div>
 
-Note: depending on the version running, the options could be different and actually the opposite of "disable", be attentive at what is availabe in the CLI.
+Note: depending on the version running, the options could be different and actually could be the opposite of "disable", be attentive at what is availabe in the CLI.
 {: .notice--info}
 
-With the optimization disabled and after the reload of the line cards or system, we have now:
+With the optimization disabled and after the line cards / system reload, we have now:
 
 ![disable-optimizations.jpg]({{site.baseurl}}/images/disable-optimizations.jpg)
 
-Important: with such mode, it will no longer be possible to support a full internet view (v4+v6 or v4-only).
+Important: with such mode, it will no longer be possible to handle a full internet view (v4+v6 or v4-only).
 {: .notice--info}
 
 The configuration can now be applied on the interfaces:
@@ -130,7 +130,6 @@ interface HundredGigE0/7/0/0
  ipv4 verify unicast source reachable-via any
  ipv6 verify unicast source reachable-via any
  ipv6 address 2001:10:1::1/64
-!
 </code>
 </pre>
 </div>
@@ -139,11 +138,11 @@ interface HundredGigE0/7/0/0
 
 Now, let's consider the scale systems and line cards with Jericho ASICs:
 
-The eTCAM is a 80bit memory and in normal condition we use it in two blocks of 40bit to double the capacity. The first access being performed on the first half and the second access in the pipeline being done on the second half.
+The eTCAM is a 80bit memory and in normal condition we use it in two blocks of 40 bits to double the capacity. The first access being performed on the first half and the second access in the pipeline being done on the second half.
 
 ![double-cap.jpg]({{site.baseurl}}/images/double-cap.jpg)
 
-With URPF we need these two acceses to check source and destination, it's no longer possible to use the double capacity mode that needs to be disabled.
+With URPF, we need these two accesses to check source and destination, it's no longer possible to use the double capacity mode: it needs to be disabled.
 
 ![double-cap-disabled.jpg]({{site.baseurl}}/images/double-cap-disabled.jpg)
 
@@ -161,7 +160,6 @@ The impact on scale is significative since we lost 1M out of the 2M of the eTCAM
 ![urpf-impact.jpg]({{site.baseurl}}/images/urpf-impact.jpg)
 
 Let's check with a large routing table (internet v4 + internet v6 + 435k host routes) what is the impact:
-
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -339,7 +337,7 @@ ipv6 address 2001:10:1::1/64
 load-interval 30
 flow ipv4 monitor fmm sampler fsm1 ingress
 !
- 
+
 RP/0/RP0/CPU0:5508-6.3.2#conf
 
 RP/0/RP0/CPU0:5508-6.3.2(config)#hw-module tcam fib ipv4 scaledisable
@@ -464,11 +462,10 @@ In conclusion of this demo, enabling URPF implies the deactivation of the dual c
 
 The Jericho+ w/ eTCAM systems don't need to disable the dual capacity mode to enable URPF.
 
-The same configuration than above can be re-use (with the hw-module commands).
+The same configuration than above can be re-used (except the hw-module commands).
 
-The impact on scale is not zero but is signficantly less than it was on the Jericho-based systems. Since the J+/eTCAM systems are qualified for 4M entries which is much less than its actual capacity, the 25% impact doesn't change the officially supported numbers.
+The impact on scale is not null but is signficantly less than it was on the Jericho-based systems. Since the J+/eTCAM systems are qualified for 4M entries which is much less than its actual capacity, the 25% impact doesn't change the officially supported numbers: with URPF enabled we still support 4M routes in eTCAM.
 
 ### Conclusion
 
 URPF loose mode can be configured on all NCS5500 systems. On Jericho w/ eTCAM, the impact is significative but we demonstrated we still support a very large public table and a lot of host routes. On Jericho+ w/ eTCAM, URPF doesn't affect the supported scale of 4M entries.
-
