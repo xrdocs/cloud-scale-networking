@@ -48,11 +48,13 @@ It's a feature configured at the interface level.
 
 Regardless of the Forwarding ASIC (Qumran-MX, Jericho or Jericho+), the NCS5500 only supports URPF in loose mode.
 
-Configuring URPF comes at a cost in term of scale on some of the NCS5500 family members. It will be detailed extensively in this article. That's why it's important to understand what are the benefits of enabling this features.
+Configuring URPF comes at a cost in term of scale on some of the NCS5500 family members. It will be detailed extensively in this article. That's why it's important to understand what are the benefits of enabling this feature.
 
-As explained in the defintion section above, the loose mode simply verify that source addresses of the packets received on an interface are part of the routable space. To bypass this "protection", it's fairly easy for an attacker to pick source addresses part of existing routes when forging the packet instead of totally random addresses.
+As explained in the definition section above, the loose mode simply verify that source addresses of the packets received are in of the routable space. To bypass this "protection", it's fairly easy for an attacker to pick source addresses inside existing routes when forging the packet instead of totally random addresses.
 
-We invite the operators to check how much traffic is currently dropped by the URPF loose mode if they have it enabled on production routers. Example to check this on an ASR9000:
+We invite the operators to check how much traffic is currently dropped by the URPF loose mode if they have it enabled on production routers. 
+
+Example: to check this on an ASR9000:
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -78,7 +80,7 @@ RP/0/RP0/CPU0:Router#show cef drops | i RPF drops
 </pre>
 </div>
 
-And compare these figures to the packet count per interface to understand how much traffic it represents. The impact it could have on route scale and the protection efficiency it offers needs to be put in perspective before deciding if it is worth enabling URPF.
+And compare these figures to the packet count per interface to understand how much traffic it represents. The impact it could have on route scale and the protection efficiency it offers need to be put in perspective before deciding if it is worth enabling URPF.
 
 Now said, some other very good reasons to enable URPF loose mode exist. For example, it's a mandatory brick of a [Source-based Remotely Triggered Black Hole](https://www.cisco.com/c/dam/en_us/about/security/intelligence/blackhole.pdf) architecture (S-RTBH).
 
@@ -86,7 +88,7 @@ Now said, some other very good reasons to enable URPF loose mode exist. For exam
 
 We don't support URPF strict mode and we have no plans to add it in the future on NCS5500. URPF loose mode is available on NCS5500 since IOS XR 6.2.2 for IPv4 and IPv6. The feature is supported on Jericho and Jericho+ systems, with or without eTCAM.
 
-The configuration implies the deactivation of some profiles and they are differen on "base" and "scale" systems. After this preliminary operation, the configuration is applied at the interface level.
+The configuration implies the deactivation of some profiles, different on "base" and "scale" systems. After this preliminary operation, the configuration is applied at the interface level.
 
 Deactivating URPF on an interface implies to do it for both IPv4 and IPv6.
 
@@ -107,7 +109,7 @@ hw-module fib ipv6 scale internet-optimized-disable
 </pre>
 </div>
 
-Note: depending on the version running, the options could be different and actually could be the opposite of "disable", be attentive at what is availabe in the CLI.
+Note: depending on the IOS XR version, the options could be different and actually could be the opposite of "disable", be attentive at what is availabe in the CLI.
 {: .notice--info}
 
 With the optimization disabled and after the line cards / system reload, we have now:
@@ -155,7 +157,7 @@ RP/0/RP0/CPU0:NCS5500-631(config)#commit
 </pre>
 </div>
 
-The impact on scale is significative since we lost 1M out of the 2M of the eTCAM.
+The impact on scale is significative since we lost 1M out of the 2M of the eTCAM capacity.
 
 ![urpf-impact.jpg]({{site.baseurl}}/images/urpf-impact.jpg)
 
