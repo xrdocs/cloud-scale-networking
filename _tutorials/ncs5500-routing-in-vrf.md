@@ -430,7 +430,7 @@ Current Usage
 
 ### And on a non-eTCAM card
 
-Also we can check how a non-eTCAM line cards (NC55-36X100G) can do with the full view (we just filter the IPv4/32 from the same BGP peer:
+Also we can check how a non-eTCAM line cards (NC55-36X100G) can do with the full view (we just filter the IPv4/32 from the same BGP peer):
 
 <div class="highlighter-rouge">
 <pre class="highlight">
