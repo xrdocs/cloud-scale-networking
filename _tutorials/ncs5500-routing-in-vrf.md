@@ -28,7 +28,7 @@ Short answer: yes we support it. But it's important to set it up correctly to av
 
 It has been explain extensively in the former posts, so we suppose you are now familiar with the logic of sorting and storing routes in different memories depending on the product (whether or not we have external TCAM) and on the prefix length.
 
-### Let's configure it
+### Let's configure it on a eTCAM card
 
 Let's configure an interface and advertise 85k routes (IPv4/27). For this example, we will use a Jericho line cards with eTCAM (NC55-24X100G-SE) running IOS XR 6.3.2.
 
@@ -328,7 +328,7 @@ Process       RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer
 Speaker         1877292    1877292    1877292    1877292     1877292     1877292
 
 Neighbor        Spk    AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down  St/PfxRcd
-192.168.21.2      0   100 1261510     148  1877292    0    0 02:18:40    1186410
+192.168.21.2      0   100 1261510     148  1877292    0    0 02:18:40    <mark>1186410</mark>
 
 RP/0/RP0/CPU0:5508-1-6.3.2#sh route vrf TEST sum
 
@@ -338,7 +338,7 @@ connected                        1          0          0           240
 dagr                             0          0          0           0
 bgp 100                          1186410    0          0           284738400
 static                           1          0          0           240
-Total                            1186413    0          0           284739120
+Total                            <mark>1186413</mark>    0          0           284739120
 
 RP/0/RP0/CPU0:5508-1-6.3.2#sh contr npu resources all loc 0/7/CPU0
 
@@ -356,10 +356,10 @@ OOR Information
 
 Current Usage
     NPU-0
-        Total In-Use                : 434784   (55 %)
+        Total In-Use                : <mark>434784</mark>   <mark>(55 %)</mark>
         iproute                     : 434793   (55 %)
         ip6route                    : 0        (0 %)
-        mplslabel                   : 1        (0 %)
+        mplslabel                   : <mark>1</mark>        <mark>(0 %)</mark>
 
 -- SNIP --
 
@@ -419,12 +419,14 @@ OOR Information
 
 Current Usage
     NPU-0
-        Total In-Use                : 751665   (37 %)
+        Total In-Use                : <mark>751665</mark>   <mark>(37 %)</mark>
         iproute                     : 751677   (37 %)
 -- SNIP --
 </code>
 </pre>
 </div>
+
+### And on a non-eTCAM card
 
 Also we can check how a non-eTCAM line cards (NC55-36X100G) can do with the full view (we just filter the IPv4/32 from the same BGP peer:
 
