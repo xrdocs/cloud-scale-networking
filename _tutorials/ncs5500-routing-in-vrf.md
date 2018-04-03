@@ -5,8 +5,8 @@ title: NCS5500 Routing in VRF
 author: Nicolas Fevrier
 excerpt: Is it possible to run the Internet Feed inside a VRF/VPN in an NCS5500 ?
 tags:
-  - ncs5500
   - iosxr
+  - ncs5500
   - xr
   - internet
   - vrf
@@ -236,6 +236,8 @@ As expected we found 85635 iproute in the externaltcamv4, but also we notice the
 This is indeed the default behavior: per-prefix label allocation...
 
 If your design permits it (and it should be the case in 99% of the times), we advise you modify the label allocation mode to "per-vrf".
+
+_Correction_: Fred commented that several use-cases involving "maximum-path eiBGP" can be broken by per-vrf allocation and he recommends to use per-CE when possible. A lot of litterature is available for free on places like CiscoLive where the allocation models and implications are extensively described.
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -540,4 +542,4 @@ So, we can verify with this output that we are not consuming entries with mplsla
 
 It's possible to learn a large number of routes in VRF but it's important to change the default label allocation mode to per-vrf, otherwise we will create one label entry for each prefix learnt.
 
-Thanks to Lukas Mergenthaler
+Thanks to Lukas Mergenthaler and Fred Cuiller
