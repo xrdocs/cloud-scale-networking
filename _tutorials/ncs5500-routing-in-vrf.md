@@ -106,7 +106,7 @@ Let's examine the memory resources:
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
-RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh contr npu resources all loc 0/7/CPU0
+RP/0/RP0/CPU0:5508-1-6.3.2#sh contr npu resources all loc 0/7/CPU0
 
 HW Resource Information
     Name                            : lem
@@ -237,7 +237,9 @@ This is indeed the default behavior: per-prefix label allocation...
 
 If your design permits it (and it should be the case in 99% of the times), we advise you modify the label allocation mode to "per-vrf".
 
-_Correction_: Fred commented that several use-cases involving "maximum-path eiBGP" can be broken by per-vrf allocation and he recommends to use per-CE when possible. A lot of litterature is available for free on places like CiscoLive where the allocation models and implications are extensively described.
+_Addendum_:
+
+Several comments received on this aspect. Let's create a dedicated section on the allocation mode.
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -537,9 +539,90 @@ We notice inconsistencies in the LEM numbers between Total-in-use and the total 
 
 So, we can verify with this output that we are not consuming entries with mplslabel in LEM for each prefix.
 
+### Allocation mode
+
+We received several comments just after posting this article, related to the allocation mode used here. Let's try to summarize the key points.
+
+TL;DR: per-ce mode being by default the resilient one in this XR implementation, it's the best bet if you don't know which one to select instead of the per-prefix.
+
+Several use-cases involving "maximum-path eiBGP" can be broken by per-vrf allocation and he recommends to use per-CE when possible. To compare the different options:
+- per-prefix (default)
+ - Good label diversity for core loadbalancing, 
+ - able to get MPLS statistics (note: this last comment is not applicable for NCS5500 since we don't have statistics in the "show mpls forwarding", it's more appropriate for CRS, ASR9k, ...)
+ - Can cause scale issues
+- per-CE (resilient)
+ - Single label allocated by CE, whatever number of prefixes, improved scale
+ - EIBGP multipath, PIC is supported, single Label lookup
+- per-VRF
+ - Single label allocated for the whole VRF, thus additional lookup required to forward traffic
+ - Potential forwarding loop during local traffic diversion to support PIC
+ - No support for EIBGP multipath
+
+A lot of litterature is available for free on places like [CiscoLive (London 2013 BRKIPM-2265)](http://d2zmdbbm9feqrf.cloudfront.net/2013/eur/pdf/BRKIPM-2265.pdf) (pdf file).
+
+Let's verify that per-ce allocation is not changing anything in the resource usage:
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:5508-1-6.3.2#conf
+RP/0/RP0/CPU0:5508-1-6.3.2(config)#router bgp 100
+RP/0/RP0/CPU0:5508-1-6.3.2(config-bgp)#vrf TEST
+RP/0/RP0/CPU0:5508-1-6.3.2(config-bgp-vrf)#address-family ipv4 unicast
+RP/0/RP0/CPU0:5508-1-6.3.2(config-bgp-vrf-af)#   label mode per-?
+per-ce  per-prefix  per-vrf
+RP/0/RP0/CPU0:5508-1-6.3.2(config-bgp-vrf-af)#   label mode per-ce
+RP/0/RP0/CPU0:5508-1-6.3.2(config-bgp-vrf-af)#commit
+RP/0/RP0/CPU0:5508-1-6.3.2(config-bgp-vrf-af)#end
+RP/0/RP0/CPU0:5508-1-6.3.2#
+RP/0/RP0/CPU0:5508-1-6.3.2#sh contr npu resources lem loc 0/2/CPU0
+HW Resource Information
+    Name                            : lem
+
+OOR Information
+    NPU-0
+        Estimated Max Entries       : 786432
+        Red Threshold               : 95
+        Yellow Threshold            : 80
+        OOR State                   : Green
+        OOR State Change Time       : 2018.Apr.02 10:32:37 PDT
+
+-- SNIP --
+
+Current Usage
+    NPU-0
+        Total In-Use                : 377026   (48 %)
+        iproute                     : 349730   (44 %)
+        ip6route                    : 0        (0 %)
+        <mark>mplslabel</mark>                   : <mark>2</mark>        <mark>(0 %)</mark>
+        
+-- SNIP --        
+
+RP/0/RP0/CPU0:5508-1-6.3.2#sh contr npu resources lem loc 0/7/CPU0
+HW Resource Information
+    Name                            : lem
+
+OOR Information
+    NPU-0
+        Estimated Max Entries       : 786432
+        Red Threshold               : 95
+        Yellow Threshold            : 80
+        OOR State                   : Green
+        
+-- SNIP --
+
+Current Usage
+    NPU-0
+        Total In-Use                : 42       (0 %)
+        iproute                     : 40       (0 %)
+        ip6route                    : 0        (0 %)
+        <mark>mplslabel</mark>                   : <mark>2</mark>        <mark>(0 %)</mark>
+</code>
+</pre>
+</div>
 
 ### Conclusion
 
-It's possible to learn a large number of routes in VRF but it's important to change the default label allocation mode to per-vrf, otherwise we will create one label entry for each prefix learnt.
+It's possible to learn a large number of routes in VRF but it's important to change the default label allocation mode to per-vrf or per-ce, otherwise we will create one label entry for each prefix learnt.
 
-Thanks to Lukas Mergenthaler and Fred Cuiller
+Thanks to Lukas Mergenthaler, Fred Cuiller and Phil Bedard for their suggestions and comments.
