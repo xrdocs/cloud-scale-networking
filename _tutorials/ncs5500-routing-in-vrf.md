@@ -10,7 +10,7 @@ tags:
   - xr
   - internet
   - vrf
-Position: hidden
+Position: top
 ---
 {% include toc icon="table" title="Understanding NCS5500 Resources" %}  
 
