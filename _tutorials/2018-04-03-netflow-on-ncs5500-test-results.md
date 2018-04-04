@@ -25,7 +25,11 @@ We will try to check various parameters today, and make sure it doesn't have sid
 
 When not mentioned otherwise, these tests are executed on 36x100G-A-SE line cards running IOS XR 6.3.15. The card is fully wired to 100G ports (connected to a testing device able to push line rate traffic over each interface). In some specific tests, we will use a full loaded chassis (16-slots) and here we will use a "snake" configuration where each port is looped to another one to re-inject traffic and load the chassis without requiring 574x 100G testing ports.
 
-The tests have been carried out configuring Neflow v9 on physical but also bundle interfaces. To make the test more realistic, we added URPF v4 and v6 to the interface configuration, dampening, and ingress v4 and v6 ACLs too.
+The tests have been carried out configuring Neflow v9 on physical but also bundle interfaces. To make the test more realistic, we added URPF v4+v6 to the interface configuration, dampening, ingress+egress QoS and ingress v4+v6 ACLs, LDP and RSVP-TE, and finally multicast (IGMP and PIM).
+
+A picture of the test device console:
+
+![Ixia.jpg]({{site.baseurl}}/images/Ixia.jpg)
 
 Let's get started...
 
@@ -50,7 +54,7 @@ Results:
 
 ![Picture1.jpg]({{site.baseurl}}/images/Picture1.jpg)
 
-**Comment**: during all this test, we notice that we are collecting different values and that CPU utilization is rarely completely linear. We will need to accept some margin of errors in the figures collected and presented here.
+**Comment**: during all this test, we noticed that CPU utilization is rarely completely linear. We will need to accept some margin of errors in the figures collected and presented here.
 {: .notice--info}
 
 Conclusion: 
@@ -181,7 +185,71 @@ Conclusion:
 - no taildrop observed, no impact on other routing protocols (v4 or v6)
 
 
-### Test conditions
+### Stress tests
+
+To complete this, we performed stress tests:
+- on the line card: reloading it multiple times in a row
+- on the processes: forcing manual restart of the various processes (nf_producer and nfsrv)
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:fretta-64#process restart nfsvr location 0/5/CPU0
+
+RP/0/RP0/CPU0:Feb 25 10:59:05.975 UTC: sysmgr_control[66620]: %OS-SYSMGR-4-PROC_RESTART_NAME : User hsivasam (con0_RP0_CPU0) requested a restart of process nfsvr at 0/5/CPU
+0
+RP/0/RP0/CPU0:fretta-64#
+</code>
+</pre>
+</div>
+
+- on the configuration: configuring and unconfiguring Netflow on interfaces dozens of times in a row
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:fretta-64#sh run int hundredGigE 0/5/0/11
+interface HundredGigE0/5/0/11
+ mtu 4484
+ service-policy input policy-backbone-default-in.v4
+ service-policy output policy-backbone-default-out-P-P.v4
+ ipv4 address 2.254.132.2 255.255.255.0
+ ipv4 verify unicast source reachable-via any
+ ipv6 verify unicast source reachable-via any
+ ipv6 address 2001:2:254:132::2/64
+ load-interval 30
+ flow ipv4 monitor ICX sampler ICX ingress
+ flow ipv6 monitor ICX-v6 sampler ICX ingress
+ dampening
+ ipv4 access-group 121 ingress
+ ipv6 access-group ipv6-edge-peer ingress
+!
+
+RP/0/RP0/CPU0:fretta-64#rollback configuration last 1
+RP/0/RP0/CPU0:fretta-64#
+</code>
+</pre>
+</div>
+
+- on the interfaces: we forced flapping on the interfaces where netflow was configured and checked the impact. Both with bundled interfaces and physical interfaces.
+
+- clear cache record: forces the generation of all the records before flushing the cache entries.
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:fretta-64#clear flow monitor ICX cache force-export location 0/5$
+Clear cache entries for this monitor on this location. Continue? [confirm]
+RP/0/RP0/CPU0:fretta-64#
+</code>
+</pre>
+</div>
+
+Results:
+- no problem encountered during these tests.
+
+
+## Test conditions
 
 In this last section, we simply copy paste a couple of show commands to demonstrate the routing scale used during this test.
 
@@ -922,6 +990,19 @@ Neighbor        Spk    AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down  St/PfxRcd
                   0  1000    6945   13253  3399620    0    0 22:38:26      14195
 
 RP/0/RP0/CPU0:fretta-64
+RP/0/RP0/CPU0:fretta-64#show mpls ldp summary 
+
+  AFIs      : IPv4
+  Routes    : 1391 prefixes 
+  Bindings  : 1391 prefixes 
+      Local     : 1391 
+      Remote    : 2041 
+  Neighbors : 151 (151 NSR)
+  Hello Adj : 184 
+  Addresses : 88 
+  Interfaces: 35 LDP configured
+
+RP/0/RP0/CPU0:fretta-64#
 </code>
 </pre>
 </div>
@@ -929,6 +1010,7 @@ RP/0/RP0/CPU0:fretta-64
 
 ### Acknowledgements
 
+Many thanks to 
 
 <div class="highlighter-rouge">
 <pre class="highlight">
