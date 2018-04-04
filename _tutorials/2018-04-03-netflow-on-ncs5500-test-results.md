@@ -25,6 +25,8 @@ We will try to check various parameters today, and make sure it doesn't have sid
 
 When not mentioned otherwise, these tests are executed on 36x100G-A-SE line cards running IOS XR 6.3.15. The card is fully wired to 100G ports (connected to a testing device able to push line rate traffic over each interface). In some specific tests, we will use a full loaded chassis (16-slots) and here we will use a "snake" configuration where each port is looped to another one to re-inject traffic and load the chassis without requiring 574x 100G testing ports.
 
+The tests have been carried out configuring Neflow v9 on physical but also bundle interfaces. To make the test more realistic, we added URPF v4 and v6 to the interface configuration, dampening, and ingress v4 and v6 ACLs too.
+
 Let's get started...
 
 ### Impact of the packet size
