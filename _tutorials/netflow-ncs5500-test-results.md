@@ -117,7 +117,7 @@ Results:
 
 ![Picture3.jpg]({{site.baseurl}}/images/Picture3.jpg)
 
-Again, we will need to access some margin of error in the measurement of the last test.
+Again, we will need to accept some margin of error in the measurement of the last test.
 
 We can see a progression in the CPU utilization, up to a plateau when we reach the shaper. After this value, even if we sample more aggressively, we are not pushing more sampled packets to the LC CPU.
 
