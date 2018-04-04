@@ -1034,17 +1034,10 @@ RP/0/RP0/CPU0:fretta-64#
 </pre>
 </div>
 
+### Conclusion
+
+In these tests, we proved that Netflow in IOS XR 6.3.15 is pretty solid and can be stressed without noticing any side effect. We pushed the scale, the sampling-interval, the timers and rate-limiters, etc and obtained consistent behavior and results.
 
 ### Acknowledgements
 
-Many thanks to 
-
-<div class="highlighter-rouge">
-<pre class="highlight">
-<code>
-sys
-</code>
-</pre>
-</div>
-
-
+Many thanks to Hari Baskar Sivasamy, Benoit Mercier Des Rochettes for these tests and Raj Kalavendi and Jisu Bhattacharya for their comments and guidance.
