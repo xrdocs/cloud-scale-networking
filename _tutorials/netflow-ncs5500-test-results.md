@@ -11,7 +11,7 @@ tags:
   - iosxr
 Position: hidden
 ---
-{% include toc icon="table" title="Netflow, Sampling-Interval and the Mythical Internet Packet Size" %} 
+{% include toc icon="table" title="Netflow Test Results" %} 
 
 ## Introduction
 
