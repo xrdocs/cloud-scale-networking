@@ -5,25 +5,28 @@ title: 'Netflow on NCS5500: Test Results'
 author: Nicolas Fevrier
 excerpt: Second part of the Netflow on NCS5500 Tuto. This time the test results
 tags:
+  - iosxr
   - ncs5500
   - netflow
   - xr
-  - iosxr
 Position: hidden
 ---
 {% include toc icon="table" title="Netflow Test Results" %} 
 
 ## Introduction
 
-In this [last blog post on NCS5500 Netflow](https://xrdocs.github.io/cloud-scale-networking/tutorials/2018-02-19-netflow-sampling-interval-and-the-mythical-internet-packet-size/), we presented the details of the implementation from the processes involved to the internal networks used to transport sampled traffic. Also, we provided some details on the various packet size and how should be approached the question on recommended sampling-interval.
+In this [last blog post on NCS5500 Netflow](https://xrdocs.github.io/cloud-scale-networking/tutorials/2018-02-19-netflow-sampling-interval-and-the-mythical-internet-packet-size/), we presented the NF implementation details: from the software processes to the internal networks used to transport sampled traffic and the CPU protection mechanisms. Also, we provided some important information on the various packet sizes and how should be approached the sampling-interval question.
 
-Let's test Netflow in lab and see how it behaves when we push all cursors.
+Today we will present the results of a Netflow test campaign executed in lab last month. We will see how NCS5500 behaves when we push all cursors.
+
+![Eleven.jpg]({{site.baseurl}}/images/Eleven.jpg)
+
 
 ## The tests
 
-We will try to check various parameters today, and make sure it doesn't have side effects. For instance, we need to make sure we are not impacting the control planes: the routing protocols handled on the same Line Card CPU should not flap. It's possible to monitor this using various show commands and we will detail them as much as possible for each test. Also, when possible, we will show the impact this test has on LC CPU.
+We will try to check various parameters today, and make sure it doesn't have any side effects. For instance, we need to make sure we are not impacting the control planes: the routing protocols handled on the same Line Card CPU should not flap or lose update. When possible, we will show the impact this test has on LC CPU.
 
-When not mentioned otherwise, these tests are executed on 36x100G-A-SE line cards running IOS XR 6.3.15. The card is fully wired to 100G ports (connected to a testing device able to push line rate traffic over each interface). In some specific tests, we will use a full loaded chassis (16-slots) and here we will use a "snake" configuration where each port is looped to another one to re-inject traffic and load the chassis without requiring 574x 100G testing ports.
+When not mentioned otherwise, these tests are executed on 36x100G-A-SE line cards running IOS XR 6.3.15. The card is fully wired to 100G ports (connected to a testing device able to push line rate traffic over each interface simultaneously). In some specific tests, we will use a fully loaded chassis (16-slots) and in this test case, we will use a "snake" configuration where each port is looped to another one to re-inject traffic and load the chassis without requiring 574x 100G testing ports.
 
 The tests have been carried out configuring Neflow v9 on physical but also bundle interfaces. To make the test more realistic, we added URPF v4+v6 to the interface configuration, dampening, ingress+egress QoS and ingress v4+v6 ACLs, LDP and RSVP-TE, and finally multicast (IGMP and PIM).
 
