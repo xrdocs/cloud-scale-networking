@@ -97,7 +97,7 @@ Conclusion:
 
 ### Impact of sampling interval
 
-Here, we will use line rate traffic on the 36 ports and we will only change the sampling-interval in our configuration. It will logically have an impact on the number of sampled packets we push from the NPUs to the Line Card CPU. So we expect the CPU load to grow.
+Here, we will use line rate traffic on the 36 ports and we will only change the sampling-interval in our configuration. It will logically have an impact on the number of sampled packets we push from the NPUs to the Line Card CPU. So we expect the CPU load to increase.
 
 Test parameters:
 - each port is generating 512B packets
