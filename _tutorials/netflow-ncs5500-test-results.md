@@ -24,15 +24,15 @@ Today we will present the results of a Netflow test campaign executed in lab las
 
 ## The tests
 
-We will try to check various parameters today, and make sure it doesn't have any side effects. For instance, we need to make sure we are not impacting the control planes: the routing protocols handled on the same Line Card CPU should not flap or lose update. When possible, we will show the impact this test has on LC CPU.
+We will try to check various parameters today, and make sure it doesn't have any side effects. For instance, we need to make sure we are not impacting the control plane: the routing protocols handled on the same Line Card CPU should not flap or lose update. When possible, we will show the impact on LC CPU.
 
-When not mentioned otherwise, these tests are executed on 36x100G-A-SE line cards running IOS XR 6.3.15. The card is fully wired to 100G ports (connected to a testing device able to push line rate traffic over each interface simultaneously). In some specific tests, we will use a fully loaded chassis (16-slots) and in this test case, we will use a "snake" configuration where each port is looped to another one to re-inject traffic and load the chassis without requiring 574x 100G testing ports.
+These tests are executed on 36x100G-A-SE line cards running IOS XR 6.3.15. The card is fully wired to an Ixia chassis, able to push line rate traffic over each interface simultaneously. In some specific tests, we will use a fully loaded chassis (16-slots) with a "snake" configuration: each port is looped to another one to re-inject traffic and load the chassis without requiring 574x 100G testing ports.
 
 The tests have been carried out configuring Neflow v9 on physical but also bundle interfaces. To make the test more realistic, we added URPF v4+v6 to the interface configuration, dampening, ingress+egress QoS and ingress v4+v6 ACLs, LDP and RSVP-TE, and finally multicast (IGMP and PIM).
 
 All the tests have been executed with both v4 and v6 simultaneously.
 
-Also, we made sure that a lot of "new flows" were generated from the Ixia using some traffic distribution knobs. Indeed, the "effort" of creating a new entry in the cache compared to updating an existing one is not the same for the nfsrv process.
+We made sure that a lot of "new flows" were generated from the Ixia using some traffic distribution knobs. Indeed, the "effort" of creating a new entry in the cache compared to updating an existing one is not the same for the nfsrv process.
 
 A picture of the test device console:
 
@@ -42,7 +42,7 @@ Let's get started...
 
 ### Impact of the packet size
 
-In this first test, we checking the impact on the CPU load when pushing different packet size.
+In this first test, we will check the impact on the CPU load when pushing different packet size.
 
 Test parameters:
 - each port is generating 200,000 PPS
@@ -61,7 +61,7 @@ Results:
 
 ![Picture1.jpg]({{site.baseurl}}/images/Picture1.jpg)
 
-**Comment**: during all this test, we noticed that CPU utilization is rarely completely linear. We will need to accept some margin of errors in the figures collected and presented here.
+**Comment**: during all these tests, we noticed that CPU utilization is rarely completely linear. We will need to accept some margin of errors in the figures collected and presented here.
 {: .notice--info}
 
 Conclusion: 
