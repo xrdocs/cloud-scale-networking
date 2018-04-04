@@ -122,7 +122,7 @@ Again, we will need to accept some margin of error in the measurement of the las
 We can see a progression in the CPU utilization, up to a plateau when we reach the shaper. After this value, even if we sample more aggressively, we are not pushing more sampled packets to the LC CPU.
 
 Conclusion:
-- with constant traffic, sampling-interval has of course a direct impact on the CPU load but no taildrop were observed, no impact on other routing protocols (v4 or v6)
+- with constant traffic, sampling-interval has, of course, a direct impact on the CPU load but no taildrop were observed, no impact on other routing protocols (v4 or v6)
 
 ### Impact of the number of flows
 
@@ -156,7 +156,7 @@ Conclusion:
 
 ### Impact of the active / inactive timers
 
-This fifth test is now stressing a different aspect of the netflow protocol: the record generation. When we manipulate the active and inactive timers, we are influencing the amount of records generated. Keep in mind it's also directly limited by the timeout rate-limiter (in this test, it's 10,000 records per second).
+This fifth test is now stressing a different aspect of the netflow protocol: the record generation. When we manipulate the active and inactive timers, we are influencing the amount of records generated.
 
 Test parameters:
 - each port is generating 512B packets
@@ -217,7 +217,7 @@ Conclusion:
 
 ### Stress tests
 
-To complete this, we performed stress tests:
+Finally, we performed stress tests:
 - on the line card: reloading it multiple times in a row
 - on the processes: forcing manual restart of the various processes (nf_producer and nfsrv)
 
@@ -1039,8 +1039,9 @@ RP/0/RP0/CPU0:fretta-64#
 
 ### Conclusion
 
-In these tests, we proved that Netflow in IOS XR 6.3.15 is pretty solid and can be stressed without noticing any side effect. We pushed the scale, the sampling-interval, the timers and rate-limiters, etc and obtained consistent behavior and results.
+We proved today that Netflow implementation in IOS XR 6.3.15 (and following 6.3.2) is solid and can be stressed without noticing any side effect. We pushed the scale, the sampling-interval, the timers and rate-limiters, etc and obtained consistent behavior and results.
 
 ### Acknowledgements
 
-Many thanks to Hari Baskar Sivasamy, Benoit Mercier Des Rochettes for these tests and Raj Kalavendi and Jisu Bhattacharya for their comments and guidance.
+Many thanks to Hari Baskar Sivasamy, Benoit Mercier Des Rochettes for defining and executing these tests.
+Thanks also to Raj Kalavendi and Jisu Bhattacharya for their comments and guidance.
