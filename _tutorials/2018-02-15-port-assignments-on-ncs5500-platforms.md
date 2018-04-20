@@ -185,6 +185,33 @@ This line card is made of 4 Jericho ASICs with eTCAM.
 | Fo0/x/0/8 | 0 / 1 | Hu0/x/0/17 | 1 / 0 | Fo0/x/0/26 | 2 / 1 | Hu0/x/0/35 | 3 / 0 |
 
 
+### NCS55A2-MOD(-SE)-S
+
+
+Line card made of a single Jericho+ ASIC.
+
+![55A2-MOD.jpg]({{site.baseurl}}/images/55A2-MOD.jpg)
+
+
+| Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core |
+|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
+| Te0/x/0/0 | 0 / 0 | Te0/x/0/14 | 0 / 1  | TF0/x/0/28 | 0 / 0 | Hu0/x/1/2/0 | 0 / 1 |
+| Te0/x/0/1 | 0 / 0 | Te0/x/0/15 | 0 / 1 | TF0/x/0/29 | 0 / 0 | Te0/x/2/0 | 0 / 1 |
+| Te0/x/0/2 | 0 / 0 | Te0/x/0/16 | 0 / 0 | TF0/x/0/30 | 0 / 0 | Te0/x/2/1 | 0 / 0 |
+| Te0/x/0/3 | 0 / 0 | Te0/x/0/17 | 0 / 0 | TF0/x/0/31 | 0 / 0 | Te0/x/2/2 | 0 / 1 |
+| Te0/x/0/4 | 0 / 0 | Te0/x/0/18 | 0 / 0 | TF0/x/0/32 | 0 / 1 | Te0/x/2/3 | 0 / 0 |
+| Te0/x/0/5 | 0 / 0 | Te0/x/0/19 | 0 / 0 | TF0/x/0/33 | 0 / 1 | Te0/x/2/4 | 0 / 1 |
+| Te0/x/0/6 | 0 / 0 | Te0/x/0/20 | 0 / 1 | TF0/x/0/34 | 0 / 1 | Te0/x/2/5 | 0 / 0 |
+| Te0/x/0/7 | 0 / 0 | Te0/x/0/21 | 0 / 1 | TF0/x/0/35 | 0 / 1 | Te0/x/2/6 | 0 / 1 |
+| Te0/x/0/8 | 0 / 1 | Te0/x/0/22 | 0 / 1 | TF0/x/0/36 | 0 / 0 | Te0/x/2/7 | 0 / 0 |
+| Te0/x/0/9 | 0 / 1 | Te0/x/0/23 | 0 / 1 | TF0/x/0/37 | 0 / 0 | Te0/x/2/8 | 0 / 0 |
+| Te0/x/0/10 | 0 / 1 | TF0/x/0/24 | 0 / 1 | TF0/x/0/38 | 0 / 0 | Te0/x/2/9 | 0 / 1 |
+| Te0/x/0/11 | 0 / 1 | TF0/x/0/25 | 0 / 1 | TF0/x/0/39 | 0 / 0 | Te0/x/2/10 | 0 / 0 |
+| Te0/x/0/12 | 0 / 1 | TF0/x/0/26 | 0 / 1 | Hu0/x/1/0 | 0 / 0 | Te0/x/2/11 | 0 / 1 |
+| Te0/x/0/13 | 0 / 1 | TF0/x/0/27 | 0 / 1 | Hu0/x/1/1 | 0 / 1 | - | - |
+
+
+
 ### NCS55-36X100G-A-SE
 
 Finally, this line card is using 4 Jericho+ with new generation eTCAM.
