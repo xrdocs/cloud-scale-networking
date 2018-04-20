@@ -188,7 +188,7 @@ This line card is made of 4 Jericho ASICs with eTCAM.
 ### NCS55A2-MOD(-SE)-S
 
 
-Line card made of a single Jericho+ ASIC.
+2RU chassis made of a single Jericho+ ASIC.
 
 ![55A2-MOD.jpg]({{site.baseurl}}/images/55A2-MOD.jpg)
 
