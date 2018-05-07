@@ -140,3 +140,44 @@ Highlights of Cisco’s participation on this test case include:
 For more information, I suggest reviewing this [SRMS tutorial](http://www.segment-routing.net/tutorials/2016-09-27-segment-routing-mapping-server/) and [SR / LDP interworking tutorial](http://www.segment-routing.net/tutorials/2016-09-27-segment-routing-and-ldp-interworking/)
 
 
+## SR Prefix SID extensions for BGP (BGP-SR)
+
+Segment Routing Prefix SID extensions for BGP IETF draft defines a BGP attribute for announcing BGP Prefix Segment Identifiers (BGP Prefix-SID) information.  A BGP Prefix-SID is always a global segment (a global instruction) and it identifies an instruction to forward the packet over the ECMP-aware best-path computed by BGP to the related prefix.
+
+Use cases for the BGP Prefix SID are documented in these IETF drafts: BGP-Prefix Segment in large-scale data centers and Interconnecting Millions Of Endpoints With Segment Routing.
+
+This test case represented a first-time interop test at EANTC. Highlights of Cisco’s participation on this test case include:
+* Cisco was successfully validated as a Leaf node in a multi-vendor BGP-SR fabric 
+* Cisco was successfully validated as a Spine node in a multi-vendor BGP-SR fabric
+
+## SR Operations, Administration and Maintenance (OAM)
+
+Network operators require the ability to verify and isolate faults within the SR network. IETF RFC 8287 defines a set of extensions to perform LSP Ping and Traceroute operations for SR IGP-Prefix SIDs and IGP-Adjacency SIDs with an MPLS data plane.
+This test case also represented a first-time interop test at EANTC. Highlights of Cisco’s participation on this test case include:
+•	Cisco was successfully validated as initiator of SR OAM ping / traceroute operations  - using an MPLS echo request with a target FEC Stack TLV carrying FECs with the new IPv4 IGP-prefix SID sub-TLV
+•	Cisco was successfully validated as target / responder of SR OAM ping / traceroute operations
+During the event, an interop issue arose among some vendors due to different interpretations of the RFC 8287 concerning the IPv4 IGP-prefix SID sub-TLV length. A technical errata was raised by one of the interop participating vendors against the RFC
+
+Ethernet VPN
+From its inception, Cisco has been leading the definition of EVPN at the IETF. Followed by a strong commitment reflected in our implementation across Service Provider and Datacenter product lines, the technology is deployed by network operators worldwide.
+Though some may have noticed IOS XR’s absence for the past couple of years, we returned back with full-strength to this event and showcased the EVPN feature set available in Cisco ASR 9000 and NCS 5500 product families.
+Highlights of Cisco’s participation on this test case include:
+•	Cisco was one of a group of eight (8) vendors (not counting traffic emulator vendors) that participated in the EVPN test area. This represents an all-time high and included participation from all major networking vendors
+•	Cisco acted as the main BGP route-reflector for EVPN and was leveraged by all participating vendors connected to the SR-MPLS core 
+•	For the first time at EANTC, a common SR-MPLS network was used as the main transport for EVPN services across the core
+•	EVPN all-active multi-homing over SR-MPLS test case
+o	All-active multi-homing functionality is one of the main advantages of EVPN over its legacy predecessors such as VPLS
+o	Cisco was successfully validated as a PE in a multi-vendor multi-home Ethernet segment
+•	EVPN VPWS over SR-MPLS test case
+o	Cisco was successfully validated as a PE in a single-home configuration. Participating vendors had agreed to perform multi-home testing, but we ran out of time. There are only so many days that one can run non-stop on high caffeine!!!
+•	EVPN-VXLAN and IP-VPN Interworking test case
+o	Cisco was successfully validated as a Layer 3 DCI interconnecting EVPN datacenter sites across a WAN network based on IP-VPN 
+
+What is NEXT?
+Follow us on Twitter and LinkedIN for the latest announcements
+Also visit our external SR site to stay abreast of the latest presentations, tutorials, demonstrations and much more!!! 
+Interop-wise, I look forward to another successful event in 2019. In particular, I look forward to multi-vendor interest and readiness in a number of important standard-based solutions that Cisco ALREADY proposed for this year’s event; including:
+•	IGP Segment Routing Flexible Algorithms – Flex Algo, the latest addition to the SRTE toolkit, defines IGP extensions that allow an operator to customize and assign traffic-engineering optimizations to an IGP prefix algorithm. Flex Algo is defined at IETF for both IS-IS and OSPF. Cisco announced this new solution at Cisco Live Barcelona 2018 and further described it in Clarence’s blog and this demonstration
+•	BGP-signaled Segment Routing Policies – BGP can also be used to signal an SR Policy candidate path to an SRTE headend.  A new BGP SAFI and NLRI are under standardization at IETF
+•	PCEP LSP Disjointness Signaling and Computation – Path diversity is a very common use case today in IP/MPLS networks especially for Layer 2 transport over MPLS. An IETF draft describes a PCEP extension for signaling LSP diversity constraint. Such request can then be honored by a PCE computing LSP paths of the desired disjointness type
+But above all, I really look forward to yet another pleasant Berlin winter!!!
