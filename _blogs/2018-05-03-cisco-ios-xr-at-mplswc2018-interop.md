@@ -79,7 +79,6 @@ With this in mind, we welcomed the addition, for the first-time, of TI-LFA testc
 * Note that TI-LFA with Node protection is also supported by Cisco’s implementation but was not part of the test plan. Stay tuned for upcoming announcements of new enhancements to Cisco’s TI-LFA in the 2018 summer timeframe!!!
 
 Lastly, here are key aspects NOT COVERED by the report and that MUST always be considered as you evaluate TI-LFA implementations:
-{: .notice--warning}
 * Does the vendor implementation provide a backup path computed for each destination? Watch for implementations that may cut corners and not compute an optimum backup path for each destination in the network. Cisco’s TI-LFA implementation was designed to meet this goal
 * Does the vendor implementation provide prefix-independent convergence? Make sure to validate that the implementation’s performance during activation of backup paths does NOT degrade as the number of protected prefixes increases. Cisco’s TI-LFA implementation was also designed and implemented with this principle in mind 
 * Does the vendor implementation provide protection to traffic that originally is forwarded using other paradigms such as LDP signaling or pure IP-routed traffic? Make sure to validate that the implementation’s coverage includes also non-SR traffic. Cisco’s TI-LFA can also be used to protect LDP and IP traffic
