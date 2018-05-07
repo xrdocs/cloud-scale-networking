@@ -40,18 +40,19 @@ The following list summarizes SR related facts pertinent to Cisco’s participat
 * By far, the use of SR-MPLS dominated on those test cases that relied on MPLS as a transport.  This included the transport of services such as IP VPN and Ethernet VPNs. Use of LDP was kept to a minimum. RSVP-TE was not used at the event
 * IS-IS was chosen as the main IGP throughout the event. Note that use of OSPF was considered but not prioritized due to time constraints
 * Baseline IS-IS SR functionality was successfully verified. No interoperability issues were observed among Cisco and vendors that we interconnected with. Verified functionality included:
-o	IPv4 control plane
-o	Prefix Segment ID (Prefix-SID) for host prefixes including both Node and Anycast SIDs
-o	Adjacency Segment IDs (Adj-SIDs) for IS-IS adjacencies
-o	Prefix-to-SID mapping advertisements performed by the SR Mapping Server (SRMS) function
-•	SR Traffic Engineering (SRTE) was another area of focus with validation of the following:
-o	Path Computation Element Protocol (PCEP) - Stateful PCE model
-o	PCEP extensions for Segment Routing
-o	BGP Link-State (BGP-LS) and extensions for Segment Routing
-•	In addition, the following SR-MPLS related topics were tested for the first time at EANTC:
-o	Topology Independent LFA (TI-LFA)
-o	SR Prefix SID extensions for BGP (BGP-SR)
-o	SR Operations, Administration and Maintenance (OAM)
-•	Lastly, SRv6 was validated also for the first time at an EANTC event. Tests covered baseline functions from the SRv6 Network Programming IETF draft
+  * IPv4 control plane
+  * Prefix Segment ID (Prefix-SID) for host prefixes including both Node and Anycast SIDs
+  * Adjacency Segment IDs (Adj-SIDs) for IS-IS adjacencies
+  * Prefix-to-SID mapping advertisements performed by the SR Mapping Server (SRMS) function
+* SR Traffic Engineering (SRTE) was another area of focus with validation of the following:
+  * Path Computation Element Protocol (PCEP) - Stateful PCE model
+  * PCEP extensions for Segment Routing
+  * BGP Link-State (BGP-LS) and extensions for Segment Routing
+* In addition, the following SR-MPLS related topics were tested for the first time at EANTC:
+  * Topology Independent LFA (TI-LFA)
+  * SR Prefix SID extensions for BGP (BGP-SR)
+  * SR Operations, Administration and Maintenance (OAM)
+* Lastly, SRv6 was validated also for the first time at an EANTC event. Tests covered baseline functions from the SRv6 Network Programming IETF draft
+
 I describe EVPN related facts later in the blog
 
