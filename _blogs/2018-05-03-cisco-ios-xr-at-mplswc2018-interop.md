@@ -101,18 +101,18 @@ Overall, this was one of the MOST active areas at the interop and where I person
 Cisco’s participation in this test area can be broken into 2 categories – as a PCC and as a PCE.
 
 Highlights of Cisco’s participation as PCC include:
-* Cisco was one of a group of six (6) vendors (not counting traffic emulator vendors) that participated as PCEP PCC headend nodes
-* Cisco’s SR PCC was the MOST interoperable PCC at the event considering the number of successful test results against participating PCE vendors
-* As PCC, Cisco successfully validated the creation, update and deletion of SR policies based on the PCE-initiated model with all participating non-Cisco SR PCEs
-* As PCC, Cisco successfully validated the creation, update and deletion of SR policies based on the PCC-initiated model with all participating non-Cisco SR PCEs
+* **Cisco was one of a group of six (6) vendors (not counting traffic emulator vendors) that participated as PCEP PCC headend nodes**
+* **Cisco’s SR PCC implementation was the MOST interoperable PCC at the event considering the number of successful test results against participating PCE vendors**
+* **As PCC, Cisco successfully validated the creation, update and deletion of SR policies based on the PCE-initiated model with all participating non-Cisco SR PCEs**
+* **As PCC, Cisco successfully validated the creation, update and deletion of SR policies based on the PCC-initiated model with all participating non-Cisco SR PCEs**
 
 Highlights of Cisco’s participation as PCE include:
-* Cisco was one of a group of three (3) vendors (not counting traffic emulator vendors) that participated as PCEP PCE nodes
-* Cisco’s SR PCE was the MOST interoperable PCE at the event considering the number of successful test results across participating PCC vendors
-* As PCE, Cisco successfully validated the creation, update and deletion of SR policies based on the PCE-initiated model with participating non-Cisco SR PCCs
-* As PCE, Cisco successfully validated the creation, update and deletion of SR policies using PCC-initiated model with participating non-Cisco SR PCCs
-* Also, Cisco SR PCE successfully validated single-domain and multi-domain topology learning using BGP-LS feeds originated at non-Cisco nodes
-* Lastly, Cisco SR PCE was the only PCE at the event to successfully validate path computation on a multi-domain network with Egress Peering Engineering (EPE) SIDs at domain boundaries
+* **Cisco was one of a group of three (3) vendors (not counting traffic emulator vendors) that participated as PCEP PCE nodes**
+* **Cisco’s SR PCE was the MOST interoperable PCE at the event considering the number of successful test results across participating PCC vendors**
+* **As PCE, Cisco successfully validated the creation, update and deletion of SR policies based on the PCE-initiated model with participating non-Cisco SR PCCs**
+* **As PCE, Cisco successfully validated the creation, update and deletion of SR policies using PCC-initiated model with participating non-Cisco SR PCCs**
+* **Also, Cisco SR PCE successfully validated single-domain and multi-domain topology learning using BGP-LS feeds originated at non-Cisco nodes**
+* **Lastly, Cisco SR PCE was the only PCE at the event to successfully validate path computation on a multi-domain network with Egress Peering Engineering (EPE) SIDs at domain boundaries**
 
 Lastly, and beyond protocol interoperability, it is important that operators consider these key aspects NOT COVERED by the report when evaluating SRTE headend and PCE implementations:
 {: .notice--warning}
