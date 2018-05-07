@@ -162,8 +162,10 @@ During the event, an interop issue arose among some vendors due to different int
 
 ## Ethernet VPN
 
-From its inception, Cisco has been leading the definition of EVPN at the IETF. Followed by a strong commitment reflected in our implementation across Service Provider and Datacenter product lines, the technology is deployed by network operators worldwide.
-Though some may have noticed IOS XR’s absence for the past couple of years, we returned back with full-strength to this event and showcased the EVPN feature set available in Cisco ASR 9000 and NCS 5500 product families.
+From its inception, Cisco has been leading the definition of EVPN at the IETF. And followed by a strong commitment reflected in our implementation across Service Provider and Datacenter product lines, the technology is deployed by network operators worldwide.
+
+Though some may have noticed IOS XR’s absence for the past couple of years at this interop, we returned back with full-strength and showcased the advanced EVPN feature set available in Cisco ASR 9000 and NCS 5500 product families.
+
 Highlights of Cisco’s participation on this test case include:
 * Cisco was one of a group of eight (8) vendors (not counting traffic emulator vendors) that participated in the EVPN test area. This represents an all-time high and included participation from all major networking vendors
 * Cisco acted as the main BGP route-reflector for EVPN and was leveraged by all participating vendors connected to the SR-MPLS core 
