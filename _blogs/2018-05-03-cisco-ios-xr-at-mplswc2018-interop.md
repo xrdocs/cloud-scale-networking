@@ -56,3 +56,12 @@ The following list summarizes SR related facts pertinent to Cisco’s participat
 
 I describe EVPN related facts later in the blog
 
+## Cisco Participating devices and Roles
+
+At this year’s event, Cisco IOS XR product portfolio was represented by the Cisco ASR 9000 and NCS 5500 product families.
+For the NCS 5500, it was its debut at the showcase.
+Also another first time, was the participation of Cisco IOS XRv9000 virtual router acting as a virtual SR Path Computation Element.
+
+Let’s delve next into the main test categories …
+
+
