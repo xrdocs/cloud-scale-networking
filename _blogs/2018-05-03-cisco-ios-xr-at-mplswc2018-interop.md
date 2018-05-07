@@ -124,4 +124,19 @@ Lastly, and beyond protocol interoperability, it is important that operators con
 
 For more information, I recommend reviewing this [SRTE tutorial](http://www.segment-routing.net/tutorials/2017-03-06-segment-routing-traffic-engineering-srte/)
 
+## SR and LDP Interworking
+
+One of the key capabilities of SR is the support of brownfield deployments. [Segment Routing interworking with LDP](https://datatracker.ietf.org/doc/draft-ietf-spring-segment-routing-ldp-interop/) IETF draft documents several mechanisms through which SR interworks with LDP in a network where a mix of SR and LDP routers co-exist.
+
+For scenarios where SR and LDP are available in different parts of the network, a continuous MPLS LSP in the SR-to-LDP direction requires the presence of a so-called **SR Mapping Server (SRMS)**. The SRMS is an IGP node advertising mapping between Segment Identifiers (SID) and prefixes advertised by other IGP nodes.
+
+Cisco’s SR implementation supports SRMS and SR/LDP data-plane interworking functions since 2014.
+
+Highlights of Cisco’s participation on this test case include:
+* Cisco was successfully validated as an SR-only node receiving IS-IS SRMS advertisements from a non-Cisco SRMS implementation
+* Cisco was successfully validated as an SRMS node in a domain with non-Cisco SR-only nodes
+* Cisco was successfully validated as an LDP/SR interconnect “stitching” node
+
+For more information, I suggest reviewing these [SRMS](http://www.segment-routing.net/tutorials/2016-09-27-segment-routing-mapping-server/) and [SR / LDP interworking](http://www.segment-routing.net/tutorials/2016-09-27-segment-routing-and-ldp-interworking/) tutorials
+
 
