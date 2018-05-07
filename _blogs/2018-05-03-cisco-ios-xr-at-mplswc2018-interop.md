@@ -142,9 +142,9 @@ For more information, I suggest reviewing this [SRMS tutorial](http://www.segmen
 
 ## SR Prefix SID extensions for BGP (BGP-SR)
 
-Segment Routing Prefix SID extensions for BGP IETF draft defines a BGP attribute for announcing BGP Prefix Segment Identifiers (BGP Prefix-SID) information.  A BGP Prefix-SID is always a global segment (a global instruction) and it identifies an instruction to forward the packet over the ECMP-aware best-path computed by BGP to the related prefix.
+[Segment Routing Prefix SID extensions for BGP](https://datatracker.ietf.org/doc/draft-ietf-idr-bgp-prefix-sid/) IETF draft defines a BGP attribute for announcing BGP Prefix Segment Identifiers (BGP Prefix-SID) information.  A BGP Prefix-SID is always a global segment (a global instruction) and it identifies an instruction to forward the packet over the ECMP-aware best-path computed by BGP to the related prefix.
 
-Use cases for the BGP Prefix SID are documented in these IETF drafts: BGP-Prefix Segment in large-scale data centers and Interconnecting Millions Of Endpoints With Segment Routing.
+Use cases for the BGP Prefix SID are documented in these IETF drafts: [BGP-Prefix Segment in large-scale data centers](https://datatracker.ietf.org/doc/draft-ietf-spring-segment-routing-msdc/) and [Interconnecting Millions Of Endpoints With Segment Routing](https://datatracker.ietf.org/doc/draft-filsfils-spring-large-scale-interconnect/).
 
 This test case represented a first-time interop test at EANTC. Highlights of Cisco’s participation on this test case include:
 * Cisco was successfully validated as a Leaf node in a multi-vendor BGP-SR fabric 
