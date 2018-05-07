@@ -133,9 +133,9 @@ For scenarios where SR and LDP are available in different parts of the network, 
 Cisco’s SR implementation supports SRMS and SR/LDP data-plane interworking functions since 2014.
 
 Highlights of Cisco’s participation on this test case include:
-* Cisco was successfully validated as an SR-only node receiving IS-IS SRMS advertisements from a non-Cisco SRMS implementation
-* Cisco was successfully validated as an SRMS node in a domain with non-Cisco SR-only nodes
-* Cisco was successfully validated as an LDP/SR interconnect “stitching” node
+* **Cisco was successfully validated as an SR-only node receiving IS-IS SRMS advertisements from a non-Cisco SRMS implementation**
+* **Cisco was successfully validated as an SRMS node in a domain with non-Cisco SR-only nodes**
+* **Cisco was successfully validated as an LDP/SR interconnect “stitching” node**
 
 For more information, I suggest reviewing these [SRMS](http://www.segment-routing.net/tutorials/2016-09-27-segment-routing-mapping-server/) and [SR / LDP interworking](http://www.segment-routing.net/tutorials/2016-09-27-segment-routing-and-ldp-interworking/) tutorials
 
