@@ -147,8 +147,8 @@ For more information, I suggest reviewing this [SRMS tutorial](http://www.segmen
 Use cases for the BGP Prefix SID are documented in these IETF drafts: [BGP-Prefix Segment in large-scale data centers](https://datatracker.ietf.org/doc/draft-ietf-spring-segment-routing-msdc/) and [Interconnecting Millions Of Endpoints With Segment Routing](https://datatracker.ietf.org/doc/draft-filsfils-spring-large-scale-interconnect/).
 
 This test case represented a first-time interop test at EANTC. Highlights of Cisco’s participation on this test case include:
-* Cisco was successfully validated as a Leaf node in a multi-vendor BGP-SR fabric 
-* Cisco was successfully validated as a Spine node in a multi-vendor BGP-SR fabric
+* **Cisco was successfully validated as a Leaf node in a multi-vendor BGP-SR fabric**
+* **Cisco was successfully validated as a Spine node in a multi-vendor BGP-SR fabric**
 
 ## SR Operations, Administration and Maintenance (OAM)
 
