@@ -9,7 +9,10 @@ tags:
   - iosxr
   - cisco
 position: top
-excerpt: test excerpt
+excerpt: >-
+  Learn the technical details regarding Cisco’s participation at MPLS WC 2018
+  interop showcase with platforms powered by the IOS XR operating system. This
+  blog will focus on Segment Routing and Ethernet VPN test areas.
 ---
 
 {% include toc icon="table" title="Cisco IOS XR at MPLS WC 2018 interop" %}
