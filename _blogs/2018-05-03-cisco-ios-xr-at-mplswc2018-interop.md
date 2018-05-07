@@ -11,6 +11,8 @@ tags:
 position: hidden
 excerpt: test excerpt
 ---
+{% include toc %}
+
 ## Not just another interop
 
 I have represented Cisco for more than 8 years at EANTC-sponsored interoperability events. Going back to 2008, I have experienced more pleasant Berlin winters than I could have ever imagined.
