@@ -79,7 +79,7 @@ With this in mind, we welcomed the addition, for the first-time, of TI-LFA testc
 * **Cisco successfully validated TI-LFA with Local SRLG protection. Cisco was the only participating vendor that passed this test case**
 * Note that TI-LFA with Node protection is also supported by Cisco’s implementation but was not part of the test plan. Stay tuned for upcoming announcements of new enhancements to Cisco’s TI-LFA in the 2018 summer timeframe!!!
 
-Lastly, here are key aspects NOT COVERED by the report and that MUST always be considered as you evaluate TI-LFA implementations:
+Lastly, here are key aspects **NOT COVERED** by the report and that MUST always be considered as you evaluate TI-LFA implementations:
 {: .notice--warning}
 * Does the vendor implementation provide a backup path computed for each destination? Watch for implementations that may cut corners and not compute an optimum backup path for each destination in the network. Cisco’s TI-LFA implementation was designed to meet this goal
 * Does the vendor implementation provide prefix-independent convergence? Make sure to validate that the implementation’s performance during activation of backup paths does NOT degrade as the number of protected prefixes increases. Cisco’s TI-LFA implementation was also designed and implemented with this principle in mind 
@@ -114,7 +114,7 @@ Highlights of Cisco’s participation as PCE include:
 * **Also, Cisco SR PCE successfully validated single-domain and multi-domain topology learning using BGP-LS feeds originated at non-Cisco nodes**
 * **Lastly, Cisco SR PCE was the only PCE at the event to successfully validate path computation on a multi-domain network with Egress Peering Engineering (EPE) SIDs at domain boundaries**
 
-Lastly, and beyond protocol interoperability, it is important that operators consider these key aspects NOT COVERED by the report when evaluating SRTE headend and PCE implementations:
+Lastly, and beyond protocol interoperability, it is important that operators consider these key aspects **NOT COVERED** by the report when evaluating SRTE headend and PCE implementations:
 {: .notice--warning}
 * Does the PCE implementation provide path computation based on the SR principles – i.e. maximizing ECMP and minimizing label stack size? Watch for implementations that again may cut corners and simply reuse RSVP-TE algorithms for SR. RSVP-TE is non-ECMP aware and circuit-based and hence requiring many SIDs when coding an SR path. Cisco developed NEW algorithms for SR path computation with [recognized innovation by the academic community](http://conferences.sigcomm.org/sigcomm/2015/pdf/papers/p15.pdf)
 * Does the vendor implementation allow for path computation at the headend? For the majority of single-domain scenarios, the headend node should be in a position to compute paths. Therefore an operator should not settled for SR-optimized path computation only at the PCE but also at the PCC. Remember that the main difference between a headend node and a PCE node is the scope/size of the topology database. The former is single domain while the later could be multi-domain. A Cisco SRTE headend is provided with the SAME computation algorithms that are present in the PCE
