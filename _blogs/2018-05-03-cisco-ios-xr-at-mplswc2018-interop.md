@@ -90,11 +90,16 @@ For more information, I suggest reviewing this [TI-LFA tutorial](http://www.segm
 
 ## SR Traffic Engineering (SRTE) and Path Computation Element Protocol (PCEP)
 
-Segment Routing’s ability to address traffic engineering (TE) use cases is one of the most sought-after applications of the technology. 
-The SRTE architecture IETF draft describes in detail the behaviors and mechanisms that allow a headend node to direct traffic along a path in the network using “SR Policies”. Based on the source routing paradigm, all state is encoded at the headend node using an ordered list of segments. As a result, SRTE no longer requires state to be maintained at intermediate nodes as it was the case with legacy TE solutions.
-The segment routed path of an SR policy can be derived from a number of choices, including computation by a centralized PCE. An IETF draft describes PCEP extensions for SR that allow a stateful PCE to compute and initiate TE paths, as well as a path computation client (PCC) to request a path subject to certain constraint(s) and optimization criteria in SR networks.
+Segment Routing’s ability to address traffic engineering (TE) use cases is one of the most sought-after applications of the technology.
+
+The [SRTE architecture IETF draft](https://datatracker.ietf.org/doc/draft-filsfils-spring-segment-routing-policy/) describes in detail the behaviors and mechanisms that allow a headend node to direct traffic along a path in the network using “SR Policies”. Based on the source routing paradigm, all state is encoded at the headend node using an ordered list of segments. As a result, SRTE no longer requires state to be maintained at intermediate nodes as it was the case with legacy TE solutions.
+
+The segment routed path of an SR policy can be derived from a number of choices, including computation by a centralized PCE. An IETF draft describes [PCEP extensions](https://datatracker.ietf.org/doc/draft-ietf-pce-segment-routing/) for SR that allow a stateful PCE to compute and initiate TE paths, as well as a path computation client (PCC) to request a path subject to certain constraint(s) and optimization criteria in SR networks.
+
 Overall, this was one of the MOST active areas at the interop and where I personally spent most time on. With one of the largest number of positive results achieved, EANTC reported over 30 successful combinations of different PCE-PCC vendor / products.
+
 Cisco’s participation in this test area can be broken into 2 categories – as a PCC and as a PCE.
+
 Highlights of Cisco’s participation as PCC include:
 * Cisco was one of a group of six (6) vendors (not counting traffic emulator vendors) that participated as PCEP PCC headend nodes
 * Cisco’s SR PCC was the MOST interoperable PCC at the event considering the number of successful test results against participating PCE vendors
@@ -110,10 +115,13 @@ Highlights of Cisco’s participation as PCE include:
 * Lastly, Cisco SR PCE was the only PCE at the event to successfully validate path computation on a multi-domain network with Egress Peering Engineering (EPE) SIDs at domain boundaries
 
 Lastly, and beyond protocol interoperability, it is important that operators consider these key aspects NOT COVERED by the report when evaluating SRTE headend and PCE implementations:
-* Does the PCE implementation provide path computation based on the SR principles – i.e. maximizing ECMP and minimizing label stack size? Watch for implementations that again may cut corners and simply reuse RSVP-TE algorithms for SR. RSVP-TE is non-ECMP aware and circuit-based and hence requiring many SIDs when coding an SR path. Cisco developed NEW algorithms for SR path computation with recognized innovation by the academic community
+{: .notice--warning}
+* Does the PCE implementation provide path computation based on the SR principles – i.e. maximizing ECMP and minimizing label stack size? Watch for implementations that again may cut corners and simply reuse RSVP-TE algorithms for SR. RSVP-TE is non-ECMP aware and circuit-based and hence requiring many SIDs when coding an SR path. Cisco developed NEW algorithms for SR path computation with [recognized innovation by the academic community](http://conferences.sigcomm.org/sigcomm/2015/pdf/papers/p15.pdf)
 * Does the vendor implementation allow for path computation at the headend? For the majority of single-domain scenarios, the headend node should be in a position to compute paths. Therefore an operator should not settled for SR-optimized path computation only at the PCE but also at the PCC. Remember that the main difference between a headend node and a PCE node is the scope/size of the topology database. The former is single domain while the later could be multi-domain. A Cisco SRTE headend is provided with the SAME computation algorithms that are present in the PCE
-* Does the implementation provide maximum scale without requiring a-priori full-mesh connectivity? Triggered by a service route (e.g. IP VPN), Cisco’s SR On-demand Next Hop (SR ODN) provides a LOCAL mechanism at the headend that triggers instantiation of an SR policy enforcing the transport SLA required by the service. Learn more and watch an ODN demonstration here
-* Does the implementation avoid complex and many times performance-impacting traffic steering techniques? Based on the steering behaviors described in the SRTE architecture IETF draft, Cisco supports an innovative steering technique that we called Automated Steering (AS). AS steers automatically service traffic onto the right SR policy based on the color of the service route. This solution provides simplicity and performance without penalties. The benefits of AS apply to all instantiation methods of an SR policy (e.g. on-demand, pce-initiated, local). Watch a demonstration of AS in the same ODN demonstration highlighted in the previous bullet
+* Does the implementation provide maximum scale without requiring a-priori full-mesh connectivity? Triggered by a service route (e.g. IP VPN), Cisco’s SR On-demand Next Hop (SR ODN) provides a LOCAL mechanism at the headend that triggers instantiation of an SR policy enforcing the transport SLA required by the service. Learn more and [watch an ODN demonstration here](http://www.segment-routing.net/demos/2016-demo-on-demand-next-hop-large-scale-design/)
+* Does the implementation avoid complex and many times performance-impacting traffic steering techniques? Based on the [steering behaviors](https://tools.ietf.org/html/draft-filsfils-spring-segment-routing-policy-05#section-8.4) described in the SRTE architecture IETF draft, Cisco supports an innovative steering technique that we called Automated Steering (AS). AS steers automatically service traffic onto the right SR policy based on the color of the service route. This solution provides simplicity and performance without penalties. The benefits of AS apply to all instantiation methods of an SR policy (e.g. on-demand, pce-initiated, local). Watch a demonstration of AS in the same ODN demonstration highlighted in the previous bullet
+{: .notice--warning}
 
-For more information, I recommend reviewing this SRTE tutorial
+For more information, I recommend reviewing this [SRTE tutorial](http://www.segment-routing.net/tutorials/2017-03-06-segment-routing-traffic-engineering-srte/)
+
 
