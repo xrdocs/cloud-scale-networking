@@ -153,12 +153,14 @@ This test case represented a first-time interop test at EANTC. Highlights of Cis
 ## SR Operations, Administration and Maintenance (OAM)
 
 Network operators require the ability to verify and isolate faults within the SR network. IETF RFC 8287 defines a set of extensions to perform LSP Ping and Traceroute operations for SR IGP-Prefix SIDs and IGP-Adjacency SIDs with an MPLS data plane.
+
 This test case also represented a first-time interop test at EANTC. Highlights of Cisco’s participation on this test case include:
 •	Cisco was successfully validated as initiator of SR OAM ping / traceroute operations  - using an MPLS echo request with a target FEC Stack TLV carrying FECs with the new IPv4 IGP-prefix SID sub-TLV
 •	Cisco was successfully validated as target / responder of SR OAM ping / traceroute operations
 During the event, an interop issue arose among some vendors due to different interpretations of the RFC 8287 concerning the IPv4 IGP-prefix SID sub-TLV length. A technical errata was raised by one of the interop participating vendors against the RFC
 
-Ethernet VPN
+## Ethernet VPN
+
 From its inception, Cisco has been leading the definition of EVPN at the IETF. Followed by a strong commitment reflected in our implementation across Service Provider and Datacenter product lines, the technology is deployed by network operators worldwide.
 Though some may have noticed IOS XR’s absence for the past couple of years, we returned back with full-strength to this event and showcased the EVPN feature set available in Cisco ASR 9000 and NCS 5500 product families.
 Highlights of Cisco’s participation on this test case include:
@@ -173,7 +175,7 @@ o	Cisco was successfully validated as a PE in a single-home configuration. Parti
 •	EVPN-VXLAN and IP-VPN Interworking test case
 o	Cisco was successfully validated as a Layer 3 DCI interconnecting EVPN datacenter sites across a WAN network based on IP-VPN 
 
-What is NEXT?
+## What is NEXT?
 Follow us on Twitter and LinkedIN for the latest announcements
 Also visit our external SR site to stay abreast of the latest presentations, tutorials, demonstrations and much more!!! 
 Interop-wise, I look forward to another successful event in 2019. In particular, I look forward to multi-vendor interest and readiness in a number of important standard-based solutions that Cisco ALREADY proposed for this year’s event; including:
