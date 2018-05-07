@@ -63,4 +63,27 @@ Also another first time, was the participation of **Cisco IOS XRv9000** virtual 
 
 Let’s delve next into the main test categories …
 
+## Topology Independent Fast Reroute using Segment Routing
+
+It is critical for operators to provide services with SLA guarantees and to automatically restore connectivity in the case of a network component failure. By relying on Segment Routing, Topology Independent Loop Free Alternate (TI-LFA) provides a local repair mechanism to achieve this goal. Under standardization at IETF, [TI-LFA](https://datatracker.ietf.org/doc/draft-bashandy-rtgwg-segment-routing-ti-lfa/) provides key benefits, including:
+* Automatic Per-Destination protection – automatic backup paths are pre-computed by the IGP for each destination (prefix). TI-LFA prepares a data-plane switch-over to be activated upon detection of the failure of a link used to reach a given destination
+* Topology Independent coverage – TI-LFA provides sub-50msec link, node and local SRLG protection for ANY topology. TI-LFA provides a loop free backup path irrespective of the topologies prior the failure and after the failure
+* Optimal routing – optimal routing by enforcing a backup path that is identical to the post-convergence path
+* Stateless operation – based on source routing, there is no need to create additional forwarding state in the network in order to enforce a backup path
+
+As a result of these benefits and based on our deployment experience, TI-LFA remains one of the main drivers behind SR deployments to-date. TI-LFA has been one of the key areas of execution for Cisco since we started shipping it in 2014.
+With this in mind, we welcomed the addition, for the first-time, of TI-LFA testcases to EANTC’s interop. Highlights of Cisco’s participation include:
+* Cisco successfully validated sub-50 msec protection with TI-LFA
+* Cisco successfully validated TI-LFA with Link protection
+* Cisco successfully validated TI-LFA with Local SRLG protection. Cisco was the only participating vendor that passed this test case
+* Note that TI-LFA with Node protection is also supported by Cisco’s implementation but was not part of the test plan. Stay tuned for upcoming announcements of new enhancements to Cisco’s TI-LFA in the 2018 summer timeframe!!!
+
+Lastly, here are key aspects NOT COVERED by the report and that MUST always be considered as you evaluate TI-LFA implementations:
+* Does the vendor implementation provide a backup path computed for each destination? Watch for implementations that may cut corners and not compute an optimum backup path for each destination in the network. Cisco’s TI-LFA implementation was designed to meet this goal
+* Does the vendor implementation provide prefix-independent convergence? Make sure to validate that the implementation’s performance during activation of backup paths does NOT degrade as the number of protected prefixes increases. Cisco’s TI-LFA implementation was also designed and implemented with this principle in mind 
+* Does the vendor implementation provide protection to traffic that originally is forwarded using other paradigms such as LDP signaling or pure IP-routed traffic? Make sure to validate that the implementation’s coverage includes also non-SR traffic. Cisco’s TI-LFA can also be used to protect LDP and IP traffic
+
+For more information, I suggest reviewing this [TI-LFA tutorial](http://www.segment-routing.net/tutorials/2016-09-27-topology-independent-lfa-ti-lfa/) and [TI-LFA demonstration](http://www.segment-routing.net/demos/2016-demo-topology-independent-lfa/)
+
+
 
