@@ -169,12 +169,12 @@ Highlights of Cisco’s participation on this test case include:
 * Cisco acted as the main BGP route-reflector for EVPN and was leveraged by all participating vendors connected to the SR-MPLS core 
 * For the first time at EANTC, a common SR-MPLS network was used as the main transport for EVPN services across the core
 * EVPN all-active multi-homing over SR-MPLS test case
-o	All-active multi-homing functionality is one of the main advantages of EVPN over its legacy predecessors such as VPLS
-o	Cisco was successfully validated as a PE in a multi-vendor multi-home Ethernet segment
-•	EVPN VPWS over SR-MPLS test case
-o	Cisco was successfully validated as a PE in a single-home configuration. Participating vendors had agreed to perform multi-home testing, but we ran out of time. There are only so many days that one can run non-stop on high caffeine!!!
-•	EVPN-VXLAN and IP-VPN Interworking test case
-o	Cisco was successfully validated as a Layer 3 DCI interconnecting EVPN datacenter sites across a WAN network based on IP-VPN 
+  * All-active multi-homing functionality is one of the main advantages of EVPN over its legacy predecessors such as VPLS
+  * Cisco was successfully validated as a PE in a multi-vendor multi-home Ethernet segment
+* EVPN VPWS over SR-MPLS test case
+  * Cisco was successfully validated as a PE in a single-home configuration. Participating vendors had agreed to perform multi-home testing, but we ran out of time. There are only so many days that one can run non-stop on high caffeine!!!
+* EVPN-VXLAN and IP-VPN Interworking test case
+  * Cisco was successfully validated as a Layer 3 DCI interconnecting EVPN datacenter sites across a WAN network based on IP-VPN 
 
 ## What is NEXT?
 Follow us on Twitter and LinkedIN for the latest announcements
