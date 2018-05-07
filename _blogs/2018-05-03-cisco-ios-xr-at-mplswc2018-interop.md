@@ -37,7 +37,7 @@ With one of the largest vendor participation ever (21 in total), this event had 
 
 The following list summarizes SR related facts pertinent to Cisco’s participation at the showcase: 
 * Cisco was one of a total of ten (10) network and test equipment vendors that validated readiness of their SR implementations. The interop counted with participation from all major networking vendors
-* By far, the use of SR-MPLS dominated on those test cases that relied on MPLS as a transport.  This included the transport of services such as IP VPN and Ethernet VPNs. Use of LDP was kept to a minimum. RSVP-TE was not used at the event
+* By far, SR-MPLS dominated on those test cases using MPLS as a transport.  This included the transport of services such as IP VPN and Ethernet VPN. Use of LDP was kept to a minimum. RSVP-TE was not used at the event
 * IS-IS was chosen as the main IGP throughout the event. Note that use of OSPF was considered but not prioritized due to time constraints
 * Baseline IS-IS SR functionality was successfully verified. No interoperability issues were observed among Cisco and vendors that we interconnected with. Verified functionality included:
   * IPv4 control plane
@@ -56,11 +56,10 @@ The following list summarizes SR related facts pertinent to Cisco’s participat
 
 I describe EVPN related facts later in the blog
 
-## Cisco Participating devices and Roles
+## Cisco Participating Devices
 
-At this year’s event, Cisco IOS XR product portfolio was represented by the Cisco ASR 9000 and NCS 5500 product families.
-For the NCS 5500, it was its debut at the showcase.
-Also another first time, was the participation of Cisco IOS XRv9000 virtual router acting as a virtual SR Path Computation Element.
+At this year’s event, Cisco IOS XR product portfolio was represented by the **Cisco ASR 9000** and **NCS 5500** product families. For the NCS 5500, it was its debut at the showcase.
+Also another first time, was the participation of **Cisco IOS XRv9000** virtual router acting as a virtual SR Path Computation Element.
 
 Let’s delve next into the main test categories …
 
