@@ -71,7 +71,7 @@ It is critical for operators to provide services with SLA guarantees and to auto
 * **Optimal routing** – TI-LFA provides optimal routing by enforcing a backup path that is identical to the post-convergence path
 * **Stateless operation** – based on source routing paradigm, there is no need to create additional forwarding state in the network in order to enforce a backup path
 
-As a result of these benefits and based on our deployment experience, TI-LFA remains one of the main drivers behind SR deployments to-date. TI-LFA has been one of the key areas of execution for Cisco since we started shipping it in 2014.
+As a result of these benefits and based on our deployment experience, TI-LFA remains one of the main drivers behind SR deployments to-date. **TI-LFA has been one of the key areas of execution for Cisco since we started shipping it in 2014**.
 
 With this in mind, we welcomed the addition, for the first-time, of TI-LFA testcases to EANTC’s interop. Highlights of Cisco’s participation include:
 * **Cisco successfully validated sub-50 msec protection with TI-LFA**
@@ -126,17 +126,17 @@ For more information, I recommend reviewing this [SRTE tutorial](http://www.segm
 
 ## SR and LDP Interworking
 
-One of the key capabilities of SR is the support of brownfield deployments. [Segment Routing interworking with LDP](https://datatracker.ietf.org/doc/draft-ietf-spring-segment-routing-ldp-interop/) IETF draft documents several mechanisms through which SR interworks with LDP in a network where a mix of SR and LDP routers co-exist.
+One of the key usecases addressed by SR is the support of brownfield deployments. [Segment Routing interworking with LDP](https://datatracker.ietf.org/doc/draft-ietf-spring-segment-routing-ldp-interop/) IETF draft documents several mechanisms through which SR interworks with LDP in a network where a mix of SR and LDP routers co-exist.
 
-For scenarios where SR and LDP are available in different parts of the network, a continuous MPLS LSP in the SR-to-LDP direction requires the presence of a so-called **SR Mapping Server (SRMS)**. The SRMS is an IGP node advertising mapping between Segment Identifiers (SID) and prefixes advertised by other IGP nodes.
+For scenarios where SR and LDP are available in different parts of the network, a continuous MPLS LSP in the SR-to-LDP direction leverages the so-called **SR Mapping Server (SRMS)** function. The SRMS is an IGP node advertising mapping between Segment Identifiers (SID) and prefixes advertised by other IGP nodes.
 
-Cisco’s SR implementation supports SRMS and SR/LDP data-plane interworking functions since 2014.
+**Cisco’s SR implementation supports SRMS and SR/LDP data-plane interworking functions since 2014**.
 
 Highlights of Cisco’s participation on this test case include:
 * **Cisco was successfully validated as an SR-only node receiving IS-IS SRMS advertisements from a non-Cisco SRMS implementation**
 * **Cisco was successfully validated as an SRMS node in a domain with non-Cisco SR-only nodes**
 * **Cisco was successfully validated as an LDP/SR interconnect “stitching” node**
 
-For more information, I suggest reviewing these [SRMS](http://www.segment-routing.net/tutorials/2016-09-27-segment-routing-mapping-server/) and [SR / LDP interworking](http://www.segment-routing.net/tutorials/2016-09-27-segment-routing-and-ldp-interworking/) tutorials
+For more information, I suggest reviewing this [SRMS tutorial](http://www.segment-routing.net/tutorials/2016-09-27-segment-routing-mapping-server/) and [SR / LDP interworking tutorial](http://www.segment-routing.net/tutorials/2016-09-27-segment-routing-and-ldp-interworking/)
 
 
