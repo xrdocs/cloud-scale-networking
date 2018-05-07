@@ -15,7 +15,7 @@ excerpt: test excerpt
 {% include toc icon="table" title="Cisco IOS XR at MPLS WC 2018 interop" %}
 {% include base_path %}
 
-## Not just another interop
+## Time for another interop
 
 I have represented Cisco for more than 8 years at EANTC-sponsored interoperability events. Going back to 2008, I have experienced more pleasant Berlin winters than I could have ever imagined.
 
@@ -52,7 +52,7 @@ The following list summarizes SR related facts pertinent to Cisco’s participat
   * Topology Independent LFA (TI-LFA)
   * SR Prefix SID extensions for BGP (BGP-SR)
   * SR Operations, Administration and Maintenance (OAM)
-* Lastly, SRv6 was validated also for the first time at an EANTC event. Tests covered baseline functions from the SRv6 Network Programming IETF draft
+* Lastly, SRv6 was validated also for the first time at an EANTC event. Tests covered baseline functions from the [SRv6 Network Programming](https://datatracker.ietf.org/doc/draft-filsfils-spring-srv6-network-programming/) IETF draft
 
 I describe EVPN related facts later in the blog
 
