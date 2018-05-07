@@ -158,7 +158,7 @@ This test case also represented a first-time interop test at EANTC. Highlights o
 * **Cisco was successfully validated as initiator of SR OAM ping / traceroute operations  - using an MPLS echo request with a target FEC Stack TLV carrying FECs with the new IPv4 IGP-prefix SID sub-TLV**
 * **Cisco was successfully validated as target / responder of SR OAM ping / traceroute operations**
 
-During the event, an interop issue arose among some vendors due to different interpretations of the RFC 8287 concerning the IPv4 IGP-prefix SID sub-TLV length. A [technical errata](https://www.rfc-editor.org/errata_search.php?rfc=8287) was raised by one of the interop participating vendors against the RFC
+During the event, an interop issue arose among some vendors due to different interpretations of RFC 8287 concerning the IPv4 IGP-prefix SID sub-TLV length. A [technical errata](https://www.rfc-editor.org/errata_search.php?rfc=8287) was raised by one of the interop participating vendors.
 
 ## Ethernet VPN
 
