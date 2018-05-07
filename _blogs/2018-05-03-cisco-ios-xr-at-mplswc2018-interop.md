@@ -19,7 +19,7 @@ excerpt: test excerpt
 
 I have represented Cisco for more than 8 years at EANTC-sponsored interoperability events. Going back to 2008, I have experienced more pleasant Berlin winters than I could have ever imagined.
 
-But seriously and in retrospective, it is fascinating to have witnessed several technology (and even political) battles and transitions that shaped the networking industry. Many technologies and entire companies have had short and unsuccessful lives. In my opinion, during the late 2000s our industry was distracted and wasted brain / development cycles; remember PBT, PBB-TE, T-MPLS, MPLS-TP, OpenFlow?
+But seriously and in retrospective, it is fascinating to have witnessed several technology (and even political) battles and transitions that shaped the networking industry. Many technologies and entire companies have had short and unsuccessful lives. In my opinion, during the late 2000s our industry was deeply distracted and as a result wasted brain / development cycles in fruitless endeavors; remember PBT, PBB-TE, T-MPLS, MPLS-TP, OpenFlow?
 
 However, one technology has always remained strong – and that is MPLS. During the hype days of OpenFlow, several so-called experts questioned the future of MPLS in operator networks.  At that time, Cisco was starting the journey with Segment Routing (SR). In November of 2012, Cisco Fellow Clarence Filsfils first disclosed the SR concept to network operators. And just one year later, a new working group was officially formed at the IETF - Source Packet Routing In Networking (SPRING). And in 2015, EANTC was already conducting the first public SR interop event. Fast-forward to today and this interop provides the latest proof-point of overwhelming multi-vendor support for SR.
 
