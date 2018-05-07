@@ -179,12 +179,12 @@ Highlights of Cisco’s participation on this test area include:
   * Cisco was successfully validated as a Layer 3 DCI interconnecting EVPN datacenter sites across a WAN network based on IP-VPN 
 
 ## What is NEXT?
-Follow us on Twitter and LinkedIN for the latest announcements
+Follow us on [Twitter](https://twitter.com/segmentrouting) and [LinkedIN](https://www.linkedin.com/groups/8266623) for the latest announcements
 
-Also visit our external SR site to stay abreast of the latest presentations, tutorials, demonstrations and much more!!!
+Also visit our [external SR site](http://www.segment-routing.net/) to stay abreast of the latest presentations, tutorials, demonstrations and much more!!!
 
 Interop-wise, I look forward to another successful event in 2019. In particular, I look forward to multi-vendor interest and readiness in a number of important standard-based solutions that Cisco ALREADY proposed for this year’s event; including:
-* **IGP Segment Routing Flexible Algorithms** – Flex Algo, the latest addition to the SRTE toolkit, defines IGP extensions that allow an operator to customize and assign traffic-engineering optimizations to an IGP prefix algorithm. Flex Algo is defined at IETF for both IS-IS and OSPF. Cisco announced this new solution at Cisco Live Barcelona 2018 and further described it in Clarence’s blog and this demonstration
+* **IGP Segment Routing Flexible Algorithms** – Flex Algo, the latest addition to the SRTE toolkit, defines IGP extensions that allow an operator to customize and assign traffic-engineering optimizations to an IGP prefix algorithm. Flex Algo is defined at IETF for both [IS-IS](xxx) and [OSPF](xxx). Cisco announced this new solution at Cisco Live Barcelona 2018 and further described it in [Clarence’s blog](xxx) and this [demonstration](xxx)
 * **BGP-signaled Segment Routing Policies** – BGP can also be used to signal an SR Policy candidate path to an SRTE headend.  A new BGP SAFI and NLRI are under standardization at IETF
 * **PCEP LSP Disjointness Signaling and Computation** – Path diversity is a very common use case today in IP/MPLS networks especially for Layer 2 transport over MPLS. An IETF draft describes a PCEP extension for signaling LSP diversity constraint. Such request can then be honored by a PCE computing LSP paths of the desired disjointness type
 
