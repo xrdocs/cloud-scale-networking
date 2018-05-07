@@ -30,3 +30,28 @@ But enough of the history lesson!!! Let me move onto the important part of this 
 My goal is to provide a technical overview of Cisco’s participation at this year’s interop showcase with platforms powered by the IOS XR operating system. From a technology perspective, my focus will be on SR and EVPN. Be aware that Cisco was also represented by our Datacenter product line and the Network Services Orchestrator (NSO).
 
 First, I strongly recommend the reader to go over [EANTC’s official public whitepaper](http://www.eantc.de/en/showcases/mpls_sdn_2018). Complementing the information on their report, I take a step back hoping to provide further context and perspective of the results – Why should I CARE ABOUT the event? What do these results REALLY represent? Then last, I provide further insight as to what operators should keep in mind when evaluating vendor offerings – What ELSE to keep in mind beyond the results in the report?
+
+## The Big Picture
+
+With one of the largest vendor participation ever (21 in total), this event had the potential to become very meaningful for network operators. And in my view, the event met such expectations.
+
+The following list summarizes SR related facts pertinent to Cisco’s participation at the showcase: 
+* Cisco was one of a total of ten (10) network and test equipment vendors that validated readiness of their SR implementations. The interop counted with participation from all major networking vendors
+* By far, the use of SR-MPLS dominated on those test cases that relied on MPLS as a transport.  This included the transport of services such as IP VPN and Ethernet VPNs. Use of LDP was kept to a minimum. RSVP-TE was not used at the event
+* IS-IS was chosen as the main IGP throughout the event. Note that use of OSPF was considered but not prioritized due to time constraints
+* Baseline IS-IS SR functionality was successfully verified. No interoperability issues were observed among Cisco and vendors that we interconnected with. Verified functionality included:
+o	IPv4 control plane
+o	Prefix Segment ID (Prefix-SID) for host prefixes including both Node and Anycast SIDs
+o	Adjacency Segment IDs (Adj-SIDs) for IS-IS adjacencies
+o	Prefix-to-SID mapping advertisements performed by the SR Mapping Server (SRMS) function
+•	SR Traffic Engineering (SRTE) was another area of focus with validation of the following:
+o	Path Computation Element Protocol (PCEP) - Stateful PCE model
+o	PCEP extensions for Segment Routing
+o	BGP Link-State (BGP-LS) and extensions for Segment Routing
+•	In addition, the following SR-MPLS related topics were tested for the first time at EANTC:
+o	Topology Independent LFA (TI-LFA)
+o	SR Prefix SID extensions for BGP (BGP-SR)
+o	SR Operations, Administration and Maintenance (OAM)
+•	Lastly, SRv6 was validated also for the first time at an EANTC event. Tests covered baseline functions from the SRv6 Network Programming IETF draft
+I describe EVPN related facts later in the blog
+
