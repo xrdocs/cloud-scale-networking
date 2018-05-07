@@ -8,7 +8,7 @@ author: Jose Liste
 tags:
   - iosxr
   - cisco
-position: hidden
+position: top
 excerpt: test excerpt
 ---
 
