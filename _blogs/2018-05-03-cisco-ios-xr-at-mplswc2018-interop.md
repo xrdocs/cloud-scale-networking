@@ -166,16 +166,16 @@ From its inception, Cisco has been leading the definition of EVPN at the IETF. A
 
 Though some may have noticed IOS XR’s absence for the past couple of years at this interop, we returned back with full-strength and showcased the advanced EVPN feature set available in Cisco ASR 9000 and NCS 5500 product families.
 
-Highlights of Cisco’s participation on this test case include:
-* Cisco was one of a group of eight (8) vendors (not counting traffic emulator vendors) that participated in the EVPN test area. This represents an all-time high and included participation from all major networking vendors
-* Cisco acted as the main BGP route-reflector for EVPN and was leveraged by all participating vendors connected to the SR-MPLS core 
-* For the first time at EANTC, a common SR-MPLS network was used as the main transport for EVPN services across the core
-* EVPN all-active multi-homing over SR-MPLS test case
+Highlights of Cisco’s participation on this test area include:
+* **Cisco was one of a group of eight (8) vendors (not counting traffic emulator vendors) that participated in the EVPN test area**. This represents an all-time high and included participation from all major networking vendors
+* **Cisco acted as the main BGP route-reflector for EVPN and was leveraged by all participating vendors connected to the SR-MPLS core** 
+* For the first time at EANTC, **a common SR-MPLS network was used as the main transport for EVPN services across the core**
+* **EVPN all-active multi-homing over SR-MPLS test case**
   * All-active multi-homing functionality is one of the main advantages of EVPN over its legacy predecessors such as VPLS
   * Cisco was successfully validated as a PE in a multi-vendor multi-home Ethernet segment
-* EVPN VPWS over SR-MPLS test case
-  * Cisco was successfully validated as a PE in a single-home configuration. Participating vendors had agreed to perform multi-home testing, but we ran out of time. There are only so many days that one can run non-stop on high caffeine!!!
-* EVPN-VXLAN and IP-VPN Interworking test case
+* **EVPN VPWS over SR-MPLS test case**
+  * Cisco was successfully validated as a PE in a single-home configuration. Participating vendors had agreed to perform multi-home testing, but we ran out of time. _There are only so many days that one can run non-stop on high caffeine!!!_
+* **EVPN-VXLAN and IP-VPN Interworking test case**
   * Cisco was successfully validated as a Layer 3 DCI interconnecting EVPN datacenter sites across a WAN network based on IP-VPN 
 
 ## What is NEXT?
