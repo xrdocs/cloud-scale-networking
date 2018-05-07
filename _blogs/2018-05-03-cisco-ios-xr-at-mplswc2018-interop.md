@@ -11,7 +11,9 @@ tags:
 position: hidden
 excerpt: test excerpt
 ---
-{% include toc %}
+
+{% include toc icon="table" title="Cisco IOS XR at MPLS WC 2018 interop" %}
+{% include base_path %}
 
 ## Not just another interop
 
