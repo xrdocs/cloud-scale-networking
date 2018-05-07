@@ -7,7 +7,7 @@ excerpt: >-
   maintaining high performance and power efficiency. This paper explores this
   design and shows its strengths over traditional forwarding architectures. It
   also will address criticism of these optimizations coming from other vendors.
-author: Lane Wigley
+author: Cisco Web Team
 position: hidden
 tags:
   - iosxr
@@ -15,6 +15,7 @@ tags:
 ---
 
 {% include toc icon="table" title="NCS 5500 Buffering Architecture" %}
+
 {% include base_path %}
 
 
@@ -104,8 +105,3 @@ In 2018 or 2019, networking ASICs will begin shipping with a new technology call
 ## Summary
 
 This paper has shown the benefits of the hybrid buffering architecture and how it is implemented on Cisco’s NCS 5500 routers. It has also addressed the criticism of this design. While it should be clear that hybrid buffering is an optimal design in many cases, Cisco will still be implementing the traditional off-chip approach, especially in extensions to existing platforms.
-
-
-
-
-
