@@ -152,22 +152,23 @@ This test case represented a first-time interop test at EANTC. Highlights of Cis
 
 ## SR Operations, Administration and Maintenance (OAM)
 
-Network operators require the ability to verify and isolate faults within the SR network. IETF RFC 8287 defines a set of extensions to perform LSP Ping and Traceroute operations for SR IGP-Prefix SIDs and IGP-Adjacency SIDs with an MPLS data plane.
+Network operators require the ability to verify and isolate faults within the SR network. IETF [RFC 8287](https://tools.ietf.org/html/rfc8287) defines a set of extensions to perform LSP Ping and Traceroute operations for SR IGP-Prefix SIDs and IGP-Adjacency SIDs with an MPLS data plane.
 
 This test case also represented a first-time interop test at EANTC. Highlights of Cisco’s participation on this test case include:
-•	Cisco was successfully validated as initiator of SR OAM ping / traceroute operations  - using an MPLS echo request with a target FEC Stack TLV carrying FECs with the new IPv4 IGP-prefix SID sub-TLV
-•	Cisco was successfully validated as target / responder of SR OAM ping / traceroute operations
-During the event, an interop issue arose among some vendors due to different interpretations of the RFC 8287 concerning the IPv4 IGP-prefix SID sub-TLV length. A technical errata was raised by one of the interop participating vendors against the RFC
+* **Cisco was successfully validated as initiator of SR OAM ping / traceroute operations  - using an MPLS echo request with a target FEC Stack TLV carrying FECs with the new IPv4 IGP-prefix SID sub-TLV**
+* **Cisco was successfully validated as target / responder of SR OAM ping / traceroute operations**
+
+During the event, an interop issue arose among some vendors due to different interpretations of the RFC 8287 concerning the IPv4 IGP-prefix SID sub-TLV length. A [technical errata](https://www.rfc-editor.org/errata_search.php?rfc=8287) was raised by one of the interop participating vendors against the RFC
 
 ## Ethernet VPN
 
 From its inception, Cisco has been leading the definition of EVPN at the IETF. Followed by a strong commitment reflected in our implementation across Service Provider and Datacenter product lines, the technology is deployed by network operators worldwide.
 Though some may have noticed IOS XR’s absence for the past couple of years, we returned back with full-strength to this event and showcased the EVPN feature set available in Cisco ASR 9000 and NCS 5500 product families.
 Highlights of Cisco’s participation on this test case include:
-•	Cisco was one of a group of eight (8) vendors (not counting traffic emulator vendors) that participated in the EVPN test area. This represents an all-time high and included participation from all major networking vendors
-•	Cisco acted as the main BGP route-reflector for EVPN and was leveraged by all participating vendors connected to the SR-MPLS core 
-•	For the first time at EANTC, a common SR-MPLS network was used as the main transport for EVPN services across the core
-•	EVPN all-active multi-homing over SR-MPLS test case
+* Cisco was one of a group of eight (8) vendors (not counting traffic emulator vendors) that participated in the EVPN test area. This represents an all-time high and included participation from all major networking vendors
+* Cisco acted as the main BGP route-reflector for EVPN and was leveraged by all participating vendors connected to the SR-MPLS core 
+* For the first time at EANTC, a common SR-MPLS network was used as the main transport for EVPN services across the core
+* EVPN all-active multi-homing over SR-MPLS test case
 o	All-active multi-homing functionality is one of the main advantages of EVPN over its legacy predecessors such as VPLS
 o	Cisco was successfully validated as a PE in a multi-vendor multi-home Ethernet segment
 •	EVPN VPWS over SR-MPLS test case
