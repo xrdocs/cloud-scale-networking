@@ -29,7 +29,7 @@ But enough of the history lesson!!! Let me move onto the important part of this 
 
 My goal is to provide a technical overview of Cisco’s participation at this year’s interop showcase with platforms powered by the IOS XR operating system. From a technology perspective, my focus will be on SR and EVPN. Be aware that Cisco was also represented by our Datacenter product line and the Network Services Orchestrator (NSO).
 
-First, I strongly recommend the reader to go over [EANTC’s official public whitepaper](http://www.eantc.de/en/showcases/mpls_sdn_2018). Complementing the information on their report, I take a step back hoping to provide further context and perspective of the results – Why should I CARE ABOUT the event? What do these results REALLY represent? Then last, I provide further insight as to what operators should keep in mind when evaluating vendor offerings – What ELSE to keep in mind beyond the results in the report?
+First, I strongly recommend the reader to go over [EANTC’s official public whitepaper](http://www.eantc.de/en/showcases/mpls_sdn_2018). Complementing the information on their report, I take a step back hoping to provide further context and perspective of the results – ** _Why should I CARE ABOUT the event? What do these results REALLY represent?_ ** Then last, I provide further insight as to what operators should keep in mind when evaluating vendor offerings – ** _What ELSE to keep in mind beyond the results in the report?_ **
 
 ## The Big Picture
 
