@@ -38,6 +38,9 @@ First, I strongly recommend the reader to go over [EANTC’s official public whi
 
 With one of the largest vendor participation ever (21 in total) and over 60 device types, this event had the potential to become very meaningful for network operators. And in my view, the event met such expectations.
 
+![IMG_20180412_115001.jpg]({{site.baseurl}}/images/IMG_20180412_115001.jpg)
+Interop booth at MPLS WC - &copy; Photo by EANTC
+
 The following list summarizes SR related facts pertinent to Cisco’s participation at the showcase: 
 * Cisco was one of a total of ten (10) network and test equipment vendors that validated readiness of their SR implementations. The interop counted with participation from all major networking vendors
 * By far, SR-MPLS dominated on those test cases using MPLS as a transport.  This included the transport of services such as IP VPN and Ethernet VPN. Use of LDP was kept to a minimum. RSVP-TE was not used at the event
