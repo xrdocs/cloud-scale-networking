@@ -118,7 +118,7 @@ Highlights of Cisco’s participation as PCE include:
 * **Lastly, Cisco SR PCE was the only PCE at the event to successfully validate path computation on a multi-domain network with Egress Peering Engineering (EPE) SIDs at domain boundaries**
 
 ![20180411_163350.jpg]({{site.baseurl}}/images/20180411_163350.jpg)
-Presenting at MPLS WC with colleagues from Huawei (left) and Nokia (right) - Photo by EANTC
+Presenting at MPLS WC with colleagues from Huawei (left) and Nokia (right) - &copy; Photo by EANTC
 
 
 Lastly, and beyond protocol interoperability, it is important that operators consider these key aspects **NOT COVERED** by the report when evaluating SRTE headend and PCE implementations:
