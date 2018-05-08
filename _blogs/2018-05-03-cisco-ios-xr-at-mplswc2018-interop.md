@@ -36,7 +36,7 @@ First, I strongly recommend the reader to go over [EANTC’s official public whi
 
 ## The Big Picture
 
-With one of the largest vendor participation ever (21 in total), this event had the potential to become very meaningful for network operators. And in my view, the event met such expectations.
+With one of the largest vendor participation ever (21 in total) and over 60 device types, this event had the potential to become very meaningful for network operators. And in my view, the event met such expectations.
 
 The following list summarizes SR related facts pertinent to Cisco’s participation at the showcase: 
 * Cisco was one of a total of ten (10) network and test equipment vendors that validated readiness of their SR implementations. The interop counted with participation from all major networking vendors
