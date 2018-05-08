@@ -41,24 +41,24 @@ With one of the largest vendor participation ever (21 in total) and over 60 devi
 ![IMG_20180412_115001.jpg]({{site.baseurl}}/images/IMG_20180412_115001.jpg)
 Interop booth at MPLS WC - &copy; Photo by EANTC
 
-The following list summarizes SR related facts pertinent to Cisco’s participation at the showcase: 
-* Cisco was one of a total of ten (10) network and test equipment vendors that validated readiness of their SR implementations. The interop counted with participation from all major networking vendors
-* By far, SR-MPLS dominated on those test cases using MPLS as a transport.  This included the transport of services such as IP VPN and Ethernet VPN. Use of LDP was kept to a minimum. RSVP-TE was not used at the event
+The following list summarizes **SR related facts pertinent to Cisco’s participation** at the showcase: 
+* **Cisco was one of a total of ten (10) network and test equipment vendors** that validated readiness of their SR implementations. The interop counted with participation from all major networking vendors
+* By far, **SR-MPLS dominated on those test cases using MPLS as a transport**.  This included the transport of services such as IP VPN and Ethernet VPN. Use of LDP was kept to a minimum. RSVP-TE was not used at the event
 * IS-IS was chosen as the main IGP throughout the event. Note that use of OSPF was considered but not prioritized due to time constraints
-* Baseline IS-IS SR functionality was successfully verified. No interoperability issues were observed among Cisco and vendors that we interconnected with. Verified functionality included:
+* Baseline **IS-IS SR extensions were successfully verified**. No interoperability issues were observed among Cisco and vendors that we interconnected with. Verified functionality included:
   * IPv4 control plane
   * Prefix Segment ID (Prefix-SID) for host prefixes including both Node and Anycast SIDs
   * Adjacency Segment IDs (Adj-SIDs) for IS-IS adjacencies
   * Prefix-to-SID mapping advertisements performed by the SR Mapping Server (SRMS) function
-* SR Traffic Engineering (SRTE) was another area of focus with validation of the following:
+* **SR Traffic Engineering (SRTE) was another area of focus** with validation of the following:
   * Path Computation Element Protocol (PCEP) - Stateful PCE model
   * PCEP extensions for Segment Routing
   * BGP Link-State (BGP-LS) and extensions for Segment Routing
-* In addition, the following SR-MPLS related topics were tested for the first time at EANTC:
-  * Topology Independent LFA (TI-LFA)
-  * SR Prefix SID extensions for BGP (BGP-SR)
-  * SR Operations, Administration and Maintenance (OAM)
-* Lastly, SRv6 was validated also for the first time at an EANTC event. Tests covered baseline functions from the [SRv6 Network Programming](https://datatracker.ietf.org/doc/draft-filsfils-spring-srv6-network-programming/) IETF draft
+* In addition, the following SR-MPLS related topics were **tested for the first time at EANTC**:
+  * **Topology Independent LFA (TI-LFA)**
+  * **SR Prefix SID extensions for BGP (BGP-SR)**
+  * **SR Operations, Administration and Maintenance (OAM)**
+* Lastly, **SRv6** was validated also for the first time at an EANTC event. Tests covered baseline functions from the [SRv6 Network Programming](https://datatracker.ietf.org/doc/draft-filsfils-spring-srv6-network-programming/) IETF draft
 
 I describe EVPN related facts later in the blog
 
