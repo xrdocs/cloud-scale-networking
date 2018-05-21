@@ -7,7 +7,7 @@ excerpt: >-
   maintaining high performance and power efficiency. This paper explores this
   design and shows its strengths over traditional forwarding architectures. It
   also will address criticism of these optimizations coming from other vendors.
-author: Cisco Web Team
+author: Lane Wigley
 position: hidden
 tags:
   - iosxr
