@@ -8,7 +8,7 @@ excerpt: >-
   design and shows its strengths over traditional forwarding architectures. It
   also will address criticism of these optimizations coming from other vendors.
 author: Lane Wigley
-position: hidden
+position: top
 tags:
   - iosxr
   - cisco
