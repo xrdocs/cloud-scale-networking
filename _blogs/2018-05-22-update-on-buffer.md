@@ -108,7 +108,7 @@ The congestion window starts at some small multiple of MSS (max segment size, de
 
 Figure 1 below shows a capture of packet transmission during Slow Start with a 50 msec RTT and illustrates the bursty nature of TCP implementations as groups of packets are released.
 
-![]({{site.baseurl}}/images/buffers_update/1_img.png)
+![]({{site.baseurl}}/images/buffers-update/1_img.png)
 
 Figure 1 - Visualizing Slow Start packet progression with 50ms RTT (from packetlife.net)
 
@@ -122,7 +122,7 @@ For further discussion of retransmit timeout, refer to RFC 6298. In Tahoe, RTO i
 
 Figure 2 below shows the congestion window size during Slow Start, Congestion Avoidance, and after an RTO event.
 
-![]({{site.baseurl}}/images/buffers_update/2_img.png)
+![]({{site.baseurl}}/images/buffers-update/2_img.png)
 
 
 Figure 2 - Slow start, Congestion Avoidance, and Slow start threshold adjustment after Retransmission (multiple sources, via NC State)
@@ -151,7 +151,7 @@ and expanding the window with a cubic function. The cubic function allows the wi
 
 CUBIC is effective for high-bandwidth high-RTT networks as the congestion window growth is not dependent on ACKs (and thus RTT). CUBIC is the default in Linux and MacOS Yosemite. CUBIC is the default congestion control algorithm in Linux and is therefore broadly deployed. As Android uses Linux, it is also deployed in wireless networks.
 
-![]({{site.baseurl}}/images/buffers_update/3_img.png)
+![]({{site.baseurl}}/images/buffers-update/3_img.png)
 
 
 Figure 3 - CUBIC window expansion in red - via Geoff Huston
@@ -177,7 +177,7 @@ Using the Remy-derived algorithms with recreated traces from wireless networks y
 This approach opens a new path towards optimizing algorithms for specific applications in a range of environments, including customization for specific applications in data center, wireless, and mobile.
 
 
-![]({{site.baseurl}}/images/buffers_update/4_img.png)
+![]({{site.baseurl}}/images/buffers-update/4_img.png)
 
 Figure 4 – Median and variation in latency in throughput for congestion control schemes (upper right is best) - Winstein
 
@@ -376,7 +376,7 @@ Web browsing makes up the majority of Internet transactions. The total bandwidth
 
 Once a sufficient level of bandwidth is available, page load times are improved by reducing RTT more than adding additional bandwidth. This drives placement of content as close to the end client as possible. The chart below from Igvita shows the impact of increasing bandwidth and lowering RTT on page load times.
 
-![]({{site.baseurl}}/images/buffers_update/5_img.png)
+![]({{site.baseurl}}/images/buffers-update/5_img.png)
 
 Figure 5 - Page load times with varying bandwidth and RTT
 
