@@ -19,6 +19,7 @@ tags:
 
 ![]({{site.baseurl}}/images/buffers_update/1_img.png)
 
+# Intro
 
 Buffering requirements for routers have been a much debated and ultimately unresolved topic since the beginning of the Internet. This paper presents a technical foundation for network designers to assess buffering requirements based on applications as well as network and traffic characteristics. It also provides specific recommendations for common scenarios for use in product selection and as a starting point for deployment. 
 
@@ -226,7 +227,7 @@ Not all individual flows are elephants or mice. HTTPv2 supports low-volume long-
 
 The presence of mice, elephants, and lemmings, and their behaviors are one of the reasons it is difficult to make any generic recommendations for data center networks. Research is ongoing into the best way for these different types of flows to co-exist. Solutions such as scheduling, dividing, or recognizing and steering elephants are being explored.
 
-## TCP Summary
+### TCP Summary
 
 TCP responds to packet loss by returning to slow start (RTO detection), halting window growth (during fast retransmit with unresolved segments), or reducing the congestion window (fast recovery). Packet loss is not inherently detrimental to a network transporting TCP traffic. In fact, with currently deployed congestion control algorithms, it is a necessary tool for TCP to function properly in the presence of congestion. When segments can be recovered via SACK and fast retransmission, segment loss may not significantly slow down the overall throughput of the session relative to the requirements of most applications. Packet loss detected via RTO is more detrimental as it will return the TCP session to slow start. Multiple RTOs is the worst case and should be avoided if at all possible since it dramatically will slow down the session. Infinite buffering does not prevent RTOs, but it may prevent fast retransmission by delaying later packets.
 
