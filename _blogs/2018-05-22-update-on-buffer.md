@@ -20,7 +20,7 @@ tags:
 
 # Intro
 
-Buffering requirements for routers have been a much debated and ultimately unresolved topic since the beginning of the Internet. This paper presents a technical foundation for network designers to assess buffering requirements based on applications as well as network and traffic characteristics. It also provides specific recommendations for common scenarios for use in product selection and as a starting point for deployment. This is a long article, so if you may prefer [PDF version](https://github.com/xrdocs/cloud-scale-networking/raw/gh-pages/images/buffers-update/Buffering-WP_August_2017.pdf)
+Buffering requirements for routers have been a much debated and ultimately unresolved topic since the beginning of the Internet. This paper presents a technical foundation for network designers to assess buffering requirements based on applications as well as network and traffic characteristics. It also provides specific recommendations for common scenarios for use in product selection and as a starting point for deployment. This is a long article, so you may prefer [PDF version](https://github.com/xrdocs/cloud-scale-networking/raw/gh-pages/images/buffers-update/Buffering-WP_August_2017.pdf)
 
 ## Executive Summary
 
@@ -565,12 +565,10 @@ Van Jacobson and Michael J. Karels – Congestion Avoidance and Control
 
 Guido Appenzeller – Sizing Router Buffers (Stanford Thesis)
 
-
 [Appenzeller, Keslassy & McKeown – Sizing Router Buffers (Sigcomm)](conferences.sigcomm.org/sigcomm/2004/papers/p277-appenzeller1.pdf)
 
 Villamizer and Song – High Performance TCP in ANSNET
 A. Dhamdhere and C. Dovrolis - Open issues in router buffer sizing
-
 
 Amogh Dhamdhere, Hao Jiang, and C. Dovrolis – Buffer Sizing for Congested Internet Links
 
@@ -609,7 +607,7 @@ Inside the Social Network’s (Datacenter) Network – Arjun Roy, Hongyi Zeng, J
 
 [Initial Congestion Window Survey – Tiange Wu & Matthew Luckie UCSD](http://www.caida.org/~mjl/icw-1460.png)
 
-http://www.ietf.org/mail-archive/web/tcpm/current/msg09502.html
+[](http://www.ietf.org/mail-archive/web/tcpm/current/msg09502.html)
 
 [Nandita Dukkipati, Tiziana Refice, Yuchung Cheng, Jerry Chu, Tom Herbert, Amit Agarwal, Arvind Jain and Natalia Sutin – An Argument for Increasing TCP’s Initial Congestion Window](http://tools.ietf.org/html/draft-hkchu-tcpm-initcwnd-01)
 
@@ -631,11 +629,11 @@ Sizing Router Buffer for the Internet with Heterogeneous TCP – Peng Yang, Erto
 
 Elephants, Mice, and Lemmings! Oh My! – Fred Baker (IETF presentation) 
 
-http://www.potaroo.net/ispcol/2004-07/tcp1.html – Geoff Huston
+[](http://www.potaroo.net/ispcol/2004-07/tcp1.html) – Geoff Huston
 
-http://www.potaroo.net/ispcol/2005-06/faster.html – Geoff Huston
+[](http://www.potaroo.net/ispcol/2005-06/faster.html) – Geoff Huston
 
-http://www.m2optics.com/blog/bid/70587/Calculating-Optical-Fiber-Latency
+[](http://www.m2optics.com/blog/bid/70587/Calculating-Optical-Fiber-Latency)
 
 NY Times – Three Expensive Milliseconds 4/13/2014
 
