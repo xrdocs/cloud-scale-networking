@@ -20,7 +20,7 @@ tags:
 
 # Intro
 
-Buffering requirements for routers have been a much debated and ultimately unresolved topic since the beginning of the Internet. This paper presents a technical foundation for network designers to assess buffering requirements based on applications as well as network and traffic characteristics. It also provides specific recommendations for common scenarios for use in product selection and as a starting point for deployment. 
+Buffering requirements for routers have been a much debated and ultimately unresolved topic since the beginning of the Internet. This paper presents a technical foundation for network designers to assess buffering requirements based on applications as well as network and traffic characteristics. It also provides specific recommendations for common scenarios for use in product selection and as a starting point for deployment. This is a long article, so if you may prefer [PDF version](https://github.com/xrdocs/cloud-scale-networking/raw/gh-pages/images/buffers-update/Buffering-WP_August_2017.pdf)
 
 ## Executive Summary
 
