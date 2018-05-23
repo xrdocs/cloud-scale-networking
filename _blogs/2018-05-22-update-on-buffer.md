@@ -559,7 +559,7 @@ While it’s possible to create a situation in a lab where all traffic is coming
 
 # References
 
-Article in PDF format [ available here](https://github.com/xrdocs/cloud-scale-networking/raw/gh-pages/images/buffers-update/Buffering-WP_August_2017.pdf)
+Article in PDF format [available here](https://github.com/xrdocs/cloud-scale-networking/raw/gh-pages/images/buffers-update/Buffering-WP_August_2017.pdf)
 
 Van Jacobson and Michael J. Karels – Congestion Avoidance and Control
 
@@ -602,12 +602,11 @@ Controlling Queue Delay – Kathleen Nicols & Van Jacobson
 
 A critique of recently proposed buffer-sizing strategies - G. Vu-Brugier, R.S. Stanojevic, D.J. Leith & R.N Shorten.
 
-
 Inside the Social Network’s (Datacenter) Network – Arjun Roy, Hongyi Zeng, Jasmeet Bagga, George Porter, and Alex C. Snoeren
 
 [Initial Congestion Window Survey – Tiange Wu & Matthew Luckie UCSD](http://www.caida.org/~mjl/icw-1460.png)
 
-[](http://www.ietf.org/mail-archive/web/tcpm/current/msg09502.html)
+[http://www.ietf.org/mail-archive/web/tcpm/current/msg09502.html](http://www.ietf.org/mail-archive/web/tcpm/current/msg09502.html)
 
 [Nandita Dukkipati, Tiziana Refice, Yuchung Cheng, Jerry Chu, Tom Herbert, Amit Agarwal, Arvind Jain and Natalia Sutin – An Argument for Increasing TCP’s Initial Congestion Window](http://tools.ietf.org/html/draft-hkchu-tcpm-initcwnd-01)
 
@@ -629,11 +628,11 @@ Sizing Router Buffer for the Internet with Heterogeneous TCP – Peng Yang, Erto
 
 Elephants, Mice, and Lemmings! Oh My! – Fred Baker (IETF presentation) 
 
-[](http://www.potaroo.net/ispcol/2004-07/tcp1.html) – Geoff Huston
+[http://www.potaroo.net/ispcol/2004-07/tcp1.html](http://www.potaroo.net/ispcol/2004-07/tcp1.html) – Geoff Huston
 
-[](http://www.potaroo.net/ispcol/2005-06/faster.html) – Geoff Huston
+[http://www.potaroo.net/ispcol/2005-06/faster.html](http://www.potaroo.net/ispcol/2005-06/faster.html) – Geoff Huston
 
-[](http://www.m2optics.com/blog/bid/70587/Calculating-Optical-Fiber-Latency)
+[http://www.m2optics.com/blog/bid/70587/Calculating-Optical-Fiber-Latency](http://www.m2optics.com/blog/bid/70587/Calculating-Optical-Fiber-Latency)
 
 NY Times – Three Expensive Milliseconds 4/13/2014
 
