@@ -6,7 +6,7 @@ excerpt: >-
   Buffering requirements for routers have been a much debated and ultimately unresolved topic since the beginning of the Internet. This paper presents a technical foundation for network designers to assess buffering requirements based on applications as well as network and traffic characteristics. It also provides specific recommendations for common scenarios for use in product selection and as a starting point for deployment.
 
 author: Lane Wigley
-position: hidden
+position: top
 tags:
   - iosxr
   - cisco
