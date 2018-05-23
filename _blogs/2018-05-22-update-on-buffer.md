@@ -17,7 +17,6 @@ tags:
 
 {% include base_path %}
 
-![]({{site.baseurl}}/images/buffers_update/1_img.png)
 
 # Intro
 
@@ -560,7 +559,7 @@ While it’s possible to create a situation in a lab where all traffic is coming
 
 # References
 
-Article in PDF format [ available here]()
+Article in PDF format [ available here]({{site.baseurl}}/images/buffers_update/Buffering-WP_August_2017.pdf)
 
 Van Jacobson and Michael J. Karels – Congestion Avoidance and Control
 
@@ -647,10 +646,7 @@ Cisco Visual Networking Index 2015
 
 Web page sizes – httparchive.org
 
-HTTP/2 FAQ - https://http2.github.io/faq/
-
-
-
+[HTTP/2 FAQ](https://http2.github.io/faq/)
 
 
 
