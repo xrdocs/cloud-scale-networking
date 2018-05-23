@@ -559,14 +559,14 @@ While it’s possible to create a situation in a lab where all traffic is coming
 
 # References
 
-Article in PDF format [ available here]({{site.baseurl}}/images/buffers_update/Buffering-WP_August_2017.pdf)
+Article in PDF format [ available here](https://github.com/xrdocs/cloud-scale-networking/raw/gh-pages/images/buffers-update/Buffering-WP_August_2017.pdf)
 
 Van Jacobson and Michael J. Karels – Congestion Avoidance and Control
 
 Guido Appenzeller – Sizing Router Buffers (Stanford Thesis)
 
 
-Appenzeller, Keslassy & McKeown – Sizing Router Buffers (Sigcomm) – conferences.sigcomm.org/sigcomm/2004/papers/p277-appenzeller1.pdf
+[Appenzeller, Keslassy & McKeown – Sizing Router Buffers (Sigcomm)](conferences.sigcomm.org/sigcomm/2004/papers/p277-appenzeller1.pdf)
 
 Villamizer and Song – High Performance TCP in ANSNET
 A. Dhamdhere and C. Dovrolis - Open issues in router buffer sizing
@@ -588,12 +588,11 @@ Padhye, Parveen Patel, Balaji Prabhakar, Sudipta Sengupta & Murari Sridharan
 
 Jim Gettys – Bufferbloat: Dark Buffers in the Internet
 
-Jim Gettys – Bufferbloat talk - http://mirrors.bufferbloat.net/Talks/BellLabs01192011/110126140926_BufferBloat12.pdf
+[Jim Gettys – Bufferbloat talk](http://mirrors.bufferbloat.net/Talks/BellLabs01192011/110126140926_BufferBloat12.pdf)
 
 Vint Cerf, Van Jacobson, Nick Weaver, and Jim Gettys – BufferBloat: What’s Wrong with the Internet
 
-Smitasin and Tierney - Evaluating Network Buffer Size requirements for Very Large Data Transfers
-http://www.es.net/assets/pubs_presos/NANOG64mnsmitasinbltierneybuffersize.pptx.pdf
+[Smitasin and Tierney - Evaluating Network Buffer Size requirements for Very Large Data Transfers](http://www.es.net/assets/pubs_presos/NANOG64mnsmitasinbltierneybuffersize.pptx.pdf)
 
 Srikanth Kandula, Sudipta Sengupta, Albert Greenberg, Parveen Patel, and Ronnie Chaiken – The Nature of Datacenter Traffic: Measurements & Analysis
 
@@ -608,19 +607,19 @@ A critique of recently proposed buffer-sizing strategies - G. Vu-Brugier, R.S. S
 
 Inside the Social Network’s (Datacenter) Network – Arjun Roy, Hongyi Zeng, Jasmeet Bagga, George Porter, and Alex C. Snoeren
 
-Initial Congestion Window Survey – Tiange Wu & Matthew Luckie UCSD http://www.caida.org/~mjl/icw-1460.png
+[Initial Congestion Window Survey – Tiange Wu & Matthew Luckie UCSD](http://www.caida.org/~mjl/icw-1460.png)
 
 http://www.ietf.org/mail-archive/web/tcpm/current/msg09502.html
 
-Nandita Dukkipati, Tiziana Refice, Yuchung Cheng, Jerry Chu, Tom Herbert, Amit Agarwal, Arvind Jain and Natalia Sutin – An Argument for Increasing TCP’s Initial Congestion Window – http://tools.ietf.org/html/draft-hkchu-tcpm- initcwnd-01
+[Nandita Dukkipati, Tiziana Refice, Yuchung Cheng, Jerry Chu, Tom Herbert, Amit Agarwal, Arvind Jain and Natalia Sutin – An Argument for Increasing TCP’s Initial Congestion Window](http://tools.ietf.org/html/draft-hkchu-tcpm-initcwnd-01)
 
 Proportional Rate Reduction for TCP – Nandita Dukkipati, Matt Mathis, Yuchung Cheng & Monia Ghobadi
 
-Youtube Sliced Bread - http://gizmodo.com/inside-youtubes-master-plan-to-kill-lag-dead-563844525
+[Youtube Sliced Bread](http://gizmodo.com/inside-youtubes-master-plan-to-kill-lag-dead-563844525)
 
 Understanding TCP Incast and Its Implications for Big Data Workloads – Yanpai Chen, Rean Griffit, David Zats & Randy H. Katz
 
-Cloudflare SPDY - https://blog.cloudflare.com/what-makes-spdy-speedy/
+[Cloudflare SPDY](https://blog.cloudflare.com/what-makes-spdy-speedy/)
 
 CUBIC: A New TCP-Friendly High-Speed TCP Variant – Sangtae Ha, Injong Rhee & Lisong Xu
 
@@ -628,7 +627,7 @@ TCP’s Congestion Control implementation in Linux Kernel – Somaya Arianfar
 
 Sizing Router Buffer for the Internet with Heterogeneous TCP – Peng Yang, Ertong Zhang & Lisong Xu Transport Architectures for an Evolving Internet – Keith Winstein
 
-Remy - http://web.mit.edu/remy/ – Keith Winstein, Hari Balakrishnan, Anirudh Sivaraman & Pratiksha Thaker 
+[Remy](http://web.mit.edu/remy/)  – Keith Winstein, Hari Balakrishnan, Anirudh Sivaraman & Pratiksha Thaker 
 
 Elephants, Mice, and Lemmings! Oh My! – Fred Baker (IETF presentation) 
 
@@ -644,9 +643,12 @@ WSJ – High-Speed Stock Traders Turn to Laser Beams 2/11/2014
 
 Cisco Visual Networking Index 2015
 
-Web page sizes – httparchive.org
+[Web page sizes](httparchive.org)
 
 [HTTP/2 FAQ](https://http2.github.io/faq/)
+
+
+
 
 
 
