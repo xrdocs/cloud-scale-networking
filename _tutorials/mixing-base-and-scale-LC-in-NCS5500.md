@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 date: '2018-05-31 08:47 +0000'
 title: Mixing Base and Scale Line Cards in the same Chassis
 author: Nicolas Fevrier
