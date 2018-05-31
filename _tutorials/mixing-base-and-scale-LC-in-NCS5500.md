@@ -38,8 +38,7 @@ and soon we will see even more diversity with the introduction of the MOD line c
 - different colored optics (ACO or DCO)
 - and 25G SFP28 native ports or 4x25G breakout
 
-![]({{site.baseurl}}/images/Chassis.jpg)![Chassis.jpg]({{site.baseurl}}/images/Chassis.jpg)
-{: .align-center}
+![Chassis.jpg]({{site.baseurl}}/images/Chassis.jpg){: .align-center}
 
 Below, a 8min video covering this topic.
 
@@ -63,7 +62,7 @@ It will follow some simple principles:
 - by default, BGP routes are programmed in all line card types. "Default" here implies the operator didn't do anything special in the configuration
 - BGP paths can be colored as "external-reach-only" and they will be only programmed in -SE line cards (with an external TCAM). The coloring is defined locally via configuration.
 
-![]({{site.baseurl}}/images/external-reach.jpg)![external-reach.jpg]({{site.baseurl}}/images/external-reach.jpg){: .align-center}
+![external-reach.jpg]({{site.baseurl}}/images/external-reach.jpg){: .align-center}
 
 
 ### Configuration examples
