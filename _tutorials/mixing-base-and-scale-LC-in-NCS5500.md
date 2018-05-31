@@ -1,7 +1,7 @@
 ---
 published: false
 date: '2018-05-31 08:47 +0000'
-title: ''
+title: Mixing Base and Scale Line Cards in the same Chassis
 author: Nicolas Fevrier
 excerpt: >-
   Introduction of the "Selective Route Download" feature allowing the mix of
