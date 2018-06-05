@@ -18,7 +18,7 @@ excerpt: >-
 {% include toc icon="table" title="Cisco IOS XR at MPLS WC 2018 interop" %}
 {% include base_path %}
 
-A **Chinese** translation of this blog can be found [here](https://www.cisco.com/c/zh_cn/solutions/service-provider/segment_routing/index.html?dtid=osowbo000775) 
+A **Chinese** translation of this blog can be found [HERE](https://www.cisco.com/c/zh_cn/solutions/service-provider/segment_routing/index.html?dtid=osowbo000775) 
 
 ## Time for another interop
 
