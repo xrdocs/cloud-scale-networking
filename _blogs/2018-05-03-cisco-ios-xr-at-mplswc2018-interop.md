@@ -18,6 +18,8 @@ excerpt: >-
 {% include toc icon="table" title="Cisco IOS XR at MPLS WC 2018 interop" %}
 {% include base_path %}
 
+A **Chinese** translation of this blog can be found [here](https://www.cisco.com/c/zh_cn/solutions/service-provider/segment_routing/index.html?dtid=osowbo000775) 
+
 ## Time for another interop
 
 I have represented Cisco for more than 8 years at EANTC-sponsored interoperability events. Going back to 2008, I have experienced more pleasant Berlin winters than I could have ever imagined.
