@@ -340,7 +340,7 @@ HW Resource Information
 
 OOR Information
     NPU-0
-        Estimated Max Entries       : <mark>4000000/<mark>
+        Estimated Max Entries       : 4000000
         Red Threshold               : 95
         Yellow Threshold            : 80
         OOR State                   : Green
@@ -361,7 +361,7 @@ HW Resource Information
 
 OOR Information
     NPU-0
-        Estimated Max Entries       : <mark>2000000</mark>
+        Estimated Max Entries       : 2000000<
         Red Threshold               : 95
         Yellow Threshold            : 80
         OOR State                   : Green
@@ -374,8 +374,6 @@ Current Usage
         ip6route                    : 58908    (3 %)
 
 -- SNIP --
-
-RP/0/RP0/CPU0:5508-6.3.2#
 
 RP/0/RP0/CPU0:5508-6.3.2#sh contr npu externaltcam loc 0/1/CPU0
 
