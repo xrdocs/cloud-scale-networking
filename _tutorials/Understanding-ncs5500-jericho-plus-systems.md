@@ -121,8 +121,6 @@ Also, please note that the way we sort routes is different between 6.3.15 and 6.
 The [uRPF](https://xrdocs.github.io/cloud-scale-networking/tutorials/ncs5500-urpf/) does not affect the scale of this eTCAM (on the contrary of the first generation where it was necessary to disable the dual capacity feature, reducing the eTCAM to 1M entries). Also, the hybrid ACLs are using a different zone of the eTCAM memory and don't affect the overall scale.
 {: .notice--info}
 
-The NG eTCAM is algorithmic and the free memory displayed in the following show commands will depend on the current table distribution (in prefix length), so don't be surprised to see numbers below 4M. Also the max estimated values are currently showing 100% regardless the number. It will be fixed in  next releases.
-
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
