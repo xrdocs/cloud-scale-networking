@@ -399,6 +399,7 @@ NPU  Bank   Entry  Owner       Free     Per-DB  DB   DB
 -- SNIP --
 
 RP/0/RP0/CPU0:5508-6.3.2#
+
 </code>
 </pre>
 </div>
