@@ -126,7 +126,6 @@ The NG eTCAM is algorithmic and the free memory displayed in the following show 
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
-
 RP/0/RP0/CPU0:5508-6.3.2#sh route sum
 
 Route Source                     Routes     Backup     Deleted     Memory(bytes)
