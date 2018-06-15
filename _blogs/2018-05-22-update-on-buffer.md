@@ -559,7 +559,7 @@ While it’s possible to create a situation in a lab where all traffic is coming
 
 # References
 
-Article in PDF format [available here](https://github.com/xrdocs/cloud-scale-networking/raw/gh-pages/images/buffers-update/Buffering-WP_August_2017.pdf)
+Article in PDF format [available here](https://github.com/xrdocs/cloud-scale-networking/raw/gh-pages/images/buffers-update/Buffering-WP_June_2018.pdf)
 
 Van Jacobson and Michael J. Karels – Congestion Avoidance and Control
 
