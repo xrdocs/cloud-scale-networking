@@ -14,10 +14,9 @@ position: hidden
 {% include toc icon="table" title='Persistent Load Balancing or "Sticky ECMP"' %}  
 {% include base_path %}
 
-##Introduction
+## Introduction
 
 This document applies to NCS5500 and ASR9000 routers and has been verified as such.
-
 {: .notice--info}
 
 traditional ECMP or equal cost multipath loadbalances traffic over a number of available paths towards a destination. When one path fails, the traffic gets re-shuffled over the available number of paths.
