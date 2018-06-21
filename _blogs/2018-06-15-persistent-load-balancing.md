@@ -1,8 +1,3 @@
-This document applies to NCS5500 and ASR9000 routers and has been verified as such.
-{: .notice--info} 
-
-## Introduction
-
 ---
 published: true
 date: '2018-06-15 14:41 -0400'
@@ -153,7 +148,7 @@ Let's verify the CEF display before a failure occurred:
     <b>path-idx 2</b> NHID 0x0 [0x57ac4f74 0x0]
     next hop 10.3.0.1/32 via 10.3.0.1/32
 
-    Load distribution (persistent): 0 1 2 (refcount 1)
+    Load distribution <span style="background-color: #FDD7E4">(persistent)</span>: 0 1 2 (refcount 1)
     Hash  OK  Interface                 Address
     0     Y   GigabitEthernet0/0/0/0    10.1.0.1      
     1     Y   GigabitEthernet0/0/0/1    10.2.0.1      
@@ -169,7 +164,10 @@ After a path failure, in this example we brought gig 0/0/0/1 down:
 *Show cef <prefix> detail
 *
 
-```
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+
  LDI Update time Sep  5 11:23:13.434
    via 10.1.0.1/32, 3 dependencies, recursive, bgp-multipath [flags 0x6080]
     path-idx 0 NHID 0x0 [0x57ac4e74 0x0]
@@ -178,14 +176,16 @@ After a path failure, in this example we brought gig 0/0/0/1 down:
     path-idx 1 NHID 0x0 [0x57ac4f74 0x0]
     next hop 10.3.0.1/32 via 10.3.0.1/32
 
-    Load distribution (persistent) : 0 1 2 (refcount 1)
+    Load distribution <b>(persistent)</b> : 0 1 2 (refcount 1)
     Hash  OK  Interface                 Address
     0     Y   GigabitEthernet0/0/0/0    10.1.0.1      
-    1*    Y   GigabitEthernet0/0/0/0    10.1.0.1       
+    <b>1*    Y   GigabitEthernet0/0/0/0    10.1.0.1</b>       
     2     Y   GigabitEthernet0/0/0/2    10.3.0.1
     
     
-```
+</code>
+</pre>
+</div>
 
 Notice the replacement of bucket 1 with gig 0/0/0/0 and the "*" denoting that this path is a replacement as it took a hit before.
 
@@ -214,7 +214,9 @@ cef consistent-hashing auto-recovery
 A full trace sequence is given here with some show commands and verification:
 
 
-```
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
 
 RP/0/RSP0/CPU0:PE1#sh run | i cef
 
@@ -222,7 +224,7 @@ Building configuration...
 
  bgp graceful-restart
 
-cef consistent-hashing auto-recovery
+<b>cef consistent-hashing auto-recovery</b>
 
  
 
@@ -254,7 +256,7 @@ RP/0/RSP0/CPU0:PE1#sho cef 192.168.3.0/24 detail
 
  
 
-  Level 1 - Load distribution (consistent): 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+  <b>Level 1 - Load distribution (consistent): 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15</b>
 
   [0] via 12.4.18.2/32, recursive
 
@@ -295,7 +297,7 @@ Clear "show interface" counters on all interfaces [confirm]
 
 RP/0/RSP0/CPU0:Jan  1 21:25:20.059 PDT: statsd_manager_g[1167]: %MGBL-IFSTATS-6-CLEAR_COUNTERS : Clear counters on all interfaces 
 
-RP/0/RSP0/CPU0:PE1#LC/0/1/CPU0:Jan  1 21:25:28.050 PDT: ifmgr[215]: %PKT_INFRA-LINK-3-UPDOWN : Interface TenGigE0/1/0/5/0, changed state to Down 
+<b>RP/0/RSP0/CPU0:PE1#LC/0/1/CPU0:Jan  1 21:25:28.050 PDT: ifmgr[215]: %PKT_INFRA-LINK-3-UPDOWN : Interface TenGigE0/1/0/5/0, changed state to Down</b>
 
 LC/0/1/CPU0:Jan  1 21:25:28.050 PDT: ifmgr[215]: %PKT_INFRA-LINEPROTO-5-UPDOWN : Line protocol on Interface TenGigE0/1/0/5/0, changed state to Down 
  
@@ -322,7 +324,7 @@ RP/0/RSP0/CPU0:PE1#LC/0/1/CPU0:Jan  1 21:25:43.353 PDT: pfm_node_lc[302]: %PLATF
 
 RP/0/RSP0/CPU0:PE1#LC/0/1/CPU0:Jan  1 21:25:50.110 PDT: ifmgr[215]: %PKT_INFRA-LINK-3-UPDOWN : Interface TenGigE0/1/0/5/0, changed state to Up 
 
-LC/0/1/CPU0:Jan  1 21:25:50.110 PDT: ifmgr[215]: %PKT_INFRA-LINEPROTO-5-UPDOWN : Line protocol on Interface TenGigE0/1/0/5/0, changed state to Up 
+<b>LC/0/1/CPU0:Jan  1 21:25:50.110 PDT: ifmgr[215]: %PKT_INFRA-LINEPROTO-5-UPDOWN : Line protocol on Interface TenGigE0/1/0/5/0, changed state to Up </b>
 
  
 
@@ -343,9 +345,7 @@ RP/0/RSP0/CPU0:PE1#show int tenGigE 0/1/0/5/0 ac
 TenGigE0/1/0/5/0
 
   Protocol              Pkts In         Chars In     Pkts Out        Chars Out
-
-  IPV4_UNICAST                0                0        24585         24142470
-
+  <b>IPV4_UNICAST                0                0        24585         24142470</b>
   ARP                         1               60            1               42
 
  
@@ -411,7 +411,9 @@ RP/0/RSP0/CPU0:PE1#sho cef 192.168.3.0/24 detail
 
   [15] via 12.154.0.2/32, recursive
   
-```
+</code>
+</pre>
+</div>
 
 
 ## Restrictions and limitations
