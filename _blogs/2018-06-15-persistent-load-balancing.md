@@ -130,8 +130,7 @@ That's it!
 Let's verify the CEF display before a failure occurred:
 
 
-*Show cef <prefix> detail
-*
+**Show cef <prefix> detail**
 
 
 <div class="highlighter-rouge">
@@ -161,8 +160,8 @@ We see 3 paths identified with 3 next hops (10.1/2/3.0.1) via 3 different gig in
 
 After a path failure, in this example we brought gig 0/0/0/1 down:
 
-*Show cef <prefix> detail
-*
+**Show cef <prefix> detail**
+
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -199,7 +198,6 @@ To recover the paths and put gig0/0/0/1 back in service on the hashing use:
 
 ```
 clear route <prefix>
-
 ```
 
 ### Auto recovery
