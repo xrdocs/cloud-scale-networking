@@ -130,7 +130,7 @@ That's it!
 Let's verify the CEF display before a failure occurred:
 
 
-**Show cef <prefix> detail**
+Show cef <prefix> detail
 
 
 <div class="highlighter-rouge">
@@ -160,7 +160,7 @@ We see 3 paths identified with 3 next hops (10.1/2/3.0.1) via 3 different gig in
 
 After a path failure, in this example we brought gig 0/0/0/1 down:
 
-**Show cef <prefix> detail**
+Show cef <prefix> detail
 
 
 <div class="highlighter-rouge">
@@ -420,8 +420,6 @@ RP/0/RSP0/CPU0:PE1#sho cef 192.168.3.0/24 detail
 * Only supported for BGP prefixes
 * Sticky ECMP is available in XR 6.3.2 for NCS5500 and ASR9000
 * Auto Recovery is available in XR 6.5.1
-
-
 
 
 
