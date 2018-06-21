@@ -1,3 +1,8 @@
+This document applies to NCS5500 and ASR9000 routers and has been verified as such.
+{: .notice--info} 
+
+## Introduction
+
 ---
 published: true
 date: '2018-06-15 14:41 -0400'
@@ -109,17 +114,21 @@ end-policy
 Apply that route policy to BGP through the table-policy directive:
 
 
-```
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
 router bgp 7500
  address-family ipv4 unicast
-  table-policy sticky-ecmp
+  <b>table-policy sticky-ecmp</b>
   maximum-paths ebgp 64
   maximum-paths ibgp 32
   ! need to have multipath enabled obviously
-```
+</code>
+</pre>
+</div>
 
 That's it! 
-{notice}
+{: .notice--success}
 
 ### Verification of operation
  
@@ -130,16 +139,18 @@ Let's verify the CEF display before a failure occurred:
 *
 
 
-```
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
  LDI Update time Sep  5 11:22:38.201
    via 10.1.0.1/32, 3 dependencies, recursive, bgp-multipath [flags 0x6080]
-    path-idx 0 NHID 0x0 [0x57ac4e74 0x0]
+    <b>path-idx 0</b> NHID 0x0 [0x57ac4e74 0x0]
     next hop 10.1.0.1/32 via 10.1.0.1/32
    via 10.2.0.1/32, 3 dependencies, recursive, bgp-multipath [flags 0x6080]
-    path-idx 1 NHID 0x0 [0x57ac4a74 0x0]
+    <b>path-idx 1</b> NHID 0x0 [0x57ac4a74 0x0]
     next hop 10.2.0.1/32 via 10.2.0.1/32
    via 10.3.0.1/32, 3 dependencies, recursive, bgp-multipath [flags 0x6080]
-    path-idx 2 NHID 0x0 [0x57ac4f74 0x0]
+    <b>path-idx 2</b> NHID 0x0 [0x57ac4f74 0x0]
     next hop 10.3.0.1/32 via 10.3.0.1/32
 
     Load distribution (persistent): 0 1 2 (refcount 1)
@@ -147,7 +158,9 @@ Let's verify the CEF display before a failure occurred:
     0     Y   GigabitEthernet0/0/0/0    10.1.0.1      
     1     Y   GigabitEthernet0/0/0/1    10.2.0.1      
     2     Y   GigabitEthernet0/0/0/2    10.3.0.1  
-```
+</code>
+</pre>
+</div>
 
 We see 3 paths identified with 3 next hops (10.1/2/3.0.1) via 3 different gig interfaces. We can also see here that the stickiness is enabled through the "persistent" keyword.
 
@@ -407,3 +420,9 @@ RP/0/RSP0/CPU0:PE1#sho cef 192.168.3.0/24 detail
 * Only supported for BGP prefixes
 * Sticky ECMP is available in XR 6.3.2 for NCS5500 and ASR9000
 * Auto Recovery is available in XR 6.5.1
+
+
+
+
+
+
