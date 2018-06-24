@@ -7,7 +7,7 @@ excerpt: >-
   Traditional ECMP or equal cost multipath loadbalances traffic over a number of
   available paths towards a destination. When one path fails, the traffic gets
   re-shuffled over the available number of paths.
-position: hidden
+position: top
 ---
 
 
@@ -420,7 +420,3 @@ RP/0/RSP0/CPU0:PE1#sho cef 192.168.3.0/24 detail
 * Only supported for BGP prefixes
 * Sticky ECMP is available in XR 6.3.2 for NCS5500 and ASR9000
 * Auto Recovery is available in XR 6.5.1
-
-
-
-
