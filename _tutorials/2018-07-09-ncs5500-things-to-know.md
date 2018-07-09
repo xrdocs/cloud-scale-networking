@@ -30,16 +30,19 @@ Note: NCS5500 is not "participating" in all "trains". For instance, the 6.4.x is
 - Format
 The format used in IOS XR releases naming is always following X.Y.Zz form:
 For example 6.1.3, 6.1.31 and 6.2.25.
+
 	- It's an unwritten rule that x.y.z5 are "business releases" that are bringing the same features than x.y.z but with many bug fixes. Therefore, 6.2.25 is post 6.2.2 but pre 6.2.3 (even if 3<25)
+    
 	- x.y.z1, x.y.z2 or x.y.z3 (like 6.1.31) are releases built specifically with a group of features and most of the time with a specific list of customers using a defined and scoped use-case. They are usually not available on the [Cisco Software Download web site](https://software.cisco.com/download/home/279017029).
 
 - What means EFT, GA, etc...
-Different images are qualified with these acronyms.
-	- EFT stands for Early Field Trial: it a precode provided to specific customers with an approved test case. It's an image built and tested specifically for an usage. It can only be given to customers via their account team and in agreement with the BU/Engineering.
-- LA means Limited availability and is usually referring to images available for specific customers, images you will not find on the Cisco Software download website.
-- GA stands for General Availability and refers to images available to all customers. Examples: 6.1.3, 6.2.25, 6.2.3, 6.3.2.
-- EMR means Extended Maintenance Release and represents a specific images in a train which will be supported for longer time.
 
+Different images are qualified with these acronyms:
+
+	- EFT stands for Early Field Trial: it a precode provided to specific customers with an approved test case. It's an image built and tested specifically for an usage. It can only be given to customers via their account team and in agreement with the BU/Engineering.
+	- LA means Limited availability and is usually referring to images available for specific customers, images you will not find on the Cisco Software download website.
+	- GA stands for General Availability and refers to images available to all customers. Examples: 6.1.3, 6.2.25, 6.2.3, 6.3.2.
+	- EMR means Extended Maintenance Release and represents a specific images in a train which will be supported for longer time.
 
 
 ### Supported optics
