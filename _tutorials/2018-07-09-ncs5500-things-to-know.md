@@ -36,8 +36,9 @@ For example 6.1.3, 6.1.31 and 6.2.25.
 - What means EFT, GA, etc...
 Different images are qualified with these acronyms.
 	- EFT stands for Early Field Trial: it a precode provided to specific customers with an approved test case. It's an image built and tested specifically for an usage. It can only be given to customers via their account team and in agreement with the BU/Engineering.
-LA means Limited availability
-GA stands for General Availability
+- LA means Limited availability and is usually referring to images available for specific customers, images you will not find on the Cisco Software download website.
+- GA stands for General Availability and refers to images available to all customers. Examples: 6.1.3, 6.2.25, 6.2.3, 6.3.2.
+- EMR means Extended Maintenance Release and represents a specific images in a train which will be supported for longer time.
 
 
 
