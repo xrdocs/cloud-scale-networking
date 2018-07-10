@@ -28,6 +28,7 @@ In the case of an ASR9000, you may use one or the other but with care since some
 Note: platforms are not necessarily "participating" in all "trains". For instance, the 6.4.x is available for XRv9000 and ASR9000 but not for the NCS5500. NCS5500 portfolio can use 6.0.x, 6.1.x, 6.2.x and 6.3.x. It will be part of the 6.5.x with the upcoming release 6.5.1 for example.
 
 - Image name format
+
 The format used in IOS XR releases naming is always following X.Y.Zz
 X, Y, Z meaning are detailed in this [CCO web page](https://www.cisco.com/c/en/us/products/collateral/ios-nx-os-software/ios-xr-software/product_bulletin_c25-478699.html). For example 6.1.3, 6.1.31 and 6.2.25.
 
