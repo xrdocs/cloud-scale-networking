@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 date: '2018-07-09 14:55 +0200'
 title: NCS5500 Things to Know / Q&A
 author: Nicolas Fevrier
