@@ -53,6 +53,8 @@ Different images are qualified with these acronyms:
 The first link to bookmark is the following: it's a matrix of all optic types with all platforms and the first IOS XR release supporting this combination.
 [https://www.cisco.com/c/dam/en/us/products/se/2017/9/Collateral/fretta-optics-compatibility.pdf](https://www.cisco.com/c/dam/en/us/products/se/2017/9/Collateral/fretta-optics-compatibility.pdf)
 
+Note: looks this page is not opened, trying to fix the access rights.
+
 But what about the third party optics?
 
 We are not preventing any optic to work on the system. No PID check similar to classic XR. Therefore, no special cli is needed to enable similar to classic XR or NxOS. But the behaviour is not guaranteed. Some optics may use non-standard features and we can not guarantee whether it will work as expected or not.
