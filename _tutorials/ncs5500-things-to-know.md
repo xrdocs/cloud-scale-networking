@@ -16,7 +16,8 @@ We frequently see the same questions around the NCS5500 platform and its softwar
 We will keep this one updated regularly.
 
 **Revision**:
-- 2018-06-16: First version
+- 2018-07-09: First version
+- 2018-07-11: Add link to software center, and fix the optics support URL
 {: .notice--info}
 
 
@@ -48,12 +49,20 @@ Different images are qualified with these acronyms:
 - EMR means Extended Maintenance Release and represents a specific images in a train which will be supported for longer time.
 
 
+### Specific release per NCS5500 platform?
+
+We have a single image for the NCS5500 entire family, regardless it's a fixed-form system or a chassis, could it be 4, 8 and 16 slots, and regardless of the forwarding ASIC (Qumran-MX, Jericho or Jericho+).
+
+![software-path.png]({{site.baseurl}}/images/software-path.png)
+
+Pick the link to 5508 image as indicated above, it's the link to all systems, not only for 5508.
+
+
 ### Supported optics
 
-The first link to bookmark is the following: it's a matrix of all optic types with all platforms and the first IOS XR release supporting this combination.
-[https://www.cisco.com/c/dam/en/us/products/se/2017/9/Collateral/fretta-optics-compatibility.pdf](https://www.cisco.com/c/dam/en/us/products/se/2017/9/Collateral/fretta-optics-compatibility.pdf)
+The first link to bookmark is the following: Select the interface type and then NCS5500.
 
-Note: looks this page is not opened, trying to fix the access rights.
+[https://www.cisco.com/c/en/us/support/interfaces-modules/transceiver-modules/products-device-support-tables-list.html](https://www.cisco.com/c/en/us/support/interfaces-modules/transceiver-modules/products-device-support-tables-list.html)
 
 But what about the third party optics?
 
