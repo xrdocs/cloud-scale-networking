@@ -26,13 +26,13 @@ An access-list is applied under on interface statement. It contains an address-f
 
 An access-list is made of access-list entries (ACEs). The scale, both in term of ACL and ACE, will depend on the type of interface, the address-family and the direction.
 
-The first part of the ACL defines if it's L2, v4 or v6, and describes the name used to call it under the inferfaes. The following lines are representing the Access-list Entries (ACEs).
+The first part of the ACL defines the protocol-type L2, v4 or v6, and describes the name used to call it under the inferfaces. The following lines are representing the Access-list Entries (ACEs).
 
 ![ACE-ACL2.png]({{site.baseurl}}/images/ACE-ACL2.png)
 
 If you don't use numbers to identify the lines when you configure your ACEs, the system will automatically assign numbers. They are multiple of 10 and increment line after line. After the creation, the operateur will be able to edit the ACL content, inserting entries with intermediate values or deleting entries with the appropriate value.
 
-In ASR9000, it's possible to re-sequence the ACEs but it's not supported with NCS5500.
+In ASR9000 or CRS, it was possible to re-sequence the ACEs but it's not supported with NCS5500.
 
 
 ## Interface/ACL Support (status in IOS XR 6.2.3 / 6.5.1)
@@ -43,7 +43,7 @@ Where can be "used" these ACLs ? We support L2 and L3 ACL but “conditions may 
 - Ingress IPv6 ACLs are supported on L3 physical, bundles, sub-interfaces and bundled sub-interfaces, but also on BVI interfaces
 - Egress IPv4 ACLs are supported on L3 physical and bundle interfaces but also on BVI interfaces
 - Egress IPv6 ACLs are supported on L3 physical and bundle interfaces but also on BVI interfaces
-- Egress IPv4 or IPv6 ACLs are NOT supported on L3 sub-interfaces or bundled sub-interfaces
+- Egress IPv4 or IPv6 ACLs are NOT supported on L3 sub-interfaces or bundled sub-interfaces (but if you apply the ACL on the physical or bundle, all packets on the sub-interfaces will be handled by this ACL)
 - It’s no possible to apply an L2 ACL on an IPv4/IPv6 (L3) interface or vice versa
 - Ingress L2 ACLs are supported but not egress L2 ACLs
 - Ranges are supported but only for source-port only
@@ -109,12 +109,44 @@ Note: it's possible to have both 31 ingress AND 255 egress ACLs, but it's for th
 {: .notice--info}
 
 
-## Match support
+## Match support, parameters and edition
+
+### Edition
+
+When using traditional / "flat" ACL, it's possible to edit the ACEs in-line. But when using object-groups (defined in a following section), it's an atomic process where the new ACE replaces the existing one.
 
 ### Range
 
 We support range statement
 
+ipv4 access-list test-range-24
+10 permit tcp host 1.2.3.4 range 130 150 host 2.3.4.5
+20 permit tcp host 1.2.3.4 range 230 250 host 2.3.4.5
+30 permit tcp host 1.2.3.4 range 330 350 host 2.3.4.5
+40 permit tcp host 1.2.3.4 range 430 450 host 2.3.4.5
+50 permit tcp host 1.2.3.4 range 530 550 host 2.3.4.5
+60 permit tcp host 1.2.3.4 range 630 750 host 2.3.4.5
+70 permit tcp host 1.2.3.4 range 730 750 host 2.3.4.5
+80 permit tcp host 1.2.3.4 range 830 850 host 2.3.4.5
+90 permit tcp host 1.2.3.4 range 930 950 host 2.3.4.5
+100 permit tcp host 1.2.3.4 range 1030 1050 host 2.3.4.5
+110 permit tcp host 1.2.3.4 range 1130 1150 host 2.3.4.5
+120 permit tcp host 1.2.3.4 range 1230 1250 host 2.3.4.5
+130 permit tcp host 1.2.3.4 range 1330 1350 host 2.3.4.5
+140 permit tcp host 1.2.3.4 range 1430 1450 host 2.3.4.5
+150 permit tcp host 1.2.3.4 range 1530 1550 host 2.3.4.5
+160 permit tcp host 1.2.3.4 range 1630 1750 host 2.3.4.5
+170 permit tcp host 1.2.3.4 range 1730 1750 host 2.3.4.5
+180 permit tcp host 1.2.3.4 range 1830 1850 host 2.3.4.5
+190 permit tcp host 1.2.3.4 range 1930 1950 host 2.3.4.5
+200 permit tcp host 1.2.3.4 range 2030 2050 host 2.3.4.5
+210 permit tcp host 1.2.3.4 range 2130 2150 host 2.3.4.5
+220 permit tcp host 1.2.3.4 range 2230 2250 host 2.3.4.5
+230 permit tcp host 1.2.3.4 range 2330 2350 host 2.3.4.5
+240 permit tcp host 1.2.3.4 range 2430 2450 host 2.3.4.5
+250 permit tcp host 1.2.3.4 range 2530 2550 host 2.3.4.5
+
+### match statements
 
 
 ## Memory space
@@ -217,17 +249,36 @@ NPU  Bank   Entry  Owner       Free     Per-DB  DB   DB
 </pre>
 </div>
 
-((( Check memory bank 6 )))
+## Sharing / Unique
 
 
-
-Unique ACL
-
-ACL sharing
+## Statistics
 
 Counters
+
+## Misc 
+
+No resequencing
+
+Copy is possible
+
+
 log
 frag
 ttl
-No resequencing
 
+
+
+## Resources
+
+CCO guides: Implementing ACLs
+
+[https://www.cisco.com/c/en/us/td/docs/iosxr/ncs5500/ip-addresses/63x/b-ip-addresses-configuration-guide-ncs5500-63x/b-ip-addresses-configuration-guide-ncs5500-63x_chapter_010.html](https://www.cisco.com/c/en/us/td/docs/iosxr/ncs5500/ip-addresses/63x/b-ip-addresses-configuration-guide-ncs5500-63x/b-ip-addresses-configuration-guide-ncs5500-63x_chapter_010.html)
+
+CCO guide: ACL commands
+
+[https://www.cisco.com/c/en/us/td/docs/iosxr/ncs5500/ip-addresses/b-ip-addresses-cr-ncs5500/b-ncs5500-ip-addresses-cli-reference_chapter_01.html](https://www.cisco.com/c/en/us/td/docs/iosxr/ncs5500/ip-addresses/b-ip-addresses-cr-ncs5500/b-ncs5500-ip-addresses-cli-reference_chapter_01.html)
+
+## Thanks :)
+
+Thanks a lot to Puneet Kalra for his help on this post.
