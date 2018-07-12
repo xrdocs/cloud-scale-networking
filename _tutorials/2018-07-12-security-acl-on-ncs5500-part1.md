@@ -13,66 +13,107 @@ position: top
 
 First article on the Security Access-List implementation on the NCS5500 series. We will dedicate a separate post on the Hybrid-ACL (also known as Scale-ACL or Object-Based-ACL). 
 
-While hybrid-ACL will be only supported on -SE systems with external TCAM, the traditional security ACL can be used on all the systems and line cards of the portfolio. They are available in ingress, egress, for IPv4, IPv6 and L2. We will detail all the supported options later on in this document.
+While hybrid-ACL will be only supported on -SE systems with external TCAM, the traditional security ACL can be used on all systems and line cards of the portfolio. They are available in ingress, egress, for IPv4, IPv6 and L2.
 
-Please note: we don’t cover access-list used for route-filtering in this document. We don’t cover Access-list Based Forwarding feature, or SPAN (packet capture / replication) based on ACL either. We only intend to cover the security ACL aimed at filtering packets going through the routing device. 
+Please note: we don’t cover access-list used for route-filtering in this document. We don’t cover Access-list Based Forwarding feature, nor SPAN (packet capture / replication) based on ACL either. We only intend to cover security ACL aimed at filtering packets going through or to the routing device.
 
 
 ## Basic notions on ACLs
 
-An access-list is applied under on interface statement. It contains an address-family, an ACL identifier or name and a direction.
+An access-list is applied under on interface statement. It contains an address-family, an ACL identifier (or name) and a direction.
 
 ![acl-format.png]({{site.baseurl}}/images/acl-format.png)
 
-An access-list is made of access-list entries (ACEs). Scale both in term of ACL and ACL will depends on the type of interface, the address-family and the direction.
+An access-list is made of access-list entries (ACEs). The scale, both in term of ACL and ACE, will depend on the type of interface, the address-family and the direction.
 
-The first part of the ACL defines if it's L2, v4 or v6, and the name then the following lines are representing the Access-list Entries (ACEs).
+The first part of the ACL defines if it's L2, v4 or v6, and describes the name used to call it under the inferfaes. The following lines are representing the Access-list Entries (ACEs).
 
-![ACE-ACL.png]({{site.baseurl}}/images/ACE-ACL.png)
+![ACE-ACL2.png]({{site.baseurl}}/images/ACE-ACL2.png)
 
-If you don't use numbers to identify the lines when you configure your ACEs, the system will automatically assign multiple of ten and will increment line after line. Then, the operateur will be able to edit the ACL inserting entries using intermediate values or deleting entries with the appropriate value.
+If you don't use numbers to identify the lines when you configure your ACEs, the system will automatically assign numbers. They are multiple of 10 and increment line after line. After the creation, the operateur will be able to edit the ACL content, inserting entries with intermediate values or deleting entries with the appropriate value.
+
+In ASR9000, it's possible to re-sequence the ACEs but it's not supported with NCS5500.
 
 
-## Support (status in IOS XR 6.5.1)
+## Interface/ACL Support (status in IOS XR 6.2.3 / 6.5.1)
 
-- We support L2 and L3 ACL but “conditions may apply"
-- Ingress IPv4 ACLs are supported on L3 physical, bundles, sub-interfaces and bundled sub-interfaces, but also on BVI interfaces.
-- Ingress IPv6 ACLs are supported on L3 physical, bundles, sub-interfaces and bundled sub-interfaces, but also on BVI interfaces.
-- Egress IPv4 ACLs are supported on L3 physical and bundle interfaces but also on BVI interfaces.
-- Egress IPv6 ACLs are supported on L3 physical and bundle interfaces but also on BVI interfaces.
+Where can be "used" these ACLs ? We support L2 and L3 ACL but “conditions may apply"
+
+- Ingress IPv4 ACLs are supported on L3 physical, bundles, sub-interfaces and bundled sub-interfaces, but also on BVI interfaces
+- Ingress IPv6 ACLs are supported on L3 physical, bundles, sub-interfaces and bundled sub-interfaces, but also on BVI interfaces
+- Egress IPv4 ACLs are supported on L3 physical and bundle interfaces but also on BVI interfaces
+- Egress IPv6 ACLs are supported on L3 physical and bundle interfaces but also on BVI interfaces
 - Egress IPv4 or IPv6 ACLs are NOT supported on L3 sub-interfaces or bundled sub-interfaces
-- It’s no possible to apply an L2 ACL on an IPv4/IPv6 (L3) interface.
+- It’s no possible to apply an L2 ACL on an IPv4/IPv6 (L3) interface or vice versa
+- Ingress L2 ACLs are supported but not egress L2 ACLs
+- Ranges are supported but only for source-port only
 
 Let’s summarise:
+
 | Interface Type | Direction | AF | Suppport ? |
 |:-----:|:-----:|:-----:|:-----:|
-|  L3 Physical | Ingress | IPv4 | xxx |
-|  L3 Physical | Ingress | IPv6 | xxx |
-|  L3 Physical | Egress | IPv4 | xxx |
-|  L3 Physical | Egress | IPv6 | xxx |
-|  L3 Bundle | Ingress | IPv4 | xxx |
-|  L3 Bundle | Ingress | IPv6 | xxx |
-|  L3 Bundle | Egress | IPv4 | xxx |
-|  L3 Bundle | Egress | IPv6 | xxx |
-|  L3 Sub-interface | Ingress | IPv4 | xxx |
-|  L3 Sub-interface | Ingress | IPv6 | xxx |
-|  L3 Sub-interface | Egress | IPv4 | xxx |
-|  L3 Sub-interface | Egress | IPv6 | xxx |
-|  L3 Bundled Sub-interface | Ingress | IPv4 | xxx |
-|  L3 Bundled Sub-interface | Ingress | IPv6 | xxx |
-|  L3 Bundled Sub-interface | Egress | IPv4 | xxx |
-|  L3 Bundled Sub-interface | Egress | IPv6 | xxx |
-|  BVI | Ingress | IPv4 | xxx |
-|  BVI | Ingress | IPv6 | xxx |
-|  BVI | Egress | IPv4 | xxx |
-|  BVI | Egress | IPv6 | xxx |
+|  L3 Physical | Ingress | IPv4 | YES |
+|  L3 Physical | Ingress | IPv6 | YES |
+|  L3 Physical | Egress | IPv4 | YES |
+|  L3 Physical | Egress | IPv6 | YES |
+|  L3 Physical | Ingress | L2 | NO |
+|  L3 Physical | Egress | L2 | NO |
+|  L3 Bundle | Ingress | IPv4 | YES |
+|  L3 Bundle | Ingress | IPv6 | YES |
+|  L3 Bundle | Egress | IPv4 | YES |
+|  L3 Bundle | Egress | IPv6 | YES |
+|  L3 Bundle | Ingress | L2 | NO |
+|  L3 Bundle | Egress | L2 | NO |
+|  L3 Sub-interface | Ingress | IPv4 | YES |
+|  L3 Sub-interface | Ingress | IPv6 | YES |
+|  L3 Sub-interface | Egress | IPv4 | NO |
+|  L3 Sub-interface | Egress | IPv6 | NO |
+|  L3 Bundled Sub-interface | Ingress | IPv4 | YES |
+|  L3 Bundled Sub-interface | Ingress | IPv6 | YES |
+|  L3 Bundled Sub-interface | Egress | IPv4 | NO |
+|  L3 Bundled Sub-interface | Egress | IPv6 | NO |
+|  L3 Bundled Sub-interface | Ingress | L2 | NO |
+|  L3 Bundle Sub-interface | Egress | L2 | NO |
+|  BVI | Ingress | IPv4 | YES |
+|  BVI | Ingress | IPv6 | YES |
+|  BVI | Egress | IPv4 | YES |
+|  BVI | Egress | IPv6 | NO |
+|  Tunnel | Ingress | IPv4 | Partial |
+|  Tunnel | Ingress | IPv6 | NO |
+|  Tunnel | Egress | IPv4 | Partial |
+|  Tunnel | Egress | IPv6 | NO |
+|  L2 | Ingress | IPv4 | NO |
+|  L2 | Ingress | IPv6 | NO |
+|  L2 | Egress | IPv4 | NO |
+|  L2 | Egress | IPv6 | NO |
+|  L2 | Ingress | L2 | YES |
+|  L2 | Egress | L2 | NO |
 
 
 ## Scale
 
-The number of ACLs and ACEs we support is expressed per NPU (Qumran-MX, Jericho, Jericho+, …). Since the ACLs are applied on ports, we invite you to check the former blog post describing the port to NPU assignments.
+The number of ACLs and ACEs we support is expressed per NPU (Qumran-MX, Jericho, Jericho+). Since the ACLs are applied on ports, we invite you to check the former blog post describing the port to NPU assignments.
 
 Also, keep in mind that an ACL applied to a bundle interface where the port members span over multiple NPU will see the ACL/ACEs replicated on all the participating NPUs.
+
+By default (that mean without changing the hardware profiles), we support simultaneously up to:
+- max 31 unique attached ingress ACLs per NPU
+- max 255 unique attached egress ACLs per NPU
+- max 4000 attached ingress IPv4 ACEs per LC
+- max 4000 attached egress IPv4 ACEs per LC
+- max 2000 attached ingress IPv6 ACEs per LC
+- max 2000 attached egress IPv6 ACEs per LC
+- max 2000 attached ingress L2 ACEs per LC
+
+Note: it's possible to have both 31 ingress AND 255 egress ACLs, but it's for the ACEs it's a logical OR.
+{: .notice--info}
+
+
+## Match support
+
+### Range
+
+We support range statement
 
 
 
