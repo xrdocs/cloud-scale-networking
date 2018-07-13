@@ -11,7 +11,7 @@ position: hidden
 
 ## Introduction
 
-First article on the Security Access-List implementation on the NCS5500 series. We will dedicate a separate post on the Hybrid-ACL (also known as Scale-ACL or Object-Based-ACL). 
+Let's talk about the "traditional" Security Access-List implementation on the NCS5500 series. In the near future, we will dedicate a separate post on the Hybrid-ACL (also known as Scale-ACL or Object-Based-ACL). 
 
 While hybrid-ACL will be only supported on -SE systems with external TCAM, the traditional security ACL can be used on all systems and line cards of the portfolio. They are available in ingress, egress, for IPv4, IPv6 and L2.
 
