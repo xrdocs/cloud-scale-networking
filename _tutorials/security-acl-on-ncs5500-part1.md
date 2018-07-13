@@ -48,7 +48,7 @@ Where can be "used" these ACLs ? We support L2 and L3 ACL but “conditions may 
 - Egress IPv4 or IPv6 ACLs are NOT supported on L3 sub-interfaces or bundled sub-interfaces (but if you apply the ACL on the physical or bundle, all packets on the sub-interfaces will be handled by this ACL)
 - It’s no possible to apply an L2 ACL on an IPv4/IPv6 (L3) interface or vice versa
 - Ingress L2 ACLs are supported but not egress L2 ACLs
-- Ranges are supported but only for source-port only
+- Ranges are supported but only for source-port
 
 Let’s summarise:
 
