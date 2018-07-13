@@ -146,39 +146,7 @@ When using traditional / "flat" ACLs, it's possible to edit the ACEs in-line. Th
 
 ### Range
 
-We support range statement but only with the limit of 23 range-IDs.
-
-ipv4 access-list test-range-24
-10 permit tcp host 1.2.3.4 range 130 150 host 2.3.4.5
-20 permit tcp host 1.2.3.4 range 230 250 host 2.3.4.5
-30 permit tcp host 1.2.3.4 range 330 350 host 2.3.4.5
-40 permit tcp host 1.2.3.4 range 430 450 host 2.3.4.5
-50 permit tcp host 1.2.3.4 range 530 550 host 2.3.4.5
-60 permit tcp host 1.2.3.4 range 630 750 host 2.3.4.5
-70 permit tcp host 1.2.3.4 range 730 750 host 2.3.4.5
-80 permit tcp host 1.2.3.4 range 830 850 host 2.3.4.5
-90 permit tcp host 1.2.3.4 range 930 950 host 2.3.4.5
-100 permit tcp host 1.2.3.4 range 1030 1050 host 2.3.4.5
-110 permit tcp host 1.2.3.4 range 1130 1150 host 2.3.4.5
-120 permit tcp host 1.2.3.4 range 1230 1250 host 2.3.4.5
-130 permit tcp host 1.2.3.4 range 1330 1350 host 2.3.4.5
-140 permit tcp host 1.2.3.4 range 1430 1450 host 2.3.4.5
-150 permit tcp host 1.2.3.4 range 1530 1550 host 2.3.4.5
-160 permit tcp host 1.2.3.4 range 1630 1750 host 2.3.4.5
-170 permit tcp host 1.2.3.4 range 1730 1750 host 2.3.4.5
-180 permit tcp host 1.2.3.4 range 1830 1850 host 2.3.4.5
-190 permit tcp host 1.2.3.4 range 1930 1950 host 2.3.4.5
-200 permit tcp host 1.2.3.4 range 2030 2050 host 2.3.4.5
-210 permit tcp host 1.2.3.4 range 2130 2150 host 2.3.4.5
-220 permit tcp host 1.2.3.4 range 2230 2250 host 2.3.4.5
-230 permit tcp host 1.2.3.4 range 2330 2350 host 2.3.4.5
-240 permit tcp host 1.2.3.4 range 2430 2450 host 2.3.4.5
-250 permit tcp host 1.2.3.4 range 2530 2550 host 2.3.4.5
-260 permit tcp host 1.2.3.4 range 2630 2650 host 2.3.4.5
-270 permit tcp host 1.2.3.4 range 2730 2750 host 2.3.4.5
-280 permit tcp host 1.2.3.4 range 2830 2850 host 2.3.4.5
-290 permit tcp host 1.2.3.4 range 2930 2950 host 2.3.4.5
-300 permit tcp host 1.2.3.4 range 3030 3050 host 2.3.4.5
+We support range statements but only with the limit of 23 range-IDs.
 
 
 ### match statements
@@ -690,8 +658,222 @@ Even if not frequently used in non-eTCAM systems, we support the use of object-b
 
 Note: in this context of non-SE platforms, we will use a non-compressed mode. All entries will be expanded and programmed in the iTCAM.
 
+The principle is simple and clever: define groups of networks and groups of ports, then use them in the ACEs:
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config)#object-group ?
+  network  Network object group
+  port     Port object group
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config)#
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config)#object-group network ipv4 net-obj-srv-1
+RP/0/RP0/CPU0:NCS55A1-24H-6(config-object-group-ipv4)#host 1.2.3.4
+RP/0/RP0/CPU0:NCS55A1-24H-6(config-object-group-ipv4)#2.3.4.0/24
+RP/0/RP0/CPU0:NCS55A1-24H-6(config-object-group-ipv4)#3.4.0.0/16
+RP/0/RP0/CPU0:NCS55A1-24H-6(config-object-group-ipv4)#4.0.0.0/8
+RP/0/RP0/CPU0:NCS55A1-24H-6(config-object-group-ipv4)#exit
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config)#
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config)#object-group port port-obj-srv-1
+RP/0/RP0/CPU0:NCS55A1-24H-6(config-object-group-port)#description Ports for srv1
+RP/0/RP0/CPU0:NCS55A1-24H-6(config-object-group-port)#eq 80
+RP/0/RP0/CPU0:NCS55A1-24H-6(config-object-group-port)#eq 443
+RP/0/RP0/CPU0:NCS55A1-24H-6(config-object-group-port)#eq 8080
+RP/0/RP0/CPU0:NCS55A1-24H-6(config-object-group-port)#eq 179
+RP/0/RP0/CPU0:NCS55A1-24H-6(config-object-group-port)#exit
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config)#
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config)#ipv4 access-list network-object-acl-1
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config-ipv4-acl)#10 permit tcp net-group net-obj-srv-1 port-group port-obj-srv-1 any
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config-ipv4-acl)#int hu 0/0/0/2
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config-if)#ipv4 access-group network-object-acl-1 ingress compress level 0
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config-if)#commit
+</code>
+</pre>
+</div>
+
+Note: the compress level 0 is default and not necessary here.
+{: .notice--info}
+
+With the following show commands, we can verify the ACL is actually expanded to be programmed in the iTCAM (because we don't use compression). So these 4x4 matrix will end up as 16 entries (+ the default entry).
+
+Note: a default entry is added for each ACLv4 and 3 default entries are added for each ACLv6.
+{: .notice--info}
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#sh access-list ipv4 usage pfilter location 0/0/CPU0
+
+Interface : HundredGigE0/0/0/2
+    Input  ACL : Common-ACL : N/A  ACL : network-object-acl-1
+    Output ACL : N/A
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#sh access-lists ipv4 network-object-acl-1 expanded
+
+ipv4 access-list network-object-acl-1
+ 10 permit tcp 4.0.0.0 0.255.255.255 eq www any
+ 10 permit tcp 4.0.0.0 0.255.255.255 eq bgp any
+ 10 permit tcp 4.0.0.0 0.255.255.255 eq 443 any
+ 10 permit tcp 4.0.0.0 0.255.255.255 eq 8080 any
+ 10 permit tcp 3.4.0.0 0.0.255.255 eq www any
+ 10 permit tcp 3.4.0.0 0.0.255.255 eq bgp any
+ 10 permit tcp 3.4.0.0 0.0.255.255 eq 443 any
+ 10 permit tcp 3.4.0.0 0.0.255.255 eq 8080 any
+ 10 permit tcp 2.3.4.0 0.0.0.255 eq www any
+ 10 permit tcp 2.3.4.0 0.0.0.255 eq bgp any
+ 10 permit tcp 2.3.4.0 0.0.0.255 eq 443 any
+ 10 permit tcp 2.3.4.0 0.0.0.255 eq 8080 any
+ 10 permit tcp host 1.2.3.4 eq www any
+ 10 permit tcp host 1.2.3.4 eq bgp any
+ 10 permit tcp host 1.2.3.4 eq 443 any
+ 10 permit tcp host 1.2.3.4 eq 8080 any
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#
+</code>
+</pre>
+</div>
+
+And we can verify it's programmed as such in the hardware / iTCAM:
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#sh access-lists ipv4 network-object-acl-1 hardware ingress interface hu0/0/0/2 verify location 0/0/CPU0
+
+Verifying TCAM entries for network-object-acl-1
+Please wait...
 
 
+
+    INTF    NPU lookup  ACL # intf Total  compression Total   result failed(Entry) TCAM entries
+                type    ID  shared ACES   prefix-type Entries        ACE SEQ #     verified
+ ---------- --- ------- --- ------ ------ ----------- ------- ------ ------------- ------------
+
+HundredGigE0_0_0_2 (ifhandle: 0xe0)
+
+              0 IPV4      1      1      1 <mark>NONE</mark>             <mark>17</mark> <mark>passed</mark>                         <mark>17</mark>
+
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#sh access-lists ipv4 network-object-acl-1 hardware ingress interface hu 0/0/0/2 detail location 0/0/CPU0
+
+network-object-acl-1 Details:
+Sequence Number: 10
+NPU ID: 0
+<mark>Number of DPA Entries: 16</mark>
+ACL ID: 1
+ACE Action: PERMIT
+ACE Logging: DISABLED
+ABF Action: 0(ABF_NONE)
+Hit Packet Count: 0
+Protocol: 0x06 (Mask 0xFF)
+Source Address: 4.0.0.0 (Mask 0.255.255.255)
+DPA Entry: 1
+        Entry Index: 0x0
+        DPA Handle: 0xC5196098
+        Source Port: 80 (Mask 65535)
+DPA Entry: 2
+        Entry Index: 0x1
+        DPA Handle: 0xC51963E0
+        Source Port: 179 (Mask 65535)
+DPA Entry: 3
+        Entry Index: 0x2
+        DPA Handle: 0xC5196728
+        Source Port: 443 (Mask 65535)
+DPA Entry: 4
+        Entry Index: 0x3
+        DPA Handle: 0xC5196A70
+        Source Port: 8080 (Mask 65535)
+DPA Entry: 5
+        Entry Index: 0x4
+        DPA Handle: 0xC5196DB8
+        Source Port: 80 (Mask 65535)
+DPA Entry: 6
+        Entry Index: 0x5
+        DPA Handle: 0xC5197100
+        Source Port: 179 (Mask 65535)
+DPA Entry: 7
+        Entry Index: 0x6
+        DPA Handle: 0xC5197448
+        Source Port: 443 (Mask 65535)
+DPA Entry: 8
+        Entry Index: 0x7
+        DPA Handle: 0xC5197790
+        Source Port: 8080 (Mask 65535)
+DPA Entry: 9
+        Entry Index: 0x8
+        DPA Handle: 0xC5197AD8
+        Source Port: 80 (Mask 65535)
+DPA Entry: 10
+        Entry Index: 0x9
+        DPA Handle: 0xC5197E20
+        Source Port: 179 (Mask 65535)
+DPA Entry: 11
+        Entry Index: 0xa
+        DPA Handle: 0xC5198168
+        Source Port: 443 (Mask 65535)
+DPA Entry: 12
+        Entry Index: 0xb
+        DPA Handle: 0xC51984B0
+        Source Port: 8080 (Mask 65535)
+DPA Entry: 13
+        Entry Index: 0xc
+        DPA Handle: 0xC51987F8
+        Source Port: 80 (Mask 65535)
+DPA Entry: 14
+        Entry Index: 0xd
+        DPA Handle: 0xC5198B40
+        Source Port: 179 (Mask 65535)
+DPA Entry: 15
+        Entry Index: 0xe
+        DPA Handle: 0xC5198E88
+        Source Port: 443 (Mask 65535)
+DPA Entry: 16
+        Entry Index: 0xf
+        DPA Handle: 0xC51991D0
+        Source Port: 8080 (Mask 65535)
+Sequence Number: IMPLICIT DENY
+NPU ID: 0
+Number of DPA Entries: 1
+ACL ID: 1
+ACE Action: DENY
+ACE Logging: DISABLED
+ABF Action: 0(ABF_NONE)
+Hit Packet Count: 0
+DPA Entry: 1
+        Entry Index: 0x0
+        DPA Handle: 0xC5199518
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#sh contr npu internaltcam loc 0/0/CPU0
+
+Internal TCAM Resource Information
+=============================================================
+NPU  Bank   Entry  Owner       Free     Per-DB  DB   DB
+     Id     Size               Entries  Entry   ID   Name
+=============================================================
+0    0\1    320b   pmf-0       2010     32      7    INGRESS_LPTS_IPV4
+0    0\1    320b   pmf-0       2010     2       12   INGRESS_RX_ISIS
+0    0\1    320b   pmf-0       2010     2       32   INGRESS_QOS_IPV6
+0    0\1    320b   pmf-0       2010     2       34   INGRESS_QOS_L2
+0    2      160b   pmf-0       2044     2       31   INGRESS_QOS_IPV4
+0    2      160b   pmf-0       2044     1       33   INGRESS_QOS_MPLS
+0    2      160b   pmf-0       2044     1       42   INGRESS_ACL_L2
+0    3      160b   egress_acl  2031     17      4    EGRESS_QOS_MAP
+0    4\5    320b   pmf-0       2024     24      8    INGRESS_LPTS_IPV6
+0    <mark>6</mark>      160b   <mark>pmf-0</mark>       2031     <mark>17</mark>      16   <mark>INGRESS_ACL_L3_IPV4</mark>
+0    7      160b   Free        2048     0       0
+0    8      160b   Free        2048     0       0
+0    9      160b   Free        2048     0       0
+0    10     160b   Free        2048     0       0
+0    11     160b   Free        2048     0       0
+0    12     160b   pmf-1       30       41      11   INGRESS_RX_L2
+0    12     160b   pmf-1       30       13      26   INGRESS_MPLS
+0    12     160b   pmf-1       30       44      79   INGRESS_BFD_IPV4_NO_DESC_TCAM_T
+0    13     160b   pmf-1       124      3       10   INGRESS_DHCP
+0    13     160b   pmf-1       124      1       41   INGRESS_EVPN_AA_ESI_TO_FBN_DB
+0    14     160b   Free        128      0       0
+0    15     160b   Free        128      0       0
+</code>
+</pre>
+</div>
+
+Of course, the result of "number of ports" x "number of networks" should be under the limit of the available space, otherwise the application of the ACL will be refused.
 
 ## Misc 
 
