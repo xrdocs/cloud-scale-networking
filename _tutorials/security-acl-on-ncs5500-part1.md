@@ -512,6 +512,25 @@ Proceed with reload? [confirm]
 </pre>
 </div>
 
+After the reload, we can now see matches in the permit statements.
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:NCS5500-632#sh access-lists ipv4 PERMIT-TEST hardware ingress location 0/7/CPU0
+ipv4 access-list PERMIT-TEST 
+10 permit icmp any host 1.1.1.1 
+15 permit icmp any host 1.1.1.3 
+16 permit tcp any any eq telnet (2 matches)
+17 permit tcp any eq telnet any 
+20 permit udp any any 
+30 permit tcp any any 
+40 deny ipv4 any any (1169 matches)
+RP/0/RP0/CPU0:NCS5500-632#
+</code>
+</pre>
+</div>
+
 Let's take a look at the statistic database allocation before the activation of the profile and what is the difference after the activation and reload:
 
 <div class="highlighter-rouge">
@@ -1020,6 +1039,47 @@ RP/0/RP0/CPU0:5500-6.3.2(config)#hw-module profile tcam format access-list ipv6 
 </pre>
 </div>
 
+### From us traffic
+
+ACLs applied on interface can match and handle traffic going through the router or targeted to the router, but it's important to remind that traffic "from the router" is not matched by egress ACLs.
+
+That means, the egress ACL you apply on your interface will not prevent your locally generated traffic to leave the router.
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#sh run int Hu0/0/0/22
+
+interface HundredGigE0/0/0/22
+ ipv4 address 192.168.22.2 255.255.255.0
+ ipv6 address 2001:22::2/64
+!
+
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#ping 192.168.22.1
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.22.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/2/4 ms
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#conf
+
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config)#ipv4 access-list NO-PASARAN
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config-ipv4-acl)#deny any
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config-ipv4-acl)#exit
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config)#interface HundredGigE0/0/0/22
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config-if)#ipv4 access-group NO-PASARAN egress
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config-if)#commit
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config-if)#end
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#ping 192.168.22.1
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.22.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/2/4 ms
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#
+</code>
+</pre>
+</div>
 
 ## Resources
 
