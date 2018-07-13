@@ -13,7 +13,7 @@ position: hidden
 
 Let's talk about the "traditional" Security Access-List implementation on the NCS5500 series. In the near future, we will dedicate a separate post on the Hybrid-ACL (also known as Scale-ACL or Object-Based-ACL). 
 
-While hybrid-ACL will be only supported on -SE systems with external TCAM, the traditional security ACL can be used on all systems and line cards of the portfolio. They are available in ingress, egress, for IPv4, IPv6 and L2.
+While hybrid-ACL are only supported on -SE systems with external TCAM, the traditional security ACL can be configured on all systems and line cards of the NCS5500 portfolio. They are available in ingress, egress, for IPv4, IPv6 and L2.
 
 Please note: we don’t cover access-list used for route-filtering in this document. We don’t cover Access-list Based Forwarding feature, nor SPAN (packet capture / replication) based on ACL either. We only intend to cover security ACL aimed at filtering packets going through or to the routing device.
 
