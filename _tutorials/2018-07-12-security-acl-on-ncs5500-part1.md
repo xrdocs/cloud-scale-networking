@@ -94,9 +94,9 @@ Let’s summarise:
 
 ## Scale
 
-The number of ACLs and ACEs we support is expressed per NPU (Qumran-MX, Jericho, Jericho+). Since the ACLs are applied on ports, we invite you to check the former blog post describing the port to NPU assignments.
+The number of ACLs and ACEs we support is expressed per NPU (Qumran-MX, Jericho, Jericho+). Since the ACLs are applied on ports, we invite you to check [the former blog post describing the port to NPU assignments](https://xrdocs.io/cloud-scale-networking/tutorials/2018-02-15-port-assignments-on-ncs5500-platforms/).
 
-Also, keep in mind that an ACL applied to a bundle interface where the port members span over multiple NPU will see the ACL/ACEs replicated on all the participating NPUs.
+Also, keep in mind that an ACL applied to a bundle interface with port members spanning over multiple NPUs will see the ACL/ACEs replicated on all the participating NPUs.
 
 By default (that mean without changing the hardware profiles), we support simultaneously up to:
 - max 31 unique attached ingress ACLs per NPU
@@ -107,7 +107,7 @@ By default (that mean without changing the hardware profiles), we support simult
 - max 2000 attached egress IPv6 ACEs per LC
 - max 2000 attached ingress L2 ACEs per LC
 
-Note that it's possible to configure much more, the limits listed above are for the ACL/ACE attached to interfaces.
+Note that it's possible to configure much more if they are not attached to interfaces.
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -142,11 +142,11 @@ RP/0/RP0/CPU0:5500-6.3.2#
 
 ### Edition
 
-When using traditional / "flat" ACL, it's possible to edit the ACEs in-line. But when using object-groups (defined in a following section), it's an atomic process where the new ACE replaces the existing one.
+When using traditional / "flat" ACLs, it's possible to edit the ACEs in-line. That means the ACL can be attached to interfaces, it's not needed to remove the ACL for the port to be able to edit it. But when using object-groups (defined in a following section), it's an atomic process where the new ACE replaces the existing one. It's logic considering that an object-based ACL is actually expanded in the iTCAM and the modification in a single line can be reflected in many lines changed in the hardware.
 
 ### Range
 
-We support range statement
+We support range statement but only with the limit of 23 range-IDs.
 
 ipv4 access-list test-range-24
 10 permit tcp host 1.2.3.4 range 130 150 host 2.3.4.5
@@ -226,7 +226,9 @@ It's possible to match the TTL but also to manipulate this value. It's a bit out
 
 [https://www.cisco.com/c/en/us/td/docs/iosxr/ncs5500/ip-addresses/b-ip-addresses-cr-ncs5500/b-ncs5500-ip-addresses-cli-reference_chapter_01.html#id_60681](https://www.cisco.com/c/en/us/td/docs/iosxr/ncs5500/ip-addresses/b-ip-addresses-cr-ncs5500/b-ncs5500-ip-addresses-cli-reference_chapter_01.html#id_60681)
 
-### frag
+### frag match
+
+
 
 ### log
 
@@ -369,6 +371,9 @@ NPU  Bank   Entry  Owner       Free     Per-DB  DB   DB
 
 We note that 1051 entries are consumed for these two access-lists. So the 1000 entries are just counted once even if the ACL is applied on multiple interfaces of the same NPU. That's what we qualified a "shared ACL".
 
+Note: it's not showing exactly 1000 but 1051. The difference comes from internal entries automatically allocated by the system. They don't represent a significant number compared to the overall scale capability of the system.
+{: .notice--info}
+
 We remove the ingress ACLs and apply the same on egress this time:
 
 <div class="highlighter-rouge">
@@ -416,19 +421,69 @@ NPU  Bank   Entry  Owner       Free     Per-DB  DB   DB
 </pre>
 </div>
 
-We can see that each ACL applied on egress is counted each time, so it spread between bank #3 and bank #7.
+We can see that each ACL applied on egress is counted once per application. It exceeds a single bank capability so it spreads between bank #3 and bank #7.
 
-In summary, we are sharing the ACL on ingress but not on egress.
+In summary, we are sharing the ACL on ingress but not on egress. On egress, the entries used in the iTCAM are the multiplication of the ACEs count by the number of times the ACL is applied.
 
 ### Unique interface-based ACLs
 
+The scale mentioned earlier (31 ACLs ingress and 255 ACLs egress) can be seen as too restrictive for some specific use-cases. We added the capability to extend this scale with a specific hardware profile:
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:5500-6.3.2(config)#hw-module profile tcam format access-list ipv4 ?
+  dst-addr         destination address, 32 bit qualifier
+  dst-port         destination L4 Port, 16 bit qualifier
+  enable-capture   Enable ACL based mirroring. Disables ACL logging
+  enable-set-ttl   Enable Setting TTL field
+  frag-bit         fragment-bit, 1 bit qualifier
+  <mark>interface-based  Enable non-shared interface based ACL</mark>
+  location         Location of format access-list ipv4 config
+  packet-length    packet length, 10 bit qualifier
+  port-range       ipv4 port range qualifier, 24 bit qualifier
+  precedence       precedence/dscp, 8 bit qualifier
+  proto            protocol type, 8 bit qualifier
+  src-addr         source address, 32 bit qualifier
+  src-port         source L4 port, 16 bit qualifier
+  tcp-flags        tcp-flags, 6 bit qualifier
+  ttl-match        Enable matching on TTL field
+  udf1             user defined filter
+  udf2             user defined filter
+  udf3             user defined filter
+  udf4             user defined filter
+  udf5             user defined filter
+  udf6             user defined filter
+  udf7             user defined filter
+  udf8             user defined filter
+
+RP/0/RP0/CPU0:5500-6.3.2(config)#hw-module profile tcam format access-list ipv4 interface-based
+
+In order to activate/deactivate this ipv4 profile, you must manually reload the chassis/all line cards
+RP/0/RP0/CPU0:5500-6.3.2(config)#
+</code>
+</pre>
+</div>
+
+You can more specific on the key format of these ACLs:
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:5500-6.3.2(config)#hw-module profile tcam format access-list ipv4 src-addr src-port dst-addr dst-port interface-based
+RP/0/RP0/CPU0:5500-6.3.2(config)#hw-module profile tcam format access-list ipv6 src-addr dst-addr dst-port interface-based
+</code>
+</pre>
+</div>
+
+With this approach, the limitations of 31 and 255 respectively are removed. You can configure many more ACLs with fewer ACEs list.
 
 
 ## Statistics
 
 Counters being a precious resource on DNX chipset, the permit entries are not counted by default.
 
-It's possible to change this behavior and enable the statistics on the permit entries via a specific hw-module profile:
+It's possible to change this behavior and enable the statistics on the permit entries via a specific hw-module profile. As often with hardware profiles, it requires a reload of the chassis or at least the line cards where the features will be used.
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -444,12 +499,148 @@ RP/0/RP0/CPU0:NCS5500-6.3.2(config)# end
 RP/0/RP0/CPU0:router# reload location all
 
 Proceed with reload? [confirm]
-
 </code>
 </pre>
 </div>
 
-As often with hardware profiles, it requires a reload of the chassis or at least the line cards where the features will be used.
+Let's take a look at the statistic database allocation before the activation of the profile and what is the difference after the activation and reload:
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#show controllers npu resources stats instance 0 loc 0/0/CPU0
+
+System information for NPU 0:
+  Counter processor configuration profile: Default
+  Next available counter processor:        4
+
+Counter processor: 0                        | Counter processor: 1
+  State: In use                             |   State: In use
+                                            |
+  Application:              In use   Total  |   Application:              In use   Total
+    Trap                        95     300  |     Trap                        95     300
+    Policer (QoS)                0    6976  |     Policer (QoS)                0    6976
+    <mark>ACL RX, LPTS</mark>               <mark>148     915</mark>  |     <mark>ACL RX, LPTS</mark>               <mark>148     915</mark>
+                                            |
+                                            |
+Counter processor: 2                        | Counter processor: 3
+  State: In use                             |   State: In use
+                                            |
+  Application:              In use   Total  |   Application:              In use   Total
+    VOQ                         29    8191  |     VOQ                         29    8191
+                                            |
+                                            |
+Counter processor: 4                        | Counter processor: 5
+  State: Free                               |   State: Free
+                                            |
+                                            |
+Counter processor: 6                        | Counter processor: 7
+  State: Free                               |   State: Free
+                                            |
+                                            |
+Counter processor: 8                        | Counter processor: 9
+  State: Free                               |   State: Free
+                                            |
+                                            |
+Counter processor: 10                       | Counter processor: 11
+  State: In use                             |   State: In use
+                                            |
+  Application:              In use   Total  |   Application:              In use   Total
+    L3 RX                        0    8191  |     L3 RX                        0    8191
+    L2 RX                        0    8192  |     L2 RX                        0    8192
+                                            |
+                                            |
+Counter processor: 12                       | Counter processor: 13
+  State: In use                             |   State: In use
+                                            |
+  Application:              In use   Total  |   Application:              In use   Total
+    Interface TX                 0   16383  |     Interface TX                 0   16383
+                                            |
+                                            |
+Counter processor: 14                       | Counter processor: 15
+  State: In use                             |   State: In use
+                                            |
+  Application:              In use   Total  |   Application:              In use   Total
+    Interface TX                 0   16384  |     Interface TX                 0   16384
+                                            |
+                                            |
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#conf
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config)#hw-module profile stats acl-permit
+
+In order to activate/deactivate this stats profile, you must manually reload the chassis/all line cards
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config)#commit
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config)#end
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#admin
+
+root connected from 127.0.0.1 using console on NCS55A1-24H-6.3.2
+sysadmin-vm:0_RP0# reload rack 0
+
+Reload node ? [no,yes] yes
+result Rack graceful reload request on 0 acknowledged.
+
+-=|RELOAD|=-----=|RELOAD|=-----=|RELOAD|=-----=|RELOAD|=-----=|RELOAD|=-----=|RELOAD|=-
+
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#show controllers npu resources stats instance 0 loc 0/0/CPU0
+
+System information for NPU 0:
+  Counter processor configuration profile: ACL Permit
+  Next available counter processor:        4
+
+Counter processor: 0                        | Counter processor: 1
+  State: In use                             |   State: In use
+                                            |
+  Application:              In use   Total  |   Application:              In use   Total
+    Trap                        95     300  |     Trap                        95     300
+    <mark>ACL RX, LPTS</mark>               <mark>147    7891</mark>  |     <mark>ACL RX, LPTS</mark>               <mark>147    7891</mark>
+                                            |
+                                            |
+Counter processor: 2                        | Counter processor: 3
+  State: In use                             |   State: In use
+                                            |
+  Application:              In use   Total  |   Application:              In use   Total
+    VOQ                         29    8191  |     VOQ                         29    8191
+                                            |
+                                            |
+Counter processor: 4                        | Counter processor: 5
+  State: Free                               |   State: Free
+                                            |
+                                            |
+Counter processor: 6                        | Counter processor: 7
+  State: Free                               |   State: Free
+                                            |
+                                            |
+Counter processor: 8                        | Counter processor: 9
+  State: Free                               |   State: Free
+                                            |
+                                            |
+Counter processor: 10                       | Counter processor: 11
+  State: In use                             |   State: In use
+                                            |
+  Application:              In use   Total  |   Application:              In use   Total
+    L3 RX                        0    8191  |     L3 RX                        0    8191
+    L2 RX                        0    8192  |     L2 RX                        0    8192
+                                            |
+                                            |
+Counter processor: 12                       | Counter processor: 13
+  State: In use                             |   State: In use
+                                            |
+  Application:              In use   Total  |   Application:              In use   Total
+    Interface TX                 0   16383  |     Interface TX                 0   16383
+                                            |
+                                            |
+Counter processor: 14                       | Counter processor: 15
+  State: In use                             |   State: In use
+                                            |
+  Application:              In use   Total  |   Application:              In use   Total
+    Interface TX                 0   16383  |     Interface TX                 0   16383
+                                            |
+                                            |
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#
+</code>
+</pre>
+</div>
+
+Please note that enabling this profile is orthogonal with some other profiles like: 
 
 
 ## Misc 
@@ -468,7 +659,9 @@ RP/0/RP0/CPU0:5500-6.3.2#
 </pre>
 </div>
 
-#### Copy is possible
+### ACL copy
+
+We support the copy of an ACL to another one. It could be a very useful feature for the operator.
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -483,7 +676,73 @@ RP/0/RP0/CPU0:5500-6.3.2#
 </pre>
 </div>
 
-### hw-module profile
+### DPA
+
+In all the NCS5500 products, we use an abstraction layer between the IOS XR and the hardware. For the operator perspective, this function can be represented by the DPA (Data Plane Abstraction). When a route, a next-hop is added or removed, it goes through the DPA. It's also true for ACLs.
+
+The following show command is used to monitor the number of operation and current status.
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:5500-6.3.2#sh dpa resources ipacl loc 0/7/CPU0
+
+"ipacl" DPA Table (Id: 60, Scope: Non-Global)
+--------------------------------------------------
+                          NPU ID: NPU-0           NPU-1           NPU-2           NPU-3
+                          <mark>In Use: 1051</mark>            0               0               0
+                 Create Requests
+                           Total: 4761            0               0               0
+                         Success: 4761            0               0               0
+                 Delete Requests
+                           Total: 3710            0               0               0
+                         Success: 3710            0               0               0
+                 Update Requests
+                           Total: 990             0               0               0
+                         Success: 990             0               0               0
+                    EOD Requests
+                           Total: 0               0               0               0
+                         Success: 0               0               0               0
+                          Errors
+                     <mark>HW Failures: 0</mark>               0               0               0
+                Resolve Failures: 0               0               0               0
+                 No memory in DB: 0               0               0               0
+                 Not found in DB: 0               0               0               0
+                    Exists in DB: 0               0               0               0
+
+RP/0/RP0/CPU0:5500-6.3.2#sh dpa resources ip6acl loc 0/7/CPU0
+
+"ip6acl" DPA Table (Id: 61, Scope: Non-Global)
+--------------------------------------------------
+                          NPU ID: NPU-0           NPU-1           NPU-2           NPU-3
+                          In Use: 0               0               0               0
+                 Create Requests
+                           Total: 0               0               0               0
+                         Success: 0               0               0               0
+                 Delete Requests
+                           Total: 0               0               0               0
+                         Success: 0               0               0               0
+                 Update Requests
+                           Total: 0               0               0               0
+                         Success: 0               0               0               0
+                    EOD Requests
+                           Total: 0               0               0               0
+                         Success: 0               0               0               0
+                          Errors
+                     HW Failures: 0               0               0               0
+                Resolve Failures: 0               0               0               0
+                 No memory in DB: 0               0               0               0
+                 Not found in DB: 0               0               0               0
+                    Exists in DB: 0               0               0               0
+
+RP/0/RP0/CPU0:5500-6.3.2#
+</code>
+</pre>
+</div>
+
+The HW Failures counter is important since it will increment when the software tries to push more entries than what the hardware actually supports.
+
+### hw-module profiles
 
 Several hw-profiles exist to enable specific functions around ACLs. They need a reload to be activated on the system or the line cards after the configuration.
 
@@ -518,6 +777,16 @@ RP/0/RP0/CPU0:5500-6.3.2(config)#hw-module profile tcam format access-list ipv4 
 </pre>
 </div>
 
+- Enable the interface-based unique ACL mode
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:5500-6.3.2(config)#hw-module profile tcam format access-list ipv4 interface-based
+RP/0/RP0/CPU0:5500-6.3.2(config)#hw-module profile tcam format access-list ipv6 src-addr dst-addr dst-port interface-based
+</code>
+</pre>
+</div>
 
 
 ## Resources
