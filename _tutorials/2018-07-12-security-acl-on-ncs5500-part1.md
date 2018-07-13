@@ -260,7 +260,13 @@ Some more details are available in the "Extended Access Lists with Fragment Cont
 
 It's also possible to match on the packet length, which can be useful to tackle specific amplification attacks at the border of the internet (an alternative to using BGP Flowspec for example).
 
+The notion of packet length is frequently a matter of doubts since it may vary between products and manufacturer. For example, it's common for test devices to express it at L2.
 
+In the NCS5500 ACL context, the packet length is expressed at L3: the total IP packet including the IP header. It doesn't include any L2 headers, ethernet/vlan. Still there are differences between IPv4 and IPv6:
+- IPv4: the "total length" field in the packet includes the IP header as well as the payload
+- IPv6: the "payload length" field in the packet does not include the IP header (40 bytes for IPv6), so it only covers the payload length
+
+Also, due to the representation of the packet-length information internally, it should be a multiple of 16. So we support values like 16, 32, 48, 64, ... 992, 1008, 1024, ... up to 16368.
 
 ### log
 
