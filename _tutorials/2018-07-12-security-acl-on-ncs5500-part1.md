@@ -228,6 +228,38 @@ It's possible to match the TTL but also to manipulate this value. It's a bit out
 
 ### frag match
 
+We differentiate 3 types:
+- non-fragmented
+- initial fragments (with the port information)
+- non-initial fragments (without the port number)
+In the third category, we don't treat non-initial non-last and non-initial last fragments differently.
+
+In NCS5500 platforms, we can match IPv4 fragments but we don't support IPv6 fragments.
+
+Example:
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+10 permit tcp 1.1.0.2/32 any dscp ef <mark>fragments</mark>
+</code>
+</pre>
+</div>
+
+If you define an ACL with L4 information (UDP or TCP ports for instance) and with "fragment" keyword, non-intital fragments can not be matched. It's expected since the packet no longer transport the port details, only an indication of fragment to help the re-assembly of the original packet at the destination host level.
+
+The same ACL will be able to match initial fragments.
+
+An L4 permit / deny without "fragment" keyword will be able to match non-fragmented and initial fragments while an L3 permit / deny without the keyword will be able to match all types of packets (non-fragmented, initial and non-initial fragments).
+
+Some more details are available in the "Extended Access Lists with Fragment Control" section of this CCO document:
+
+[https://www.cisco.com/c/en/us/td/docs/iosxr/ncs5500/ip-addresses/61x/b-ncs5500-ip-addresses-configuration-guide-61x/b-ncs5500-ip-addresses-configuration-guide-61x_chapter_01.html](https://www.cisco.com/c/en/us/td/docs/iosxr/ncs5500/ip-addresses/61x/b-ncs5500-ip-addresses-configuration-guide-61x/b-ncs5500-ip-addresses-configuration-guide-61x_chapter_01.html)
+
+### packet-length match
+
+It's also possible to match on the packet length, which can be useful to tackle specific amplification attacks at the border of the internet (an alternative to using BGP Flowspec for example).
+
 
 
 ### log
@@ -483,7 +515,11 @@ With this approach, the limitations of 31 and 255 respectively are removed. You 
 
 Counters being a precious resource on DNX chipset, the permit entries are not counted by default.
 
-It's possible to change this behavior and enable the statistics on the permit entries via a specific hw-module profile. As often with hardware profiles, it requires a reload of the chassis or at least the line cards where the features will be used.
+It's possible to change this behavior and enable the statistics on the permit entries in ingress via a specific hw-module profile. As often with hardware profiles, it requires a reload of the chassis or at least the line cards where the features will be used.
+
+This feature is particularly useful if you use ABF and needs to track the flows handled by each ACE.
+
+Note: this profile will not activate counters for egress permits.
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -519,7 +555,7 @@ Counter processor: 0                        | Counter processor: 1
                                             |
   Application:              In use   Total  |   Application:              In use   Total
     Trap                        95     300  |     Trap                        95     300
-    Policer (QoS)                0    6976  |     Policer (QoS)                0    6976
+    <mark>Policer (QoS)</mark>                <mark>0    6976</mark>  |     <mark>Policer (QoS)</mark>                <mark>0    6976</mark>
     <mark>ACL RX, LPTS</mark>               <mark>148     915</mark>  |     <mark>ACL RX, LPTS</mark>               <mark>148     915</mark>
                                             |
                                             |
@@ -640,7 +676,7 @@ RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#
 </pre>
 </div>
 
-Please note that enabling this profile is orthogonal with some other profiles like: 
+Please note that enabling this profile removed the allocation of counters for QoS. It's not possible to count QoS with it. Hw-profiles are always a trade-off.
 
 
 ## Misc 
@@ -801,4 +837,4 @@ CCO guide: ACL commands
 
 ## Thanks :)
 
-Thanks a lot to Puneet Kalra for his help on this post.
+Thanks a lot to Puneet Kalra, Jeff Tayler and Ashok Kumar for their precious help.
