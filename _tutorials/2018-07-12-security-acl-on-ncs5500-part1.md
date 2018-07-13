@@ -105,11 +105,38 @@ By default (that mean without changing the hardware profiles), we support simult
 - max 2000 attached egress IPv6 ACEs per LC
 - max 2000 attached ingress L2 ACEs per LC
 
-Note: it's possible to have both 31 ingress AND 255 egress ACLs, but it's for the ACEs it's a logical OR.
-{: .notice--info}
+Note that it's possible to configure much more, the limits listed above are for the ACL/ACE attached to interfaces.
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:5500-6.3.2#show access-lists ipv4 maximum detail
+
+Default max configurable acls :16000
+Default max configurable aces :350000
+Current configured acls       :22
+Current configured aces       :93455
+Current max configurable acls :16000
+Current max configurable aces :350000
+Max configurable acls         :16000
+Max configurable aces         :350000
+RP/0/RP0/CPU0:5500-6.3.2#show access-lists ipv6 maximum detail
+
+Default max configurable acls :16000
+Default max configurable aces :350000
+Current configured acls       :1
+Current configured aces       :1003
+Current max configurable acls :16000
+Current max configurable aces :350000
+Max configurable acls         :16000
+Max configurable aces         :350000
+RP/0/RP0/CPU0:5500-6.3.2#
+</code>
+</pre>
+</div>
 
 
-## Match support, parameters and edition
+## Match support, Parameters and Edition
 
 ### Edition
 
@@ -145,8 +172,59 @@ ipv4 access-list test-range-24
 230 permit tcp host 1.2.3.4 range 2330 2350 host 2.3.4.5
 240 permit tcp host 1.2.3.4 range 2430 2450 host 2.3.4.5
 250 permit tcp host 1.2.3.4 range 2530 2550 host 2.3.4.5
+260 permit tcp host 1.2.3.4 range 2630 2650 host 2.3.4.5
+270 permit tcp host 1.2.3.4 range 2730 2750 host 2.3.4.5
+280 permit tcp host 1.2.3.4 range 2830 2850 host 2.3.4.5
+290 permit tcp host 1.2.3.4 range 2930 2950 host 2.3.4.5
+300 permit tcp host 1.2.3.4 range 3030 3050 host 2.3.4.5
+
 
 ### match statements
+
+The following protocols can be matched:
+- IGMP
+	- type
+- ICMP
+	- type
+    - code
+- UDP
+	- protocol name or port number
+    - DSCP / precedence
+    - fragments
+    - log
+    - icmp-off
+    - packet length (eq or range)
+    - ttl
+- TCP
+	- protocol name or port number
+    - DSCP / precedence
+    - established
+    - icmp-off
+    - packet length (eq or range)
+    - ttl
+    
+Check [https://www.cisco.com/c/en/us/td/docs/iosxr/ncs5500/ip-addresses/b-ip-addresses-cr-ncs5500/b-ncs5500-ip-addresses-cli-reference_chapter_01.html#reference_7C68561395FF4CE1902EF920B47FA254](https://www.cisco.com/c/en/us/td/docs/iosxr/ncs5500/ip-addresses/b-ip-addresses-cr-ncs5500/b-ncs5500-ip-addresses-cli-reference_chapter_01.html#reference_7C68561395FF4CE1902EF920B47FA254) for a complete list.
+
+### enable-set-ttl
+https://www.cisco.com/c/en/us/td/docs/iosxr/ncs5500/ip-addresses/b-ip-addresses-cr-ncs5500/b-ncs5500-ip-addresses-cli-reference_chapter_01.html#id_60681
+
+### ttl match
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+hw-module profile tcam format access-list ipv4 src-addr src-port enable-set-ttl ttl-match
+hw-module profile tcam format access-list ipv4 dst-addr dst-port enable-set-ttl ttl-match 
+</code>
+</pre>
+</div>
+
+### frag
+
+### log
+
+
+
 
 
 ## Memory space
@@ -251,6 +329,146 @@ NPU  Bank   Entry  Owner       Free     Per-DB  DB   DB
 
 ## Sharing / Unique
 
+By default again, it's possible to share access-lists in ingress but not in egress.
+
+What does it mean exactly? Let's take 2 interfaces handled by the same NPU: Hu0/7/0/1 and Hu0/7/0/2.
+
+Before applying the ACLs:
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:TME-5500-6.3.2#sh contr npu internaltcam loc 0/7/CPU0
+
+Internal TCAM Resource Information
+=============================================================
+NPU  Bank   Entry  Owner       Free     Per-DB  DB   DB
+     Id     Size               Entries  Entry   ID   Name
+=============================================================
+0    0\1    320b   pmf-0       1987     49      7    INGRESS_LPTS_IPV4
+0    0\1    320b   pmf-0       1987     8       12   INGRESS_RX_ISIS
+0    0\1    320b   pmf-0       1987     2       32   INGRESS_QOS_IPV6
+0    0\1    320b   pmf-0       1987     2       34   INGRESS_QOS_L2
+0    2      160b   pmf-0       2044     2       31   INGRESS_QOS_IPV4
+0    2      160b   pmf-0       2044     1       33   INGRESS_QOS_MPLS
+0    2      160b   pmf-0       2044     1       42   INGRESS_ACL_L2
+0    3      160b   egress_acl  2031     17      4    EGRESS_QOS_MAP
+0    4\5    320b   pmf-0       2013     35      8    INGRESS_LPTS_IPV6
+0    6      160b   <mark>Free</mark>        2048     0       0
+0    7      160b   <mark>Free</mark>        2048     0       0
+0    8      160b   <mark>Free</mark>        2048     0       0
+0    9      160b   <mark>Free</mark>        2048     0       0
+0    10     160b   <mark>Free</mark>        2048     0       0
+0    11     160b   <mark>Free</mark>        2048     0       0
+0    12     160b   pmf-1       30       41      11   INGRESS_RX_L2
+0    12     160b   pmf-1       30       13      26   INGRESS_MPLS
+0    12     160b   pmf-1       30       44      79   INGRESS_BFD_IPV4_NO_DESC_TCAM_T
+0    13     160b   pmf-1       124      3       10   INGRESS_DHCP
+0    13     160b   pmf-1       124      1       41   INGRESS_EVPN_AA_ESI_TO_FBN_DB
+0    14     160b   Free        128      0       0
+0    15     160b   Free        128      0       0
+</code>
+</pre>
+</div>
+
+In ingress, if we apply the same ACL of 1000 lines on these two interfaces.
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:TME-5500-6.3.2#sh access-list ipv4 usage pfilter location 0/7/$
+
+Interface : HundredGigE0/7/0/1
+    Input  ACL : Common-ACL : N/A  ACL : test-1000
+    Output ACL : N/A
+Interface : HundredGigE0/7/0/2
+    Input  ACL : Common-ACL : N/A  ACL : test-1000
+    Output ACL : N/A
+RP/0/RP0/CPU0:TME-5500-6.3.2#sh contr npu internaltcam loc 0/7/CPU0
+
+Internal TCAM Resource Information
+=============================================================
+NPU  Bank   Entry  Owner       Free     Per-DB  DB   DB
+     Id     Size               Entries  Entry   ID   Name
+=============================================================
+0    0\1    320b   pmf-0       1987     49      7    INGRESS_LPTS_IPV4
+0    0\1    320b   pmf-0       1987     8       12   INGRESS_RX_ISIS
+0    0\1    320b   pmf-0       1987     2       32   INGRESS_QOS_IPV6
+0    0\1    320b   pmf-0       1987     2       34   INGRESS_QOS_L2
+0    2      160b   pmf-0       2044     2       31   INGRESS_QOS_IPV4
+0    2      160b   pmf-0       2044     1       33   INGRESS_QOS_MPLS
+0    2      160b   pmf-0       2044     1       42   INGRESS_ACL_L2
+0    3      160b   egress_acl  2031     17      4    EGRESS_QOS_MAP
+0    4\5    320b   pmf-0       2013     35      8    INGRESS_LPTS_IPV6
+0    <mark>6      160b   pmf-0       997      1051    16   INGRESS_ACL_L3_IPV4</mark>
+0    7      160b   Free        2048     0       0
+0    8      160b   Free        2048     0       0
+0    9      160b   Free        2048     0       0
+0    10     160b   Free        2048     0       0
+0    11     160b   Free        2048     0       0
+0    12     160b   pmf-1       30       41      11   INGRESS_RX_L2
+0    12     160b   pmf-1       30       13      26   INGRESS_MPLS
+0    12     160b   pmf-1       30       44      79   INGRESS_BFD_IPV4_NO_DESC_TCAM_T
+0    13     160b   pmf-1       124      3       10   INGRESS_DHCP
+0    13     160b   pmf-1       124      1       41   INGRESS_EVPN_AA_ESI_TO_FBN_DB
+0    14     160b   Free        128      0       0
+0    15     160b   Free        128      0       0
+</code>
+</pre>
+</div>
+
+We note that 1051 entries are consumed for these two access-lists.
+
+We remove the ingress ACLs and apply the same on egress this time:
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:TME-5500-6.3.2#sh access-list ipv4 usage pfilter location 0/7/CPU0
+
+Interface : HundredGigE0/7/0/1
+    Input ACL : N/A
+    Output ACL : test-1000
+Interface : HundredGigE0/7/0/2
+    Input ACL : N/A
+    Output ACL : test-1000
+RP/0/RP0/CPU0:TME-5500-6.3.2#sh contr npu internaltcam loc 0/7/CPU0
+
+Internal TCAM Resource Information
+=============================================================
+NPU  Bank   Entry  Owner       Free     Per-DB  DB   DB
+     Id     Size               Entries  Entry   ID   Name
+=============================================================
+0    0\1    320b   pmf-0       1987     49      7    INGRESS_LPTS_IPV4
+0    0\1    320b   pmf-0       1987     8       12   INGRESS_RX_ISIS
+0    0\1    320b   pmf-0       1987     2       32   INGRESS_QOS_IPV6
+0    0\1    320b   pmf-0       1987     2       34   INGRESS_QOS_L2
+0    2      160b   pmf-0       2044     2       31   INGRESS_QOS_IPV4
+0    2      160b   pmf-0       2044     1       33   INGRESS_QOS_MPLS
+0    2      160b   pmf-0       2044     1       42   INGRESS_ACL_L2
+0    <mark>3      160b   egress_acl  0        2031    1    EGRESS_ACL_IPV4</mark>
+0    3      160b   egress_acl  0        17      4    EGRESS_QOS_MAP
+0    4\5    320b   pmf-0       2013     35      8    INGRESS_LPTS_IPV6
+0    6      160b   Free        2048     0       0
+0    <mark>7      160b   egress_acl  1889     159     1    EGRESS_ACL_IPV4</mark>
+0    8      160b   Free        2048     0       0
+0    9      160b   Free        2048     0       0
+0    10     160b   Free        2048     0       0
+0    11     160b   Free        2048     0       0
+0    12     160b   pmf-1       30       41      11   INGRESS_RX_L2
+0    12     160b   pmf-1       30       13      26   INGRESS_MPLS
+0    12     160b   pmf-1       30       44      79   INGRESS_BFD_IPV4_NO_DESC_TCAM_T
+0    13     160b   pmf-1       124      3       10   INGRESS_DHCP
+0    13     160b   pmf-1       124      1       41   INGRESS_EVPN_AA_ESI_TO_FBN_DB
+0    14     160b   Free        128      0       0
+0    15     160b   Free        128      0       0
+</code>
+</pre>
+</div>
+
+We can see that each ACL applied on egress is counted each time, so it spread between bank #3 and bank #7.
+
+In summary, we are sharing the ACL on ingress but not on egress.
 
 ## Statistics
 
@@ -258,15 +476,42 @@ Counters
 
 ## Misc 
 
-No resequencing
+### No resequencing
 
-Copy is possible
+It's possible to resequence ACL for prefix-list but not for security ACLs.
 
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:5500-6.3.2#resequence ?
+  prefix-list  Prefix lists
+RP/0/RP0/CPU0:5500-6.3.2#
+</code>
+</pre>
+</div>
 
-log
-frag
-ttl
+#### Copy is possible
 
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:TME-5500-6.3.2#copy access-list ?
+  ethernet-service  Copy Ethernet Service access list
+  ipv4              Copy IPv4 access list
+  ipv6              Copy IPv6 access list
+RP/0/RP0/CPU0:TME-5500-6.3.2#copy access-list ipv4 test-range-24 new-acl
+RP/0/RP0/CPU0:TME-5500-6.3.2#
+</code>
+</pre>
+</div>
+
+### hw-module profile
+
+Enable an IPv4 egress ACL on BVI
+RP/0/RP0/CPU0:router(config)# hw-module profile acl egress layer3 interface-based
+
+Enable permit statistics for the egress ACL (by default, only deny statistics are shown)
+RP/0/RP0/CPU0:router(config)# hw-module profile stats acl-permit
 
 
 ## Resources
