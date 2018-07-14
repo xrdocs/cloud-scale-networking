@@ -24,7 +24,8 @@ Security Access-Lists are used to protect the router or the infrastructure by ma
 
 An access-list is configured under on interface statement. It contains an protocol-type, an ACL identifier (or name) and a direction.
 
-![acl-format3.png]({{site.baseurl}}/images/acl-format3.png)
+![acl-format2.png]({{site.baseurl}}/images/acl-format2.png)
+
 
 An access-list is composed of one or multiple access-list entries (ACEs). 
 
