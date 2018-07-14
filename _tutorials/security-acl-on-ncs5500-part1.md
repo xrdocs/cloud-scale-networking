@@ -26,7 +26,6 @@ An access-list is configured under on interface statement. It contains an protoc
 
 ![acl-format2.png]({{site.baseurl}}/images/acl-format2.png)
 
-
 An access-list is composed of one or multiple access-list entries (ACEs). 
 
 When defining an ACL, the first line if made of a protocol-type (L2, v4 or v6) and of the name used to call it under the inferfaces. The following lines are representing the Access-list Entries (ACEs).
