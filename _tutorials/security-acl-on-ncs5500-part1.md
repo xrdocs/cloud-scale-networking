@@ -13,28 +13,32 @@ position: hidden
 
 Let's talk about the "traditional" Security Access-List implementation on the NCS5500 series. In the near future, we will dedicate a separate post on the Hybrid-ACL (also known as Scale-ACL or Object-Based-ACL). 
 
-While hybrid-ACL are only supported on -SE systems with external TCAM, the traditional security ACL can be configured on all systems and line cards of the NCS5500 portfolio. They are available in ingress, egress, for IPv4, IPv6 and L2.
+While compressed / scaled-ACL are only supported on -SE systems (with external TCAM), the traditional security ACL can be configured on all systems and line cards of the NCS5500 portfolio. They are available in ingress, egress, for IPv4, IPv6 and L2.
 
-Please note: we don’t cover access-list used for route-filtering in this document, nor we will talk about Access-list Based Forwarding or SPAN (packet capture / replication) based on ACL either. We only intend to present security ACL used for packets filtering.
+Please note: won’t cover access-list used for route-filtering in this document, nor we will talk about Access-list Based Forwarding or SPAN (packet capture / replication) based on ACL either. We only intend to present security ACL used for packets filtering.
 
 
 ## Basic notions on ACLs
 
-An access-list is applied under on interface statement. It contains an address-family, an ACL identifier (or name) and a direction.
+Security Access-Lists are used to protect the router or the infrastructure by matching the fields in the packets headers and applying filters.
 
-![acl-format.png]({{site.baseurl}}/images/acl-format.png)
+An access-list is configured under on interface statement. It contains an protocol-type, an ACL identifier (or name) and a direction.
 
-An access-list is made of access-list entries (ACEs). The scale, both in term of ACL and ACE, will depend on the type of interface, the address-family and the direction.
+![acl-format3.png]({{site.baseurl}}/images/acl-format3.png)
 
-The first part of the ACL defines the protocol-type L2, v4 or v6, and describes the name used to call it under the inferfaces. The following lines are representing the Access-list Entries (ACEs).
+An access-list is composed of one or multiple access-list entries (ACEs). 
 
-![ACE-ACL2.png]({{site.baseurl}}/images/ACE-ACL2.png)
+When defining an ACL, the first line if made of a protocol-type (L2, v4 or v6) and of the name used to call it under the inferfaces. The following lines are representing the Access-list Entries (ACEs).
 
-If you don't use numbers to identify the lines when you configure your ACEs, the system will automatically assign numbers. They are multiple of 10 and increment line after line. After the creation, the operateur will be able to edit the ACL content, inserting entries with intermediate values or deleting entries with the appropriate value.
+![ACE-ACL3.png]({{site.baseurl}}/images/ACE-ACL3.png)
+
+You don't have to use numbers to identify the lines when you configure your ACEs for the first time, the system will automatically assign them. They are multiples of 10 and increment line after line. After the creation, the operator will be able to edit the ACL content, inserting entries with intermediate line numbers or modify/deleting entries with existing line number.
 
 In ASR9000 or CRS, it was possible to re-sequence the ACEs but it's not supported with NCS5500.
 
-Access-list are composed of deny or permit entries. If the entry denies an address or protocol, the NPU discards the packet and returns an Internet Control Message Protocol (ICMP) Host Unreachable message. It's possible to configure this behavior.
+Access-list are composed of deny or permit entries. If the entry denies an address or protocol, the NPU discards the packet and returns an Internet Control Message Protocol (ICMP) Host Unreachable message. It's possible to change this behavior via configuration.
+
+The scale, both in term of ACL and ACE, will depend on the type of interface, the address-family and the direction.
 
 
 ## Interface/ACL Support (status in IOS XR 6.2.3 / 6.5.1)
@@ -107,7 +111,7 @@ By default (that mean without changing the hardware profiles), we support simult
 - max 2000 attached egress IPv6 ACEs per LC
 - max 2000 attached ingress L2 ACEs per LC
 
-Note that it's possible to configure much more if they are not attached to interfaces.
+Note that it's actually possible to configure much more if they are not attached to interfaces.
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -142,14 +146,14 @@ RP/0/RP0/CPU0:5500-6.3.2#
 
 ### Edition
 
-When using traditional / "flat" ACLs, it's possible to edit the ACEs in-line. That means the ACL can be attached to interfaces, it's not needed to remove the ACL for the port to be able to edit it. But when using object-groups (defined in a following section), it's an atomic process where the new ACE replaces the existing one. It's logic considering that an object-based ACL is actually expanded in the iTCAM and the modification in a single line can be reflected in many lines changed in the hardware.
+When using traditional / "flat" ACLs, it's possible to edit the ACEs in-line. When an ACL is attached to an interface, it's not necessary to remove it from the port before editing it. With object-groups (defined in a following section), it's an atomic process where the new ACE replaces the existing one.
 
 ### Range
 
-We support range statements but only with the limit of 23 range-IDs.
+We support range statements but only within the limit of 23 range-IDs.
 
 
-### match statements
+### Match statements
 
 The following protocols can be matched:
 - IGMP
@@ -175,9 +179,9 @@ The following protocols can be matched:
     
 Check [https://www.cisco.com/c/en/us/td/docs/iosxr/ncs5500/ip-addresses/b-ip-addresses-cr-ncs5500/b-ncs5500-ip-addresses-cli-reference_chapter_01.html#reference_7C68561395FF4CE1902EF920B47FA254](https://www.cisco.com/c/en/us/td/docs/iosxr/ncs5500/ip-addresses/b-ip-addresses-cr-ncs5500/b-ncs5500-ip-addresses-cli-reference_chapter_01.html#reference_7C68561395FF4CE1902EF920B47FA254) for a complete list.
 
-### ttl match
+### TTL match
 
-It's possible to match the TTL value in the IP header (both v4 and v6). We support exact values or ranges. For traditional (non-hybrid) ACL, it's not enabled by default and should be configured via a specific hardware profile
+We can match the TTL field in the IP header (both v4 and v6). We support exact values or ranges. For traditional (non-hybrid) ACL, it's not enabled by default and must be configured via a specific hardware profile.
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -190,21 +194,22 @@ RP/0/RP0/CPU0:5500-6.3.2(config)#hw-module profile tcam format access-list ipv4 
 
 ### enable-set-ttl
 
-It's possible to match the TTL but also to manipulate this value. It's a bit outside of the scope of this post, so we invite you to check this URL if you are looking for more details.
+Even if it's a bit outside of the scope of this article, it's possible to match the TTL field but also to manipulate this value. We invite you to check this URL if you are looking for more details.
 
 [https://www.cisco.com/c/en/us/td/docs/iosxr/ncs5500/ip-addresses/b-ip-addresses-cr-ncs5500/b-ncs5500-ip-addresses-cli-reference_chapter_01.html#id_60681](https://www.cisco.com/c/en/us/td/docs/iosxr/ncs5500/ip-addresses/b-ip-addresses-cr-ncs5500/b-ncs5500-ip-addresses-cli-reference_chapter_01.html#id_60681)
 
-### frag match
+### Fragment match
 
-We differentiate 3 types:
+We differentiate 3 types of packets:
 - non-fragmented
 - initial fragments (with the port information)
 - non-initial fragments (without the port number)
+
 In the third category, we don't treat non-initial non-last and non-initial last fragments differently.
 
 In NCS5500 platforms, we can match IPv4 fragments but we don't support IPv6 fragments.
 
-Example:
+Configuration example:
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -214,7 +219,7 @@ Example:
 </pre>
 </div>
 
-If you define an ACL with L4 information (UDP or TCP ports for instance) and with "fragment" keyword, non-intital fragments can not be matched. It's expected since the packet no longer transport the port details, only an indication of fragment to help the re-assembly of the original packet at the destination host level.
+If you define an ACL with L4 information (UDP or TCP ports for instance) and with "fragment" keyword, non-intital fragments can not be matched. It's expected since the packet no longer transports the port information but only an indication of fragment needed for the re-assembly of the original packet at the destination host level.
 
 The same ACL will be able to match initial fragments.
 
@@ -224,19 +229,19 @@ Some more details are available in the "Extended Access Lists with Fragment Cont
 
 [https://www.cisco.com/c/en/us/td/docs/iosxr/ncs5500/ip-addresses/61x/b-ncs5500-ip-addresses-configuration-guide-61x/b-ncs5500-ip-addresses-configuration-guide-61x_chapter_01.html](https://www.cisco.com/c/en/us/td/docs/iosxr/ncs5500/ip-addresses/61x/b-ncs5500-ip-addresses-configuration-guide-61x/b-ncs5500-ip-addresses-configuration-guide-61x_chapter_01.html)
 
-### packet-length match
+### Packet-length match
 
-It's also possible to match on the packet length, which can be useful to tackle specific amplification attacks at the border of the internet (an alternative to using BGP Flowspec for example).
+Matching on the packet length is supported. It could be useful to tackle specific amplification attacks at the border of the internet (an alternative to using BGP Flowspec for example).
 
 The notion of packet length is frequently a matter of doubts since it may vary between products and manufacturer. For example, it's common for test devices to express it at L2.
 
-In the NCS5500 ACL context, the packet length is expressed at L3: the total IP packet including the IP header. It doesn't include any L2 headers, ethernet/vlan. Still there are differences between IPv4 and IPv6:
+In the NCS5500 ACL context, the packet length is expressed at L3: the total IP packet including the IP header. It doesn't include any L2 headers (Ethernet or dot1q). Still there are differences between IPv4 and IPv6:
 - IPv4: the "total length" field in the packet includes the IP header as well as the payload
 - IPv6: the "payload length" field in the packet does not include the IP header (40 bytes for IPv6), so it only covers the payload length
 
-Also, due to the representation of the packet-length information internally, it should be a multiple of 16. So we support values like 16, 32, 48, 64, ... 992, 1008, 1024, ... up to 16368.
+Also, due to the representation of the packet-length information internally, it should be a multiple of 16. So we support values like 0, 16, 32, 48, 64, ... 992, 1008, 1024, ... up to 16368.
 
-### log
+### Logging
 
 The "log" keyword is supported on ingress but not on egress. "log-input" in the other hand is not supported on this platform.
 
@@ -245,7 +250,7 @@ The "log" keyword is supported on ingress but not on egress. "log-input" in the 
 
 Traditional / non-hybrid ACLs are stored in the internal TCAM, even on -SE systems.
 
-If you check memory utilisation in 6.1.x:
+You can check memory utilisation in 6.1.x with:
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -267,7 +272,7 @@ BankId       Key EntrySize      Free          InUse         Nof DBs       Owner
 </pre>
 </div>
 
-If you check the same on 6.3 or later:
+With IOS XR 6.3 or later, we'll use:
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -376,7 +381,7 @@ NPU  Bank   Entry  Owner       Free     Per-DB  DB   DB
 
 We note that 1051 entries are consumed for these two access-lists. So the 1000 entries are just counted once even if the ACL is applied on multiple interfaces of the same NPU. That's what we qualified a "shared ACL".
 
-Note: it's not showing exactly 1000 but 1051. The difference comes from internal entries automatically allocated by the system. They don't represent a significant number compared to the overall scale capability of the system.
+Note: it's not showing exactly 1000 but 1051. The difference comes from internal entries automatically allocated by the system. They don't represent a significant number compared to the overall scale capability.
 {: .notice--info}
 
 We remove the ingress ACLs and apply the same on egress this time:
@@ -428,11 +433,11 @@ NPU  Bank   Entry  Owner       Free     Per-DB  DB   DB
 
 We can see that each ACL applied on egress is counted once per application. It exceeds a single bank capability so it spreads between bank #3 and bank #7.
 
-In summary, we are sharing the ACL on ingress but not on egress. On egress, the entries used in the iTCAM are the multiplication of the ACEs count by the number of times the ACL is applied.
+In summary, we are sharing the ACL on ingress but not on egress. On egress, the entries used in the iTCAM are the multiplication of the ACE count by the number of times the ACL is applied.
 
 ### Unique interface-based ACLs
 
-The scale mentioned earlier (31 ACLs ingress and 255 ACLs egress) can be seen as too restrictive for some specific use-cases. We added the capability to extend this scale with a specific hardware profile:
+The scale mentioned earlier (31 ACLs ingress and 255 ACLs egress) can be seen as too restrictive for some use-cases. We added the capability to extend this scale with a specific hardware profile:
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -470,7 +475,7 @@ RP/0/RP0/CPU0:5500-6.3.2(config)#
 </pre>
 </div>
 
-You can more specific on the key format of these ACLs:
+You can be more specific on the key format of these ACLs:
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -481,14 +486,14 @@ RP/0/RP0/CPU0:5500-6.3.2(config)#hw-module profile tcam format access-list ipv6 
 </pre>
 </div>
 
-With this approach, the limitations of 31 and 255 respectively are removed. You can configure many more ACLs with fewer ACEs list.
+With this approach, the limitations of 31 and 255 respectively are removed. You can configure many more ACLs with smaller ACE size.
 
 
 ## Statistics
 
 Counters being a precious resource on DNX chipset, the permit entries are not counted by default.
 
-It's possible to change this behavior and enable the statistics on the permit entries in ingress via a specific hw-module profile. As often with hardware profiles, it requires a reload of the chassis or at least the line cards where the features will be used.
+It's possible to change this behavior and enable the statistics on the permit entries in ingress via a specific hw-module profile. 
 
 This feature is particularly useful if you use ABF and needs to track the flows handled by each ACE.
 
@@ -668,12 +673,14 @@ RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#
 </pre>
 </div>
 
-Please note that enabling this profile removed the allocation of counters for QoS. It's not possible to count QoS with it. Hw-profiles are always a trade-off.
+Enabling this profile removed the allocation of counters for QoS. It's not possible to count QoS with it. Hw-profiles are always a trade-off.
 
 
 ## Object-based ACL
 
-Even if not frequently used in non-eTCAM systems, we support the use of object-based ACLs. The main benefits of this approach would be from a usability perspective.
+Even if not frequently used in non-eTCAM systems, we support the use of object-based ACLs. 
+
+It simplifies the management of the filter rules: it's easy to add one entry in a network group and see all the ports related to this role automatically added.
 
 Note: in this context of non-SE platforms, we will use a non-compressed mode. All entries will be expanded and programmed in the iTCAM.
 
@@ -710,10 +717,12 @@ RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config-if)#commit
 </pre>
 </div>
 
+It creates a matrix of the network and port entries.
+
 Note: the compress level 0 is default and not necessary here.
 {: .notice--info}
 
-With the following show commands, we can verify the ACL is actually expanded to be programmed in the iTCAM (because we don't use compression). So these 4x4 matrix will end up as 16 entries (+ the default entry).
+With the following show commands, we can verify the ACL is actually expanded when programmed in the iTCAM (because we don't use compression). So these 4x4 matrix will end up as 16 entries (+ the default entry).
 
 Note: a default entry is added for each ACLv4 and 3 default entries are added for each ACLv6.
 {: .notice--info}
@@ -929,9 +938,9 @@ RP/0/RP0/CPU0:5500-6.3.2#
 
 ### DPA
 
-In all the NCS5500 products, we use an abstraction layer between the IOS XR and the hardware. For the operator perspective, this function can be represented by the DPA (Data Plane Abstraction). When a route, a next-hop is added or removed, it goes through the DPA. It's also true for ACLs.
+In all the NCS5500 products, we use an abstraction layer between the IOS XR and the hardware. From an operator perspective, this function can be represented by the DPA (Data Plane Abstraction). When a route or a next-hop info is added or removed, it goes through the DPA. It's also true for ACLs.
 
-The following show command is used to monitor the number of operation and current status.
+The following show command are used to monitor the number of operation and current status.
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -991,7 +1000,7 @@ RP/0/RP0/CPU0:5500-6.3.2#
 </pre>
 </div>
 
-The HW Failures counter is important since it will increment when the software tries to push more entries than what the hardware actually supports.
+The HW Failures counter is important since it will represent the number of times the software tried to push more entries than what the hardware actually supports.
 
 ### hw-module profiles
 
