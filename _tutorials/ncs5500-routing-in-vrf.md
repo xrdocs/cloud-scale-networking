@@ -543,17 +543,20 @@ So, we can verify with this output that we are not consuming entries with mplsla
 
 We received several comments just after posting this article, related to the allocation mode used here. Let's try to summarize the key points.
 
-TL;DR: per-ce mode being by default the resilient one in this XR implementation, it's the best bet if you don't know which one to select instead of the per-prefix.
+TL;DR: per-ce is the best bet if you don't know which one to select instead of the per-prefix.
 
 Several use-cases involving "maximum-path eiBGP" can be broken by per-vrf allocation and he recommends to use per-CE when possible. To compare the different options:
-- per-prefix (default)
+
+Per-prefix (default)
  - Good label diversity for core loadbalancing, 
  - able to get MPLS statistics (note: this last comment is not applicable for NCS5500 since we don't have statistics in the "show mpls forwarding", it's more appropriate for CRS, ASR9k, ...)
  - Can cause scale issues
-- per-CE (resilient)
+
+Per-CE (resilient)
  - Single label allocated by CE, whatever number of prefixes, improved scale
  - EIBGP multipath, PIC is supported, single Label lookup
-- per-VRF
+
+Per-VRF
  - Single label allocated for the whole VRF, thus additional lookup required to forward traffic
  - Potential forwarding loop during local traffic diversion to support PIC
  - No support for EIBGP multipath
