@@ -6,7 +6,7 @@ author: Nicolas Fevrier
 excerpt: >-
   Second part on the NCS5500 Access-lists. This time, we focus on the Hybrib
   ACL.
-position: top
+position: hidden
 ---
 {% include toc icon="table" title="NCS5500 Security Access-lists - Part2: Hybrid ACL" %} 
 
@@ -51,12 +51,6 @@ RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group ?
 RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group network ?
   ipv4  IPv4 object group
   ipv6  IPv6 object group
-RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group network ipv4 ?
-  netobj1         IPv4 object group name - maximum 64 characters
-  OBJ-50-net      IPv4 object group name - maximum 64 characters
-  OBJ-500-net     IPv4 object group name - maximum 64 characters
-  OBJ-Email-Nets  IPv4 object group name - maximum 64 characters
-  WORD            IPv4 object group name - maximum 64 characters
 RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group network ipv4 TEST ?
   A.B.C.D/length  IPv4 address/prefix
   description     Description for the object group
@@ -103,13 +97,9 @@ object-group network ipv4 OBJ-DNS-network
 !
 object-group port OBJ-Email-Ports
  eq smtp
- eq www
  eq pop3
  eq 143
  eq 443
- eq 445
- eq 993
- eq 995
 !
 </code>
 </pre>
@@ -124,6 +114,152 @@ Example1: IPv4 addresses, source and destination
 Example2: IPv4 addresses and ports, source and destination
 
 ![acl.png]({{site.baseurl}}/images/acl.png)
+
+Separating addresses and ports in two groups and calling these objects in access-list entries line offers an unique flexibility. It's easy to create a matrix that would take dozens or even hundreds of lines if they were described one by one with traditional ACLs.
+
+Let's imagine a case with email servers with 17 servers and 8 ports.
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh run object-group network ipv4 OBJ-Email-Nets
+object-group network ipv4 OBJ-Email-Nets
+ 183.13.64.23/32
+ 183.13.64.38/32
+ 183.13.64.39/32
+ 183.13.64.48/32
+ 183.13.64.133/32
+ 183.13.64.145/32
+ 183.13.64.146/32
+ 183.13.64.155/32
+ 183.13.65.0/24
+ 183.13.65.128/25
+ 183.13.66.15/32
+ 183.13.66.17/32
+ 183.13.66.111/32
+ 183.13.66.112/32
+ 183.13.68.0/23
+ 192.168.1.0/24
+ 195.14.52.0/24
+!
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh run object-group network ipv4 OBJ-Email-Nets | i "/" | utility wc -l
+17
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh run object-group port OBJ-Email-Ports
+object-group port OBJ-Email-Ports
+ eq smtp
+ eq www
+ eq pop3
+ eq 143
+ eq 443
+ eq 445
+ eq 993
+ eq 995
+!
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh run object-group port OBJ-Email-Ports | i "eq" | utility wc -l
+8
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh run ipv4 access-list FILTER-IN
+ipv4 access-list FILTER-IN
+ 10 remark Email Servers
+ 20 permit tcp any net-group OBJ-Email-Nets port-group OBJ-Email-Ports
+!
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh run int hu 0/7/0/2
+interface HundredGigE0/7/0/2
+ ipv4 address 27.7.4.1 255.255.255.0
+ ipv6 address 2001:27:7:4::1/64
+ load-interval 30
+ ipv4 access-group FILTER-IN ingress compress level 3
+!
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#
+</code>
+</pre>
+</div>
+
+You could visualize what would be the traditional/flat ACL with this show command:
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh access-lists ipv4 FILTER-IN expanded
+ipv4 access-list FILTER-IN
+ 20 permit tcp any 183.13.68.0 0.0.1.255 eq smtp
+ 20 permit tcp any 183.13.68.0 0.0.1.255 eq www
+ 20 permit tcp any 183.13.68.0 0.0.1.255 eq pop3
+ 20 permit tcp any 183.13.68.0 0.0.1.255 eq 143
+ 20 permit tcp any 183.13.68.0 0.0.1.255 eq 443
+ 20 permit tcp any 183.13.68.0 0.0.1.255 eq 445
+ 20 permit tcp any 183.13.68.0 0.0.1.255 eq 993
+ 20 permit tcp any 183.13.68.0 0.0.1.255 eq 995
+ 20 permit tcp any 192.168.1.0 0.0.0.255 eq smtp
+ 20 permit tcp any 192.168.1.0 0.0.0.255 eq www
+ 20 permit tcp any 192.168.1.0 0.0.0.255 eq pop3
+ 20 permit tcp any 192.168.1.0 0.0.0.255 eq 143
+ 20 permit tcp any 192.168.1.0 0.0.0.255 eq 443
+ ...
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh access-lists ipv4 FILTER-IN expanded | utility wc -l
+ipv4 access-list FILTER-IN
+136
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#
+</code>
+</pre>
+</div>
+
+This line of access-list FILTER-IN equals to a matrix of 136 entries:
+
+![matrix-18x7.png]({{site.baseurl}}/images/matrix-18x7.png)
+
+To add one new mail server, it's super easy:
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#conf
+RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group network ipv4 OBJ-Email-Nets
+RP/0/RP0/CPU0:TME-5508-1-6.(config-object-group-ipv4)#183.13.64.157/32
+RP/0/RP0/CPU0:TME-5508-1-6.(config-object-group-ipv4)#commit
+RP/0/RP0/CPU0:TME-5508-1-6.(config-object-group-ipv4)#end
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh access-lists ipv4 FILTER-IN expanded | i .157
+ipv4 access-list FILTER-IN
+ 20 permit tcp any host 183.13.64.157 eq smtp
+ 20 permit tcp any host 183.13.64.157 eq www
+ 20 permit tcp any host 183.13.64.157 eq pop3
+ 20 permit tcp any host 183.13.64.157 eq 143
+ 20 permit tcp any host 183.13.64.157 eq 443
+ 20 permit tcp any host 183.13.64.157 eq 445
+ 20 permit tcp any host 183.13.64.157 eq 993
+ 20 permit tcp any host 183.13.64.157 eq 995
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#
+</code>
+</pre>
+</div>
+
+Adding one line in the object group for networks, it's like we add 8 lines in a flat ACL. As you can see, it's a very flexible way to manage your access-list.
+
+## Operation
+
+The hybrid ACL implies we defined object-groups members but also that we used compression:
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh run int hu 0/7/0/2
+interface HundredGigE0/7/0/2
+ ipv4 address 27.7.4.1 255.255.255.0
+ ipv6 address 2001:27:7:4::1/64
+ load-interval 30
+ ipv4 access-group FILTER-IN ingress <mark>compress level 3</mark>
+!
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#
+</code>
+</pre>
+</div>
+
+Once the ACL has been applied in ingress and with compression level 3 on the interface, the PMF block of the pipeline will perform two look-ups:
+- the first one in the external TCAM, on the hash of the compressed source/destination address and source port
+- the second one in the internal TCAM, on the value of the destination port
+
+![2step.png]({{site.baseurl}}/images/2step.png)
+
+It's not necessary to remove the ACL from the interface to edit the content, it can be done "in-place" and without traffic impact.
 
 ## eTCAM Carving requirement
 
@@ -190,7 +326,6 @@ We took the decision starting from 6.3.2 onwards to let the carving decision to 
 
 A manual carving of the external TCAM is necessary and can be done with the following steps:
 
-
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
@@ -199,7 +334,6 @@ RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#commit
 
 RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#end
 RP/0/RP0/CPU0:TME-5508-1-6.3.2#admin
-
 
 root connected from 127.0.0.1 using console on TME-5508-1-6.3.2
 sysadmin-vm:0_RP0# reload rack 0
@@ -211,7 +345,29 @@ sysadmin-vm:0_RP0#
 </pre>
 </div>
 
+Once reload is completed, you can check the external TCAM carving, it's now ready for hybrid ACLs.
 
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh contr npu ext loc 0/7/CPU0
+Sat Jul 21 13:02:35.879 PDT
+External TCAM Resource Information
+=============================================================
+NPU  Bank   Entry  Owner       Free     Per-DB  DB   DB
+     Id     Size               Entries  Entry   ID   Name
+=============================================================
+0    0      80b    FLP         886729   751671  15   IPV4 DC
+0    1      80b    FLP         8192     0       81   <mark>INGRESS_IPV4_SRC_IP_EXT</mark>
+0    2      80b    FLP         8192     0       82   <mark>INGRESS_IPV4_DST_IP_EXT</mark>
+0    3      160b   FLP         8192     0       83   <mark>INGRESS_IPV6_SRC_IP_EXT</mark>
+0    4      160b   FLP         8192     0       84   <mark>INGRESS_IPV6_DST_IP_EXT</mark>
+0    5      80b    FLP         8192     0       85   <mark>INGRESS_IP_SRC_PORT_EXT</mark>
+0    6      80b    FLP         8192     0       86   <mark>INGRESS_IPV6_SRC_PORT_EXT</mark>
+...
+</code>
+</pre>
+</div>
 
 - for 6.2.x and 6.3.1/6.3.1, 20% of the eTCAM is pre-allocated, even if you use hybrid. Nothing should be done if we decide to enable this feature.
 
@@ -239,12 +395,19 @@ NPU  Bank   Entry  Owner       Free     Per-DB  DB   DB
 </pre>
 </div>
 
+Hybrid ACL can be applied directly. No specific preparation needed.
+
+## Monitoring
 
 
 
+## Notes
 
+It's possible to define object-based ACLs and apply them in non-eTCAM systems. They will be expanded and programmed in the internal TCAM. But it will not be possible to use the compression
 
-
+We only support the level 3 compression:
+- source address, destination address, source port are compressed and stored in the external TCAM
+- destination port is not compressed and is stored in the internal TCAM
 
 
 
