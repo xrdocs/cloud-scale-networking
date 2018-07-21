@@ -276,7 +276,7 @@ For systems based on Jericho, it will depend on the IOS XR release:
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
-RP/0/RP0/CPU0:NCS5508-6.3.2#sh contr npu ext loc 0/6/CPU0
+RP/0/RP0/CPU0:NCS5508-6.3.2#sh contr npu ext loc 0/7/CPU0
 
 External TCAM Resource Information
 =============================================================
@@ -376,7 +376,7 @@ NPU  Bank   Entry  Owner       Free     Per-DB  DB   DB
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
-RP/0/RP0/CPU0:TME-5508-6.2.3#sh contr npu externaltcam loc 0/6/CPU0
+RP/0/RP0/CPU0:TME-5508-6.2.3#sh contr npu externaltcam loc 0/7/CPU0
 
 External TCAM Resource Information
 =============================================================
@@ -399,16 +399,286 @@ Hybrid ACL can be applied directly. No specific preparation needed.
 
 ## Monitoring
 
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh access-lists ipv4 FILTER-IN object-groups
+ACL Name : FILTER-IN
+Network Object-group :
+    OBJ-Email-Nets
+---------------------------
+                   Total 1
+Port Object-group :
+    OBJ-Email-Ports
+---------------------------
+                   Total 1
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh access-lists FILTER-IN usage pfilter loc 0/7/CPU0
+Interface : HundredGigE0/7/0/2
+    Input  ACL : Common-ACL : N/A  ACL : FILTER-IN  (comp-lvl 3)
+    Output ACL : N/A
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh access-lists FILTER-IN hardware ingress interface hundredGigE 0/7/0/2 verify location 0/7/CPU0
+
+Verifying TCAM entries for FILTER-IN
+Please wait...
+
+
+
+    INTF    NPU lookup  ACL # intf Total  compression Total   result failed(Entry) TCAM entries
+                type    ID  shared ACES   prefix-type Entries        ACE SEQ #     verified
+ ---------- --- ------- --- ------ ------ ----------- ------- ------ ------------- ------------
+
+HundredGigE0_7_0_2 (ifhandle: 0x3800120)
+
+              0 IPV4      1      1      1 COMPRESSED        9 passed                          9
+                                          SRC IP            1 passed                          1
+                                          DEST IP          19 passed                         19
+                                          SRC PORT          1 passed                          1
+
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#show controllers npu internaltcam loc 0/7/CPU0
+Internal TCAM Resource Information
+=============================================================
+NPU  Bank   Entry  Owner       Free     Per-DB  DB   DB
+     Id     Size               Entries  Entry   ID   Name
+=============================================================
+0    0\1    320b   pmf-0       1979     48      7    INGRESS_LPTS_IPV4
+0    0\1    320b   pmf-0       1979     8       12   INGRESS_RX_ISIS
+0    0\1    320b   pmf-0       1979     2       32   INGRESS_QOS_IPV6
+0    0\1    320b   pmf-0       1979     2       34   INGRESS_QOS_L2
+0    0\1    320b   pmf-0       1979     <mark>9</mark>       49   <mark>INGRESS_HYBRID_ACL</mark>
+0    2      160b   pmf-0       2044     2       31   INGRESS_QOS_IPV4
+0    2      160b   pmf-0       2044     1       33   INGRESS_QOS_MPLS
+0    2      160b   pmf-0       2044     1       42   INGRESS_ACL_L2
+0    3      160b   egress_acl  2031     17      4    EGRESS_QOS_MAP
+0    4\5    320b   pmf-0       2013     35      8    INGRESS_LPTS_IPV6
+0    6      160b   Free        2048     0       0
+0    7      160b   Free        2048     0       0
+0    8      160b   Free        2048     0       0
+0    9      160b   Free        2048     0       0
+0    10     160b   Free        2048     0       0
+0    11     160b   Free        2048     0       0
+0    12     160b   pmf-1       30       41      11   INGRESS_RX_L2
+0    12     160b   pmf-1       30       13      26   INGRESS_MPLS
+0    12     160b   pmf-1       30       44      79   INGRESS_BFD_IPV4_NO_DESC_TCAM_T
+0    13     160b   pmf-1       124      3       10   INGRESS_DHCP
+0    13     160b   pmf-1       124      1       41   INGRESS_EVPN_AA_ESI_TO_FBN_DB
+0    14     160b   Free        128      0       0
+0    15     160b   Free        128      0       0
+...
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#show controllers npu externaltcam loc 0/7/CPU0
+External TCAM Resource Information
+=============================================================
+NPU  Bank   Entry  Owner       Free     Per-DB  DB   DB
+     Id     Size               Entries  Entry   ID   Name
+=============================================================
+0    0      80b    FLP         886729   751671  15   IPV4 DC
+0    1      80b    FLP         8191     <mark>1<mark>       81   <mark>INGRESS_IPV4_SRC_IP_EXT</mark>
+0    2      80b    FLP         8173     <mark>19<mark>      82   <mark>INGRESS_IPV4_DST_IP_EXT</mark>
+0    3      160b   FLP         8192     0       83   INGRESS_IPV6_SRC_IP_EXT
+0    4      160b   FLP         8192     0       84   INGRESS_IPV6_DST_IP_EXT
+0    5      80b    FLP         8191     <mark>1<mark>       85   <mark>INGRESS_IP_SRC_PORT_EXT</mark>
+0    6      80b    FLP         8192     0       86   INGRESS_IPV6_SRC_PORT_EXT
+...
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh dpa resources ipaclprefix loc 0/7/CPU0
+
+"ipaclprefix" DPA Table (Id: 111, Scope: Non-Global)
+--------------------------------------------------
+                          NPU ID: NPU-0           NPU-1           NPU-2           NPU-3
+                          In Use: 20              0               0               0
+                 Create Requests
+                           Total: 20              0               0               0
+                         Success: 20              0               0               0
+                 Delete Requests
+                           Total: 0               0               0               0
+                         Success: 0               0               0               0
+                 Update Requests
+                           Total: 0               0               0               0
+                         Success: 0               0               0               0
+                    EOD Requests
+                           Total: 0               0               0               0
+                         Success: 0               0               0               0
+                          Errors
+                     HW Failures: 0               0               0               0
+                Resolve Failures: 0               0               0               0
+                 No memory in DB: 0               0               0               0
+                 Not found in DB: 0               0               0               0
+                    Exists in DB: 0               0               0               0
+
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh dpa resources scaleacl loc 0/7/CPU0
+
+"scaleacl" DPA Table (Id: 114, Scope: Non-Global)
+--------------------------------------------------
+                          NPU ID: NPU-0           NPU-1           NPU-2           NPU-3
+                          In Use: 9               0               0               0
+                 Create Requests
+                           Total: 9               0               0               0
+                         Success: 9               0               0               0
+                 Delete Requests
+                           Total: 0               0               0               0
+                         Success: 0               0               0               0
+                 Update Requests
+                           Total: 0               0               0               0
+                         Success: 0               0               0               0
+                    EOD Requests
+                           Total: 0               0               0               0
+                         Success: 0               0               0               0
+                          Errors
+                     HW Failures: 0               0               0               0
+                Resolve Failures: 0               0               0               0
+                 No memory in DB: 0               0               0               0
+                 Not found in DB: 0               0               0               0
+                    Exists in DB: 0               0               0               0
+
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#
+
+You note the size of each object-group is one more than the number of entries. It's always +1 for IPv4 and +3 for IPv6.
+
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh contr npu resources stats inst 0 loc 0/7/CPU0
+
+System information for NPU 0:
+  Counter processor configuration profile: Default
+  Next available counter processor:        4
+
+Counter processor: 0                        | Counter processor: 1
+  State: In use                             |   State: In use
+                                            |
+  Application:              In use   Total  |   Application:              In use   Total
+    Trap                        95     300  |     Trap                        95     300
+    Policer (QoS)                0    6976  |     Policer (QoS)                0    6976
+    ACL RX, LPTS               182     915  |     ACL RX, LPTS               182     915
+                                            |
+                                            |
+Counter processor: 2                        | Counter processor: 3
+  State: In use                             |   State: In use
+                                            |
+  Application:              In use   Total  |   Application:              In use   Total
+    VOQ                        140    8191  |     VOQ                        140    8191
+                                            |
+                                            |
+Counter processor: 4                        | Counter processor: 5
+  State: Free                               |   State: Free
+                                            |
+                                            |
+Counter processor: 6                        | Counter processor: 7
+  State: Free                               |   State: Free
+                                            |
+                                            |
+Counter processor: 8                        | Counter processor: 9
+  State: Free                               |   State: Free
+                                            |
+                                            |
+Counter processor: 10                       | Counter processor: 11
+  State: In use                             |   State: In use
+                                            |
+  Application:              In use   Total  |   Application:              In use   Total
+    L3 RX                        3    8191  |     L3 RX                       11    8191
+    L2 RX                        1    8192  |     L2 RX                        1    8192
+                                            |
+                                            |
+Counter processor: 12                       | Counter processor: 13
+  State: In use                             |   State: In use
+                                            |
+  Application:              In use   Total  |   Application:              In use   Total
+    Interface TX                 4   16383  |     Interface TX                 6   16383
+                                            |
+                                            |
+Counter processor: 14                       | Counter processor: 15
+  State: In use                             |   State: In use
+                                            |
+  Application:              In use   Total  |   Application:              In use   Total
+    Interface TX                 0   16384  |     Interface TX                 0   16384
+                                            |
+                                            |
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#
 
 
 ## Notes
 
-It's possible to define object-based ACLs and apply them in non-eTCAM systems. They will be expanded and programmed in the internal TCAM. But it will not be possible to use the compression
+It's possible to define object-based ACLs and apply them in non-eTCAM systems. They will be expanded and programmed in the internal TCAM. But it will not be possible to use the compression.
+
+Ranges are supported but within a limit of 24 range-IDs.
 
 We only support the level 3 compression:
 - source address, destination address, source port are compressed and stored in the external TCAM
 - destination port is not compressed and is stored in the internal TCAM
+- level 0 equals not-compressed
 
+Permits are not counted by default. It's necessary to enable another hw-profile to count permit but it will replace the QoS counters:
+
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#conf
+Sat Jul 21 15:27:03.563 PDT
+hw-module profile stats acl-permitRP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#hw-module profile stats acl-permit
+Sat Jul 21 15:27:04.425 PDT
+In order to activate/deactivate this stats profile, you must manually reload the chassis/all line cards
+RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#commit
+Sat Jul 21 15:27:06.209 PDT
+enRP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#end
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#admin
+Sat Jul 21 15:27:08.968 PDT
+
+root connected from 127.0.0.1 using console on TME-5508-1-6.3.2
+sysadmin-vm:0_RP0# reload rack 0
+Sat Jul  21 22:27:14.156 UTC
+Reload node ? [no,yes] yes
+result Rack graceful reload request on 0 acknowledged.
+
+After the reload:
+
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh contr npu resources stats inst 0 loc 0/7/CPU0
+Sat Jul 21 15:47:05.684 PDT
+
+System information for NPU 0:
+  Counter processor configuration profile: ACL Permit
+  Next available counter processor:        4
+
+Counter processor: 0                        | Counter processor: 1
+  State: In use                             |   State: In use
+                                            |
+  Application:              In use   Total  |   Application:              In use   Total
+    Trap                        95     300  |     Trap                        95     300
+    ACL RX, LPTS               182    7891  |     ACL RX, LPTS               182    7891
+                                            |
+                                            |
+Counter processor: 2                        | Counter processor: 3
+  State: In use                             |   State: In use
+                                            |
+  Application:              In use   Total  |   Application:              In use   Total
+    VOQ                        140    8191  |     VOQ                        140    8191
+                                            |
+                                            |
+Counter processor: 4                        | Counter processor: 5
+  State: Free                               |   State: Free
+                                            |
+                                            |
+Counter processor: 6                        | Counter processor: 7
+  State: Free                               |   State: Free
+                                            |
+                                            |
+Counter processor: 8                        | Counter processor: 9
+  State: Free                               |   State: Free
+                                            |
+                                            |
+Counter processor: 10                       | Counter processor: 11
+  State: In use                             |   State: In use
+                                            |
+  Application:              In use   Total  |   Application:              In use   Total
+    L3 RX                        3    8191  |     L3 RX                        9    8191
+    L2 RX                        1    8192  |     L2 RX                        1    8192
+                                            |
+                                            |
+Counter processor: 12                       | Counter processor: 13
+  State: In use                             |   State: In use
+                                            |
+  Application:              In use   Total  |   Application:              In use   Total
+    Interface TX                 4   16383  |     Interface TX                 6   16383
+                                            |
+                                            |
+Counter processor: 14                       | Counter processor: 15
+  State: In use                             |   State: In use
+                                            |
+  Application:              In use   Total  |   Application:              In use   Total
+    Interface TX                 0   16383  |     Interface TX                 0   16383
+                                            |
+                                            |
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#
 
 
 
