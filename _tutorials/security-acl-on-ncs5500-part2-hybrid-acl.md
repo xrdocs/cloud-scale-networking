@@ -208,6 +208,8 @@ This line of access-list FILTER-IN equals to a matrix of 136 entries:
 
 ![matrix-18x7.png]({{site.baseurl}}/images/matrix-18x7.png)
 
+![image-center](/images/matrix-18x7.png){: .align-center}
+
 To add one new mail server, it's super easy:
 
 <div class="highlighter-rouge">
