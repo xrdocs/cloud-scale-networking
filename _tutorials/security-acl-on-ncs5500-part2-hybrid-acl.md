@@ -717,11 +717,10 @@ If packets are matching a permit entry in the ACL and are targeted to the router
 
 ## Conclusion
 
-Hybrid ACLs may not be applicable for all use-cases. For instance, an existing flat ACL is not trivial to translate. In brownfield / migration, operators may be scared to removed or add ACLs they don't understand (it's very frequent that ACLs are inherited from former companies, or organisations, or from employees who left without properly documenting the reason of each ACE).
+We hope we demonstrated the power of hybrid ACL for infrastructure security. They offer a lot of flexibility and huge scale. Definitely something you should consider for greenfield deployment.
 
-In these cases, sticking to flat access-list until a project to clean them up is initiated could be the best option from an operation perspective.
+Nevertheless, moving from existing traditional ACLs is not an easy task. It's common to see network will very large flat ACLs and poorly documented. The operators are usually very uncomfortable touching it.
 
-Nevertheless, we hope we demonstrated the power of hybrid ACL for infrastructure security. They offer a lot of flexibility and huge scale. Definitely something you should consider for greenfield deployment.
-
+In this brownfield scenarios, it's mandatory to start an entire project to redefine the flows that are allowed and forbidden through these routers and it could be long process.
 
 
