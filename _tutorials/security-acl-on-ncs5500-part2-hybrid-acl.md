@@ -768,6 +768,6 @@ Definitely something you should consider for greenfield deployment.
 
 Nevertheless, moving from existing traditional ACLs is not an easy task.  It's common to see network will very large flat ACLs and poorly documented.  The operators are usually very uncomfortable touching it.
 
-In these brownfield scenarios, it's mandatory to start an entire project to redefine the flows that are allowed and forbidden through these routers and it could be long process.
+In these brownfield scenarios, it's mandatory to start an entire project to redefine the flows that are allowed and forbidden through these routers and it could be a long process.
 
 
