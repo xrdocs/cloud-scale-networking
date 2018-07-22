@@ -264,7 +264,6 @@ A portion of the eTCAM should be used to store a port ACL information (compresse
 For systems based on Jericho+, we don't have anything to worry about: the eTCAM can handle this information without any specific configuration.
 
 For systems based on Jericho, it will depend on the IOS XR release:
-
 - for 6.1.x and 6.3.2 onwards, no carving done by default, it will be necessary to change the configuration before enabling hybrid ACLs
 
 ![632.png]({{site.baseurl}}/images/632.png)
@@ -273,18 +272,7 @@ For systems based on Jericho, it will depend on the IOS XR release:
 <pre class="highlight">
 <code>
 RP/0/RP0/CPU0:NCS5508-6.3.2#sh contr npu ext loc 0/7/CPU0
-
-External TCAM Resource Information
-=============================================================
-NPU  Bank   Entry  Owner       Free     Per-DB  DB   DB
-     Id     Size               Entries  Entry   ID   Name
-=============================================================
-0    0      80b    FLP         2047993  7       15   IPV4 DC
-1    0      80b    FLP         2047993  7       15   IPV4 DC
-2    0      80b    FLP         2047993  7       15   IPV4 DC
-3    0      80b    FLP         2047993  7       15   IPV4 DC
-
-RP/0/RP0/CPU0:NCS5508-6.3.2#
+ddd
 </code>
 </pre>
 </div>
@@ -305,7 +293,6 @@ RP/0/RP0/CPU0:TME-5508-1-6.3.2(config-if)#show configuration failed
 !! the system due to semantic errors. The individual
 !! errors with each failed configuration command can be
 !! found below.
-
 
 interface HundredGigE0/7/0/2
  ipv4 access-group FILTER-IN ingress compress level 3
