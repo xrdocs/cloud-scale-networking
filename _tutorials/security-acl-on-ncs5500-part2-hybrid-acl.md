@@ -16,7 +16,7 @@ After introducing [the traditional ACLs in a recent post](https://xrdocs.io/clou
 
 Let's start with a 5-minute video to illustrate this features and its benefits:
 
-[![NCS5500 Hybrid ACLs](https://img.youtube.com/vi/xIUgbL7d6tk/0.jpg](https://www.youtube.com/watch?v=xIUgbL7d6tk){: .align-center}
+[![NCS5500 Hybrid ACLs](https://img.youtube.com/vi/xIUgbL7d6tk/0.jpg)](https://www.youtube.com/watch?v=xIUgbL7d6tk){: .align-center}
 
 [https://www.youtube.com/watch?v=xIUgbL7d6tk](https://www.youtube.com/watch?v=xIUgbL7d6tk)
 
