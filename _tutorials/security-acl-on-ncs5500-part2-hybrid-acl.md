@@ -43,7 +43,24 @@ We will use two types of object-groups:
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code> 
-AAA show commands options AAA
+
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#conf
+
+RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group ?
+  network  Network object group
+  port     Port object group
+
+RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group network ?
+  ipv4  IPv4 object group
+  ipv6  IPv6 object group
+
+RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group network ipv4 TEST ?
+  A.B.C.D/length  IPv4 address/prefix
+  description     Description for the object group
+  host            A single host address
+  object-group    Nested object group
+  range           Range of host addresses
+
 </code>
 </pre>
 </div>
