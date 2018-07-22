@@ -42,7 +42,7 @@ We will use two types of object-groups:
 
 <div class="highlighter-rouge">
 <pre class="highlight">
-<code>        
+<code>
 RP/0/RP0/CPU0:TME-5508-1-6.3.2#conf
 RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group ?
   network  Network object group
