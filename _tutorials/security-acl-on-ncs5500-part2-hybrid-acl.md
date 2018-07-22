@@ -30,7 +30,7 @@ That implies, only the systems equiped with external TCAM can be used for this f
 
 ![-SE.png]({{site.baseurl}}/images/-SE.png)
 
-Hybrid ACLs can be used with IPv4 and IPv6 in ingress direction. So, L2 ACLs or L3 ICMP are not in the scope of this feature. They can noy be applied in egress.
+Hybrid ACLs can be used with IPv4 and IPv6 in ingress direction. So, L2 ACLs or L3 ICMP are not in the scope of this feature. They can not be applied in egress.
 
 ## Configuration
 
