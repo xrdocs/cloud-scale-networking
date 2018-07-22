@@ -18,6 +18,11 @@ Let's start with a 5-minute video to illustrate this features and its benefits:
 
 [![NCS5500 Hybrid ACLs](https://img.youtube.com/vi/xIUgbL7d6tk/0.jpg)](https://www.youtube.com/watch?v=xIUgbL7d6tk){: .align-center}
 
+[![image-center](https://img.youtube.com/vi/xIUgbL7d6tk/0.jpg)](https://www.youtube.com/watch?v=xIUgbL7d6tk){: .align-center}
+
+
+![image-center]({{site.baseurl}}/images/-SE.png){: .align-center}
+
 [https://www.youtube.com/watch?v=xIUgbL7d6tk](https://www.youtube.com/watch?v=xIUgbL7d6tk)
 
 ## Support
@@ -28,7 +33,7 @@ Hybrid ACL feature uses two databases to store the information:
 
 That implies, only the systems equiped with external TCAM can be used for this feature. It's true for Qumran-MX, Jericho and Jericho+ based routers and line cards.
 
-![-SE.png]({{site.baseurl}}/images/-SE.png)
+![image-center]({{site.baseurl}}/images/-SE.png){: .align-center}
 
 Hybrid ACLs can be used with IPv4 and IPv6 in ingress direction. So, L2 ACLs or L3 ICMP are not in the scope of this feature. They can not be applied in egress.
 
@@ -110,11 +115,11 @@ These objects will be used in an access-list entry to describe.
 
 Example1: IPv4 addresses, source and destination
 
-![acl2.png]({{site.baseurl}}/images/acl2.png)
+![image-center]({{site.baseurl}}/images/acl2.png){: .align-center}
 
 Example2: IPv4 addresses and ports, source and destination
 
-![acl.png]({{site.baseurl}}/images/acl.png)
+![image-center]({{site.baseurl}}/images/acl.png){: .align-center}
 
 Separating addresses and ports in two groups and calling these objects in access-list entries line offers an unique flexibility. It's easy to create a matrix that would take dozens or even hundreds of lines if they were described one by one with traditional ACLs.
 
@@ -205,8 +210,6 @@ RP/0/RP0/CPU0:TME-5508-1-6.3.2#
 </div>
 
 This line of access-list FILTER-IN equals to a matrix of 136 entries:
-
-![matrix-18x7.png]({{site.baseurl}}/images/matrix-18x7.png)
 
 ![image-center]({{site.baseurl}}/images/matrix-18x7.png){: .align-center}
 
