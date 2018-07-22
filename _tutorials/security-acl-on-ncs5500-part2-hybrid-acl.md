@@ -61,7 +61,7 @@ RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group network ipv4 TEST ?
   range           Range of host addresses
 
 RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group network ipv6 TESTv6 ?
-  X&#58X&#58&#58X/length  IPv6 prefix x&#58x&#58&#58x/y
+      X:X::X/length  IPv6 prefix x:x::x/y
   description    Description for the object group
   host           A single host address
   object-group   nested object group
@@ -208,7 +208,7 @@ This line of access-list FILTER-IN equals to a matrix of 136 entries:
 
 ![matrix-18x7.png]({{site.baseurl}}/images/matrix-18x7.png)
 
-![image-center](/images/matrix-18x7.png){: .align-center}
+![image-center]({{site.baseurl}}/images/matrix-18x7.png){: .align-center}
 
 To add one new mail server, it's super easy:
 
