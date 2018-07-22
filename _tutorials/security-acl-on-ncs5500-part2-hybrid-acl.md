@@ -14,7 +14,7 @@ position: hidden
 
 After introducing [the traditional ACLs in a recent post](https://xrdocs.io/cloud-scale-networking/tutorials/security-acl-on-ncs5500-part1/), let's focus on an interesting approach offering significantly higher scale and better flexibility: the hybrid ACLs.
 
-Let's start with a 5-minute video to illustrate this features and its benefits:
+Let's start with a 5-minute video to illustrate this feature and its benefits:
 
 [![NCS5500 Hybrid ACLs](https://img.youtube.com/vi/xIUgbL7d6tk/0.jpg)](https://www.youtube.com/watch?v=xIUgbL7d6tk){: .align-center}
 
@@ -26,11 +26,11 @@ Hybrid ACL feature uses two databases to store the information:
 - internal TCAM (present inside the NPU)
 - external TCAM
 
-That implies, only the systems equiped with external TCAM can be used for this feature. It's true for Qumran-MX, Jericho and Jericho+ based routers and line cards.
+That implies, only the systems equiped with external TCAM can be used here. It's true for Qumran-MX, Jericho and Jericho+ based routers and line cards.
 
 ![image-center]({{site.baseurl}}/images/-SE.png){: .align-center}
 
-Hybrid ACLs can be used with IPv4 and IPv6 in ingress direction. So, L2 ACLs or L3 ICMP are not in the scope of this feature. They can not be applied in egress.
+Hybrid ACLs can be used with IPv4 and IPv6 in ingress direction. So, L2 ACLs or L3 ICMP are not in the scope of this feature. It can not be applied in egress.
 
 ## Configuration
 
@@ -105,7 +105,7 @@ object-group port OBJ-Email-Ports
 </pre>
 </div>
 
-These objects will be used in an access-list entry to describe.
+These objects will be used in an access-list entry to describe the flow(s).
 
 Example1: IPv4 addresses, source and destination
 
@@ -118,7 +118,7 @@ Example2: IPv4 addresses and ports, source and destination
 Separating addresses and ports in two groups and calling these objects in access-list entries line offers an unique flexibility.  
 It's easy to create a matrix that would take dozens or even hundreds of lines if they were described one by one with traditional ACLs.
 
-Let's imagine a case with email servers with 17 servers and 8 ports.
+Let's imagine a case with email servers: 17 servers or networks and 8 ports.
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -180,7 +180,7 @@ You could visualize what would be the traditional/flat ACL with this show comman
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
-RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh access-lists ipv4 FILTER-IN expanded
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh access-lists ipv4 FILTER-IN <mark>expanded</mark>
 ipv4 access-list FILTER-IN
  20 permit tcp any 183.13.68.0 0.0.1.255 eq smtp
  20 permit tcp any 183.13.68.0 0.0.1.255 eq www
@@ -234,7 +234,7 @@ RP/0/RP0/CPU0:TME-5508-1-6.3.2#
 </div>
 
 Adding one line in the object group for networks, it's like we add 8 lines in a flat ACL.  
-As you can see, it's a very flexible way to manage your access-list.
+As you can see, it's a very flexible way to manage your access-lists.
 
 ## Operation
 
@@ -256,20 +256,44 @@ RP/0/RP0/CPU0:TME-5508-1-6.3.2#
 </div>
 
 Once the ACL has been applied in ingress and with compression level 3 on the interface, the PMF block of the pipeline will perform two look-ups:
-- the first one in the external TCAM, on the hash of the compressed source/destination address and source port
-- the second one in the internal TCAM, on the value of the destination port
+- the first one in the external TCAM
+- the second one in the internal TCAM
 
 ![image-center]({{site.baseurl}}/images/2step.png){: .align-center}
 
 It's not necessary to remove the ACL from the interface to edit the content, it can be done "in-place" and without traffic impact.
 
+### Coexistence with flat ACL
+
+It's possible to use traditional access-list entries in the same ACL. Each line is pretty much independant from the others, with or without object-groups:
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+ipv4 access-list FILTER-IN
+ 10 permit tcp any net-group SRC port-group PRT
+ 20 permit tcp net-group SRC any port-group PRT
+ 30 permit tcp net-group SRC port-group PRT any
+ 40 permit tcp any port-group PRT net-group SRC
+ 50 permit udp any host 1.2.3.3 eq 445
+ 60 permit ipv4 1.3.5.0/24 any
+ 70 permit ipv4 any 1.3.5.0/24
+!
+</code>
+</pre>
+</div>
+
 ## eTCAM Carving requirement
 
-A portion of the eTCAM should be used to store a port ACL information (compressed or not).  
-For systems based on Jericho+, we don't have anything to worry about: the eTCAM can handle this information without any specific configuration.
+A portion of the eTCAM should be used to store a part ACL information (compressed or not).
 
-For systems based on Jericho, it will depend on the IOS XR release:
-- for 6.1.x and 6.3.2 onwards, no carving done by default, it will be necessary to change the configuration before enabling hybrid ACLs
+### Jericho+ systems
+
+For systems based on Jericho+, we don't have anything to worry about: the eTCAM can handle this information without any specific configuration or preparation
+
+### Jericho systems with 6.1.x and 6.3.2 onwards
+
+For systems based on Jericho running 6.1.x and 6.3.2 onwards: no carving done by default, it will be necessary to change the configuration before enabling hybrid ACLs
 
 ![image-center]({{site.baseurl}}/images/632.png){: .align-center}
 
@@ -368,7 +392,10 @@ NPU  Bank   Entry  Owner       Free     Per-DB  DB   DB
 </pre>
 </div>
 
-- for 6.2.x and 6.3.1/6.3.1, 20% of the eTCAM is pre-allocated, even if you use hybrid.  
+### Jericho systems with 6.2.x and 6.3.1/6.3.15
+
+For systems based on Jericho running 6.2.x and 6.3.1/6.3.1, 20% of the eTCAM is pre-allocated, even if you don't plan to use hybrid ACLs.
+
 Nothing should be done if we decide to enable this feature.
 
 ![image-center]({{site.baseurl}}/images/62x.png){: .align-center}
@@ -416,7 +443,7 @@ Port Object-group :
                    Total 1
 RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh access-lists FILTER-IN usage pfilter loc 0/7/CPU0
 Interface : HundredGigE0/7/0/2
-    Input  ACL : Common-ACL : N/A  ACL : FILTER-IN  (comp-lvl 3)
+    Input  ACL : Common-ACL : N/A  ACL : FILTER-IN  (<mark>comp-lvl 3</mark>)
     Output ACL : N/A
 </code>
 </pre>
@@ -584,7 +611,7 @@ Counter processor: 0                        | Counter processor: 1
   Application:              In use   Total  |   Application:              In use   Total
     Trap                        95     300  |     Trap                        95     300
     Policer (QoS)                0    6976  |     Policer (QoS)                0    6976
-    ACL RX, LPTS               182     915  |     ACL RX, LPTS               182     915
+    ACL RX, LPTS               <mark>182</mark>     <mark>915</mark>  |     ACL RX, LPTS               <mark>182</mark>     <mark>915</mark>
                                             |
                                             |
 Counter processor: 2                        | Counter processor: 3
@@ -648,7 +675,7 @@ Ranges are supported but within a limit of 24 range-IDs.
 
 We only support the level 3 compression:
 - source address, destination address, source port are compressed and stored in the external TCAM
-- destination port is not compressed and is stored in the internal TCAM
+- destination port is not compressed
 - level 0 equals not-compressed
 
 ### ACL content edition
@@ -760,13 +787,14 @@ RP/0/RP0/CPU0:TME-5508-1-6.3.2#
 </div>
 
 If packets are matching a permit entry in the ACL and are targeted to the router, they will be punted but not counted in the ACL "matches".
+{: .notice--info}
 
 ## Conclusion
 
 We hope we demonstrated the power of hybrid ACL for infrastructure security. They offer a lot of flexibility and huge scale.  
-Definitely something you should consider for greenfield deployment.
+Definitely something you should consider for a greenfield deployment.
 
-Nevertheless, moving from existing traditional ACLs is not an easy task.  It's common to see network will very large flat ACLs and poorly documented.  The operators are usually very uncomfortable touching it.
+Nevertheless, moving from existing traditional ACLs is not an easy task.  It's common to see networks with very large flat ACLs, poorly documented.  The operators are usually very uncomfortable touching it.
 
 In these brownfield scenarios, it's mandatory to start an entire project to redefine the flows that are allowed and forbidden through these routers and it could be a long process.
 
