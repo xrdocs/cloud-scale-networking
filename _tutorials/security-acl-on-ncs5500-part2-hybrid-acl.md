@@ -18,11 +18,6 @@ Let's start with a 5-minute video to illustrate this features and its benefits:
 
 [![NCS5500 Hybrid ACLs](https://img.youtube.com/vi/xIUgbL7d6tk/0.jpg)](https://www.youtube.com/watch?v=xIUgbL7d6tk){: .align-center}
 
-[![image-center](https://img.youtube.com/vi/xIUgbL7d6tk/0.jpg)](https://www.youtube.com/watch?v=xIUgbL7d6tk){: .align-center}
-
-
-![image-center]({{site.baseurl}}/images/-SE.png){: .align-center}
-
 [https://www.youtube.com/watch?v=xIUgbL7d6tk](https://www.youtube.com/watch?v=xIUgbL7d6tk)
 
 ## Support
@@ -263,7 +258,7 @@ Once the ACL has been applied in ingress and with compression level 3 on the int
 - the first one in the external TCAM, on the hash of the compressed source/destination address and source port
 - the second one in the internal TCAM, on the value of the destination port
 
-![2step.png]({{site.baseurl}}/images/2step.png)
+![image-center]({{site.baseurl}}/images/2step.png){: .align-center}
 
 It's not necessary to remove the ACL from the interface to edit the content, it can be done "in-place" and without traffic impact.
 
@@ -276,7 +271,7 @@ For systems based on Jericho+, we don't have anything to worry about: the eTCAM 
 For systems based on Jericho, it will depend on the IOS XR release:
 - for 6.1.x and 6.3.2 onwards, no carving done by default, it will be necessary to change the configuration before enabling hybrid ACLs
 
-![632.png]({{site.baseurl}}/images/632.png)
+![image-center]({{site.baseurl}}/images/632.png){: .align-center}
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -375,7 +370,7 @@ NPU  Bank   Entry  Owner       Free     Per-DB  DB   DB
 
 - for 6.2.x and 6.3.1/6.3.1, 20% of the eTCAM is pre-allocated, even if you use hybrid. Nothing should be done if we decide to enable this feature.
 
-![62x.png]({{site.baseurl}}/images/62x.png)
+![image-center]({{site.baseurl}}/images/62x.png){: .align-center}
 
 <div class="highlighter-rouge">
 <pre class="highlight">
