@@ -39,7 +39,14 @@ Before jumping into the configuration aspects, let's define the concept of objec
 We will use two types of object-groups:
 - network object-groups: set of network addresses
 - port object-groups: set of UDP or TCP ports
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code> 
 AAA show commands options AAA
+</code>
+</pre>
+</div>
 
 As you can see in the help options of the IOS XR configuration:
 - we use specific object-groups per address-family IPv4 and IPv6
