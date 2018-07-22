@@ -42,7 +42,7 @@ We will use two types of object-groups:
 
 <div class="highlighter-rouge">
 <pre class="highlight">
-<code>
+<code>        
 RP/0/RP0/CPU0:TME-5508-1-6.3.2#conf
 RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group ?
   network  Network object group
@@ -85,7 +85,7 @@ For example:
 
 <div class="highlighter-rouge">
 <pre class="highlight">
-<code>
+<code> 
 object-group network ipv4 OBJ-DNS-network
  183.13.48.0/24
  host 183.13.64.23
@@ -96,7 +96,6 @@ object-group port OBJ-Email-Ports
  eq pop3
  eq 143
  eq 443
-!
 </code>
 </pre>
 </div>
@@ -272,7 +271,18 @@ For systems based on Jericho, it will depend on the IOS XR release:
 <pre class="highlight">
 <code>
 RP/0/RP0/CPU0:NCS5508-6.3.2#sh contr npu ext loc 0/7/CPU0
-ddd
+
+External TCAM Resource Information
+=============================================================
+NPU  Bank   Entry  Owner       Free     Per-DB  DB   DB
+     Id     Size               Entries  Entry   ID   Name
+=============================================================
+0    0      80b    FLP         2047993  7       15   IPV4 DC
+1    0      80b    FLP         2047993  7       15   IPV4 DC
+2    0      80b    FLP         2047993  7       15   IPV4 DC
+3    0      80b    FLP         2047993  7       15   IPV4 DC
+
+RP/0/RP0/CPU0:NCS5508-6.3.2#
 </code>
 </pre>
 </div>
@@ -473,11 +483,11 @@ NPU  Bank   Entry  Owner       Free     Per-DB  DB   DB
      Id     Size               Entries  Entry   ID   Name
 =============================================================
 0    0      80b    FLP         886729   751671  15   IPV4 DC
-0    1      80b    FLP         8191     <mark>1<mark>       81   <mark>INGRESS_IPV4_SRC_IP_EXT</mark>
-0    2      80b    FLP         8173     <mark>19<mark>      82   <mark>INGRESS_IPV4_DST_IP_EXT</mark>
+0    1      80b    FLP         8191     <mark>1</mark>       81   <mark>INGRESS_IPV4_SRC_IP_EXT</mark>
+0    2      80b    FLP         8173     <mark>19</mark>      82   <mark>INGRESS_IPV4_DST_IP_EXT</mark>
 0    3      160b   FLP         8192     0       83   INGRESS_IPV6_SRC_IP_EXT
 0    4      160b   FLP         8192     0       84   INGRESS_IPV6_DST_IP_EXT
-0    5      80b    FLP         8191     <mark>1<mark>       85   <mark>INGRESS_IP_SRC_PORT_EXT</mark>
+0    5      80b    FLP         8191     <mark>1</mark>       85   <mark>INGRESS_IP_SRC_PORT_EXT</mark>
 0    6      80b    FLP         8192     0       86   INGRESS_IPV6_SRC_PORT_EXT
 ...
 RP/0/RP0/CPU0:TME-5508-1-6.3.2#
