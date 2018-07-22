@@ -62,6 +62,7 @@ RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group network ipv4 TEST ?
   range           Range of host addresses
 
 RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group network ipv6 TESTv6 ?
+  X\:X\:\:X/length  IPv6 prefix x\:x\:\:x/y
   description    Description for the object group
   host           A single host address
   object-group   nested object group
