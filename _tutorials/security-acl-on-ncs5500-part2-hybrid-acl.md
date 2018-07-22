@@ -43,7 +43,6 @@ We will use two types of object-groups:
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code> 
-
 RP/0/RP0/CPU0:TME-5508-1-6.3.2#conf
 
 RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group ?
@@ -62,12 +61,22 @@ RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group network ipv4 TEST ?
   range           Range of host addresses
 
 RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group network ipv6 TESTv6 ?
-  X\:X\:\:X/length  IPv6 prefix x\:x\:\:x/y
+  X&#58X&#58&#58X/length  IPv6 prefix x&#58x&#58&#58x/y
   description    Description for the object group
   host           A single host address
   object-group   nested object group
   range          Range of host addresses
 
+RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group port TEST ?
+  description   description for the object group
+  eq            Match packets on ports equal to entered port number
+  gt            Match packets on ports greater than entered port number
+  lt            Match packets on ports less than entered port number
+  neq           Match packets on ports not equal to entered port number
+  object-group  nested object group
+  range         Match only packets on a given port range
+
+RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#
 </code>
 </pre>
 </div>
