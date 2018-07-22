@@ -39,41 +39,7 @@ Before jumping into the configuration aspects, let's define the concept of objec
 We will use two types of object-groups:
 - network object-groups: set of network addresses
 - port object-groups: set of UDP or TCP ports
-
-<div class="highlighter-rouge">
-<pre class="highlight">
-<code>
-RP/0/RP0/CPU0:TME-5508-1-6.3.2#conf
-RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group ?
-  network  Network object group
-  port     Port object group
-RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group network ?
-  ipv4  IPv4 object group
-  ipv6  IPv6 object group
-RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group network ipv4 TEST ?
-  A.B.C.D/length  IPv4 address/prefix
-  description     Description for the object group
-  host            A single host address
-  object-group    Nested object group
-  range           Range of host addresses
-RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group network ipv6 TESTv6 ?
-  X:X::X/length  IPv6 prefix x:x::x/y
-  description    Description for the object group
-  host           A single host address
-  object-group   nested object group
-  range          Range of host addresses
- RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group port TEST ?
-  description   description for the object group
-  eq            Match packets on ports equal to entered port number
-  gt            Match packets on ports greater than entered port number
-  lt            Match packets on ports less than entered port number
-  neq           Match packets on ports not equal to entered port number
-  object-group  nested object group
-  range         Match only packets on a given port range
-RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#
-</code>
-</pre>
-</div>
+AAA show commands options AAA
 
 As you can see in the help options of the IOS XR configuration:
 - we use specific object-groups per address-family IPv4 and IPv6
