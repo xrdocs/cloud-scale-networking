@@ -44,7 +44,6 @@ We will use two types of object-groups:
 <pre class="highlight">
 <code>
 RP/0/RP0/CPU0:TME-5508-1-6.3.2#conf
-
 RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group ?
   network  Network object group
   port     Port object group
@@ -57,14 +56,12 @@ RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group network ipv4 TEST ?
   host            A single host address
   object-group    Nested object group
   range           Range of host addresses
-
 RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group network ipv6 TESTv6 ?
   X:X::X/length  IPv6 prefix x:x::x/y
   description    Description for the object group
   host           A single host address
   object-group   nested object group
   range          Range of host addresses
- 
  RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group port TEST ?
   description   description for the object group
   eq            Match packets on ports equal to entered port number
@@ -73,7 +70,6 @@ RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#object-group network ipv6 TESTv6 ?
   neq           Match packets on ports not equal to entered port number
   object-group  nested object group
   range         Match only packets on a given port range
-
 RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#
 </code>
 </pre>
