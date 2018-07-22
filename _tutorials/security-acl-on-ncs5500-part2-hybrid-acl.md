@@ -34,8 +34,7 @@ Hybrid ACLs can be used with IPv4 and IPv6 in ingress direction. So, L2 ACLs or 
 
 ## Configuration
 
-Before jumping into the configuration aspects, let's define the concept of object-groups: it's a structure of data used to describe elements and called later in an access-list entry line (permit or deny).
-
+Before jumping into the configuration aspects, let's define the concept of object-groups: it's a structure of data used to describe elements and called later in an access-list entry line (permit or deny).  
 We will use two types of object-groups:
 - network object-groups: set of network addresses
 - port object-groups: set of UDP or TCP ports
@@ -116,7 +115,8 @@ Example2: IPv4 addresses and ports, source and destination
 
 ![image-center]({{site.baseurl}}/images/acl.png){: .align-center}
 
-Separating addresses and ports in two groups and calling these objects in access-list entries line offers an unique flexibility. It's easy to create a matrix that would take dozens or even hundreds of lines if they were described one by one with traditional ACLs.
+Separating addresses and ports in two groups and calling these objects in access-list entries line offers an unique flexibility.  
+It's easy to create a matrix that would take dozens or even hundreds of lines if they were described one by one with traditional ACLs.
 
 Let's imagine a case with email servers with 17 servers and 8 ports.
 
@@ -208,7 +208,7 @@ This line of access-list FILTER-IN equals to a matrix of 136 entries:
 
 ![image-center]({{site.baseurl}}/images/matrix-18x7.png){: .align-center}
 
-To add one new mail server, it's super easy:
+To add one new mail server, it's easy:
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -233,7 +233,8 @@ RP/0/RP0/CPU0:TME-5508-1-6.3.2#
 </pre>
 </div>
 
-Adding one line in the object group for networks, it's like we add 8 lines in a flat ACL. As you can see, it's a very flexible way to manage your access-list.
+Adding one line in the object group for networks, it's like we add 8 lines in a flat ACL.  
+As you can see, it's a very flexible way to manage your access-list.
 
 ## Operation
 
@@ -264,8 +265,7 @@ It's not necessary to remove the ACL from the interface to edit the content, it 
 
 ## eTCAM Carving requirement
 
-A portion of the eTCAM should be used to store a port ACL information (compressed or not).
-
+A portion of the eTCAM should be used to store a port ACL information (compressed or not).  
 For systems based on Jericho+, we don't have anything to worry about: the eTCAM can handle this information without any specific configuration.
 
 For systems based on Jericho, it will depend on the IOS XR release:
@@ -368,7 +368,8 @@ NPU  Bank   Entry  Owner       Free     Per-DB  DB   DB
 </pre>
 </div>
 
-- for 6.2.x and 6.3.1/6.3.1, 20% of the eTCAM is pre-allocated, even if you use hybrid. Nothing should be done if we decide to enable this feature.
+- for 6.2.x and 6.3.1/6.3.1, 20% of the eTCAM is pre-allocated, even if you use hybrid.  
+Nothing should be done if we decide to enable this feature.
 
 ![image-center]({{site.baseurl}}/images/62x.png){: .align-center}
 
@@ -447,7 +448,7 @@ HundredGigE0_7_0_2 (ifhandle: 0x3800120)
 </pre>
 </div>
 
-Since the ACL is stored in both internal and external TCAM, we can check the memory utilization with the following:
+Since the ACL is stored in both internal and external TCAMs, we can check the memory utilization with the following:
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -501,7 +502,8 @@ RP/0/RP0/CPU0:TME-5508-1-6.3.2#
 </pre>
 </div>
 
-The DPA is the abstraction layer used for the programming of the hardware. If the resource is exhausted, you'll find "HW Failures" count incremented:
+The DPA is the abstraction layer used for the programming of the hardware.  
+If the resource is exhausted, you'll find "HW Failures" count incremented:
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -633,16 +635,27 @@ RP/0/RP0/CPU0:TME-5508-1-6.3.2#
 
 ## Notes
 
-It's possible to define object-based ACLs and apply them in non-eTCAM systems. They will be expanded and programmed in the internal TCAM. But it will not be possible to use the compression.
+### Object-group and non-eTCAM?
+
+It's possible to define object-based ACLs and apply them in non-eTCAM systems.  
+They will be expanded and programmed in the internal TCAM. But it will not be possible to use the compression.
+
+### Use of ranges
 
 Ranges are supported but within a limit of 24 range-IDs.
+
+### Compression
 
 We only support the level 3 compression:
 - source address, destination address, source port are compressed and stored in the external TCAM
 - destination port is not compressed and is stored in the internal TCAM
 - level 0 equals not-compressed
 
+### ACL content edition
+
 It's possible edit the object-groups in-place, without having to remove the acl from the interface. But an edition of netgroup or portgroup will force the replacement and reprogramming of the ACL. The counters will be reset.
+
+### Statistics
 
 Permits are not counted by default. It's necessary to enable another hw-profile to count permit but it will replace the QoS counters:
 
@@ -681,7 +694,7 @@ Counter processor: 0                        | Counter processor: 1
                                             |
   Application:              In use   Total  |   Application:              In use   Total
     Trap                        95     300  |     Trap                        95     300
-    ACL RX, LPTS               182    7891  |     ACL RX, LPTS               182    7891
+    ACL RX, LPTS               <mark>182</mark>    <mark>7891</mark>  |     ACL RX, LPTS               <mark>182</mark>    <mark>7891</mark>
                                             |
                                             |
 Counter processor: 2                        | Counter processor: 3
@@ -738,7 +751,7 @@ Now permit matches will be counted:
 RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh access-lists ipv4 FILTER-IN hardware ingress interface hundredGigE 0/7/0/2 loc 0/7/CPU0
 ipv4 access-list FILTER-IN
  10 permit tcp any net-group SRC port-group PRT
- 20 permit tcp net-group SRC any port-group PRT (3 matches)
+ 20 permit tcp net-group SRC any port-group PRT (<mark>3 matches</mark>)
  30 permit tcp net-group SRC port-group PRT any
  40 permit tcp any port-group PRT net-group SRC
 RP/0/RP0/CPU0:TME-5508-1-6.3.2#
@@ -750,10 +763,11 @@ If packets are matching a permit entry in the ACL and are targeted to the router
 
 ## Conclusion
 
-We hope we demonstrated the power of hybrid ACL for infrastructure security. They offer a lot of flexibility and huge scale. Definitely something you should consider for greenfield deployment.
+We hope we demonstrated the power of hybrid ACL for infrastructure security. They offer a lot of flexibility and huge scale.  
+Definitely something you should consider for greenfield deployment.
 
-Nevertheless, moving from existing traditional ACLs is not an easy task. It's common to see network will very large flat ACLs and poorly documented. The operators are usually very uncomfortable touching it.
+Nevertheless, moving from existing traditional ACLs is not an easy task.  It's common to see network will very large flat ACLs and poorly documented.  The operators are usually very uncomfortable touching it.
 
-In this brownfield scenarios, it's mandatory to start an entire project to redefine the flows that are allowed and forbidden through these routers and it could be long process.
+In these brownfield scenarios, it's mandatory to start an entire project to redefine the flows that are allowed and forbidden through these routers and it could be long process.
 
 
