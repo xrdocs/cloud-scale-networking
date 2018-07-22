@@ -7,6 +7,14 @@ excerpt: >-
   Second part on the NCS5500 Access-lists. This time, we focus on the Hybrib
   ACL.
 position: hidden
+tags:
+  - acl
+  - ncs5500
+  - hybrid
+  - scale
+  - compressed
+  - iosxr
+  - xr
 ---
 {% include toc icon="table" title="NCS5500 Security Access-lists - Part2: Hybrid ACL" %} 
 
