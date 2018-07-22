@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 date: '2018-07-20 16:25 +0200'
 title: 'Security ACL on NCS5500 (Part2): Hybrid ACL'
 author: Nicolas Fevrier
@@ -399,6 +399,11 @@ Hybrid ACL can be applied directly. No specific preparation needed.
 
 ## Monitoring
 
+Let's take a look at several show commands useful to verify the ACL configuration and application:
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
 RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh access-lists ipv4 FILTER-IN object-groups
 ACL Name : FILTER-IN
 Network Object-group :
@@ -413,6 +418,15 @@ RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh access-lists FILTER-IN usage pfilter loc 0/7/C
 Interface : HundredGigE0/7/0/2
     Input  ACL : Common-ACL : N/A  ACL : FILTER-IN  (comp-lvl 3)
     Output ACL : N/A
+</code>
+</pre>
+</div>
+
+The verify option will permit to check if the compression happened correctly (expect "passed" in these lines).
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
 RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh access-lists FILTER-IN hardware ingress interface hundredGigE 0/7/0/2 verify location 0/7/CPU0
 
 Verifying TCAM entries for FILTER-IN
@@ -430,7 +444,15 @@ HundredGigE0_7_0_2 (ifhandle: 0x3800120)
                                           SRC IP            1 passed                          1
                                           DEST IP          19 passed                         19
                                           SRC PORT          1 passed                          1
+</code>
+</pre>
+</div>
 
+Since the ACL is stored in both internal and external TCAM, we can check the memory utilization with the following:
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
 RP/0/RP0/CPU0:TME-5508-1-6.3.2#show controllers npu internaltcam loc 0/7/CPU0
 Internal TCAM Resource Information
 =============================================================
@@ -476,6 +498,15 @@ NPU  Bank   Entry  Owner       Free     Per-DB  DB   DB
 0    6      80b    FLP         8192     0       86   INGRESS_IPV6_SRC_PORT_EXT
 ...
 RP/0/RP0/CPU0:TME-5508-1-6.3.2#
+</code>
+</pre>
+</div>
+
+The DPA is the abstraction layer used for the programming of the hardware. If the resource is exhausted, you'll find "HW Failures" count incremented:
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
 RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh dpa resources ipaclprefix loc 0/7/CPU0
 
 "ipaclprefix" DPA Table (Id: 111, Scope: Non-Global)
@@ -528,9 +559,18 @@ RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh dpa resources scaleacl loc 0/7/CPU0
                     Exists in DB: 0               0               0               0
 
 RP/0/RP0/CPU0:TME-5508-1-6.3.2#
+</code>
+</pre>
+</div>
 
 You note the size of each object-group is one more than the number of entries. It's always +1 for IPv4 and +3 for IPv6.
+{: .notice--info}
 
+The statistics can be also monitored. In this example, we don't count permit ACLs (profile not enabled by default). Check the ACL entries in both engines.
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
 RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh contr npu resources stats inst 0 loc 0/7/CPU0
 
 System information for NPU 0:
@@ -588,7 +628,9 @@ Counter processor: 14                       | Counter processor: 15
                                             |
                                             |
 RP/0/RP0/CPU0:TME-5508-1-6.3.2#
-
+</code>
+</pre>
+</div>
 
 ## Notes
 
@@ -601,29 +643,35 @@ We only support the level 3 compression:
 - destination port is not compressed and is stored in the internal TCAM
 - level 0 equals not-compressed
 
+It's possible edit the object-groups in-place, without having to remove the acl from the interface. But an edition of netgroup or portgroup will force the replacement and reprogramming of the ACL. The counters will be reset.
+
 Permits are not counted by default. It's necessary to enable another hw-profile to count permit but it will replace the QoS counters:
 
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
 RP/0/RP0/CPU0:TME-5508-1-6.3.2#conf
-Sat Jul 21 15:27:03.563 PDT
 hw-module profile stats acl-permitRP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#hw-module profile stats acl-permit
-Sat Jul 21 15:27:04.425 PDT
 In order to activate/deactivate this stats profile, you must manually reload the chassis/all line cards
 RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#commit
-Sat Jul 21 15:27:06.209 PDT
-enRP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#end
+RP/0/RP0/CPU0:TME-5508-1-6.3.2(config)#end
 RP/0/RP0/CPU0:TME-5508-1-6.3.2#admin
-Sat Jul 21 15:27:08.968 PDT
 
 root connected from 127.0.0.1 using console on TME-5508-1-6.3.2
 sysadmin-vm:0_RP0# reload rack 0
 Sat Jul  21 22:27:14.156 UTC
 Reload node ? [no,yes] yes
 result Rack graceful reload request on 0 acknowledged.
+</code>
+</pre>
+</div>
 
 After the reload:
 
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
 RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh contr npu resources stats inst 0 loc 0/7/CPU0
-Sat Jul 21 15:47:05.684 PDT
 
 System information for NPU 0:
   Counter processor configuration profile: ACL Permit
@@ -679,16 +727,35 @@ Counter processor: 14                       | Counter processor: 15
                                             |
                                             |
 RP/0/RP0/CPU0:TME-5508-1-6.3.2#
+</code>
+</pre>
+</div>
 
-
+Now permit matches will be counted:
 
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
-
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh access-lists ipv4 FILTER-IN hardware ingress interface hundredGigE 0/7/0/2 loc 0/7/CPU0
+ipv4 access-list FILTER-IN
+ 10 permit tcp any net-group SRC port-group PRT
+ 20 permit tcp net-group SRC any port-group PRT (3 matches)
+ 30 permit tcp net-group SRC port-group PRT any
+ 40 permit tcp any port-group PRT net-group SRC
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#
 </code>
 </pre>
 </div>
+
+If packets are matching a permit entry in the ACL and are targeted to the router, they will be punted but not counted in the ACL "matches".
+
+## Conclusion
+
+Hybrid ACLs may not be applicable for all use-cases. For instance, an existing flat ACL is not trivial to translate. In brownfield / migration, operators may be scared to removed or add ACLs they don't understand (it's very frequent that ACLs are inherited from former companies, or organisations, or from employees who left without properly documenting the reason of each ACE).
+
+In these cases, sticking to flat access-list until a project to clean them up is initiated could be the best option from an operation perspective.
+
+Nevertheless, we hope we demonstrated the power of hybrid ACL for infrastructure security. They offer a lot of flexibility and huge scale. Definitely something you should consider for greenfield deployment.
 
 
 
