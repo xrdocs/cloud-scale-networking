@@ -8,12 +8,12 @@ excerpt: >-
   ACL.
 position: top
 tags:
+  - iosxr
   - acl
   - ncs5500
   - hybrid
   - scale
   - compressed
-  - iosxr
   - xr
 ---
 {% include toc icon="table" title="NCS5500 Security Access-lists - Part2: Hybrid ACL" %} 
@@ -806,4 +806,5 @@ Nevertheless, moving from existing traditional ACLs is not an easy task.  It's c
 
 In these brownfield scenarios, it's mandatory to start an entire project to redefine the flows that are allowed and forbidden through these routers and it could be a long process.
 
-
+Post Scriptum: the address ranges used in this article (183.13.x.y) are random numbers I picked. We are not sharing any real ACL from any real operator here. We could have picked the 192.0.2.0/24 but it would have made the examples less relevant.
+{: .notice--success}
