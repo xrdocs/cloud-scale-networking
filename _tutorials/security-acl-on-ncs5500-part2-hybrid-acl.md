@@ -6,7 +6,7 @@ author: Nicolas Fevrier
 excerpt: >-
   Second part on the NCS5500 Access-lists. This time, we focus on the Hybrib
   ACL.
-position: hidden
+position: top
 tags:
   - acl
   - ncs5500
@@ -264,8 +264,8 @@ RP/0/RP0/CPU0:TME-5508-1-6.3.2#
 </div>
 
 Once the ACL has been applied in ingress and with compression level 3 on the interface, the PMF block of the pipeline will perform two look-ups:
-- the first one in the external TCAM
-- the second one in the internal TCAM
+- the first one in the external TCAM for objects (compressed result of source address, destination address and source port)
+- the second one in the internal TCAM for the ACL with destination port and the compressed result of the first lookup
 
 ![image-center]({{site.baseurl}}/images/2step.png){: .align-center}
 
