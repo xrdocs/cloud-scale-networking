@@ -12,6 +12,8 @@ position: top
 ---
 {% include toc icon="table" title="Port Assignments on NCS5500" %} 
 
+You can find more content related to NCS5500 including routing in VRF, URPF, ACLs, Netflow following this [link](https://xrdocs.io/cloud-scale-networking/tutorials/).
+
 ## Introduction
 
 This short post will help understanding how the ports are allocated to NPU for each line card and systems.
