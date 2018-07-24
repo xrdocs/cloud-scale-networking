@@ -22,6 +22,8 @@ position: top
 ---
 {% include toc icon="table" title="Understanding NCS5500 Resources" %}  
 
+You can find more content related to NCS5500 including routing in VRF, URPF, ACLs, Netflow following this [link](https://xrdocs.io/cloud-scale-networking/tutorials/).
+
 ## S01E05 Large Routing Tables on "Scale" NCS 5500 Systems
 
 ### Previously on "Understanding NCS5500 Resources"
