@@ -18,7 +18,7 @@ tags:
 ---
 {% include toc icon="table" title="NCS5500 Security Access-lists - Part2: Hybrid ACL" %} 
 
-You can find more content related to NCS5500 including routing in routing memory management, VRF, URPF, Netflow following this [link](https://xrdocs.io/cloud-scale-networking/tutorials/).
+You can find more content related to NCS5500 including routing memory management, VRF, URPF, Netflow following this [link](https://xrdocs.io/cloud-scale-networking/tutorials/).
 
 ## Introduction
 
