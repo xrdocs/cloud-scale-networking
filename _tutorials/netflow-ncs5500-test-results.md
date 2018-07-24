@@ -13,6 +13,8 @@ Position: hidden
 ---
 {% include toc icon="table" title="Netflow Test Results" %} 
 
+You can find more content related to NCS5500 including routing in routing memory management, VRF, URPF, ACLs,  following this [link](https://xrdocs.io/cloud-scale-networking/tutorials/).
+
 ## Introduction
 
 In this [last blog post on NCS5500 Netflow](https://xrdocs.github.io/cloud-scale-networking/tutorials/2018-02-19-netflow-sampling-interval-and-the-mythical-internet-packet-size/), we presented the NF implementation details: from the software processes to the internal networks used to transport sampled traffic and the CPU protection mechanisms. Also, we provided some important information on the various packet sizes and how should be approached the sampling-interval question.
