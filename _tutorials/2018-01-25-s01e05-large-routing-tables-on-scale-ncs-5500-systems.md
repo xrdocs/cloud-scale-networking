@@ -1,7 +1,7 @@
 ---
 published: true
 date: '2018-01-25 01:04 +0100'
-title: S01E05 Large Routing Tables on "Scale" NCS 5500 Systems
+title: Large Routing Tables on "Scale" NCS 5500 Systems (S01E05)
 author: Nicolas Fevrier
 excerpt: >-
   Post #5 on the NCS5500 Resources: very large routing table in eTCAM systems,
