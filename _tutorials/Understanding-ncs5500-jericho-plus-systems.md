@@ -14,6 +14,8 @@ position: top
 ---
 {% include toc icon="table" title="Understanding NCS5500 Resources" %}  
 
+You can find more content related to NCS5500 including routing in routing memory management, VRF, URPF, ACLs, Netflow following this [link](https://xrdocs.io/cloud-scale-networking/tutorials/).
+
 ## S01E06 Introduction of the Jericho+ based platforms and impact on the scale
 
 _This article has been edited in June 2018 to fix an error in the 6.3.2 behaviour._
