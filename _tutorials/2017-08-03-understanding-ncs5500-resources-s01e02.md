@@ -17,6 +17,8 @@ position: top
 ---
 {% include toc icon="table" title="Understanding NCS5500 Resources" %} 
 
+You can find more content related to NCS5500 including routing memory management, VRF, URPF, Netflow following this [link](https://xrdocs.io/cloud-scale-networking/tutorials/).
+
 ## S01E02 IPv4 Prefixes
 
 ### Previously on "Understanding NCS5500 Resources"
