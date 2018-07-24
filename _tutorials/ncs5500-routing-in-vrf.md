@@ -14,6 +14,8 @@ Position: top
 ---
 {% include toc icon="table" title="Understanding NCS5500 Resources" %}  
 
+You can find more content related to NCS5500 including routing in routing memory management, URPF, ACLs, Netflow following this [link](https://xrdocs.io/cloud-scale-networking/tutorials/).
+
 ## S01E08 NCS5500 Routes in VRF
 
 ### Previously on "Understanding NCS5500 Resources"
