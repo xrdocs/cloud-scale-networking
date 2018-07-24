@@ -8,13 +8,15 @@ excerpt: >-
   systems
 position: top
 tags:
+  - iosxr
   - ncs5500
   - urpf
-  - iosxr
   - internet
   - scale
 ---
 {% include toc icon="table" title="Understanding NCS5500 Resources" %}  
+
+You can find more content related to NCS5500 including routing in routing memory management, VRF, ACLs, Netflow following this [link](https://xrdocs.io/cloud-scale-networking/tutorials/).
 
 ## S01E07 NCS5500 URPF Configuration and Impact on Scale
 
