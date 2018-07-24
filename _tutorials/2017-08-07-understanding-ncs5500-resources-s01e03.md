@@ -16,6 +16,8 @@ tags:
 ---
 {% include toc icon="table" title="Understanding NCS5500 Resources" %} 
 
+You can find more content related to NCS5500 including routing in VRF, URPF, ACLs, Netflow following this [link](https://xrdocs.io/cloud-scale-networking/tutorials/).
+
 ## S01E03 IPv6 Prefixes
 
 ### Previously on "Understanding NCS5500 Resources"
