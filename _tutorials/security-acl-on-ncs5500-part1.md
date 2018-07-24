@@ -9,6 +9,8 @@ position: top
 ---
 {% include toc icon="table" title="NCS5500 Security Access-lists - Part1" %} 
 
+You can find more content related to NCS5500 including routing in routing memory management, VRF, URPF, Netflow following this [link](https://xrdocs.io/cloud-scale-networking/tutorials/).
+
 ## Introduction
 
 Let's talk about the "traditional" Security Access-List implementation on the NCS5500 series. In the near future, we will dedicate a separate post on the Hybrid-ACL (also known as Scale-ACL or Object-Based-ACL). 
