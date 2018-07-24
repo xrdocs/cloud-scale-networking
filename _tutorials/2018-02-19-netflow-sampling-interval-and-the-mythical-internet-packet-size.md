@@ -14,6 +14,8 @@ position: top
 ---
 {% include toc icon="table" title="Netflow, Sampling-Interval and the Mythical Internet Packet Size" %} 
 
+You can find more content related to NCS5500 including routing in routing memory management, VRF, URPF, ACLs,  following this [link](https://xrdocs.io/cloud-scale-networking/tutorials/).
+
 ## Introduction
 
 In this post, we will try to clarify key concepts around Netflow technology and potentially correct some common misconceptions. Particularly we will explain why the “what is the sampling-rate you support?” is not the right question.
