@@ -19,6 +19,7 @@ We will keep this one updated regularly.
 **Revision**:
 - 2018-07-09: First version
 - 2018-07-11: Add link to software center, and fix the optics support URL
+- 2018-07-26: Add section on PIDs + section on the scale per LC / systems
 {: .notice--info}
 
 
@@ -142,7 +143,7 @@ Let's summarize the product IDs in this chart:
 | NC55-6x200-DWDM-S | NCS 5500 6x200 DWDM MACsec Line Card | NC55-6X2H-DWDM-BM / NC55-2H-DWDM-BM |
 | NC55-MOD-A-S | NCS 5500 12X10, 2X40 & 2XMPA Line Card Base, MACSec | NC55-MOD-A-BM |
 | NC55-MPA-2TH-S | 2X200G CFP2 MPA |  |
-| NC55-MPA-1TH2H-S  1X200G CFP2 + 2X100G QSFP28 MPA |  |
+| NC55-MPA-1TH2H-S | 1X200G CFP2 + 2X100G QSFP28 MPA |  |
 | NC55-MPA-12T-S | 12X10G MPA |  |
 | NC55-MPA-4H-S | 4X100G QSFP28 MPA |  |
 | | |
@@ -182,6 +183,32 @@ Let's summarize the product IDs in this chart:
 | NC55-900W-ACFW-HD | NCS 5500 AC 900W Power Supply Port-S Intake / Front-to-back | |
 | NC55-900W-DCFW-HD | NCS 5500 DC 900W Power Supply Port-S Intake / Front-to-back | |
 | NC55-MPA-4H-HD-S | 4X100G QSFP28 Temp Hardened MPA | |
+
+### Products, ASICs and route scale
+
+With Qumran-MX, Jerico, Jericho+ with Jericho-scale, Jericho+ with large LPM, with or without eTCAM, it's not easy to remember which ASIC is used in the various LC and systems and what is the routing scale they can reach.
+
+The following chart will help clarifying it:
+
+| PID | ASIC | Route Scale |
+|:-----:|:-----:|:-----:|
+| NC55-36X100G | Jericho w/o eTCAM | 786k in LEM + 256-350k in LPM |
+| NC55-36X100G-S | Jericho w/o eTCAM | 786k in LEM + 256-350k in LPM |
+| NC55-24X100G-SE | Jericho w/ eTCAM | 786k in LEM + 256-350k in LPM + 2M in eTCAM |
+| NC55-18H18F | Jericho w/o eTCAM | 786k in LEM + 256-350k in LPM |
+| NC55-24H12F-SE | Jericho w/ eTCAM | 786k in LEM + 256-350k in LPM + 2M in eTCAM |
+| NC55-36X100G-A-SE | Jericho+ w/ NG eTCAM | 4M in eTCAM |
+| NC55-6x200-DWDM-S | Jericho w/o eTCAM | 786k in LEM + 256-350k in LPM |
+| NC55-MOD-A-S | Jericho+ w/o eTCAM | 786k in LEM + 256-350k in LPM |
+| NCS-5501 | Jericho w/o eTCAM | 786k in LEM + 256-350k in LPM |
+| NCS-5501-SE | Jericho w/ eTCAM | 786k in LEM + 256-350k in LPM + 2M in eTCAM |
+| NCS-5502 | Jericho w/o eTCAM | 786k in LEM + 256-350k in LPM |
+| NCS-5502-SE | Jericho w/ eTCAM | 786k in LEM + 256-350k in LPM + 2M in eTCAM |
+| NCS-55A1-24H | Jericho+ w/o eTCAM | 786k in LEM + 1M-1.3M in LPM |
+| NCS-55A1-36H-S | Jericho+ w/o eTCAM | 786k in LEM + 256-350k in LPM |
+| NCS-55A1-36H-SES | Jericho+ w/ NG eTCAM | 4M in eTCAM |
+| NCS-55A2-MOD-S | Jericho+ w/o eTCAM | 786k in LEM + 256-350k in LPM |
+| NCS-55A2-MOD-HD-S | Jericho+ w/o eTCAM | 786k in LEM + 256-350k in LPM |
 
 
 ### Supported optics
