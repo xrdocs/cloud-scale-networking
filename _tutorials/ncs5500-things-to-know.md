@@ -58,6 +58,131 @@ We have a single image for the NCS5500 entire family, regardless it's a fixed-fo
 
 Pick the link to 5508 image as indicated above, it's the link to all systems, not only for 5508.
 
+### Understanding Product IDs
+
+Each router, each part and each license has its own PID and it could be confusing.
+
+First, the PID finish with an equal character ("=") represents a spare part.
+
+Second, very ofter you will not find in the ordering or maintenance tool the same PID that the one you see in your router when using "show platform". It's because the tool are using the "bundle PID" made of the product itself and the RTU (right to use) license.
+
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#sh platform
+Node              Type                       State             Config state
+--------------------------------------------------------------------------------
+0/1/CPU0          <mark>NC55-36X100G-A-SE</mark>          IOS XR RUN        NSHUT
+0/1/NPU0          Slice                      UP
+0/1/NPU1          Slice                      UP
+0/1/NPU2          Slice                      UP
+0/1/NPU3          Slice                      UP
+0/2/CPU0          <mark>NC55-36X100G</mark>               IOS XR RUN        NSHUT
+0/2/NPU0          Slice                      UP
+0/2/NPU1          Slice                      UP
+0/2/NPU2          Slice                      UP
+0/2/NPU3          Slice                      UP
+0/2/NPU4          Slice                      UP
+0/2/NPU5          Slice                      UP
+0/6/CPU0          <mark>NC55-24H12F-SE</mark>             IOS XR RUN        NSHUT
+0/6/NPU0          Slice                      UP
+0/6/NPU1          Slice                      UP
+0/6/NPU2          Slice                      UP
+0/6/NPU3          Slice                      UP
+0/7/CPU0          <mark>NC55-24X100G-SE</mark>            IOS XR RUN        NSHUT
+0/7/NPU0          Slice                      UP
+0/7/NPU1          Slice                      UP
+0/7/NPU2          Slice                      UP
+0/7/NPU3          Slice                      UP
+0/RP0/CPU0        <mark>NC55-RP</mark>(Active)            IOS XR RUN        NSHUT
+0/RP1/CPU0        <mark>NC55-RP</mark>(Standby)           IOS XR RUN        NSHUT
+0/FC0             <mark>NC55-5508-FC</mark>               OPERATIONAL       NSHUT
+0/FC1             <mark>NC55-5508-FC</mark>               OPERATIONAL       NSHUT
+0/FC3             <mark>NC55-5508-FC</mark>               OPERATIONAL       NSHUT
+0/FC5             <mark>NC55-5508-FC</mark>               OPERATIONAL       NSHUT
+0/FT0             <mark>NC55-5508-FAN</mark>              OPERATIONAL       NSHUT
+0/FT1             <mark>NC55-5508-FAN</mark>              OPERATIONAL       NSHUT
+0/FT2             <mark>NC55-5508-FAN</mark>              OPERATIONAL       NSHUT
+0/SC0             <mark>NC55-SC</mark>                    OPERATIONAL       NSHUT
+0/SC1             <mark>NC55-SC</mark>                    OPERATIONAL       NSHUT
+RP/0/RP0/CPU0:TME-5508-1-6.3.2#
+</code>
+</pre>
+</div>
+
+The line cards NC55-36X100G-A-SE is oftened seen in the CCO tool as NC55-36X100G-A-SB.  
+NC55-36X100G-A-SB being a bundle made of:
+- NC55-36H-SE-RTU (right to use license)
+- NC55-36X100G-A-SE (line card)
+
+Let's summarize the product IDs in this chart:
+
+| PID | Description | Bundle? |
+|:-----:|:-----:|:-----:|
+| NCS-5508 | NCS5500 8 Slot Single Chassis |  |
+| NCS-5516 | NCS5500 8 Slot Single Chassis |  |
+| NCS-5504 | NCS5500 4 Slot Single Chassis |  |
+| NC55-RP | NCS 5500 Route Processor |  |
+| NC55-SC | NCS 5500 System Controller |  |
+| NC55-PWR-3KW-AC | NCS 5500 AC 3KW Power Supply |  |
+| NC55-PWR-3KW-DC | NCS 5500 DC 3KW Power Supply |  |
+| NC55-5508-FAN | NCS 5508 Fan Tray |  |
+| NC55-5508-FC | NCS 5508 Fabric Card |  |
+| NC55-5516-FAN | NCS 5508 Fan Tray |  |
+| NC55-5516-FC | NCS 5516 Fabric Card |  |
+| NC55-5504-FAN | NCS 5504 Fan Tray |  |
+| NC55-5504-FC | NCS 5504 Fabric Card |  |
+| NC55-36X100G | NCS 5500 36X100GE BASE | NC55-36X100G-BA / NC55-36X100G-U-BA |
+| NC55-36X100G-S | NCS 5500 36x100G MACsec Line Card | NC55-36X100G-BM / NC55-36X100G-U-BM |
+| NC55-24X100G-SE | NCS 5500 24x100G Scaled Line Card | NC55-24X100G-SB |
+| NC55-18H18F | NCS 5500 18X100G and 18X40GE Line Card | NC55-18H18F-BA |
+| NC55-24H12F-SE | NCS 5500 24X100GE and 12X40GE Line Card | NC55-24H12F-SB |
+| NC55-36X100G-A-SE | NCS 5500 36x100G-SE Line Card | NC55-36X100G-A-SB / NC55-36X100G-U-SB|
+| NC55-6x200-DWDM-S | NCS 5500 6x200 DWDM MACsec Line Card | NC55-6X2H-DWDM-BM / NC55-2H-DWDM-BM |
+| NC55-MOD-A-S | NCS 5500 12X10, 2X40 & 2XMPA Line Card Base, MACSec | NC55-MOD-A-BM |
+| NC55-MPA-2TH-S | 2X200G CFP2 MPA |  |
+| NC55-MPA-1TH2H-S  1X200G CFP2 + 2X100G QSFP28 MPA |  |
+| NC55-MPA-12T-S | 12X10G MPA |  |
+| NC55-MPA-4H-S | 4X100G QSFP28 MPA |  |
+| | |
+| NCS-5501 | NCS 5501 Fixed 48x10G and 6x100G Chassis |  |
+| NCS-5501-SE | NCS 5501 - 40x10G and 4x100G Scale Chassis |  | 
+| NCS-1100W-ACFW | NCS 5500 AC 1100W Power Supply Port-S Intake / Front-to-back |  |
+| NCS-1100W-ACRV | NCS 5500 AC 1100W Power Supply Port-S Exhaust/Back-to-Front |  |
+| NCS-950W-DCFW | NCS 5500 DC 950W Power Supply Port-S Intake / Front-to-back |  |
+| NCS-1100W-DCRV | NCS 5500 DC 1100W Power Supply Port-S Exhaust / Back-to-Front |  |
+| NCS-1100W-HVFW | NCS 5500 1100W HVAC/HVDC Port-S Intake / Front-to-back |  |
+| NCS-1100W-HVRV | NCS 5500 1100W HVAC/HVDC Port-S Exhaust / Back-to-Front |  |
+| NCS-1RU-FAN-FW | NCS 5500 1RU Chassis Fan Tray Port-S Intake / Front-to-back |  |
+| NCS-1RU-FAN-RV |NCS 5500 1RU Chassis Fan Tray Port-S Exhaust / Back-to-Front |  |
+| NCS-5502 | NCS5502 Fixed 48x100G Chassis | |
+| NCS-5502-SE | NCS5502 - 48x100G Scale Chassis | |
+| NC55-2RU-FAN-RV | NCS 5500 Fan Tray 2RU Chassis Port-S Exhaust / Back-to-Front | |
+| NC55-2RU-FAN-FW | NCS 5500 Fan Tray 2RU Chassis Port-S Intake / Front-to-back | |
+| NC55-2KW-DCRV | NCS5500 DC 2KW Power Supply Port-S Exhaust/Back-to-Front | |
+| NC55-2KW-DCFW |NCS 5500 DC 2KW Power Supply Port-S Intake / Front-to-back | |
+| NC55-2KW-ACRV | NCS 5500 AC 2KW Power Supply Port-S Exhaust / Back-to-Front | |
+| NC55-2KW-ACFW | NCS 5500 AC 2KW Power Supply Port-S Intake / Front-to-back | |
+| NCS-5502-FLTR-FW | NCS 5502 Filter Port-side exhaust / Back-to-Front | |
+| NCS-5502-FLTR-RV | NCS 5502 Filter Port-Side intake / Front-to-back | |
+| NCS-55A1-24H | NCS55A1 Fixed 24x100G chassis bundle | NCS-55A1-24H-B |
+| NC55-A1-FAN-FW | NCS 5500 Fan Tray 1RU Chassis Port-S Intake / Front-to-back Port-Side intake | |
+| NC55-A1-FAN-RV | NCS 5500 Fan Tray 1RU Chassis Port-S Exhaust / Back-to-Front Port-side exhaust | |
+| NCS-55A1-36H-S | NCS55A1 Fixed 36x100G Base chassis bundle | NCS-55A1-36H-B |
+| NCS-55A2-MOD-S | NCS 55A2 Fixed 24X10G + 16X25G & MPA Chassis | |
+| NC55-1200W-ACFW | NCS 5500 AC 1200W Power Supply Port-S Intake / Front-to-back | |
+| NC55-930W-DCFW | NCS 5500 DC 930W Power Supply Port-S Intake / Front-to-back | |
+| NC55-A2-FAN-FW | NCS 5500 Fan Tray 1RU Chassis Port-S Intake / Front-to-back Port-Side intake | |
+| NC55-MPA-2TH-S  | 2X200G CFP2 MPA | |
+| NC55-MPA-1TH2H-S | 1X200G CFP2 + 2X100G QSFP28 MPA | |
+| NC55-MPA-12T-S | 12X10G MPA | |
+| NC55-MPA-4H-S | 4X100G QSFP28 MPA | |
+| NCS-55A2-MOD-HD-S | NCS 55A2 Fixed 24X10G + 16X25G & MPA Temp Hardened Chassis | |
+| NC55-900W-ACFW-HD | NCS 5500 AC 900W Power Supply Port-S Intake / Front-to-back | |
+| NC55-900W-DCFW-HD | NCS 5500 DC 900W Power Supply Port-S Intake / Front-to-back | |
+| NC55-MPA-4H-HD-S | 4X100G QSFP28 Temp Hardened MPA | |
+
 
 ### Supported optics
 
