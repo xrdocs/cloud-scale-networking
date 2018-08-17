@@ -253,6 +253,8 @@ We note down the T2 timestamp: it represents when all the BGP routes have been r
 
 ![Snapshot-T2.png]({{site.baseurl}}/images/Snapshot-T2.png){: .align-center}
 
+![Untitled 2.png]({{site.baseurl}}/images/Untitled 2.png){: .align-center}
+
 T2 - T1 = time to advertise all the BGP routes from intermediate router to DUT.  
 Speed to program the BGP in the RP RIB is 751677 / (T2 - T1) and is expressed in number of prefixes per second.
 
@@ -262,6 +264,7 @@ We note down the last timestamp: T3. It represents the moment all the prefixes h
 
 ![Snapshot-T3.png]({{site.baseurl}}/images/Snapshot-T3.png){: .align-center}
 
+![Untitled 3.png]({{site.baseurl}}/images/Untitled 3.png){: .align-center}
 
 
 
