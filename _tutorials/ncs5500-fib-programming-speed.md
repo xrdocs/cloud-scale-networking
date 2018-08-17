@@ -20,9 +20,9 @@ You can find more content related to NCS5500 including routing memory management
 
 ## Programming Speed
 
-In this post, we will measure the time it takes to learn routes in the RIB and in the FIB.
+In this post, we will measure the time it takes to learn routes in the RIB and in the FIB of an NCS 5500.
 
-The first one exists in the Route Processor and will be fed by a BGP process.  
+The first one exists in the Route Processor and will be provided by a BGP process.  
 The second one exists in multiple places, but to simplify the discussion, we will measure what is actually programmed in the NPU database.  
 
 We often hear that "Merchant Silicon systems program prefixes slowers than other products" but clearly this assertion is not based on facts and we will debunk it with this post and video.
@@ -33,7 +33,7 @@ Let's get started with a video we recorded and published on youtube.
 
 [![NCS5500 Programming Speed](https://img.youtube.com/vi/o4pUTniOuRY/0.jpg)](https://www.youtube.com/watch?v=o4pUTniOuRY){: .align-center}
 
-In this demo, we advertised 1,2000,000 IPv4 routes to our system under test:  
+In this demo, we advertised 1,200,000 IPv4 routes to our system under test:  
 - 300K IPv4/22
 - 300K IPv4/23
 - 600K IPv4/25
@@ -61,7 +61,7 @@ The results of this test were:
 - RIB programming in RP: 133,000 pfx/s  
 - eTCAM programming speed: 29,000 pfx/s  
 
-For the next test in this blog post, we will use a real internet view (recorded from a real internet router).
+For the next test in this blog post, we will use the exact same methodology but this time we will use a real internet view (recorded from a real internet router).
 
 ### Test methodology
 
@@ -96,7 +96,7 @@ RP/0/RP0/CPU0:TME-5508-1-6.5.1#
 </pre>
 </div>
 
-The speed a router learns BGP routes is directly dependant on the neighbor and how fast it is able to advertise these prefixes. Since BGP is based on TCP, all messages are ack'd and the local process can request to slow down for any reason. That's why we thought it woud not be relevant to use a route generator for this test. Or at least, we didn't want the router under test to be directly peered to the route generator.
+The speed a router learns BGP routes is directly dependant on the neighbor and how fast it is able to advertise these prefixes. Since BGP is based on TCP, all messages are ack'd and the local process can request to slow down for any reason. That's why we thought it woud not be relevant to use a route generator for this test. Or at least, we didn't want the device under test to be directly peered to the route generator.
 
 We decided to use an intermediate system of the same kind, for instance an NCS55A1-24H. This system will receive the BGP table from our route generator. When all the routes will be received in this intermediate system, we will enable the BGP session to the system under test.
 
@@ -225,7 +225,7 @@ Prefix   Actual       Prefix   Actual
 </pre>
 </div>
  
-You notice the session to the system under test (192.168.22.1) is currently in state "Idle (Admin)".  
+You notice the session to the device under test (192.168.22.1) is currently in state "Idle (Admin)".  
 It means the neighbor under the router bgp is configured with "shutdown".
 
 **Step 1**: Test begins at T1
@@ -248,6 +248,8 @@ RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#
 </div>
 
 As soon as the session is established, the first routes are received and we note down this particular moment as "T1":
+
+![Snapshot-T1.png]({{site.baseurl}}/images/Snapshot-T1.png){: .align-center}
 
 ![Untitled 1.png]({{site.baseurl}}/images/Untitled 1.png){: .align-center}
 
