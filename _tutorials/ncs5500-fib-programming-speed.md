@@ -281,11 +281,26 @@ The speed to program the hardware is 751677 / (T3 - T1) and is expressed in numb
 Speed to program BGP: 751,677 / 12 = 62,639 pfx/s
 
 (T3 - T1) = 49:27.739 - 48:59.712 = 27s  
-Speed to program BGP: 751,677 / 27 = 27,839 pfx/s
+Speed to program hardware: 751,677 / 27 = 27,839 pfx/s
+
+With an internet distribution, we note that BGP advertisement is slower than the results we got in the first test with 1.2M routes (all aligned and sorted) but the hardware programming speed is consistent.
+{: .notice--info}
+
+And we performed the opposite test with the shutdown of the BGP peer:
+
+![seq2.png]({{site.baseurl}}/images/seq2.png){: .align-center}
+
+(T2 - T1) = 54:07.791 - 54:02.769 = 5s  
+Speed to withdraw all BGP routes: 751,677 / 5 = 150,335 pfx/s
+
+(T3 - T1) = 54:25.760 - 54:02.769 = 23s  
+Speed to remove all routes from hardware: 751,677 / 23 = 32,681 pfx/s
 
 ### Conclusion
 
-
+The engineering team implemented multiple innovative ideas to speed up the process of programming entries in the hardware (prefix re-ordering, batching, direct memory access, etc).  
+The result is a performance comparable, if not better, than platforms based on custom silicon.  
+One last word, remember that we implement multiple features like BGP PIC Core enabling fast convergence. We maintain different databases for prefixes and next-hop/adjacencies and it's only necessary to change a pointer to a new next-hop when you lose a BGP peer, and not to reprogram the entire internet table.
 
 ### Acknowledgements
 
