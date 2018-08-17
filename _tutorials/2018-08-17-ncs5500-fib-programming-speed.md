@@ -48,27 +48,116 @@ capability refresh
 </pre>
 </div>
 
+For the next test in this blog post, we will use a real internet view (recorded from a real internet router).
 
 ### Test methodology
 
-The system we will use for this demo is a chassis with a 36x 100G ports "Scale". That means, it's based on Jericho+ chipset with a new generation external TCAM. Since we are using IOS XR 6.3.2 or 6.5.1, all routes (IPv4 and IPv6) are stored on the eTCAM, regarless their prefix length.
+The system (**DUT for Device Under Test**) we will use for this demo is a chassis with a 36x 100G ports "Scale". That means, it's based on Jericho+ chipset with a new generation external TCAM. Since we are using IOS XR 6.3.2 or 6.5.1, all routes (IPv4 and IPv6) are stored on the eTCAM, regarless their prefix length.
 
-The speed a router learns BGP routes is directly dependant on the speed the neighbor is able to advertise these prefixes. Since BGP is based on TCP, all messages are ack'd and the local process can request to slow down for any reason. That's why we thought it woud not be relevant to use a route generator for this test. Or at least, we didn't want the router under test to be directly peered to the route generator.
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code> 
+RP/0/RP0/CPU0:TME-5508-1-6.5.1#sh plat 0/1
+
+Node              Type                       State             Config state
+--------------------------------------------------------------------------------
+0/1/CPU0          <mark>NC55-36X100G-A-SE</mark>          IOS XR RUN        NSHUT
+RP/0/RP0/CPU0:TME-5508-1-6.5.1#sh ver
+
+Cisco IOS XR Software, Version <mark>6.5.1</mark>
+Copyright (c) 2013-2018 by Cisco Systems, Inc.
+
+Build Information:
+ Built By     : ahoang
+ Built On     : Wed Aug  8 17:10:43 PDT 2018
+ Built Host   : iox-ucs-025
+ Workspace    : /auto/srcarchive17/prod/6.5.1/ncs5500/ws
+ Version      : 6.5.1
+ Location     : /opt/cisco/XR/packages/
+
+cisco NCS-5500 () processor
+System uptime is 1 day 1 hour 5 minutes
+
+RP/0/RP0/CPU0:TME-5508-1-6.5.1#
+</code>
+</pre>
+</div>
+
+The speed a router learns BGP routes is directly dependant on the neighbor and how fast it is able to advertise these prefixes. Since BGP is based on TCP, all messages are ack'd and the local process can request to slow down for any reason. That's why we thought it woud not be relevant to use a route generator for this test. Or at least, we didn't want the router under test to be directly peered to the route generator.
 
 We decided to use an intermediate system of the same kind, for instance an NCS55A1-24H. This system will receive the BGP table from our route generator. When all the routes will be received in this intermediate system, we will enable the BGP session to the system under test.
 
+![step0.png]({{site.baseurl}}/images/step0.png){: .align-center}
+
 That way, the routes are advertised from a real router BGP stack and the results are representing what you could expect in your production environment.
+
+We will monitor the programming speed of the entries in the RIB (in the Route Processor) and in the external TCAM (connected to the Jericho+ ASIC) via Streaming Telemetry.
+
+The DUT will stream every second the counters related to the BGP table and the ASIC resource utilization:
+
+![telemetry.png]({{site.baseurl}}/images/telemetry.png){: .align-center}
+
+
+The related router configuration:
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+RP/0/RP0/CPU0:TME-5508-1-6.5.1#sh run telemetry model-driven
+
+telemetry model-driven
+ destination-group DGroup1
+  address-family ipv4 10.30.110.40 port 5432
+   encoding self-describing-gpb
+   protocol tcp
+  !
+ !
+ sensor-group fib
+  sensor-path Cisco-IOS-XR-fib-common-oper:fib/nodes/node/protocols/protocol/vrfs/vrf/summary
+ !
+ sensor-group brcm
+  sensor-path Cisco-IOS-XR-fretta-bcm-dpa-hw-resources-oper:dpa/stats/nodes/node/hw-resources-datas/hw-resources-data
+ !
+ sensor-group routing
+  sensor-path Cisco-IOS-XR-ipv4-bgp-oper:bgp/instances/instance/instance-active/default-vrf/process-info
+  sensor-path Cisco-IOS-XR-ip-rib-ipv4-oper:rib/vrfs/vrf/afs/af/safs/saf/ip-rib-route-table-names/ip-rib-route-table-name/protocol/bgp/as/information
+  sensor-path Cisco-IOS-XR-ip-rib-ipv6-oper:ipv6-rib/vrfs/vrf/afs/af/safs/saf/ip-rib-route-table-names/ip-rib-route-table-name/protocol/bgp/as/information
+ !
+ subscription fib
+  sensor-group-id fib strict-timer
+  sensor-group-id fib sample-interval 1000
+  destination-id DGroup1
+ !
+ subscription brcm
+  sensor-group-id brcm strict-timer
+  sensor-group-id brcm sample-interval 1000
+  destination-id DGroup1
+ !
+ subscription routing
+  sensor-group-id routing strict-timer
+  sensor-group-id routing sample-interval 1000
+  destination-id DGroup1
+ !
+!
+
+RP/0/RP0/CPU0:TME-5508-1-6.5.1#
+</code>
+</pre>
+</div>
+
 
 **Step 0**: "Before the test"
 
+![Test-step0.png]({{site.baseurl}}/images/Test-step0.png){: .align-center}
 
+In this step, the router generator established an eBGP (AS1000 to AS100) session to the intermediate router and advertised the full internet view: 751,657 IPv4 routes.  
+We can check the routes are indeed received and valid but also their distribution in term of prefix length:
 
-
-
-### Test with real internet table
-
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
 RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#sh bgp sum
-Thu Aug 16 15:44:18.461 PDT
+
 BGP router identifier 1.1.1.22, local AS number 100
 BGP generic scan interval 60 secs
 Non-stop routing is enabled
@@ -86,11 +175,10 @@ Process       RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer
 Speaker        23817074   23817074   23817074   23817074    23817074           0
 
 Neighbor        Spk    AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down  St/PfxRcd
-192.168.22.1      0   100  164033   15246        0    0    0 00:26:05 Idle (Admin)
-192.168.100.151   0  1000 1241354   49602 23817074    0    0 00:05:14     751657
+192.168.22.1      0   <mark>100</mark>  164033   15246        0    0    0 00:26:05 <mark>Idle (Admin)</mark>
+192.168.100.151   0  <mark>1000</mark> 1241354   49602 23817074    0    0 00:05:14     <mark>751657</mark>
 
 RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#sh dpa resources iproute loc 0/0/CPU0
-Thu Aug 16 15:44:25.163 PDT
 
 "iproute" DPA Table (Id: 24, Scope: Global)
 --------------------------------------------------
@@ -118,25 +206,23 @@ Prefix   Actual       Prefix   Actual
                  Create Requests
                            Total: 12246542        12246542
                          Success: 12246542        12246542
-                 Delete Requests
-                           Total: 11494865        11494865
-                         Success: 11494865        11494865
-                 Update Requests
-                           Total: 75808           75808
-                         Success: 75804           75804
-                    EOD Requests
-                           Total: 0               0
-                         Success: 0               0
-                          Errors
-                     HW Failures: 301856          301856
-                Resolve Failures: 0               0
-                 No memory in DB: 0               0
-                 Not found in DB: 0               0
-                    Exists in DB: 0               0
+                         
+ ... SNIP ...
+</code>
+</pre>
+</div>
+ 
+You notice the session to the system under test (192.168.22.1) is currently in state "Idle (Admin)".  
+It means the neighbor under the router bgp is configured with "shutdown"
 
-RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#
+
+
+
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
 RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#conf
-Thu Aug 16 15:45:13.118 PDT
+
 RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config)#
 RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config)#router bgp 100
 RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config-bgp)# neighbor 192.168.22.1
@@ -144,9 +230,35 @@ RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config-bgp-nbr)#  remote-as 100
 RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config-bgp-nbr)#  shutdown
 RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config-bgp-nbr)#no shut
 RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config-bgp-nbr)#commit
-Thu Aug 16 15:45:22.121 PDT
 RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config-bgp-nbr)#end
 RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#
+</code>
+</pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#rollback configuration last 1
 Thu Aug 16 15:50:30.938 PDT
 
@@ -181,3 +293,6 @@ Neighbor        Spk    AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down  St/PfxRcd
 
 RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#
 
+### Acknowledgements
+
+Big shout out to Viktor Osipchuk for his help and availability. I invite you to check the excellent posts he published on MDT, Pipeline, etc: [https://xrdocs.io/telemetry/](https://xrdocs.io/telemetry/).
