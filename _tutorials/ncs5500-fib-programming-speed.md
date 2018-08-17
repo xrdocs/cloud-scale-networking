@@ -34,7 +34,9 @@ Let's get started with a video we recorded and published on youtube.
 [![NCS5500 Programming Speed](https://img.youtube.com/vi/o4pUTniOuRY/0.jpg)](https://www.youtube.com/watch?v=o4pUTniOuRY){: .align-center}
 
 In this demo, we advertised 1,2000,000 IPv4 routes to our system under test:  
-300K IPv4/22, 300K IPv4/23 and 600K IPv4/25
+- 300K IPv4/22
+- 300K IPv4/23
+- 600K IPv4/25
 
 <div class="highlighter-rouge">
 <pre class="highlight">
