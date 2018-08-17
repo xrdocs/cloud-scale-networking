@@ -26,7 +26,8 @@ Let's get started with a video we recorded and published on youtube.
 
 [![NCS5500 Programming Speed](https://img.youtube.com/vi/o4pUTniOuRY/0.jpg)](https://www.youtube.com/watch?v=o4pUTniOuRY){: .align-center}
 
-In this demo, we advertised 1,2000,000 IPv4 routes to our system under test.
+In this demo, we advertised 1,2000,000 IPv4 routes to our system under test:  
+300K IPv4/22, 300K IPv4/23 and 600K IPv4/25
 
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -52,9 +53,17 @@ capability refresh
 
 The system we will use for this demo is a chassis with a 36x 100G ports "Scale". That means, it's based on Jericho+ chipset with a new generation external TCAM. Since we are using IOS XR 6.3.2 or 6.5.1, all routes (IPv4 and IPv6) are stored on the eTCAM, regarless their prefix length.
 
-The routes are coming from a real router but are generated from an in-house route generator.
+The speed a router learns BGP routes is directly dependant on the speed the neighbor is able to advertise these prefixes. Since BGP is based on TCP, all messages are ack'd and the local process can request to slow down for any reason. That's why we thought it woud not be relevant to use a route generator for this test. Or at least, we didn't want the router under test to be directly peered to the route generator.
 
-For this test we
+We decided to use an intermediate system of the same kind, for instance an NCS55A1-24H. This system will receive the BGP table from our route generator. When all the routes will be received in this intermediate system, we will enable the BGP session to the system under test.
+
+That way, the routes are advertised from a real router BGP stack and the results are representing what you could expect in your production environment.
+
+**Step 0**: "Before the test"
+
+
+
+
 
 ### Test with real internet table
 
