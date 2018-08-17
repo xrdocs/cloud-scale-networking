@@ -213,22 +213,20 @@ Prefix   Actual       Prefix   Actual
 </div>
  
 You notice the session to the system under test (192.168.22.1) is currently in state "Idle (Admin)".  
-It means the neighbor under the router bgp is configured with "shutdown"
+It means the neighbor under the router bgp is configured with "shutdown".
 
+**Step 1**: Test begins at T1
 
-
+The test begins when we unshut the BGP peer from the intermediate router.
 
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
 RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#conf
-
 RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config)#
 RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config)#router bgp 100
 RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config-bgp)# neighbor 192.168.22.1
-RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config-bgp-nbr)#  remote-as 100
-RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config-bgp-nbr)#  shutdown
-RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config-bgp-nbr)#no shut
+RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config-bgp-nbr)#<mark>no shut</mark>
 RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config-bgp-nbr)#commit
 RP/0/RP0/CPU0:NCS55A1-24H-6.3.2(config-bgp-nbr)#end
 RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#
@@ -236,8 +234,24 @@ RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#
 </pre>
 </div>
 
+As soon as the session is established, the first routes are received and we note down this particular moment as "T1":
 
+![Untitled 1.png]({{site.baseurl}}/images/Untitled 1.png){: .align-center}
 
+**Step 2**: All routes advertised via BGP at T2
+
+We note down the T2 timestamp: it represents when all the BGP routes have been received on the Device Under Test.
+
+![Snapshot-T2.png]({{site.baseurl}}/images/Snapshot-T2.png){: .align-center}
+
+T2 - T1 = time to advertise all the BGP routes from intermediate router to DUT.  
+Speed to program the BGP in the RP RIB is 751677 / (T2 - T1) and is expressed in number of prefixes per second.
+
+**Step 3**: All routes are programmed in eTCAM at T3
+
+We note down the last timestamp: T3. It represents the moment all the prefixes have been programmed in the hardware.
+
+![Snapshot-T3.png]({{site.baseurl}}/images/Snapshot-T3.png){: .align-center}
 
 
 
