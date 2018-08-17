@@ -12,7 +12,7 @@ tags:
   - FIB
   - eTCAM
   - Internet
-position: hidden
+position: top
 ---
 {% include toc icon="table" title="NCS5500 FIB Programming Speed" %} 
 
@@ -301,7 +301,7 @@ Speed to remove all routes from hardware: 751,677 / 23 = 32,681 pfx/s
 ### Conclusion
 
 The engineering team implemented multiple innovative ideas to speed up the process of programming entries in the hardware (prefix re-ordering, batching, direct memory access, etc).  
-The result is a performance comparable, if not better, than platforms based on custom silicon.  
+The result is a programming performance comparable, if not better, to platforms based on custom silicon.  
 One last word, remember that we implement multiple features like BGP PIC Core enabling fast convergence. We maintain different databases for prefixes and next-hop/adjacencies and it's only necessary to change a pointer to a new next-hop when you lose a BGP peer, and not to reprogram the entire internet table.
 
 ### Acknowledgements
