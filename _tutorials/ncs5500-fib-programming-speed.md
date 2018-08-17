@@ -57,6 +57,10 @@ capability refresh
 </pre>
 </div>
 
+The results of this test were:  
+- RIB programming in RP: 133,000 pfx/s  
+- eTCAM programming speed: 29,000 pfx/s  
+
 For the next test in this blog post, we will use a real internet view (recorded from a real internet router).
 
 ### Test methodology
@@ -255,8 +259,8 @@ We note down the T2 timestamp: it represents when all the BGP routes have been r
 
 ![Untitled 2.png]({{site.baseurl}}/images/Untitled 2.png){: .align-center}
 
-T2 - T1 = time to advertise all the BGP routes from intermediate router to DUT.  
-Speed to program the BGP in the RP RIB is 751677 / (T2 - T1) and is expressed in number of prefixes per second.
+(T2 - T1) is the time it took to advertise all the BGP routes from intermediate router to DUT.  
+The speed to program the BGP in the RP RIB is 751677 / (T2 - T1) and is expressed in number of prefixes per second.
 
 **Step 3**: All routes are programmed in eTCAM at T3
 
@@ -266,58 +270,22 @@ We note down the last timestamp: T3. It represents the moment all the prefixes h
 
 ![Untitled 3.png]({{site.baseurl}}/images/Untitled 3.png){: .align-center}
 
+(T3 - T1) is the time it took to program all the routes in the Jericho+ external TCAM.  
+The speed to program the hardware is 751677 / (T3 - T1) and is expressed in number of prefixes per second.
+
+### Test results
+
+![seq1.png]({{site.baseurl}}/images/seq1.png){: .align-center}
+
+(T2 - T1) = 49:12.736 - 48:59.712 = 12s  
+Speed to program BGP: 751,677 / 12 = 62,639 pfx/s
+
+(T3 - T1) = 49:27.739 - 48:59.712 = 27s  
+Speed to program BGP: 751,677 / 27 = 27,839 pfx/s
+
+### Conclusion
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#rollback configuration last 1
-Thu Aug 16 15:50:30.938 PDT
-
-Loading Rollback Changes.
-Loaded Rollback Changes in 1 sec
-Committing.
-5 items committed in 1 sec
-Updating.
-Updated Commit database in 1 sec
-Configuration successfully rolled back 1 commits.
-RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#sh bgp sum
-Thu Aug 16 15:51:30.181 PDT
-BGP router identifier 1.1.1.22, local AS number 100
-BGP generic scan interval 60 secs
-Non-stop routing is enabled
-BGP table state: Active
-Table ID: 0xe0000000   RD version: 23817074
-BGP main routing table version 23817074
-BGP NSR Initial initsync version 1200006 (Reached)
-BGP NSR/ISSU Sync-Group versions 0/0
-BGP scan interval 60 secs
-
-BGP is operating in STANDALONE mode.
-
-
-Process       RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer
-Speaker        23817074   23817074   23817074   23817074    23817074           0
-
-Neighbor        Spk    AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down  St/PfxRcd
-192.168.22.1      0   100  164041  179174        0    0    0 00:00:56 Idle (Admin)
-192.168.100.151   0  1000 1241361   49609 23817074    0    0 00:12:26     751657
-
-RP/0/RP0/CPU0:NCS55A1-24H-6.3.2#
 
 ### Acknowledgements
 
