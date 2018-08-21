@@ -18,6 +18,9 @@ tags:
 
 You can find more content related to NCS5500 including routing memory management, VRF, ACLs, Netflow following this [link](https://xrdocs.io/cloud-scale-networking/tutorials/).
 
+Edited in August 2018 to add a note on the lack of support of S-RTBH, and to fix an error pointed by Muffadal Presswala (thanks :) related to the behavior with eTCAM systems.
+{: .notice--info}
+
 ## S01E07 NCS5500 URPF Configuration and Impact on Scale
 
 ### Previously on "Understanding NCS5500 Resources"
@@ -36,7 +39,7 @@ In this new episode, we will cover the impact of activating URPF on the NCS5500 
 
 URPF stands for **Unicast Reverse Path Forwarding**.
 
-Defintion from the CCO website: 
+Definition from the CCO website: 
 
 "_This security feature works by enabling a router to verify the reachability of the source address in packets being forwarded. This capability can limit the appearance of spoofed addresses on a network. If the source IP address is not valid, the packet is discarded._
 
@@ -48,7 +51,7 @@ It's a feature configured at the interface level.
 
 ### URPF relevancy
 
-Regardless of the Forwarding ASIC (Qumran-MX, Jericho or Jericho+), the NCS5500 only supports URPF in loose mode.
+Regardless of the Forwarding ASIC (Qumran-MX, Jericho or Jericho+), the NCS5500 only supports URPF in loose mode today.
 
 Configuring URPF comes at a cost in term of scale on some of the NCS5500 family members. It will be detailed extensively in this article. That's why it's important to understand what are the benefits of enabling this feature.
 
@@ -86,9 +89,12 @@ And compare these figures to the packet count per interface to understand how mu
 
 Now said, some other very good reasons to enable URPF loose mode exist. For example, it's a mandatory brick of a [Source-based Remotely Triggered Black Hole](https://www.cisco.com/c/dam/en_us/about/security/intelligence/blackhole.pdf) architecture (S-RTBH).
 
+But... S-RTBH is not supported currently on NCS5500 (even if the URPF loose-mode is supported, it can not be used for this particular use-case). It will be fixed in a future release.
+{: .notice--info}
+
 ### NCS5500 Implementation
 
-We don't support URPF strict mode and we have no plans to add it in the future on NCS5500. URPF loose mode is available on NCS5500 since IOS XR 6.2.2 for IPv4 and IPv6. The feature is supported on Jericho and Jericho+ systems, with or without eTCAM.
+We don't support URPF strict mode today. URPF loose mode is available on NCS5500 since IOS XR 6.2.2 for IPv4 and IPv6. The feature is supported on Jericho and Jericho+ systems, with or without eTCAM.
 
 The configuration implies the deactivation of some profiles, different on "base" and "scale" systems. After this preliminary operation, the configuration is applied at the interface level.
 
@@ -154,6 +160,8 @@ With URPF, we need these two accesses to check source and destination, it's no l
 <pre class="highlight">
 <code>
 RP/0/RP0/CPU0:NCS5508-632(config)#hw-module tcam fib ipv4 scaledisable
+RP/0/RP0/CPU0:NCS5508-632(config)#hw-module fib ipv4 scale host-optimized-disable
+RP/0/RP0/CPU0:NCS5508-632(config)#hw-module fib ipv6 scale internet-optimized-disable
 RP/0/RP0/CPU0:NCS5508-632(config)#commit
 </code>
 </pre>
@@ -161,7 +169,7 @@ RP/0/RP0/CPU0:NCS5508-632(config)#commit
 
 The impact on scale is significative since we lost 1M out of the 2M of the eTCAM capacity.
 
-![urpf-impact.jpg]({{site.baseurl}}/images/urpf-impact.jpg)
+![URPF-impact2.png]({{site.baseurl}}/images/URPF-impact2.png){: .notice--info}
 
 Let's check with a large routing table (internet v4 + internet v6 + 435k host routes) what is the impact:
 
