@@ -169,7 +169,7 @@ RP/0/RP0/CPU0:NCS5508-632(config)#commit
 
 The impact on scale is significative since we lost 1M out of the 2M of the eTCAM capacity.
 
-![URPF-impact2.png]({{site.baseurl}}/images/URPF-impact2.png){: .notice--info}
+![URPF-impact2.png]({{site.baseurl}}/images/URPF-impact2.png){: .align-center}
 
 Let's check with a large routing table (internet v4 + internet v6 + 435k host routes) what is the impact:
 
