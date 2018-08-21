@@ -122,7 +122,7 @@ Note: depending on the IOS XR version, the options could be different and actual
 
 With the optimization disabled and after the line cards / system reload, we have now:
 
-![disable-optimizations.jpg]({{site.baseurl}}/images/disable-optimizations.jpg)
+![disable-optimizations.jpg]({{site.baseurl}}/images/disable-optimizations.jpg){: .align-center}
 
 Important: with such mode, it will no longer be possible to handle a full internet view (v4+v6 or v4-only).
 {: .notice--info}
@@ -150,11 +150,11 @@ Now, let's consider the scale systems and line cards with Jericho ASICs:
 
 The eTCAM is a 80bit memory and in normal condition we use it in two blocks of 40 bits to double the capacity. The first access being performed on the first half and the second access in the pipeline being done on the second half.
 
-![double-cap.jpg]({{site.baseurl}}/images/double-cap.jpg)
+![double-cap.jpg]({{site.baseurl}}/images/double-cap.jpg){: .align-center}
 
 With URPF, we need these two accesses to check source and destination, it's no longer possible to use the double capacity mode: it needs to be disabled.
 
-![double-cap-disabled.jpg]({{site.baseurl}}/images/double-cap-disabled.jpg)
+![double-cap-disabled.jpg]({{site.baseurl}}/images/double-cap-disabled.jpg){: .align-center}
 
 <div class="highlighter-rouge">
 <pre class="highlight">
