@@ -141,16 +141,20 @@ RP/0/RP0/CPU0:Router#
 </pre>
 </div>
 
-**Note**: Inside a modular chassis, we can mix and match eTCAM and non-eTCAM line cards. A feature is available to decide where the prefixes should be programmed (differentiating IGP and BGP, and using specific ext-communities).
+**Note**: Inside a modular chassis, we can mix and match eTCAM and non-eTCAM line cards. A feature is available to decide where the prefixes should be programmed (differentiating IGP and BGP, and using specific ext-communities). [You can check the blog post dedicated to this topic here.](https://xrdocs.io/cloud-scale-networking/tutorials/mixing-base-and-scale-LC-in-NCS5500/)
 {: .notice--info}
 
-So basically, this external memory used to extend the scale in terms of routes and classifiers (Access-list entries for instance) is what differentiates the systems and line cards. eTCAM should not be confused with the 4GB external packet buffer which is present on the side of each FA, regardless the type of system or line card. The eTCAM only handles prefixes and ACEs, not packets. The external packet buffer will be used in case of queue congestion only. It’s a very rapid graphical memory, specifically used for packets.
+So basically, this external memory used to extend the scale in terms of routes and classifiers (Access-list entries for instance) is what differentiates the systems and line cards.  
+eTCAM should not be confused with the 4GB external packet buffer which is present on the side of each FA, regardless the type of system or line card.  
+The external packet buffer will be used in case of queue congestion only. It’s a very rapid graphical memory, specifically used for packets.  
+The eTCAM only handles prefixes and ACEs, not packets.  
 
-If you are familiar with traditional IOS XR routers, there are some similarities and some differences with the classification of line cards "-SE vs -TR" on ASR9000, or "-FP vs -MSC vs -LSP" on CRS routers: 
+If you are familiar with traditional IOS XR routers, there are some similarities and some differences with the line cards classification "-SE vs -TR" on ASR9000, or "-FP vs -MSC vs -LSP" on CRS routers: 
 - route and feature scales can be different among the different types of LC
 - but not the number of queues or the capability to support Hierarchical QoS (it's not the case for NCS5500 routers, QoS capability is the same on -SE and non-SE)
 
-We have two eTCAM blocks per FA offering up to 2M additional routes and they are soldered to the board. It’s not a field-replaceable part. This means you can not convert a NC55-36X100G non-eTCAM card into an eTCAM card.
+On Jericho-based systems, we have two eTCAM blocks per FA offering up to 2M additional routes and they are soldered to the board. It’s not a field-replaceable part. This means you can not convert a NC55-36X100G non-eTCAM card into an eTCAM card.  
+On systems running Jericho+, we have a new generation eTCAM qualified for 4M IPv4 routes but supporting much more if needed in the future.
 
 ## Resources / Memories
 
@@ -165,7 +169,7 @@ They are memory entities used to store specific type of information.
 
 In follow up posts, we will describe in detail how they are used, but let’s introduce them right now.
 
-- The Longest Prefix Match Database (LPM sometimes referred to as KAPS for KBP Assisted Prefix Search, KBP being itself Knowledge Based Processor) is an SRAM used to store IPv4 and IPv6 prefixes. It’s an algorithmic memory qualified for 256k entries IPv4 and 128k entries IPv6 in the worst case. We will see it can go much higher with internet distribution.
+- The Longest Prefix Match Database (LPM sometimes referred to as KAPS for KBP Assisted Prefix Search, KBP being itself Knowledge Based Processor) is an SRAM used to store IPv4 and IPv6 prefixes. It’s an algorithmic memory qualified for 256k entries IPv4 and 128k entries IPv6 in the worst case. We will see it can go much higher with internet distribution. One exception with the Jericho+ used in NCS55A1-24H where LPM can store more than 1M IPv4 routes.
 - The Large Exact Match Database (LEM) is used to store IPv4 and IPv6 routes also, plus MAC addresses and MPLS labels. It scales to 786k entries.
 - The Internal TCAM (iTCAM) is used for Packet classification (ACL, QoS) and is 48k entries large.
 - The FEC database is used to store NextHop (128k entries), containing also the FEC ECMP (4k entries).
@@ -173,7 +177,7 @@ In follow up posts, we will describe in detail how they are used, but let’s in
 
 All these databases are present inside the Forwarding ASIC.
 
-- The external TCAMs (eTCAM) are only present in the -SE line cards and systems and, as the name implies, are not a resource inside the Forwarding ASIC. They are used to extend unicast route and ACL / classifiers scale (up to 2M IPv4 entries).
+- The external TCAMs (eTCAM) are only present in the -SE line cards and systems and, as the name implies, are not a resource inside the Forwarding ASIC. They are used to extend unicast route and ACL / classifiers scale (up to 2M or to 4M IPv4 entries).
 
 <div class="highlighter-rouge">
 <pre class="highlight">
