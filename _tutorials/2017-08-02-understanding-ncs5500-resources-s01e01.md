@@ -22,7 +22,7 @@ You can find more content related to NCS5500 including routing memory management
 
 In the marketing datasheet, you probably read that NCS5501-SE supports up to 2.7M+ routes or that NCS5502 support up to 1.1M routes. It's true, but it's actually a bit more complex since it will not be 2.7M of any kind of routes. So, how many routes can I actually use ? Well, it depends...
 
-This series of posts aim at explaining in detail how NCS5500 routers use the different memory resources available for each type of features or prefixes. But we will go further than just discussing "how many routes" and we will try to identify how other data types (Next-hop, load balancing information, ACL entries, ...) are affecting the scale.
+This series of posts aims at explaining in details how NCS5500 routers use the different memory resources available for each type of features or prefixes. But we will go further than just discussing "how many routes" and we will try to identify how other data types (Next-hop, load balancing information, ACL entries, ...) are affecting the scale.
 
 Today, we will start describing the hardware implementation then we will explain how “databases” are used, which profiles can be enabled and how they can be monitored and troubleshot.
 
@@ -33,6 +33,9 @@ Routers in the NCS5500 portfolio offer diverse form-factors. Some are fixed (1RU
 In August 2017, with one exception covered in a follow-up xrdocs post, we are leveraging Qumran-MX or Jericho forwarding ASICs (FA). Qumran is used for System-on-Chip (SoC) routers like NCS5501 and NCS5501-SE, all other systems are using several Jerichos interconnected via Fabric Engines.
 
 **Update**: In December 2017, Jericho+ systems are available in line cards (36x 100G with NG eTCAM) and in fixed formed 1RU (36x 100G with or without NG eTCAM, 24x 100G with a larger internal memory). They will be described in follow-up posts.
+{: .notice--info}
+
+**Update2**: In August 2018, we introduced a new modular line card NC55-MOD-* and two new 2-RU fixed chassis based on the same philosophy of modular "MPA". All of them are powered by Jericho+ ASICs.
 {: .notice--info}
 
 We can categorize these systems and line cards in two families:
@@ -58,6 +61,11 @@ We can categorize these systems and line cards in two families:
 
 ![NC55-24H12F-SE]({{site.baseurl}}/images/24h12f-se.jpg){: .align-center}
 
+- NC55-36X100G-A-SE
+
+![36x100g-a-se.jpg]({{site.baseurl}}/images/36x100g-a-se.jpg){: .align-center}
+
+
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
@@ -66,6 +74,7 @@ RP/0/RP0/CPU0:Router#sh platform | i XR RUN
 RP/0/RP0/CPU0:Router#
 
 RP/0/RP0/CPU0:Router#sh plat | i XR RUN
+0/1/CPU0          <mark>NC55-36X100G-A-SE</mark>          IOS XR RUN        NSHUT
 0/6/CPU0          <mark>NC55-24H12F-SE</mark>             IOS XR RUN        NSHUT
 0/7/CPU0          <mark>NC55-24X100G-SE</mark>            IOS XR RUN        NSHUT
 0/RP0/CPU0        NC55-RP(Active)            IOS XR RUN        NSHUT
@@ -76,6 +85,7 @@ RP/0/RP0/CPU0:Router#
 </div>
 
 ### Not using external TCAM  
+
 **only the memories inside the FA (named “Base")**
 
 - NCS5501
