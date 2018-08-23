@@ -18,7 +18,11 @@ You can find more content related to NCS5500 including routing memory management
 
 ## S01E06 Introduction of the Jericho+ based platforms and impact on the scale
 
-_This article has been edited in June 2018 to fix an error on the 6.3.2 behaviour._
+**Update**: This article has been edited in June 2018 to fix an error on the 6.3.2 behavior.
+{: .notice--info}
+
+**Update2**: In August 2018, we added information on the MOD systems and line cards.
+{: .notice--info}
 
 ### Previously on "Understanding NCS5500 Resources"
 
@@ -67,11 +71,13 @@ This line card offers more flexbility with fixed ports and two MPA bays. It's po
 ![nc55-mod-block-diagram.jpg]({{site.baseurl}}/images/nc55-mod-block-diagram.jpg){: .align-center}
 
 
-We are also extending the fixed-form factor portfolio with 3 new 1RU options:
+We are also extending the fixed-form factor portfolio with 3x 1RU and 2x 2RU 
 
 - NCS55A1-36H-S
 - NCS55A1-36H-SE-S
 - NCS55A1-24H
+- NCS-55A2-MOD-HD-S
+- NCS-55A2-MOD-S
 
 Let's get started with the 36 ports options.
 
@@ -96,6 +102,23 @@ As shown in this diagram, the forwarding ASICs are connected back-to-back withou
 ![NCS55A1-24H-1.jpg]({{site.baseurl}}/images/NCS55A1-24H-1.jpg){: .align-center}
 
 We will describe it in more details in the next sections but this system uses the largest version of Jericho+ ASICs. It doesn't use external TCAM but has a large LPM (1M to 1.3M prefixes instead of the 256K-350K we use on other systems in chassis or in the NCS55A1-36H-S).
+
+Moving on the second category, the 2-RU Modular Fixed-systems:
+
+Modular and Fixed... Hmmm... Indeed these routers are not chassis in the sense they don't have slot to host line cards, but still they offer a lot of flexbility. They offer both fixed ports (40x SFP+) and two bays to host MPAs:  
+- 12x 10G, with 10G LAN, WAN, OTN, 10G DWDM 
+- 2x CFP2_DCO (OTN, 100G/200G DWDM) 
+- 1x CFP2_DCO (OTN, 100G/200G DWDM) + 2x QSFP28 (4x10G / 40G / 100G) 
+- 4x QSFP28 (4x10G / 40G /100G) 
+
+In 6.5.1, we offer two flavors of the chassis: base and hardened. The second being temperature hardened, it can support more challenging environmental conditions.
+
+![55a2-mod.jpg]({{site.baseurl}}/images/55a2-mod.jpg){: .align-center}
+
+The system is powered by a single Jericho+ and is capable of MACsec on the 16 first ports and on MPAs.
+
+![ncs55a2-mod-block-diagram.jpg]({{site.baseurl}}/images/ncs55a2-mod-block-diagram.jpg){: .align-center}
+
 
 ### Let's talk about route scale
 
