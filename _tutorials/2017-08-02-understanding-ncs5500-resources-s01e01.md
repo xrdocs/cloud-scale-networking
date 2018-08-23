@@ -65,11 +65,6 @@ We can categorize these systems and line cards in two families:
 
 ![NC55-36X100G]({{site.baseurl}}/images/36x100.jpg){: .align-center}
 
-- NC55-MOD-A-S
-
-![nc55-mod2.jpg]({{site.baseurl}}/images/nc55-mod2.jpg){: .align-center}
-
-
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
@@ -100,6 +95,14 @@ RP/0/RP0/CPU0:Router#
 
 ![NCS5502 ]({{site.baseurl}}/images/5502-.jpg){: .align-center}
 
+- NCS-55A1-24H
+
+![55A1-24h.jpg]({{site.baseurl}}/images/55A1-24h.jpg){: .align-center}
+
+- NCS-55A2-MOD-S / NCS-55A2-MOD-HD-S
+
+![55a2-mod.jpg]({{site.baseurl}}/images/55a2-mod.jpg){: .align-center}
+
 - NC55-36X100G
 
 ![NC55-36X100G]({{site.baseurl}}/images/36x100.jpg){: .align-center}
@@ -115,6 +118,11 @@ RP/0/RP0/CPU0:Router#
 - NC55-6X200-DWDM-S (Coherent card)
 
 ![NC55-6X200G-DWDM-S]({{site.baseurl}}/images/6x200 COH.jpg){: .align-center}
+
+- NC55-MOD-A-S
+
+![nc55-mod2.jpg]({{site.baseurl}}/images/nc55-mod2.jpg){: .align-center}
+
 
 <div class="highlighter-rouge">
 <pre class="highlight">
