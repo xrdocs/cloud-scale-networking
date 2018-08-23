@@ -63,7 +63,11 @@ We can categorize these systems and line cards in two families:
 
 - NC55-36X100G-A-SE
 
-![36x100g-a-se.jpg]({{site.baseurl}}/images/36x100g-a-se.jpg){: .align-center}
+![NC55-36X100G]({{site.baseurl}}/images/36x100.jpg){: .align-center}
+
+- NC55-MOD-A-S
+
+![nc55-mod2.jpg]({{site.baseurl}}/images/nc55-mod2.jpg){: .align-center}
 
 
 <div class="highlighter-rouge">
