@@ -26,7 +26,7 @@ date: null
             <p>In this video <b>Nicolas Fevrier</b> shows NCS5500 using Jericho-based line cards without external TCAM (also valid for fixed-form
              systems) handling the current internet table with still significant growth margin. </p>
             </div>
-          <p><a href="https://www.youtube.com/watch?v=yiN8fAxlfwg" target="_blank"  class="btn btn--large">Watch on Youtube</a>
+          <p><a href="https://www.youtube.com/watch?v=8Tq4nyP2wuA" target="_blank"  class="btn btn--large">Watch on Youtube</a>
           <a href="https://xrdocs.io/cloud-scale-networking/tutorials/2017-12-30-full-internet-view-on-base-ncs-5500-systems-s01e04/" target="_blank"
            class="btn btn--large">Read article</a></p>
         </div>
