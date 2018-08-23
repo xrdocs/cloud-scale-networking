@@ -18,7 +18,7 @@ You can find more content related to NCS5500 including routing memory management
 
 ## S01E06 Introduction of the Jericho+ based platforms and impact on the scale
 
-_This article has been edited in June 2018 to fix an error in the 6.3.2 behaviour._
+_This article has been edited in June 2018 to fix an error on the 6.3.2 behaviour._
 
 ### Previously on "Understanding NCS5500 Resources"
 
@@ -48,15 +48,24 @@ Both Jericho and Jericho+ can be used with current Fabric Cards (FE3600). Some r
 
 In the modular chassis:
 
-In March 2018, we have a single line card using Jericho+: the 36x100G-A-SE (more LC are coming in the summer).
+In March 2018, we had a single line card using Jericho+: the 36x100G-A-SE (more LC are coming in the summer).
 
-![36x100G-SE.jpg]({{site.baseurl}}/images/36x100G-SE.jpg)
+![36x100G-SE.jpg]({{site.baseurl}}/images/36x100G-SE.jpg){: .align-center}
 
 The line card is timing capable (note: an RP-E is necessary to use these timing features) and only exists in scale version (with eTCAM). The supported scale in current release is 4M+ IPv4 entries. It does not include MACsec chipset. It's also the first line card supporting break-out cable 4x 25G.
 
 Internally, the line is composed of 4 Jericho+ (each one handling 9 ports QSFP). As shown in this diagram, each Jericho+ Forwarding ASIC is connected to the fabric cards via 8x 25G SERDES instead of 6 in the case of Jericho-based line cards.
 
-![36x100G-SE-1.jpg]({{site.baseurl}}/images/36x100G-SE-1.jpg)
+![36x100G-SE-1.jpg]({{site.baseurl}}/images/36x100G-SE-1.jpg){: .align-center}
+
+In July 2018, we added the support of MOD line cards: NC55-MOD-A-S
+
+![nc55-mod2.jpg]({{site.baseurl}}/images/nc55-mod2.jpg){: .align-center}
+
+This line card offers more flexbility with fixed ports and two MPA bays. It's powered by a single Jericho+ ASIC.
+
+![nc55-mod-block-diagram.jpg]({{site.baseurl}}/images/nc55-mod-block-diagram.jpg){: .align-center}
+
 
 We are also extending the fixed-form factor portfolio with 3 new 1RU options:
 
@@ -70,21 +79,21 @@ These standalone systems are MACsec + timing capable and are available in base (
 
 The base version shows the same route scale than a Jericho systems without external TCAM while the scale version uses a new generation eTCAM extending the scale to 4M IPv4 routes (potentially much more in the future).
 
-![NCS55A1-36H-SE-S.jpg]({{site.baseurl}}/images/NCS55A1-36H-SE-S.jpg)
+![NCS55A1-36H-SE-S.jpg]({{site.baseurl}}/images/NCS55A1-36H-SE-S.jpg){: .align-center}
 
 Internally, the system is composed of 4 Jericho+ ASICs (each one handling 9 ports QSFP) interconnected via an FE3600 chipset.
 
-![NCS55A1-36H-SE-S-1.jpg]({{site.baseurl}}/images/NCS55A1-36H-SE-S-1.jpg)
+![NCS55A1-36H-SE-S-1.jpg]({{site.baseurl}}/images/NCS55A1-36H-SE-S-1.jpg){: .align-center}
 
 The third router: **NCS55A1-24H**. 
 
 It's a cost optimized, oversubscribbed, system that provides 24 ports QSFP. It is timing-capable but doesn't support MACsec.
 
-![NCS55A1-24H.jpg]({{site.baseurl}}/images/NCS55A1-24H.jpg)
+![NCS55A1-24H.jpg]({{site.baseurl}}/images/NCS55A1-24H.jpg){: .align-center}
 
 As shown in this diagram, the forwarding ASICs are connected back-to-back without using any fabric engine. Each ASIC handles 12 ports for a 900Gbps forwarding capability (hence the oversubscription).
 
-![NCS55A1-24H-1.jpg]({{site.baseurl}}/images/NCS55A1-24H-1.jpg)
+![NCS55A1-24H-1.jpg]({{site.baseurl}}/images/NCS55A1-24H-1.jpg){: .align-center}
 
 We will describe it in more details in the next sections but this system uses the largest version of Jericho+ ASICs. It doesn't use external TCAM but has a large LPM (1M to 1.3M prefixes instead of the 256K-350K we use on other systems in chassis or in the NCS55A1-36H-S).
 
@@ -92,7 +101,7 @@ We will describe it in more details in the next sections but this system uses th
 
 First, a quick reminder: the order of operation for route lookup in the NCS5500 family. It applies for both Jericho and Jericho+ systems.
 
-![lookup-process.jpg]({{site.baseurl}}/images/lookup-process.jpg)
+![lookup-process.jpg]({{site.baseurl}}/images/lookup-process.jpg){: .align-center}
 
 The prefixes are stored in LEM, LPM and when possible eTCAM.
 
@@ -104,11 +113,11 @@ So it's possible to use two different modes:
 
 - by default: the host mode
 
-![36H-S-host.jpg]({{site.baseurl}}/images/36H-S-host.jpg)
+![36H-S-host.jpg]({{site.baseurl}}/images/36H-S-host.jpg){: .align-center}
 
 - changed by configuration: the internet mode
 
-![36H-S-internet.jpg]({{site.baseurl}}/images/36H-S-internet.jpg)
+![36H-S-internet.jpg]({{site.baseurl}}/images/36H-S-internet.jpg){: .align-center}
 
 I invite you take a look at the [second](https://xrdocs.github.io/cloud-scale-networking/tutorials/2017-08-03-understanding-ncs5500-resources-s01e02/) and [third](https://xrdocs.github.io/cloud-scale-networking/tutorials/2017-08-07-understanding-ncs5500-resources-s01e03/) episode of this series. You will find detailed explanations and examples with real internet views.
 
@@ -118,7 +127,7 @@ The NCS55A1-36H-SE-S is using the same Jericho+ ASIC but completed with a new ge
 
 Also, please note that the way we sort routes is different between 6.3.15 and 6.3.2. 
 
-![6315-632.jpg]({{site.baseurl}}/images/6315-632.jpg)
+![6315-632.jpg]({{site.baseurl}}/images/6315-632.jpg){: .align-center}
 
 The [uRPF](https://xrdocs.github.io/cloud-scale-networking/tutorials/ncs5500-urpf/) does not affect the scale of this eTCAM (on the contrary of the first generation where it was necessary to disable the dual capacity feature, reducing the eTCAM to 1M entries). Also, the hybrid ACLs are using a different zone of the eTCAM memory and don't affect the overall scale.
 {: .notice--info}
@@ -435,18 +444,18 @@ OOR Information
 
 Like the other non-eTCAM systems, we can use two different configurations: the host-optimized mode (default) and the internet-optimized mode.
 
-![24H-host-internet.jpg]({{site.baseurl}}/images/24H-host-internet.jpg)
+![24H-host-internet.jpg]({{site.baseurl}}/images/24H-host-internet.jpg){: .align-center}
 
 Let's take a full internet table made of 655487 v4 and 42852 v6 real routes
 and check how it fits in this system.
 
 With the host optimized mode:
 
-![24h-host.jpg]({{site.baseurl}}/images/24h-host.jpg)
+![24h-host.jpg]({{site.baseurl}}/images/24h-host.jpg){: .align-center}
 
 And with the internet optimized mode:
 
-![24h-internet.jpg]({{site.baseurl}}/images/24h-internet.jpg)
+![24h-internet.jpg]({{site.baseurl}}/images/24h-internet.jpg){: .align-center}
 
 ### Conclusion
 
