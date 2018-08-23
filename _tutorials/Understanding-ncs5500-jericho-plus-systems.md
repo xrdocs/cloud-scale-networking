@@ -103,9 +103,11 @@ As shown in this diagram, the forwarding ASICs are connected back-to-back withou
 
 We will describe it in more details in the next sections but this system uses the largest version of Jericho+ ASICs. It doesn't use external TCAM but has a large LPM (1M to 1.3M prefixes instead of the 256K-350K we use on other systems in chassis or in the NCS55A1-36H-S).
 
-Moving on the second category, the 2-RU Modular Fixed-systems:
+Moving on the second category, the **2-RU Modular Fixed Systems**:
 
-Modular and Fixed... Hmmm... Indeed these routers are not chassis in the sense they don't have slot to host line cards, but still they offer a lot of flexbility. They offer both fixed ports (40x SFP+) and two bays to host MPAs:  
+Modular and Fixed... Hmmm...  
+
+Indeed these routers are not chassis in the sense they don't have slots to host line cards, but still they offer a lot of flexbility. They offer both fixed ports (40x SFP+) and two bays to host MPAs:  
 - 12x 10G, with 10G LAN, WAN, OTN, 10G DWDM 
 - 2x CFP2_DCO (OTN, 100G/200G DWDM) 
 - 1x CFP2_DCO (OTN, 100G/200G DWDM) + 2x QSFP28 (4x10G / 40G / 100G) 
@@ -128,9 +130,9 @@ First, a quick reminder: the order of operation for route lookup in the NCS5500 
 
 The prefixes are stored in LEM, LPM and when possible eTCAM.
 
-### NCS55A1-36H-S Scale
+### NCS55A1-36H-S / NCS-55A2-MOD-HD-S / NCS-55A2-MOD-S Scale
 
-On the NCS55A1-36H-S, the principles of prefixes storage are exactly the same than Jericho systems without eTCAM.
+On these systems, the principles of prefixes storage are exactly the same than Jericho systems without eTCAM.
 
 So it's possible to use two different modes:
 
