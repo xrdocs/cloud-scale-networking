@@ -4,7 +4,11 @@ date: '2018-03-08 19:33 +0200'
 title: Enabling IOS-XR on Third-Party Network Hardware
 author: Akshat Sharma
 excerpt: >-
-  As the ecosystem of the Service provider access market evolves to include disaggregated network devices as part of the scale-out strategy, Cisco is now enabling IOS-XR on select OCP-compliant network hardware. Here, we dive deeper into what it takes to work with the OCP and whitebox ecosystem and what IOS-XR is doing in this realm.
+  As the ecosystem of the Service provider access market evolves to include
+  disaggregated network devices as part of the scale-out strategy, Cisco is now
+  enabling IOS-XR on select OCP-compliant network hardware. Here, we dive deeper
+  into what it takes to work with the OCP and whitebox ecosystem and what IOS-XR
+  is doing in this realm.
 tags:
   - IOS-XR
   - Cisco
@@ -20,7 +24,7 @@ tags:
   - access
   - service-provider
   - journey-to-the-web
-position: top 
+position: top
 ---
 
 {% include toc %}
@@ -56,7 +60,7 @@ Thus, today when we break down a network device, its constituent parts look some
 
       * **Hardware Abstraction Layer**: This layer interacts with the ASIC SDK (provided by the ASIC vendor) and handles programming of the data plane based on RIB state, or LSD (label switch database) state etc.
 
-      * **Network Infrastructure/Service Adaptation Layer**:  Typically consists of components such as the RIB, Label Switch database, BFD, network interface handler and APIs on for higher layers/agents.  
+      * **Network Infrastructure/Service Adaptation Layer**:  Typically consists of components such as the RIB, Label Switch database, BFD, network interface handler and APIs for higher layers/agents.  
 
       * **Network Application/Protocol Layer**:  This layer contains protocols (BGP, ISIS, OSPF etc.) and features such as L2VPN, L3VPN etc.
 
