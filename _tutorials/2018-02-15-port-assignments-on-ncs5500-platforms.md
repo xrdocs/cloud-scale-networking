@@ -188,6 +188,8 @@ This line card is made of 4 Jericho ASICs with eTCAM.
 
 ### NC55-MOD-A-S
 
+![modLC.jpg]({{site.baseurl}}/images/modLC.jpg){: .align-center}
+
 The modular line card is offering fixed ports but also 2 bays for MPAs, powered by a single Jericho+ ASIC.
 
 | Interface | NPU/Core | Interface | NPU/Core |
