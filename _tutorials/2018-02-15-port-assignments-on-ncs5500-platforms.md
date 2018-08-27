@@ -186,14 +186,35 @@ This line card is made of 4 Jericho ASICs with eTCAM.
 | Hu0/x/0/7 | 0 / 0 | Hu0/x/0/16 | 1 / 0 | Hu0/x/0/25 | 2 / 0 | Hu0/x/0/34 | 3 / 0 |
 | Fo0/x/0/8 | 0 / 1 | Hu0/x/0/17 | 1 / 0 | Fo0/x/0/26 | 2 / 1 | Hu0/x/0/35 | 3 / 0 |
 
+### NC55-MOD-A-S
+
+The modular line card is offering fixed ports but also 2 bays for MPAs, powered by a single Jericho+ ASIC.
+
+| Interface | NPU/Core | Interface | NPU/Core |
+|:-----:|:-----:|:-----:|:-----:|
+| Te0/x/0/0 | 0 / 0  | Te0/x/0/7 | 0 / 1 |
+| Te0/x/0/1 | 0 / 0 | Te0/x/0/8 | 0 / 0 |
+| Te0/x/0/2 | 0 / 0 | Te0/x/0/9 | 0 / 0 |
+| Te0/x/0/3 | 0 / 0 | Te0/x/0/10 | 0 / 0 |
+| Te0/x/0/4 | 0 / 1 | Te0/x/0/11 | 0 / 0 |
+| Te0/x/0/5 | 0 / 1 | Fo0/x/0/12 | 0 / 1 |
+| Te0/x/0/6 | 0 / 1 | Fo0/x/0/13 | 0 / 1 |
+
+MPA 4x100:
+
+| Interface | NPU/Core |
+|:-----:|:-----:|
+| Hu0/x/y/0 | 0 / 0 |
+| Hu0/x/y/1 | 0 / 1 |
+| Hu0/x/y/2 | 0 / 0 |
+| Hu0/x/y/3 | 0 / 1 |
+
 
 ### NCS55A2-MOD(-SE)-S
-
 
 2RU chassis made of a single Jericho+ ASIC.
 
 ![55A2-MOD.jpg]({{site.baseurl}}/images/55A2-MOD.jpg)
-
 
 | Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core | Interface | NPU/Core |
 |:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
@@ -211,8 +232,6 @@ This line card is made of 4 Jericho ASICs with eTCAM.
 | Te0/x/0/11 | 0 / 1 | TF0/x/0/25 | 0 / 1 | TF0/x/0/39 | 0 / 0 | Te0/x/2/10 | 0 / 0 |
 | Te0/x/0/12 | 0 / 1 | TF0/x/0/26 | 0 / 1 | Hu0/x/1/0 | 0 / 0 | Te0/x/2/11 | 0 / 1 |
 | Te0/x/0/13 | 0 / 1 | TF0/x/0/27 | 0 / 1 | Hu0/x/1/1 | 0 / 1 | - | - |
-
-
 
 ### NCS55-36X100G-A-SE
 
