@@ -36,8 +36,7 @@ In this and next few posts we will cover BGP-EVPN configuration, implementation 
 The EVPN network layer reachability information (NLRI) provides different route types. Following is the summary of the route types and their usage.
 
 | **Route Type**  | **Usage** |
-| 0x1 Ethernet Auto-Discovery (A-D) Route | MAC Mass-Withdraw 
-											Aliasing (load balancing)|
+| 0x1 Ethernet Auto-Discovery (A-D) Route | MAC Mass-Withdraw, Aliasing (load balancing)|
 | 0x2 MAC Advertisement Route | Advertises Host MAC and IP address |
 | 0x3 Inclusive Multicast Route | Indicates interest of BUM traffic for attached L2 segments |
 | 0x4 Ethernet Segment Route | Auto discovery of Multi-homed Ethernet Segments and Designated Forwarder (DF) Election |
