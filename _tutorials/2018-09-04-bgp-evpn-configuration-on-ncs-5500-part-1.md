@@ -55,7 +55,7 @@ In this post, we will configure the BGP EVPN control-plane and ISIS Segment Rout
 ## Reference Topology:
 ![](https://github.com/xrdocs/cloud-scale-networking/blob/gh-pages/images/evpn-config/Reference-Topology.png?raw=true)
 
-# Task 1: Configure the ISIS Segment Routing Transport:
+# Task 1: Configure the Routing Protocol for Transport:
 
 Configure IGP routing protocol between Leafs and Spines. In this tutorial we are using ISIS as the underlay routing protocol. 
 
@@ -91,14 +91,12 @@ Following is a sample config from Leaf-1, to configure ISIS routing protocol in 
     !
 
 
-# Task 2: Verify the Fabric Underlay Routing Protocol:
-
 Verify that the point-to-point interfaces between the spines and leafs and other devices in the network are up and the ISIS routing adjacency is formed between the devices as per the topology. In this setup, ISIS routing protocol is configured on all the devices except the hosts, the host will be connected layer-2 dual-homed to the Leafs.
 
 The “sh isis neighbor” and “show route isis” command can be used to verify that the adjacency is formed and the routes of all the Leafs and Spines are learnt via ISIS.
 
 
-# Task 3: Configure and Verify ISIS Segment Routing as underlay:
+# Task 2: Enable ISIS Segment Routing for MPLS Forwarding:
 
 Configure Segment Routing protocol under ISIS routing protocol which enables MPLS on all the non-passive ISIS interfaces. A prefix SID is associated with an IP prefix and is manually configured from the segment routing global block (SRGB) range of labels. It is configured under the loopback interface with the loopback address of the node as the prefix. The prefix SID is globally unique within the segment routing domain.
 
@@ -198,7 +196,7 @@ Below output shows traceroute from Leaf-1 to Leaf-5 using the loopback address. 
 
 
 
-# Task 4: Configure the BGP-EVPN Control-Plane in the Fabric
+# Task 3: Configure the BGP-EVPN Control-Plane
 
 MP-BGP with its various address families is used to transport specific reachability information in the network. BGP’s L2VPN-EVPN address family is capable of transporting tenant-aware/VRF-aware IP (Layer-3) and MAC (Layer-2) reachability information in MP-BGP. BGP EVPN provides the learnt information to all the devices within the network through a common control plane. BGP EVPN next-hops are going to be reachable via segment routing paths.
 In this configuration guide to configure EVPN in the Fabric, we will configure iBGP EVPN, however eBGP EVPN can also be configured and is support on NCS 5500 routers. Spines are configured as the BGP EVPN Route Reflectors. Leaf-1, Leaf-2 and Leaf-5 will all be Route Reflector clients.
