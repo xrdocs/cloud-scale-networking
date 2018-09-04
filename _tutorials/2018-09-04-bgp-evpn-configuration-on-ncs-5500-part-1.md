@@ -58,8 +58,7 @@ In this post, we will configure the BGP EVPN control-plane and ISIS Segment Rout
 
 
 ## Reference Topology:
-![](https://raw.githubusercontent.com/xrdocs/cloud-scale-networking/gh-pages/images/evpn-config/Post-1.png)
-
+![](https://github.com/xrdocs/cloud-scale-networking/blob/gh-pages/images/evpn-config/Reference-Topology.png?raw=true)
 
 # Task 1: Configure the Fabric Underlay Routing Protocol:
 
