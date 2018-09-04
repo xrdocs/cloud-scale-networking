@@ -43,7 +43,7 @@ The EVPN network layer reachability information (NLRI) provides different route 
 | 0x5 IP Prefix Route | Advertises IP prefix for a subnet via EVPN address family |
 
 
-**Note:** We are using Spine Leaf Fabric example in the configuration but essentially a Leaf is a PE and Spine is a P router as we are implementing MPLS forwarding plane with BGP-EVPN. 
+**Note:** _We are using Spine Leaf Fabric example in the configuration but essentially a Leaf is a PE and Spine is a P router as we are implementing MPLS forwarding plane with BGP-EVPN._ 
 
 
 
