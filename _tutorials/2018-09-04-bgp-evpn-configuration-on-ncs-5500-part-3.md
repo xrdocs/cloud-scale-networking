@@ -5,6 +5,8 @@ title: BGP-EVPN Configuration on NCS 5500 part-3
 author: Ahmad Bilal Siddiqui
 position: hidden
 ---
+{% include toc %}
+
 ### Topic: Configure BGP-EVPN based Layer-2 VPN service
 
 In the last post, we configured the BGP-EVPN based Multi-homing of host using Ethernet Segment. In this post, we will provision BGP-EVPN based Layer-2 VPN service between the Leafs and use ISIS Segment Routing for the transport. The EVPN Layer-2 service will enable forwarding between host-1 and host-5 which will be configured on the same subnet.
