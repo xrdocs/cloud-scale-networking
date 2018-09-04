@@ -142,7 +142,7 @@ This output is collected from Spines; we can see that the prefix-SID labels (ide
 
     Spine-1:
     
-    RP/0/RP0/CPU0:Spine-1#sh isis segment-routing label table
+    RP/0/RP0/CPU0:Spine-1#show isis segment-routing label table
     Tue Sep  4 23:35:11.115 UTC
 
     IS-IS 1 IS Label Table
@@ -176,7 +176,7 @@ This output is collected from Spines; we can see that the prefix-SID labels (ide
 
     Spine-2:
 
-    RP/0/RP0/CPU0:Spine-2#sh isis segment-routing label table
+    RP/0/RP0/CPU0:Spine-2#show isis segment-routing label table
     Tue Sep  4 23:45:48.834 UTC
 
     IS-IS 1 IS Label Table
