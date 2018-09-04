@@ -93,7 +93,7 @@ Following is a sample config from Leaf-1, to configure ISIS routing protocol in 
 
 Verify that the point-to-point interfaces between the spines and leafs and other devices in the network are up and the ISIS routing adjacency is formed between the devices as per the topology. In this setup, ISIS routing protocol is configured on all the devices except the hosts, the host will be connected layer-2 dual-homed to the Leafs.
 
-The “sh isis neighbor” and “show route isis” command can be used to verify that the adjacency is formed and the routes of all the Leafs and Spines are learnt via ISIS.
+The “show isis neighbor” and “show route isis” command can be used to verify that the adjacency is formed and the routes of all the Leafs and Spines are learnt via ISIS.
 
 
 # Task 2: Enable ISIS Segment Routing:
@@ -142,7 +142,7 @@ This output is collected from Spines; we can see that the prefix-SID labels (ide
 
     Spine-1:
 
-    RP/0/RP0/CPU0:Spine-1#sh mpls forwarding 
+    RP/0/RP0/CPU0:Spine-1#show mpls forwarding 
     Local  Outgoing    Prefix             Outgoing     Next Hop        Bytes       
     Label  Label       or ID              Interface                    Switched    
     ------ ----------- ------------------ ------------ --------------- ------------
@@ -162,7 +162,7 @@ This output is collected from Spines; we can see that the prefix-SID labels (ide
 
     Leaf-1:
 
-    RP/0/RP0/CPU0:Leaf-1#sh mpls forwarding 
+    RP/0/RP0/CPU0:Leaf-1#show mpls forwarding 
     Local  Outgoing    Prefix             Outgoing     Next Hop        Bytes       
     Label  Label       or ID              Interface                    Switched    
     ------ ----------- ------------------ ------------ --------------- ------------
@@ -371,13 +371,13 @@ Use the following configuration and apply it to configure the Leaf-1 Leaf-2 and 
     !
 
 
-Use “sh bgp l2vpn evpn summary” cli command to verify the evpn neighborship between Route Reflectors and Leafs. Below output from the Spines show that the BGP EVPN neighborship is formed between the Leafs and the Route Reflectors and the control-plane is up. 
+Use “show bgp l2vpn evpn summary” cli command to verify the evpn neighborship between Route Reflectors and Leafs. Below output from the Spines show that the BGP EVPN neighborship is formed between the Leafs and the Route Reflectors and the control-plane is up. 
 
 
 
     Spine-1:
 
-    RP/0/RP0/CPU0:Spine-1#sh bgp l2vpn evpn summary 
+    RP/0/RP0/CPU0:Spine-1#show bgp l2vpn evpn summary 
     BGP router identifier 6.6.6.6, local AS number 65001 
 
     Process       RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer
@@ -391,7 +391,7 @@ Use “sh bgp l2vpn evpn summary” cli command to verify the evpn neighborship 
 
     Spine-2: 
 
-    RP/0/RP0/CPU0:Spine-2#sh bgp l2vpn evpn summary 
+    RP/0/RP0/CPU0:Spine-2#show bgp l2vpn evpn summary 
     BGP router identifier 7.7.7.7, local AS number 65001
 
     Process       RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer
