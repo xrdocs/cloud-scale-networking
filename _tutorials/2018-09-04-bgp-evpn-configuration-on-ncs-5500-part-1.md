@@ -8,6 +8,7 @@ position: hidden
 
 {% include toc %}
 
+### Configure BGP EVPN Control-Plane & Segment Routing Forwarding-Plane
 
 ## Introduction to BGP-EVPN
 
@@ -44,8 +45,7 @@ and Designated Forwarder (DF) Election |
 | 0x5 IP Prefix Route | Advertises IP prefix for a subnet via EVPN address family |
 
 
-# Disclaimer
-
+**Disclaimer:**
 This document is to familiarize with BGP-EVPN. The lab design and configuration examples in this document can be used as a reference, however it’s not a design best practices guide. Thus, not all recommended features are used, or enabled optimally.  
 
 **Note:** We are using Spine Leaf Fabric example in the configuration but essentially a Leaf is a PE and Spine is a P router as we are implementing MPLS forwarding plane with BGP-EVPN. 
