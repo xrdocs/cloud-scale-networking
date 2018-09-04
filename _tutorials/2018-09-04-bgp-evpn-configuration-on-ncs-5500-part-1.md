@@ -25,10 +25,10 @@ EVPN uses MAC addresses as routable addresses and distribute them to all partici
 In this and next few posts we will cover BGP-EVPN configuration, implementation and verification on NCS 5500 Platform using IOS-XR. The goal of this series is to provide familiarity to BGP-EVPN from configuration perspective and cover the following use cases.
 
 	•	Configuring BGP EVPN control-plane and ISIS Segment Routing forwarding plane
+   	•	Configure EVPN based Multi-homing to the Hosts
 	•	EVPN based Layer-2 VPN stretch with in the Fabric
 	•	EVPN-IRB between Leafs within the Fabric
-	•	Configure EVPN based Multi-homing to the Hosts
-	•	Provision EVPN Layer-3 stretch with EVPN and VPNv4 interworking
+
 
 
 ## BGP-EVPN Key Route Types for Reference
