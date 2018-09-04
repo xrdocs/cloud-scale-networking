@@ -228,7 +228,7 @@ With the following CLI command we can verify that the MAC address of Host-1 is b
 
 
 
-## Task 4: Configure EVPN EVI on Leaf-5 for BD having VLAN 10 
+## Task 4: Configure EVPN EVI on Leaf-5 for VLAN 10 
 
 
     On Leaf-5
