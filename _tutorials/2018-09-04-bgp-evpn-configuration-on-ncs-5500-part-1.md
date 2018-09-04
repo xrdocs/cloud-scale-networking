@@ -43,9 +43,6 @@ The EVPN network layer reachability information (NLRI) provides different route 
 | 0x5 IP Prefix Route | Advertises IP prefix for a subnet via EVPN address family |
 
 
-**Disclaimer:**
-This document is to familiarize with BGP-EVPN. The lab design and configuration examples in this document can be used as a reference, however it’s not a design best practices guide. Thus, not all recommended features are used, or enabled optimally.  
-
 **Note:** We are using Spine Leaf Fabric example in the configuration but essentially a Leaf is a PE and Spine is a P router as we are implementing MPLS forwarding plane with BGP-EVPN. 
 
 
@@ -58,7 +55,7 @@ In this post, we will configure the BGP EVPN control-plane and ISIS Segment Rout
 ## Reference Topology:
 ![](https://github.com/xrdocs/cloud-scale-networking/blob/gh-pages/images/evpn-config/Reference-Topology.png?raw=true)
 
-# Task 1: Configure the Fabric Underlay Routing Protocol:
+# Task 1: Configure the ISIS Segment Routing Transport:
 
 Configure IGP routing protocol between Leafs and Spines. In this tutorial we are using ISIS as the underlay routing protocol. 
 
