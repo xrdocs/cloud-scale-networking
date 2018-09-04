@@ -183,16 +183,50 @@ After configuring ISIS segment routing, verify that the underlay is capable of f
 Below output shows traceroute from Leaf-1 to Leaf-5 using the loopback address. Trace from Leaf-1 reaches Leaf-5 via Spines using label forwarding where Spine is the PHP for Leaf-5. 
 
 
-    **Trace from Leaf-1 to Leaf-5:**
+    **Ping from Leaf-1 to Leaf-5:**
 
-    RP/0/RP0/CPU0:Leaf-1#traceroute 5.5.5.5
+    RP/0/RP0/CPU0:Leaf-1#ping  sr-mpls 5.5.5.5/32
+    Tue Sep  4 23:40:51.032 UTC
+
+    Sending 5, 100-byte MPLS Echos to 5.5.5.5/32,
+          timeout is 2 seconds, send interval is 0 msec:
+
+    Codes: '!' - success, 'Q' - request not sent, '.' - timeout,
+      'L' - labeled output interface, 'B' - unlabeled output interface, 
+      'D' - DS Map mismatch, 'F' - no FEC mapping, 'f' - FEC mismatch,
+      'M' - malformed request, 'm' - unsupported tlvs, 'N' - no rx label, 
+      'P' - no rx intf label prot, 'p' - premature termination of LSP, 
+      'R' - transit router, 'I' - unknown upstream index,
+      'X' - unknown return code, 'x' - return code 0
 
     Type escape sequence to abort.
-    Tracing the route to 5.5.5.5
 
-     1  192.1.6.1 [MPLS: Label 16005 Exp 0] 2 msec  2 msec  1 msec 
-     2  192.5.6.2 3 msec  *  4 msec 
+    !!!!!
+    Success rate is 100 percent (5/5), round-trip min/avg/max = 3/5/13 ms
     RP/0/RP0/CPU0:Leaf-1#
+
+
+    **Trace from Leaf-1 to Leaf-5:**
+    RP/0/RP0/CPU0:Leaf-1#trace  sr-mpls 5.5.5.5/32  
+    Tue Sep  4 23:42:06.069 UTC
+
+    Tracing MPLS Label Switched Path to 5.5.5.5/32, timeout is 2 seconds
+
+    Codes: '!' - success, 'Q' - request not sent, '.' - timeout,
+      'L' - labeled output interface, 'B' - unlabeled output interface, 
+      'D' - DS Map mismatch, 'F' - no FEC mapping, 'f' - FEC mismatch,
+      'M' - malformed request, 'm' - unsupported tlvs, 'N' - no rx label, 
+      'P' - no rx intf label prot, 'p' - premature termination of LSP, 
+      'R' - transit router, 'I' - unknown upstream index,
+      'X' - unknown return code, 'x' - return code 0
+
+    Type escape sequence to abort.
+
+      0 192.1.7.2 MRU 1500 [Labels: 16005 Exp: 0]
+    L 1 192.1.7.1 MRU 1500 [Labels: implicit-null Exp: 0] 121 ms
+    ! 2 192.5.7.2 4 ms
+    RP/0/RP0/CPU0:Leaf-1#
+
 
 
 
