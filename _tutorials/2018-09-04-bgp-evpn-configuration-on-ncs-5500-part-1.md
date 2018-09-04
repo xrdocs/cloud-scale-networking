@@ -62,7 +62,7 @@ In this post, we will configure the BGP EVPN control-plane and ISIS Segment Rout
 
 # Task 1: Configure the Fabric Underlay Routing Protocol:
 
-Configure IGP routing protocol between Leafs and Spines. In this config guide we are using ISIS as the underlay routing protocol. 
+Configure IGP routing protocol between Leafs and Spines. In this tutorial we are using ISIS as the underlay routing protocol. 
 
 Following is a sample config from Leaf-1, to configure ISIS routing protocol in the network. Similar config with relevant Net address (shown in above table) and interfaces should be configured on other devices to bring up the ISIS routing protocol in the network. Don’t configure ISIS on the links from host to leafs, these will be configured later as layer-2 links.
 
