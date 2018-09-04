@@ -1,7 +1,9 @@
 ---
 published: false
-date: '2018-09-04 15:29 -0700'
+date: '2018-08-20 15:29 -0700'
 title: BGP-EVPN Configuration on NCS 5500 part-3
+author: Ahmad Bilal Siddiqui
+position: hidden
 ---
 ### Topic: Configure BGP-EVPN based Layer-2 VPN service
 
