@@ -141,6 +141,20 @@ This output is collected from Spines; we can see that the prefix-SID labels (ide
 
 
     Spine-1:
+    
+    RP/0/RP0/CPU0:Spine-1#sh isis segment-routing label table
+    Tue Sep  4 23:35:11.115 UTC
+
+    IS-IS 1 IS Label Table
+    Label         Prefix/Interface
+    ----------    ----------------
+    16001         1.1.1.1/32
+    16002         2.2.2.2/32
+    16005         5.5.5.5/32
+    16006         Loopback0
+    16007         7.7.7.7/32
+    RP/0/RP0/CPU0:Spine-1#
+    
 
     RP/0/RP0/CPU0:Spine-1#show mpls forwarding 
     Local  Outgoing    Prefix             Outgoing     Next Hop        Bytes       
@@ -160,23 +174,40 @@ This output is collected from Spines; we can see that the prefix-SID labels (ide
     64005  Pop         SR Adj (idx 3)     BE56         192.5.6.2       0
 
 
-    Leaf-1:
+    Spine-2:
 
-    RP/0/RP0/CPU0:Leaf-1#show mpls forwarding 
+    RP/0/RP0/CPU0:Spine-2#sh isis segment-routing label table
+    Tue Sep  4 23:45:48.834 UTC
+
+    IS-IS 1 IS Label Table
+    Label         Prefix/Interface
+    ----------    ----------------
+    16001         1.1.1.1/32
+    16002         2.2.2.2/32
+    16005         5.5.5.5/32
+    16006         6.6.6.6/32
+    16007         Loopback0
+    RP/0/RP0/CPU0:Spine-2#
+
+
+    RP/0/RP0/CPU0:Spine-2#show mpls forwarding
+    Tue Sep  4 23:46:40.028 UTC
     Local  Outgoing    Prefix             Outgoing     Next Hop        Bytes       
     Label  Label       or ID              Interface                    Switched    
     ------ ----------- ------------------ ------------ --------------- ------------
-    16002  16002       SR Pfx (idx 2)     BE16         192.1.6.1       0           
-           16002       SR Pfx (idx 2)     BE17         192.1.7.1       0           
-    16005  16005       SR Pfx (idx 5)     BE16         192.1.6.1       0         
-           16005       SR Pfx (idx 5)     BE17         192.1.7.1       0         
-    16006  Pop         SR Pfx (idx 6)     BE16         192.1.6.1       0          
-    16007  Pop         SR Pfx (idx 7)     BE17         192.1.7.1       0           
-    64000  Pop         SR Adj (idx 1)     BE16         192.1.6.1       0           
-    64001  Pop         SR Adj (idx 3)     BE16         192.1.6.1       0           
-    64002  Pop         SR Adj (idx 1)     BE17         192.1.7.1       0           
-    64003  Pop         SR Adj (idx 3)     BE17         192.1.7.1       0
-
+    16001  Pop         SR Pfx (idx 1)     BE17         192.1.7.2       0      
+    16002  Pop         SR Pfx (idx 2)     BE27         192.2.7.2       0      
+    16005  Pop         SR Pfx (idx 5)     BE57         192.5.7.2       0      
+    16006  16006       SR Pfx (idx 6)     BE17         192.1.7.2       0           
+           16006       SR Pfx (idx 6)     BE27         192.2.7.2       0           
+           16006       SR Pfx (idx 6)     BE57         192.5.7.2       0           
+    64000  Pop         SR Adj (idx 1)     BE17         192.1.7.2       0           
+    64001  Pop         SR Adj (idx 3)     BE17         192.1.7.2       0           
+    64002  Pop         SR Adj (idx 1)     BE27         192.2.7.2       0           
+    64003  Pop         SR Adj (idx 3)     BE27         192.2.7.2       0           
+    64004  Pop         SR Adj (idx 1)     BE57         192.5.7.2       0           
+    64005  Pop         SR Adj (idx 3)     BE57         192.5.7.2       0           
+    RP/0/RP0/CPU0:Spine-2#
 
 After configuring ISIS segment routing, verify that the underlay is capable of forwarding traffic using labels assigned by segment routing. 
 
