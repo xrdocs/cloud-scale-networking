@@ -96,7 +96,7 @@ Verify that the point-to-point interfaces between the spines and leafs and other
 The “sh isis neighbor” and “show route isis” command can be used to verify that the adjacency is formed and the routes of all the Leafs and Spines are learnt via ISIS.
 
 
-# Task 2: Enable ISIS Segment Routing for MPLS Forwarding:
+# Task 2: Enable ISIS Segment Routing:
 
 Configure Segment Routing protocol under ISIS routing protocol which enables MPLS on all the non-passive ISIS interfaces. A prefix SID is associated with an IP prefix and is manually configured from the segment routing global block (SRGB) range of labels. It is configured under the loopback interface with the loopback address of the node as the prefix. The prefix SID is globally unique within the segment routing domain.
 
