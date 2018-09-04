@@ -104,6 +104,7 @@ The Prefix-SID can be an absolute value or and indexed value. In this guide, we 
 
 Following is a sample config to enable Segment Routing in the network. Similar config with prefix-SID that is unique for each device in the network, should be configured on other devices (as per the above diagram) to enable ISIS Segment Routing. In this config prefix-SID is enabled on the “loopback 0” interface of the devices.
 
+![](https://github.com/xrdocs/cloud-scale-networking/blob/gh-pages/images/evpn-config/ISIS-SR-Forwarding-Plane.png?raw=true)
 
     Spine-1:
 
