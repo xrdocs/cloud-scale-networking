@@ -59,6 +59,13 @@ In this post, we will configure the BGP EVPN control-plane and ISIS Segment Rout
 
 Configure IGP routing protocol between Leafs and Spines. In this tutorial we are using ISIS as the underlay routing protocol. 
 
+| **Loopback 0** | **Prefix-SID** | **ISIS Net** |
+| Spine-1 6.6.6.6/32 | 16006 | 49.0001.0000.0000.0006.0 |
+| Spine-2 7.7.7.7/32 | 16007 | 49.0001.0000.0000.0007.0 |
+| Leaf-1  1.1.1.1/32 | 16001 | 49.0001.0000.0000.0001.0 |
+| Leaf-2  2.2.2.2/32 | 16002 | 49.0001.0000.0000.0002.0 |
+| Leaf-5  5.5.5.5/32 | 16005 | 49.0001.0000.0000.0005.0 |
+
 Following is a sample config from Leaf-1, to configure ISIS routing protocol in the network. Similar config with relevant Net address (shown in above table) and interfaces should be configured on other devices to bring up the ISIS routing protocol in the network. Don’t configure ISIS on the links from host to leafs, these will be configured later as layer-2 links.
 
 
