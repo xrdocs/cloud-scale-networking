@@ -369,4 +369,4 @@ Use “sh bgp l2vpn evpn summary” cli command to verify the evpn neighborship 
     5.5.5.5           0 65001       7       7        1    0    0 00:05:03          0
 
 
-In this post we covered the configuration and verification of BGP-EVPN control-plane and ISIS-SR based forwarding plane. In the next post we will leverage the EVPN control-plane and ISIS-SR to provision EVPN based Layer-2 VPN stretch from Leaf-1/Leaf-2 to Leaf-5.
+In this post we covered the configuration and verification of BGP-EVPN control-plane and ISIS-SR based MPLS forwarding plane. In the next post we will leverage the EVPN control-plane and ISIS-SR to provision BGP-EVPN based Multi-Homing of devices.
