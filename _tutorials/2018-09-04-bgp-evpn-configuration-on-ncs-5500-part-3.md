@@ -186,9 +186,9 @@ Observe in the below output that for Ethernet-segment bundle interface ‘BE1’
       Service Carving   : Auto-selection
       Peering Details   : 1.1.1.1[MOD:P:00] 2.2.2.2[MOD:P:00]
       Service Carving Results:
-         Forwarders     : 2
+         Forwarders     : 1
          Permanent      : 0
-         Elected        : 2
+         Elected        : 1
          Not Elected    : 0
       MAC Flushing mode : STP-TCN
       Peering timer     : 3 sec [not running]
