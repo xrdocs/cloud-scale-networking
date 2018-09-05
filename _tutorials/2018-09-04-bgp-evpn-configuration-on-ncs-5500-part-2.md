@@ -69,7 +69,7 @@ Configure the bundle on the Leaf-1 and Leaf-2. Use the same config for both the 
     !
 
 
-Configure Ethernet Segment id (ESI) for the bundle interface to enable multi-homing of the host. Use the identical configuration on both the Leafs. Each device connected in the network should be identified by a unique non-zero Ethernet-Segment Identifier (ESI).
+Configure Ethernet Segment id (ESI) for the bundle interface to enable multi-homing of the host. Use the identical configuration on both the Leafs. Each device connected in the network should be identified by a unique non-zero Ethernet-Segment Identifier (ESI). We can configure Single-Active load-balancing by CLI command "load-balancing-mode single-active" under "ethernet-segment". By default the load-balancing mode for ethernet-segment is active/active.
 
 
     evpn
