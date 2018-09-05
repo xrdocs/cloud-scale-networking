@@ -163,11 +163,10 @@ Observe in the below output that for Ethernet-segment bundle interface ‘BE1’
     Leaf-1 
 
     RP/0/RP0/CPU0:Leaf-1#sh evpn ethernet-segment detail 
-    Sat Sep  1 22:29:17.457 UTC
-
+ 
     Ethernet Segment Id      Interface                          Nexthops            
     ------------------------ ---------------------------------- --------------------
-    016c.9ced.6d1d.8c00.0100 BE1                                1.1.1.1
+    0011.1111.1111.1111.1111 BE1                                1.1.1.1
                                                                 2.2.2.2
       ES to BGP Gates   : Ready
       ES to L2FIB Gates : Ready
@@ -177,10 +176,9 @@ Observe in the below output that for Ethernet-segment bundle interface ‘BE1’
          IfHandle       : 0x08000044
          State          : Up
          Redundancy     : Not Defined
-      ESI type          : 1
-         System-id      : 6c9c.ed6d.1d8c
-         Port key       : 0001
-      ES Import RT      : 6c9c.ed6d.1d8c (from ESI)
+      ESI type          : 0
+         Value          : 11.1111.1111.1111.1111
+      ES Import RT      : 1111.1111.1111 (Local)
       Source MAC        : 0000.0000.0000 (N/A)
       Topology          :
          Operational    : MH, All-active
@@ -188,17 +186,17 @@ Observe in the below output that for Ethernet-segment bundle interface ‘BE1’
       Service Carving   : Auto-selection
       Peering Details   : 1.1.1.1[MOD:P:00] 2.2.2.2[MOD:P:00]
       Service Carving Results:
-         Forwarders     : 1
+         Forwarders     : 2
          Permanent      : 0
-         Elected        : 1
+         Elected        : 2
          Not Elected    : 0
       MAC Flushing mode : STP-TCN
       Peering timer     : 3 sec [not running]
       Recovery timer    : 30 sec [not running]
       Carving timer     : 0 sec [not running]
-      Local SHG label   : 64005
+      Local SHG label   : 64007
       Remote SHG labels : 1
-                  64005 : nexthop 2.2.2.2
+                  64008 : nexthop 2.2.2.2
 
     RP/0/RP0/CPU0:Leaf-1#
 
