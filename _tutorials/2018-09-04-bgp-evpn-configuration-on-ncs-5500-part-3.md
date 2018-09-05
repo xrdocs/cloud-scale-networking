@@ -408,4 +408,4 @@ CLI command “sh evpn evi vpn-id 10 mac” can be used to verify the MAC addres
 
 
 
-We are only seeing MAC address and not IP address of the Host in the below out. This is because we configured only Layer-2 service between the Leafs. Once we configure Host-routing with IRB, we will start advertising MAC + IP of the host and will be able to see IP address in the below table as well as in Leaf’s routing table.
+We are only seeing MAC address and not IP address of the Host in the below out. This is because we configured only Layer-2 service between the Leafs. Once we configure IRB with Host-routing, we will start advertising MAC + IP of the host via EVPN Route-Type-2 and will be able to see IP address in the below table as well as in Leaf’s routing table. In the next post, we will cover EVPN IRB and Host-Routing configuration in detail.
