@@ -354,7 +354,7 @@ The route distinguisher value is comprised of router-id:EVI eg. 1.1.1.1:10, 2.2.
     Origin codes: i - IGP, e - EGP, ? - incomplete
        Network            Next Hop            Metric LocPrf Weight Path
     Route Distinguisher: 1.1.1.1:10
-    *>i[1][016c.9ced.6d1d.8c00.0100][0]/120
+    *>i[1][0011.1111.1111.1111.1111][0]/120
                           1.1.1.1                       100      0 i
     * i                   1.1.1.1                       100      0 i
     *>i[2][0][48][6c9c.ed6d.1d8b][0]/104
@@ -376,7 +376,7 @@ The route distinguisher value is comprised of router-id:EVI eg. 1.1.1.1:10, 2.2.
     Origin codes: i - IGP, e - EGP, ? - incomplete
        Network            Next Hop            Metric LocPrf Weight Path
     Route Distinguisher: 2.2.2.2:10
-    *>i[1][016c.9ced.6d1d.8c00.0100][0]/120
+    *>i[1][0011.1111.1111.1111.1111][0]/120
                           2.2.2.2                       100      0 i
     * i                   2.2.2.2                       100      0 i
     *>i[2][0][48][6c9c.ed6d.1d8b][0]/104
@@ -397,11 +397,11 @@ CLI command “show evpn evi vpn-id 10 mac” can be used to verify the MAC addr
     RP/0/RP0/CPU0:Leaf-5#show evpn evi vpn-id 10 mac
     Sat Sep  1 23:24:00.808 UTC
 
-    VPN-ID     Encap  MAC address    IP address                               Nexthop                                 Label   
-    ---------- ------ -------------- ---------------------------------------- --------------------------------------- --------
-    10         MPLS   6c9c.ed6d.1d8b ::                                       1.1.1.1                                 64004   
-    10         MPLS   6c9c.ed6d.1d8b ::                                       2.2.2.2                                 64004   
-    10         MPLS   a03d.6f3d.5443 ::                                       TenGigE0/0/0/47.10                      64004   
+    VPN-ID     Encap  MAC address    IP address       Nexthop                                 Label   
+    ---------- ------ -------------- ---------------------------------------- -----------------------------
+    10         MPLS   6c9c.ed6d.1d8b ::               1.1.1.1                                 64004   
+    10         MPLS   6c9c.ed6d.1d8b ::               2.2.2.2                                 64004   
+    10         MPLS   a03d.6f3d.5443 ::               TenGigE0/0/0/47.10                      64004   
     RP/0/RP0/CPU0:Leaf-5#
 
 
