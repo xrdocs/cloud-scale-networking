@@ -82,12 +82,12 @@ Configure Ethernet Segment id (ESI) for the bundle interface to enable multi-hom
 
 
 
-Use “sh bundle bundle-ether 1” CLI command to verify the state of the bundle interface on Leafs and Host-1.
+Use “show bundle bundle-ether 1” CLI command to verify the state of the bundle interface on Leafs and Host-1.
 
 
     Leaf-1
 
-    RP/0/RP0/CPU0:Leaf-1#sh bundle bundle-ether 1 
+    RP/0/RP0/CPU0:Leaf-1#show bundle bundle-ether 1 
 
     Bundle-Ether1
       Status:                                    Up
@@ -118,7 +118,7 @@ Use “sh bundle bundle-ether 1” CLI command to verify the state of the bundle
 
     Leaf-2
 
-    RP/0/RP0/CPU0:Leaf-2#sh bundle bundle-ether 1
+    RP/0/RP0/CPU0:Leaf-2#show bundle bundle-ether 1
     Sat Sep  1 07:57:39.368 UTC
 
     Bundle-Ether1
@@ -152,12 +152,10 @@ Use “sh bundle bundle-ether 1” CLI command to verify the state of the bundle
 
 Ethernet Segment configuration on both Leaf-1 and Leaf-2 is complete and we can see that the bundle interface is ‘Up’ as per the above output. 
 
-As we verify the Ethernet segment status by CLI command “sh evpn ethernet-segment detail”, we see that there is no information of VLAN services or DF election. Also, the below output only shows Leaf-1’s own next-hop IP address for Ethernet segment, although for multi-homing we should also see peer Leaf’s address as next-hop address. This is due to the reason that we have configured Ethernet segment but have not provisioned a VLAN service yet. 
-
-In the next post, we will cover configuration of VLAN and stretching layer-2 bridging for that VLAN between the Leafs.
+Verify the Ethernet Segment status by CLI command “show evpn ethernet-segment detail”.
 
 
-    RP/0/RP0/CPU0:Leaf-1#sh evpn ethernet-segment detail 
+    RP/0/RP0/CPU0:Leaf-1#show evpn ethernet-segment detail 
     Legend:
 
     Ethernet Segment Id      Interface                          Nexthops            
@@ -195,3 +193,6 @@ In the next post, we will cover configuration of VLAN and stretching layer-2 bri
     RP/0/RP0/CPU0:Leaf-1# 
 
 
+As we verify the Ethernet segment status, its observed that there is no information of VLAN services or DF election. Also, the below output only shows Leaf-1’s own next-hop IP address for Ethernet segment, although for multi-homing we should also see peer Leaf’s address as next-hop address. This is due to the reason that we have configured Ethernet segment but have not provisioned a VLAN service yet. 
+
+In the next post, we will cover configuration of VLAN and stretching layer-2 bridging for that VLAN between the Leafs. In next post's Task-2 and Task-3 we can see the VLAN configuration and completing the configuration of BGP-EVPN Multi-homing along with VLAN service carving on Ethernet Segment.
