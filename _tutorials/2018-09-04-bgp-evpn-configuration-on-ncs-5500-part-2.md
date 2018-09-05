@@ -21,10 +21,10 @@ On NCS 5500 platform, following modes of operation are supported.
 **•	Single-Active Multi-Homing** — In active-standby multi-homing mode, a device is multi-homed to multiple Leaf/PEs and only one link is in active state to forward the traffic on that Ethernet Segment. In case of failure of the active link the standby link takes over and starts forwarding for that Ethernet Segment.
 
 
-## Reference Topology:
+## Reference Topology
 ![](https://github.com/xrdocs/cloud-scale-networking/blob/gh-pages/images/evpn-config/Host-connectivity.png?raw=true)
 
-## Task 1: Configure LACP bundle on Host-1
+## Configure LACP bundle on Host-1
 
 As per the reference topology Host-1 is dual-homed to Leaf-1 and Leaf-2. ASR9K is acting as the host with IP address 10.0.0.10/24. Host-1 is configured with LACP bundle containing the interfaces connected to the Leaf-1 and Leaf-2. Following is the configuration of LAG on Host-1. The LAG on Host-1 will come up after we configure the MC-LAG using EVPN Ether-Segment on the Leaf-1 and Leaf-2.
 
