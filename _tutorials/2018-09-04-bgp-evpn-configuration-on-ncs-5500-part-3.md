@@ -86,7 +86,7 @@ Verify that the bridge-domain and the related attachment circuits are up. Follow
 
     Leaf-1
 
-    RP/0/RP0/CPU0:Leaf-1#sh l2vpn bridge-domain bd-name bd-10
+    RP/0/RP0/CPU0:Leaf-1#show l2vpn bridge-domain bd-name bd-10
     Legend: pp = Partially Programmed.
     Bridge group: bg-1, bridge-domain: bd-10, id: 0, state: up, ShgId: 0, MSTi: 0
       Aging: 300 s, MAC limit: 64000, Action: none, Notification: syslog
@@ -101,7 +101,7 @@ Verify that the bridge-domain and the related attachment circuits are up. Follow
 
     Leaf-5
 
-    RP/0/RP0/CPU0:Leaf-5#sh l2vpn bridge-domain bd-name bd-10
+    RP/0/RP0/CPU0:Leaf-5#show l2vpn bridge-domain bd-name bd-10
     Legend: pp = Partially Programmed.
     Bridge group: bg-1, bridge-domain: bd-10, id: 0, state: up, ShgId: 0, MSTi: 0
       Aging: 300 s, MAC limit: 64000, Action: none, Notification: syslog
@@ -162,7 +162,7 @@ Observe in the below output that for Ethernet-segment bundle interface ‘BE1’
 
     Leaf-1 
 
-    RP/0/RP0/CPU0:Leaf-1#sh evpn ethernet-segment detail 
+    RP/0/RP0/CPU0:Leaf-1#show evpn ethernet-segment detail 
  
     Ethernet Segment Id      Interface                          Nexthops            
     ------------------------ ---------------------------------- --------------------
@@ -207,7 +207,7 @@ With the following CLI command we can verify that the MAC address of Host-1 is b
 
     Leaf-1 
 
-    RP/0/RP0/CPU0:Leaf-1#sh l2route evpn mac all 
+    RP/0/RP0/CPU0:Leaf-1#show l2route evpn mac all 
     Sat Sep  1 22:45:53.336 UTC
     Topo ID  Mac Address    Producer    Next Hop(s)                             
     -------- -------------- ----------- ----------------------------------------
@@ -217,7 +217,7 @@ With the following CLI command we can verify that the MAC address of Host-1 is b
 
     Leaf-2
 
-    RP/0/RP0/CPU0:Leaf-2#sh l2route evpn mac all 
+    RP/0/RP0/CPU0:Leaf-2#show l2route evpn mac all 
     Sat Sep  1 22:49:43.498 UTC
     Topo ID  Mac Address    Producer    Next Hop(s)                             
     -------- -------------- ----------- ----------------------------------------
@@ -257,10 +257,10 @@ Associate the EVI to bridge-domain for VLAN 10, this is where the attachment-cir
 
 ## Task 5: Verify EVPN EVI and Layer-2 Stretch between the Leaf-1, Leaf-2 and Leaf-5
 
-We have configured the Layer-2 stretch between Leaf-1, Leaf-2 and Leaf-5 using EVPN EVI. In the next steps lets verify the layer-2 connectivity is up and we can reach from one host to another via layer-2. “sh evpn evi detail” cli command shows the configured EVI and its associated bridge-domain. It also shows the route-target import and export values as shown in the below output.
+We have configured the Layer-2 stretch between Leaf-1, Leaf-2 and Leaf-5 using EVPN EVI. In the next steps lets verify the layer-2 connectivity is up and we can reach from one host to another via layer-2. “show evpn evi detail” cli command shows the configured EVI and its associated bridge-domain. It also shows the route-target import and export values as shown in the below output.
 
 
-    RP/0/RP0/CPU0:Leaf-1#sh evpn evi detail
+    RP/0/RP0/CPU0:Leaf-1#show evpn evi detail
     Sat Sep  1 23:13:01.611 UTC
 
     VPN-ID     Encap  Bridge Domain                Type               
@@ -303,7 +303,7 @@ Ping from Host-1 to Host-5 and verify that the Hosts are reachable. We can see i
 
 
     Leaf-1 
-    RP/0/RP0/CPU0:Leaf-1#sh l2route evpn mac all 
+    RP/0/RP0/CPU0:Leaf-1#show l2route evpn mac all 
     Sat Sep  1 22:53:57.880 UTC
     Topo ID  Mac Address    Producer    Next Hop(s)                             
     -------- -------------- ----------- ----------------------------------------
@@ -315,7 +315,7 @@ Ping from Host-1 to Host-5 and verify that the Hosts are reachable. We can see i
 
     Leaf-2
 
-    RP/0/RP0/CPU0:Leaf-2#sh l2route evpn mac all 
+    RP/0/RP0/CPU0:Leaf-2#show l2route evpn mac all 
     Sat Sep  1 23:00:03.487 UTC
     Topo ID  Mac Address    Producer    Next Hop(s)                             
     -------- -------------- ----------- ----------------------------------------
@@ -326,7 +326,7 @@ Ping from Host-1 to Host-5 and verify that the Hosts are reachable. We can see i
 
     Leaf-5
 
-    RP/0/RP0/CPU0:Leaf-5#sh l2route evpn mac all 
+    RP/0/RP0/CPU0:Leaf-5#show l2route evpn mac all 
     Sat Sep  1 23:00:03.785 UTC
     Topo ID  Mac Address    Producer    Next Hop(s)                             
     -------- -------------- ----------- ----------------------------------------
@@ -347,7 +347,7 @@ The route distinguisher value is comprised of router-id:EVI eg. 1.1.1.1:10, 2.2.
 
     Leaf-5
 
-    RP/0/RP0/CPU0:Leaf-5#sh bgp l2vpn evpn rd 1.1.1.1:10
+    RP/0/RP0/CPU0:Leaf-5#show bgp l2vpn evpn rd 1.1.1.1:10
 
     Status codes: s suppressed, d damped, h history, * valid, > best
                   i - internal, r RIB-failure, S stale, N Nexthop-discard
@@ -369,7 +369,7 @@ The route distinguisher value is comprised of router-id:EVI eg. 1.1.1.1:10, 2.2.
 
 
 
-    RP/0/RP0/CPU0:Leaf-5#sh bgp l2vpn evpn rd 2.2.2.2:10
+    RP/0/RP0/CPU0:Leaf-5#show bgp l2vpn evpn rd 2.2.2.2:10
 
     Status codes: s suppressed, d damped, h history, * valid, > best
                   i - internal, r RIB-failure, S stale, N Nexthop-discard
@@ -390,11 +390,11 @@ The route distinguisher value is comprised of router-id:EVI eg. 1.1.1.1:10, 2.2.
     RP/0/RP0/CPU0:Leaf-5#
 
 
-CLI command “sh evpn evi vpn-id 10 mac” can be used to verify the MAC address and Host IP addresses being learnt related to the EVI. In the following output of EVI table from Leaf-5, we can see that we are learning MAC address of Host-1 via EVI 10 on Leaf-5. We can reach to Host-1 MAC address either via next-hop 1.1.1.1 of Leaf-1 or 2.2.2.2 which is Leaf-2. We can run the same command on Leaf-1 and Leaf-2 for verification. 
+CLI command “show evpn evi vpn-id 10 mac” can be used to verify the MAC address and Host IP addresses being learnt related to the EVI. In the following output of EVI table from Leaf-5, we can see that we are learning MAC address of Host-1 via EVI 10 on Leaf-5. We can reach to Host-1 MAC address either via next-hop 1.1.1.1 of Leaf-1 or 2.2.2.2 which is Leaf-2. We can run the same command on Leaf-1 and Leaf-2 for verification. 
 
     Leaf-5
 
-    RP/0/RP0/CPU0:Leaf-5#sh evpn evi vpn-id 10 mac
+    RP/0/RP0/CPU0:Leaf-5#show evpn evi vpn-id 10 mac
     Sat Sep  1 23:24:00.808 UTC
 
     VPN-ID     Encap  MAC address    IP address                               Nexthop                                 Label   
