@@ -22,7 +22,7 @@ On NCS 5500 platform, following modes of operation are supported.
 
 
 ## Reference Topology:
-![](https://github.com/xrdocs/cloud-scale-networking/blob/gh-pages/images/evpn-config/Reference-Topology.png?raw=true)
+![](https://github.com/xrdocs/cloud-scale-networking/blob/gh-pages/images/evpn-config/Host-connectivity.png?raw=true)
 
 ## Task 1: Configure LACP bundle on Host-1
 
