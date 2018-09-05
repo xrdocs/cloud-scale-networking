@@ -8,7 +8,7 @@ position: hidden
 {% include toc %}
 ### Topic: BGP-EVPN based Multi-Homing
 
-This post will cover BGP-EVPN based Multi-Homing of devices. Multi-homing is achieved by EVPN Ethernet Segment feature; it offers redundant connectivity and utilizes all the links for active/active per-flow load balancing. For EVPN Multi-Homing tutorial, we will leverage EVPN control-plane and ISIS Segment Routing based forwarding that we configured in the [previous post](https://xrdocs.io/cloud-scale-networking/tutorials/2018-09-04-bgp-evpn-configuration-on-ncs-5500-part-3/).
+This post will cover BGP-EVPN based Multi-Homing of devices. Multi-homing is achieved by EVPN Ethernet Segment feature; it offers redundant connectivity and utilizes all the links for active/active per-flow load balancing. For EVPN Multi-Homing tutorial, we will leverage EVPN control-plane and ISIS Segment Routing based forwarding that we configured in the [previous post](https://xrdocs.io/cloud-scale-networking/tutorials/2018-09-04-bgp-evpn-configuration-on-ncs-5500-part-1/).
 
 EVPN Ethernet segment is a set of Ethernet links that connects a multi-homed device. If a multi-homed device or network is connected to two or more PEs through a set of Ethernet links, then that set of links is referred to as an Ethernet segment. Each device connected in the network is identified by a unique non-zero identifier called Ethernet-Segment Identifier (ESI).
 
