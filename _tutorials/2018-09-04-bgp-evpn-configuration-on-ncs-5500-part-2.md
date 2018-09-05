@@ -12,7 +12,14 @@ This post will cover BGP-EVPN based Multi-Homing of devices. Multi-homing is ach
 
 EVPN Ethernet segment is a set of Ethernet links that connects a multi-homed device. If a multi-homed device or network is connected to two or more PEs through a set of Ethernet links, then that set of links is referred to as an Ethernet segment. Each device connected in the network is identified by a unique non-zero identifier called Ethernet-Segment Identifier (ESI).
 
-On NCS 5500 platform, multi-homing mode of redundancy can be configured as desired as it supports active/active as well as active/standby multi-homing. 
+On NCS 5500 platform, following modes of multi-homing operation are supported.
+
+    Single Homed — A device is single-homed when its connected to only one Leaf or PE. There is no redundancy in this mode of operation and it does not need Ethernet Segment to be configured.
+
+    Active-Active Multi-Homing — In active-active multi-homing mode, a device is multi-homed to multiple Leafs/PEs and both the links actively forward the traffic on that Ethernet Segment. This mode of operation is bandwadith efficient and provides per-flow active/active forwarding.  
+
+    Active-Standby Multi-Homing — In active-standby multi-homing mode, a device is multi-homed to multiple Leaf/PEs and only one link is in active state to forward the traffic on that Ethernet Segment. In case of failure of the active link the standby link takes over and starts forwarding for that Ethernet Segment.
+
 
 ## Reference Topology:
 ![](https://github.com/xrdocs/cloud-scale-networking/blob/gh-pages/images/evpn-config/Reference-Topology.png?raw=true)
