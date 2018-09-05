@@ -12,7 +12,7 @@ This post will cover BGP-EVPN based Multi-Homing of devices. Multi-homing is ach
 
 EVPN Ethernet segment is a set of Ethernet links that connects a multi-homed device. If a multi-homed device or network is connected to two or more PEs through a set of Ethernet links, then that set of links is referred to as an Ethernet segment. Each device connected in the network is identified by a unique non-zero identifier called Ethernet-Segment Identifier (ESI).
 
-On NCS 5500 platform, following modes of multi-homing operation are supported.
+On NCS 5500 platform, following modes of operation are supported.
 
 •	Single Homed — A device is single-homed when its connected to only one Leaf or PE. There is no 		redundancy in this mode of operation and it does not need Ethernet Segment to be configured.
 
