@@ -49,7 +49,7 @@ As per the reference topology Host-1 is dual-homed to Leaf-1 and Leaf-2. ASR9K i
 
 ## Task 2: Configure EVPN based multi-homing for Host-1
 
-Configure Leaf-1 and Leaf-2 to provision all active multi-homing to host-1. The set of links from Host-1 to the Leafs will be configured as an Ethernet Segment on the Leafs. For each Ethernet-Segment, identical ESI along with identical LACP System MAC address should be configured on the Leaf pair. NCS 5500 platform supports static LAG as well as LACP, however in this guide we are using LACP for link aggregation.
+Configure Leaf-1 and Leaf-2 to provision all active multi-homing to host-1. The set of links from Host-1 to the Leafs will be configured as an Ethernet Segment on the Leafs. For each Ethernet-Segment, identical ESI along with identical LACP System MAC address should be configured on the Leaf pair. NCS 5500 platform supports static LAG as well as LACP, however in this guide we are using LACP for link aggregation. {: .text-justify}
 
 ![](https://github.com/xrdocs/cloud-scale-networking/blob/gh-pages/images/evpn-config/Ether-segment.png?raw=true)
 
