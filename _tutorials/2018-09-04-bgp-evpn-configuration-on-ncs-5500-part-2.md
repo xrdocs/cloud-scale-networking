@@ -24,7 +24,9 @@ On NCS 5500 platform, following modes of operation are supported.
 ## Reference Topology
 ![](https://github.com/xrdocs/cloud-scale-networking/blob/gh-pages/images/evpn-config/Host-connectivity.png?raw=true)
 
-## Configure LACP bundle on Host-1
+## Tasks
+
+### Configure LACP bundle on Host-1
 
 As per the reference topology Host-1 is dual-homed to Leaf-1 and Leaf-2. ASR9K is acting as the host with IP address 10.0.0.10/24. Host-1 is configured with LACP bundle containing the interfaces connected to the Leaf-1 and Leaf-2. Following is the configuration of LAG on Host-1. The LAG on Host-1 will come up after we configure the MC-LAG using EVPN Ether-Segment on the Leaf-1 and Leaf-2.
 
@@ -47,7 +49,7 @@ As per the reference topology Host-1 is dual-homed to Leaf-1 and Leaf-2. ASR9K i
     !
 
 
-## Task 2: Configure EVPN based multi-homing for Host-1
+### Configure EVPN based multi-homing for Host-1
 
 Configure Leaf-1 and Leaf-2 to provision all active multi-homing to host-1. The set of links from Host-1 to the Leafs will be configured as an Ethernet Segment on the Leafs. For each Ethernet-Segment, identical ESI along with identical LACP System MAC address should be configured on the Leaf pair. NCS 5500 platform supports static LAG as well as LACP, however in this guide we are using LACP for link aggregation.
 
