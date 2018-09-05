@@ -5,6 +5,7 @@ title: BGP-EVPN Configuration on NCS 5500 part-2
 author: Ahmad Bilal Siddiqui
 position: hidden
 ---
+{% include toc %}
 ### Topic: BGP-EVPN based Multi-Homing
 
 This post will cover BGP-EVPN based Multi-Homing of devices. Multi-homing is achieved by EVPN Ethernet Segment feature; it offers redundant connectivity and utilizes all the links for active/active per-flow load balancing. We will be leveraging EVPN control-plane and ISIS Segment Routing based forwarding that we configured in the previous post.
