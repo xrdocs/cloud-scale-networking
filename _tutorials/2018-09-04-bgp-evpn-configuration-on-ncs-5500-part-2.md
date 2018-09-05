@@ -14,7 +14,7 @@ EVPN Ethernet segment is a set of Ethernet links that connects a multi-homed dev
 On NCS 5500 platform, multi-homing mode of redundancy can be configured as desired as it supports active/active as well as active/standby multi-homing. 
 
 ## Reference Topology:
-![]({{site.baseurl}}/https://github.com/xrdocs/cloud-scale-networking/blob/gh-pages/images/evpn-config/Reference-Topology.png?raw=true)
+![](https://github.com/xrdocs/cloud-scale-networking/blob/gh-pages/images/evpn-config/Reference-Topology.png?raw=true)
 
 ## Task 1: Configure LACP bundle on Host-1
 
