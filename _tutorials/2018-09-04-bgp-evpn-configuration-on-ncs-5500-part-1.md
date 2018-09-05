@@ -26,8 +26,8 @@ In this and next few posts we will cover BGP-EVPN configuration, implementation 
 
 	•	Configuring BGP EVPN control-plane and ISIS Segment Routing forwarding plane
     •	Configure EVPN based Multi-homing to the Hosts
-	•	EVPN based Layer-2 VPN stretch with in the Fabric
-	•	EVPN-IRB between Leafs within the Fabric
+	•	EVPN based Layer-2 VPN Service
+	•	EVPN-IRB between Leafs in the network
 
 
 
