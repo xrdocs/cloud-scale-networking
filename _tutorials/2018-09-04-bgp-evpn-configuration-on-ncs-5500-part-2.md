@@ -8,7 +8,7 @@ position: hidden
 {% include toc %}
 ### Topic: BGP-EVPN based Multi-Homing
 
-This post will cover BGP-EVPN based Multi-Homing of devices. Multi-homing is achieved by EVPN Ethernet Segment feature; it offers redundant connectivity and utilizes all the links for active/active per-flow load balancing. We will be leveraging EVPN control-plane and ISIS Segment Routing based forwarding that we configured in the previous post. {: .text-center}
+This post will cover BGP-EVPN based Multi-Homing of devices. Multi-homing is achieved by EVPN Ethernet Segment feature; it offers redundant connectivity and utilizes all the links for active/active per-flow load balancing. We will be leveraging EVPN control-plane and ISIS Segment Routing based forwarding that we configured in the previous post.
 
 EVPN Ethernet segment is a set of Ethernet links that connects a multi-homed device. If a multi-homed device or network is connected to two or more PEs through a set of Ethernet links, then that set of links is referred to as an Ethernet segment. Each device connected in the network is identified by a unique non-zero identifier called Ethernet-Segment Identifier (ESI).
 
@@ -49,7 +49,7 @@ As per the reference topology Host-1 is dual-homed to Leaf-1 and Leaf-2. ASR9K i
 
 ## Task 2: Configure EVPN based multi-homing for Host-1
 
-Configure Leaf-1 and Leaf-2 to provision all active multi-homing to host-1. The set of links from Host-1 to the Leafs will be configured as an Ethernet Segment on the Leafs. For each Ethernet-Segment, identical ESI along with identical LACP System MAC address should be configured on the Leaf pair. NCS 5500 platform supports static LAG as well as LACP, however in this guide we are using LACP for link aggregation. {: .text-justify}
+Configure Leaf-1 and Leaf-2 to provision all active multi-homing to host-1. The set of links from Host-1 to the Leafs will be configured as an Ethernet Segment on the Leafs. For each Ethernet-Segment, identical ESI along with identical LACP System MAC address should be configured on the Leaf pair. NCS 5500 platform supports static LAG as well as LACP, however in this guide we are using LACP for link aggregation.
 
 ![](https://github.com/xrdocs/cloud-scale-networking/blob/gh-pages/images/evpn-config/Ether-segment.png?raw=true)
 
