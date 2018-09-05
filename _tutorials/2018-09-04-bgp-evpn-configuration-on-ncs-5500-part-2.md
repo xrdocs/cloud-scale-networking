@@ -71,6 +71,7 @@ Configure the bundle on the Leaf-1 and Leaf-2. Use the same config for both the 
 
 Configure Ethernet Segment id (ESI) for the bundle interface to enable multi-homing of the host. Use the identical configuration on both the Leafs. Each device connected in the network should be identified by a unique non-zero Ethernet-Segment Identifier (ESI). We can configure Single-Active load-balancing by CLI command "load-balancing-mode single-active" under "ethernet-segment". By default the load-balancing mode for ethernet-segment is active/active.
 
+EVPN All Active Multi-Homing Config: (Used in this tutorial)
 
     evpn
      interface Bundle-Ether 1
@@ -80,6 +81,17 @@ Configure Ethernet Segment id (ESI) for the bundle interface to enable multi-hom
       !
      !
 
+
+EVPN Single-Active Multi-Homing Config: (For reference only)
+
+    evpn
+         interface Bundle-Ether 1
+          ethernet-segment
+           identifier type 0 11.11.11.11.11.11.11.11.11
+           load-balancing-mode single-active
+           bgp route-target 1111.1111.1111
+          !
+         !
 
 
 Use “show bundle bundle-ether 1” CLI command to verify the state of the bundle interface on Leafs and Host-1.
@@ -193,6 +205,6 @@ Verify the Ethernet Segment status by CLI command “show evpn ethernet-segment 
     RP/0/RP0/CPU0:Leaf-1# 
 
 
-As we verify the Ethernet segment status, its observed that there is no information of VLAN services or DF election. Also, the below output only shows Leaf-1’s own next-hop IP address for Ethernet segment, although for multi-homing we should also see peer Leaf’s address as next-hop address. This is due to the reason that we have configured Ethernet segment but have not provisioned a VLAN service yet. 
+As we verify the Ethernet segment status, its observed that there is no information of VLAN services or DF election. Also, the below output only shows Leaf-1’s own next-hop IP address for Ethernet segment, although for all-active multi-homing we should also see peer Leaf’s address as next-hop address. This is due to the reason that we have configured Ethernet segment but have not provisioned a VLAN service for it yet. 
 
 In the [next post](https://xrdocs.io/cloud-scale-networking/tutorials/2018-09-04-bgp-evpn-configuration-on-ncs-5500-part-3/), we will cover configuration of VLAN and stretching layer-2 bridging for that VLAN between the Leafs. In next post's [Task-2](https://xrdocs.io/cloud-scale-networking/tutorials/2018-09-04-bgp-evpn-configuration-on-ncs-5500-part-3/#task-2-configure-layer-2-interfaces-and-bridge-domain-on-leafs) and [Task-3](https://xrdocs.io/cloud-scale-networking/tutorials/2018-09-04-bgp-evpn-configuration-on-ncs-5500-part-3/#task-3-configure-evpn-evi-on-leaf-1-leaf-2-for-vlan-10) we can see the VLAN configuration and completing the configuration of BGP-EVPN Multi-homing along with VLAN service carving on Ethernet Segment.
