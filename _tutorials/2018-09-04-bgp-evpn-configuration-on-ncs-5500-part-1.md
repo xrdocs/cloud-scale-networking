@@ -95,13 +95,6 @@ Verify that the point-to-point interfaces between the spines and leafs and other
 
 The “show isis neighbor” and “show route isis” command can be used to verify that the adjacency is formed and the routes of all the Leafs and Spines are learnt via ISIS.
 
-Configure on all the Leafs “cef adjacency route override rib" cli command, to prefer CEF adjacency prefix created from the ARP entry over the RIB prefix entry.
-
-
-	RP/0/RP0/CPU0:Leaf-1(config)#cef adjacency route override rib
-
-
-
 
 # Task 2: Enable ISIS Segment Routing:
 
