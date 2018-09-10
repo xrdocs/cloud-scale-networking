@@ -15,12 +15,11 @@ position: hidden
 EVPN is the next generation L2VPN technology, it provides layer-2 as well as layer-3 VPN services in a scalable and simplified manner. The evolution of EVPN started due to the need of a scalable solution to bridge various layer-2 domains and overcome the limitations faced by VPLS such as scalability, multi-homing and per-flow load balancing. 
 
 EVPN uses MAC addresses as routable addresses and distribute them to all participating PEs via MP-BGP EVPN control-plane. EVPN is used for E-LAN, E-LINE, E-TREE services and provides data plane and control plane separation. Allowing use of different encapsulation mechanisms in data plane while maintaining the same control plane. EVPN offers many advantages over existing technologies, including more efficient load-balancing of VPN traffic. Some of the prominent advantages are:
-
-	•	Multi-homing and redundancy
-	•	Per flow-based load balancing
-	•	Scalability 
-	•	Provisioning simplicity 
-	•	Reduced operational complexity
+- Multi-homing and redundancy
+- Per flow-based load balancing
+- Scalability 
+- Provisioning simplicity 
+- Reduced operational complexity
 
 In this and next few posts we will cover BGP-EVPN configuration, implementation and verification on NCS 5500 Platform using IOS-XR. The goal of this tutorial is to provide familiarity to BGP-EVPN from configuration perspective and cover the following use cases.
 
