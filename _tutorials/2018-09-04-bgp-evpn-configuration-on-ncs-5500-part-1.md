@@ -4,6 +4,14 @@ date: '2018-09-04 10:45 -0700'
 title: BGP-EVPN Configuration on NCS 5500 part-1
 author: Ahmad Bilal Siddiqui
 position: hidden
+excerpt: >-
+  Configure BGP-EVPN Control-Plane & Segment Routing Forwarding-Plane on NCS
+  5500
+tags:
+  - EVPN
+  - NCS 5500
+  - ncs5500
+  - evpn
 ---
 
 {% include toc %}
