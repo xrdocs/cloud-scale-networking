@@ -69,25 +69,25 @@ Following is a sample config from Leaf-1 to implement ISIS routing protocol in t
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
-    router isis 1
-     is-type level-2-only
-     net <mark>49.0001.0000.0000.0001.00</mark>
-     nsr
-     log adjacency changes
+router isis 1
+    is-type level-2-only
+    net <mark>49.0001.0000.0000.0001.00</mark>
+    nsr
+    log adjacency changes
+    address-family ipv4 unicast
+     metric-style wide
+  !
+    interface Bundle-Ether16
+     point-to-point
      address-family ipv4 unicast
-      metric-style wide
     !
-     interface Bundle-Ether16
-      point-to-point
-      address-family ipv4 unicast
-    !
-     interface Bundle-Ether17
-      point-to-point
-      address-family ipv4 unicast
+    interface Bundle-Ether17
+     point-to-point
+     address-family ipv4 unicast
     !        
-     interface Loopback0
-      passive
-      address-family ipv4 unicast
+    interface Loopback0
+     passive
+     address-family ipv4 unicast
     !
 </code>
 </pre>
