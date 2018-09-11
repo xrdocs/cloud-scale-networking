@@ -69,25 +69,25 @@ Following is a sample config from Leaf-1 to implement ISIS routing protocol in t
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
-router isis 1
-    is-type level-2-only
-    net <mark>49.0001.0000.0000.0001.00</mark>
-    nsr
-    log adjacency changes
-    address-family ipv4 unicast
-     metric-style wide
-  !
-    interface Bundle-Ether16
-     point-to-point
+    router isis 1
+     is-type level-2-only
+     net <mark>49.0001.0000.0000.0001.00</mark>
+     nsr
+     log adjacency changes
      address-family ipv4 unicast
+      metric-style wide
     !
-    interface Bundle-Ether17
-     point-to-point
-     address-family ipv4 unicast
+     interface Bundle-Ether16
+      point-to-point
+      address-family ipv4 unicast
+    !
+     interface Bundle-Ether17
+      point-to-point
+      address-family ipv4 unicast
     !        
-    interface Loopback0
-     passive
-     address-family ipv4 unicast
+     interface Loopback0
+      passive
+      address-family ipv4 unicast
     !
 </code>
 </pre>
@@ -95,7 +95,7 @@ router isis 1
 
 Verify that the point-to-point interfaces between the spines and leafs and other devices in the network are up and the ISIS routing adjacency is formed between the devices as per the topology. In this setup, ISIS routing protocol is configured on all the devices except the hosts, the host will be connected layer-2 dual-homed to the Leafs.
 
-The “show isis neighbor” and “show route isis” commands can be used to verify that the adjacency is formed and the routes of all the Leafs and Spines are learnt via ISIS.
+The “**show isis neighbor**” and “**show route isis**” commands can be used to verify that the adjacency is formed and the routes of all the Leafs and Spines are learnt via ISIS.
 
 
 # Task 2: Enable ISIS Segment Routing:
@@ -273,10 +273,10 @@ Below output shows traceroute from Leaf-1 to Leaf-5 using the loopback address. 
 # Task 3: Configure the BGP-EVPN Control-Plane
 
 MP-BGP with its various address families is used to transport specific reachability information in the network. BGP’s L2VPN-EVPN address family is capable of transporting tenant-aware/VRF-aware IP (Layer-3) and MAC (Layer-2) reachability information in MP-BGP. BGP EVPN provides the learnt information to all the devices within the network through a common control plane. BGP EVPN next-hops are going to be reachable via segment routing paths.
+
 In this configuration guide to configure EVPN in the Fabric, we will configure iBGP EVPN, however eBGP EVPN can also be configured and is support on NCS 5500 routers. Spines are configured as the BGP EVPN Route Reflectors. Leaf-1, Leaf-2 and Leaf-5 will all be Route Reflector clients.
 
 ![](https://github.com/xrdocs/cloud-scale-networking/blob/gh-pages/images/evpn-config/EVPN-Control-Plane.png?raw=true)
-
 Configure Spines as RR for BGP EVPN address family.
 <div class="highlighter-rouge">
 <pre class="highlight">
@@ -418,7 +418,7 @@ Use the following configuration and apply it to configure the Leaf-1 Leaf-2 and 
 </pre>
 </div>
 
-Use “show bgp l2vpn evpn summary” cli command to verify the evpn neighborship between Route Reflectors and Leafs. Below output from the Spines show that the BGP EVPN neighborship is formed between the Leafs and the Route Reflectors and the control-plane is up. 
+Use “**show bgp l2vpn evpn summary**” cli command to verify the evpn neighborship between Route Reflectors and Leafs. Below output from the Spines show that the BGP EVPN neighborship is formed between the Leafs and the Route Reflectors and the control-plane is up. 
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
