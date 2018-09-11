@@ -116,7 +116,7 @@ Following is a sample config to enable Segment Routing in the network. Similar c
 
     router isis 1
     address-family ipv4 unicast
-      segment-routing mpls
+      <mark>segment-routing mpls</mark>
      !
      interface Loopback0
       passive
@@ -133,7 +133,7 @@ Following is a sample config to enable Segment Routing in the network. Similar c
      interface Loopback0
       passive
       address-family ipv4 unicast
-       **prefix-sid absolute 16007**
+       <mark>prefix-sid absolute 16007</mark>
     !
 </code>
 </pre>
@@ -165,7 +165,7 @@ This output is collected from Spines; we can see that the prefix-SID labels (ide
     Local  Outgoing    Prefix             Outgoing     Next Hop        Bytes       
     Label  Label       or ID              Interface                    Switched    
     ------ ----------- ------------------ ------------ --------------- ------------
-    16001  Pop         SR Pfx (idx 1)     BE16         192.1.6.2       0           
+    16001  Pop         <mark>SR Pfx (idx 1)</mark>     BE16         192.1.6.2       0           
     16002  Pop         SR Pfx (idx 2)     BE26         192.2.6.2       0           
     16005  Pop         SR Pfx (idx 5)     BE56         192.5.6.2       0           
     16007  16007       SR Pfx (idx 7)     BE16         192.1.6.2       0           
@@ -200,7 +200,7 @@ This output is collected from Spines; we can see that the prefix-SID labels (ide
     Local  Outgoing    Prefix             Outgoing     Next Hop        Bytes       
     Label  Label       or ID              Interface                    Switched    
     ------ ----------- ------------------ ------------ --------------- ------------
-    16001  Pop         SR Pfx (idx 1)     BE17         192.1.7.2       0      
+    16001  Pop         <mark>SR Pfx (idx 1)</mark>     BE17         192.1.7.2       0      
     16002  Pop         SR Pfx (idx 2)     BE27         192.2.7.2       0      
     16005  Pop         SR Pfx (idx 5)     BE57         192.5.7.2       0      
     16006  16006       SR Pfx (idx 6)     BE17         192.1.7.2       0           
