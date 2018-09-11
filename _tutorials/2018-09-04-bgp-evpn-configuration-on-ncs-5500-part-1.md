@@ -67,10 +67,12 @@ Configure IGP routing protocol between Leafs and Spines. In this tutorial we are
 
 Following is a sample config from Leaf-1 to implement ISIS routing protocol in the network. Similar configs with relevant Net address (shown in above table) and interfaces should be used on other devices to bring up the ISIS routing protocol in the network. Don’t configure ISIS on the links from host to leafs, these will be set up later as layer-2 links.
 
-
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
     router isis 1
      is-type level-2-only
-     net 49.0001.0000.0000.0001.00
+     net <mark>49.0001.0000.0000.0001.00</mark>
      nsr
      log adjacency changes
      address-family ipv4 unicast
@@ -88,7 +90,9 @@ Following is a sample config from Leaf-1 to implement ISIS routing protocol in t
       passive
       address-family ipv4 unicast
     !
-
+</code>
+</pre>
+</div>
 
 Verify that the point-to-point interfaces between the spines and leafs and other devices in the network are up and the ISIS routing adjacency is formed between the devices as per the topology. In this setup, ISIS routing protocol is configured on all the devices except the hosts, the host will be connected layer-2 dual-homed to the Leafs.
 
