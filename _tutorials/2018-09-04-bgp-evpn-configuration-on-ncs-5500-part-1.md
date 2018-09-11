@@ -109,6 +109,9 @@ Following is a sample config to enable Segment Routing in the network. Similar c
 
 ![](https://github.com/xrdocs/cloud-scale-networking/blob/gh-pages/images/evpn-config/ISIS-SR-Forwarding-Plane.png?raw=true)
 
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
     Spine-1:
 
     router isis 1
@@ -118,7 +121,7 @@ Following is a sample config to enable Segment Routing in the network. Similar c
      interface Loopback0
       passive
       address-family ipv4 unicast
-       prefix-sid absolute 16006
+       <mark>prefix-sid absolute 16006</mark>
     !
 
     Spine-2:
@@ -130,14 +133,18 @@ Following is a sample config to enable Segment Routing in the network. Similar c
      interface Loopback0
       passive
       address-family ipv4 unicast
-       prefix-sid absolute 16007
+       **prefix-sid absolute 16007**
     !
-
+</code>
+</pre>
+</div>
 
 Verify that all devices that have ISIS Segment Routing configured have advertised their prefix-SIDs. Also verify the prefix-SIDs are learnt and programmed in the forwarding plane on each device. 
 This output is collected from Spines; we can see that the prefix-SID labels (identified by “Pfx”) of all the Leafs and other routers are learnt and programmed in the forwarding plane along with their outgoing interfaces.
 
-
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
     Spine-1:
     
     RP/0/RP0/CPU0:Spine-1#show isis segment-routing label table
@@ -206,12 +213,17 @@ This output is collected from Spines; we can see that the prefix-SID labels (ide
     64004  Pop         SR Adj (idx 1)     BE57         192.5.7.2       0           
     64005  Pop         SR Adj (idx 3)     BE57         192.5.7.2       0           
     RP/0/RP0/CPU0:Spine-2#
+</code>
+</pre>
+</div>
 
 After configuring ISIS segment routing, verify that the underlay is capable of forwarding traffic using labels assigned by segment routing. 
 
 Below output shows traceroute from Leaf-1 to Leaf-5 using the loopback address. Trace from Leaf-1 reaches Leaf-5 via Spines using label forwarding where Spine is the PHP for Leaf-5. 
 
-
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
     **Ping from Leaf-1 to Leaf-5:**
 
     RP/0/RP0/CPU0:Leaf-1#ping  sr-mpls 5.5.5.5/32
@@ -255,7 +267,9 @@ Below output shows traceroute from Leaf-1 to Leaf-5 using the loopback address. 
     L 1 192.1.7.1 MRU 1500 [Labels: implicit-null Exp: 0] 121 ms
     ! 2 192.5.7.2 4 ms
     RP/0/RP0/CPU0:Leaf-1#
-
+</code>
+</pre>
+</div>
 
 
 
@@ -268,6 +282,9 @@ In this configuration guide to configure EVPN in the Fabric, we will configure i
 
 Configure Spines as RR for BGP EVPN address family.
 
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
     Spine-1:
 
     router bgp 65001
@@ -323,11 +340,15 @@ Configure Spines as RR for BGP EVPN address family.
       description BGP session to Leaf-5
      !
     !
-
+</code>
+</pre>
+</div>
 
 Use the following configuration and apply it to configure the Leaf-1 Leaf-2 and Leaf-5 to form the BGP EVPN adjacency between Leafs and Route Reflectors. 
 
-
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
     Leaf-1:
 
     router bgp 65001
@@ -398,12 +419,16 @@ Use the following configuration and apply it to configure the Leaf-1 Leaf-2 and 
       !
      !
     !
-
+</code>
+</pre>
+</div>
 
 Use “show bgp l2vpn evpn summary” cli command to verify the evpn neighborship between Route Reflectors and Leafs. Below output from the Spines show that the BGP EVPN neighborship is formed between the Leafs and the Route Reflectors and the control-plane is up. 
 
 
-
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
     Spine-1:
 
     RP/0/RP0/CPU0:Spine-1#show bgp l2vpn evpn summary 
@@ -430,6 +455,8 @@ Use “show bgp l2vpn evpn summary” cli command to verify the evpn neighborshi
     1.1.1.1           0 65001       9      10        1    0    0 00:06:50          0
     2.2.2.2           0 65001       8       8        1    0    0 00:05:43          0
     5.5.5.5           0 65001       7       7        1    0    0 00:05:03          0
-
+</code>
+</pre>
+</div>
 
 In this post we covered the configuration and verification of BGP-EVPN control-plane and ISIS-SR based MPLS forwarding plane. In the [next post](https://xrdocs.io/cloud-scale-networking/tutorials/2018-09-04-bgp-evpn-configuration-on-ncs-5500-part-2/) we will leverage the EVPN control-plane and ISIS-SR to provision BGP-EVPN based Multi-Homing of devices.
