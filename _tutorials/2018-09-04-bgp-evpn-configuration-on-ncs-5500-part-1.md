@@ -66,7 +66,6 @@ Configure IGP routing protocol between Leafs and Spines. In this tutorial we are
 | Leaf-5  5.5.5.5/32 | 16005 | 49.0001.0000.0000.0005.0 |
 
 Following is a sample config from Leaf-1 to implement ISIS routing protocol in the network. Similar configs with relevant Net address (shown in above table) and interfaces should be used on other devices to bring up the ISIS routing protocol in the network. Don’t configure ISIS on the links from host to leafs, these will be set up later as layer-2 links.
-
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
@@ -108,7 +107,6 @@ The Prefix-SID can be an absolute value or an indexed value. In this guide, we a
 Following is a sample config to enable Segment Routing in the network. Similar config with prefix-SID that is unique for each device in the network, should be configured on other devices (as per the above diagram) to enable ISIS Segment Routing. In this config prefix-SID is enabled on the “loopback 0” interface of the devices.
 
 ![](https://github.com/xrdocs/cloud-scale-networking/blob/gh-pages/images/evpn-config/ISIS-SR-Forwarding-Plane.png?raw=true)
-
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
@@ -141,10 +139,10 @@ Following is a sample config to enable Segment Routing in the network. Similar c
 
 Verify that all devices that have ISIS Segment Routing configured have advertised their prefix-SIDs. Also verify the prefix-SIDs are learnt and programmed in the forwarding plane on each device. 
 This output is collected from Spines; we can see that the prefix-SID labels (identified by “Pfx”) of all the Leafs and other routers are learnt and programmed in the forwarding plane along with their outgoing interfaces.
-
 <div class="highlighter-rouge">
 <pre class="highlight">
-<code>Spine-1:
+<code>
+    Spine-1:
     
     RP/0/RP0/CPU0:Spine-1#show isis segment-routing label table
     Tue Sep  4 23:35:11.115 UTC
@@ -219,10 +217,10 @@ This output is collected from Spines; we can see that the prefix-SID labels (ide
 After configuring ISIS segment routing, verify that the underlay is capable of forwarding traffic using labels assigned by segment routing. 
 
 Below output shows traceroute from Leaf-1 to Leaf-5 using the loopback address. Trace from Leaf-1 reaches Leaf-5 via Spines using label forwarding where Spine is the PHP for Leaf-5. 
-
 <div class="highlighter-rouge">
 <pre class="highlight">
-<code>##### Ping from Leaf-1 to Leaf-5:
+<code>
+    Ping from Leaf-1 to Leaf-5:
 
     RP/0/RP0/CPU0:Leaf-1#ping  sr-mpls 5.5.5.5/32
     Tue Sep  4 23:40:51.032 UTC
@@ -245,7 +243,8 @@ Below output shows traceroute from Leaf-1 to Leaf-5 using the loopback address. 
     RP/0/RP0/CPU0:Leaf-1#
 
 
-    ##### Trace from Leaf-1 to Leaf-5
+    Trace from Leaf-1 to Leaf-5
+    
     RP/0/RP0/CPU0:Leaf-1#trace  sr-mpls 5.5.5.5/32  
     Tue Sep  4 23:42:06.069 UTC
 
@@ -279,7 +278,6 @@ In this configuration guide to configure EVPN in the Fabric, we will configure i
 ![](https://github.com/xrdocs/cloud-scale-networking/blob/gh-pages/images/evpn-config/EVPN-Control-Plane.png?raw=true)
 
 Configure Spines as RR for BGP EVPN address family.
-
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
@@ -343,7 +341,6 @@ Configure Spines as RR for BGP EVPN address family.
 </div>
 
 Use the following configuration and apply it to configure the Leaf-1 Leaf-2 and Leaf-5 to form the BGP EVPN adjacency between Leafs and Route Reflectors. 
-
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
@@ -422,8 +419,6 @@ Use the following configuration and apply it to configure the Leaf-1 Leaf-2 and 
 </div>
 
 Use “show bgp l2vpn evpn summary” cli command to verify the evpn neighborship between Route Reflectors and Leafs. Below output from the Spines show that the BGP EVPN neighborship is formed between the Leafs and the Route Reflectors and the control-plane is up. 
-
-
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
