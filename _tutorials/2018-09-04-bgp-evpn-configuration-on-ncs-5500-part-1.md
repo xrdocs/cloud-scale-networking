@@ -65,7 +65,7 @@ Configure IGP routing protocol between Leafs and Spines. In this tutorial we are
 | Leaf-2  2.2.2.2/32 | 16002 | 49.0001.0000.0000.0002.0 |
 | Leaf-5  5.5.5.5/32 | 16005 | 49.0001.0000.0000.0005.0 |
 
-Following is a sample config from Leaf-1, to configure ISIS routing protocol in the network. Similar config with relevant Net address (shown in above table) and interfaces should be configured on other devices to bring up the ISIS routing protocol in the network. Don’t configure ISIS on the links from host to leafs, these will be configured later as layer-2 links.
+Following is a sample config from Leaf-1 to implement ISIS routing protocol in the network. Similar configs with relevant Net address (shown in above table) and interfaces should be used on other devices to bring up the ISIS routing protocol in the network. Don’t configure ISIS on the links from host to leafs, these will be set up later as layer-2 links.
 
 
     router isis 1
@@ -92,14 +92,14 @@ Following is a sample config from Leaf-1, to configure ISIS routing protocol in 
 
 Verify that the point-to-point interfaces between the spines and leafs and other devices in the network are up and the ISIS routing adjacency is formed between the devices as per the topology. In this setup, ISIS routing protocol is configured on all the devices except the hosts, the host will be connected layer-2 dual-homed to the Leafs.
 
-The “show isis neighbor” and “show route isis” command can be used to verify that the adjacency is formed and the routes of all the Leafs and Spines are learnt via ISIS.
+The “show isis neighbor” and “show route isis” commands can be used to verify that the adjacency is formed and the routes of all the Leafs and Spines are learnt via ISIS.
 
 
 # Task 2: Enable ISIS Segment Routing:
 
 Configure Segment Routing protocol under ISIS routing protocol which enables MPLS on all the non-passive ISIS interfaces. A prefix SID is associated with an IP prefix and is manually configured from the segment routing global block (SRGB) range of labels. It is configured under the loopback interface with the loopback address of the node as the prefix. The prefix SID is globally unique within the segment routing domain.
 
-The Prefix-SID can be an absolute value or and indexed value. In this guide, we are configuring Prefix-SID as absolute value. ISIS Segment Routing is configured in the Fabric between Leafs and Spines. 
+The Prefix-SID can be an absolute value or an indexed value. In this guide, we are configuring Prefix-SID as absolute value. ISIS Segment Routing is configured in the Fabric between Leafs and Spines. 
 
 Following is a sample config to enable Segment Routing in the network. Similar config with prefix-SID that is unique for each device in the network, should be configured on other devices (as per the above diagram) to enable ISIS Segment Routing. In this config prefix-SID is enabled on the “loopback 0” interface of the devices.
 
