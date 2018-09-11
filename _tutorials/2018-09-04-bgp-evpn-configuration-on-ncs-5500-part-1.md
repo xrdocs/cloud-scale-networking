@@ -144,8 +144,7 @@ This output is collected from Spines; we can see that the prefix-SID labels (ide
 
 <div class="highlighter-rouge">
 <pre class="highlight">
-<code>
-    Spine-1:
+<code>Spine-1:
     
     RP/0/RP0/CPU0:Spine-1#show isis segment-routing label table
     Tue Sep  4 23:35:11.115 UTC
@@ -223,8 +222,7 @@ Below output shows traceroute from Leaf-1 to Leaf-5 using the loopback address. 
 
 <div class="highlighter-rouge">
 <pre class="highlight">
-<code>
-    **Ping from Leaf-1 to Leaf-5:**
+<code>##### Ping from Leaf-1 to Leaf-5:
 
     RP/0/RP0/CPU0:Leaf-1#ping  sr-mpls 5.5.5.5/32
     Tue Sep  4 23:40:51.032 UTC
@@ -247,7 +245,7 @@ Below output shows traceroute from Leaf-1 to Leaf-5 using the loopback address. 
     RP/0/RP0/CPU0:Leaf-1#
 
 
-    **Trace from Leaf-1 to Leaf-5:**
+    ##### Trace from Leaf-1 to Leaf-5
     RP/0/RP0/CPU0:Leaf-1#trace  sr-mpls 5.5.5.5/32  
     Tue Sep  4 23:42:06.069 UTC
 
