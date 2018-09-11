@@ -243,7 +243,7 @@ Below output shows traceroute from Leaf-1 to Leaf-5 using the loopback address. 
     RP/0/RP0/CPU0:Leaf-1#
 </code>
 </pre>
-</div>
+</div>  
 
 <div class="highlighter-rouge">
 <pre class="highlight">
