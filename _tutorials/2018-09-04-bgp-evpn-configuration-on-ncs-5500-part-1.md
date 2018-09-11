@@ -241,8 +241,13 @@ Below output shows traceroute from Leaf-1 to Leaf-5 using the loopback address. 
     !!!!!
     Success rate is 100 percent (5/5), round-trip min/avg/max = 3/5/13 ms
     RP/0/RP0/CPU0:Leaf-1#
+</code>
+</pre>
+</div>
 
-
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
     Trace from Leaf-1 to Leaf-5
     
     RP/0/RP0/CPU0:Leaf-1#trace  sr-mpls 5.5.5.5/32  
