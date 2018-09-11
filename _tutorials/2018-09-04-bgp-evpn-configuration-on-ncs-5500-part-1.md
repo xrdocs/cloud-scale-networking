@@ -16,7 +16,7 @@ tags:
 
 {% include toc %}
 
-### Topic: Configure BGP-EVPN Control-Plane & Segment Routing Forwarding-Plane
+# Topic: Configure BGP-EVPN Control-Plane & Segment Routing Forwarding-Plane
 
 ## Introduction to BGP-EVPN
 
@@ -62,7 +62,7 @@ In this post, we will configure the BGP EVPN control-plane and ISIS Segment Rout
 ## Reference Topology:
 ![](https://github.com/xrdocs/cloud-scale-networking/blob/gh-pages/images/evpn-config/Reference-Topology.png?raw=true)
 
-# Task 1: Configure the Routing Protocol for Transport:
+### Task 1: Configure the Routing Protocol for Transport:
 
 Configure IGP routing protocol between Leafs and Spines. In this tutorial we are using ISIS as the underlay routing protocol. 
 
@@ -106,7 +106,7 @@ Verify that the point-to-point interfaces between the spines and leafs and other
 The “**show isis neighbor**” and “**show route isis**” commands can be used to verify that the adjacency is formed and the routes of all the Leafs and Spines are learnt via ISIS.
 
 
-# Task 2: Enable ISIS Segment Routing:
+### Task 2: Enable ISIS Segment Routing:
 
 Configure Segment Routing protocol under ISIS routing protocol which enables MPLS on all the non-passive ISIS interfaces. A prefix SID is associated with an IP prefix and is manually configured from the segment routing global block (SRGB) range of labels. It is configured under the loopback interface with the loopback address of the node as the prefix. The prefix SID is globally unique within the segment routing domain.
 
@@ -283,7 +283,7 @@ Below output shows traceroute from Leaf-1 to Leaf-5 using the loopback address. 
 
 
 
-# Task 3: Configure the BGP-EVPN Control-Plane
+### Task 3: Configure the BGP-EVPN Control-Plane
 
 MP-BGP with its various address families is used to transport specific reachability information in the network. BGP’s L2VPN-EVPN address family is capable of transporting tenant-aware/VRF-aware IP (Layer-3) and MAC (Layer-2) reachability information in MP-BGP. BGP EVPN provides the learnt information to all the devices within the network through a common control plane. BGP EVPN next-hops are going to be reachable via segment routing paths.
 
