@@ -6,9 +6,9 @@ author: Ahmad Bilal Siddiqui
 position: hidden
 ---
 {% include toc %}
-# Topic: BGP-EVPN based Multi-Homing
+# Topic: BGP-EVPN based MC-LAG for Multi-Homing of devices
 
-This post will cover BGP-EVPN based Multi-Homing of devices. Multi-homing is achieved by EVPN Ethernet Segment feature; it offers redundant connectivity and utilizes all the links for active/active per-flow load balancing. For EVPN Multi-Homing tutorial, we will leverage EVPN control-plane and ISIS Segment Routing based forwarding that we configured in the [previous post](https://xrdocs.io/cloud-scale-networking/tutorials/2018-09-04-bgp-evpn-configuration-on-ncs-5500-part-1/).
+This post will cover BGP-EVPN based MC-LAG for Multi-Homing of devices. Multi-homing is achieved by EVPN Ethernet Segment feature; it offers redundant connectivity and utilizes all the links for active/active per-flow load balancing. For EVPN Multi-Homing tutorial, we will leverage EVPN control-plane and ISIS Segment Routing based forwarding that we configured in the [previous post](https://xrdocs.io/cloud-scale-networking/tutorials/2018-09-04-bgp-evpn-configuration-on-ncs-5500-part-1/).
 
 EVPN Ethernet segment is a set of Ethernet links that connects a multi-homed device. If a multi-homed device or network is connected to two or more PEs through a set of Ethernet links, then that set of links is referred to as an Ethernet segment. Each device connected in the network is identified by a unique non-zero identifier called Ethernet-Segment Identifier (ESI).
 
@@ -21,6 +21,13 @@ On NCS 5500 platform, following modes of operation are supported.
 **-	Active-Active Multi-Homing** — In active-active multi-homing mode, a device is multi-homed to multiple Leafs/PEs and both the links actively forward the traffic on that Ethernet Segment. This mode of operation is bandwidth efficient and provides per-flow active/active forwarding.  
 
 **-	Single-Active Multi-Homing** — In active-standby multi-homing mode, a device is multi-homed to multiple Leaf/PEs and only one link is in active state to forward the traffic on that Ethernet Segment. In case of failure of the active link the standby link takes over and starts forwarding for that Ethernet Segment.
+
+| Traditional MC-LAG | EVPN all-active Multi-Homing with Ethernet-Segment |
+| Dedicated Inter-chassis links required. This needs to be sized according to access bandwidth | Dedicated inter-chassis link not mandatory, but can be used optionally if needed. IP and MPLS based connectivity required between PEs providing multi-homing |
+| State sync between nodes is via proprietary protocol/mechanism | State synchronization between nodes is via BGP |
+| Prefix independent convergence on attachment circuit (AC) failure not possible | BGP-EVPN provides prefix independent convergence on attachment circuit failure |
+| Only 2-way redundancy is practical (due to requirement of inter-chassis link) | N-way redundancy is possible. |
+
 
 
 ## Reference Topology
