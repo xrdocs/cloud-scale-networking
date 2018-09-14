@@ -55,7 +55,7 @@ In this tutorial we are using ASR9K router as the host but we can use any server
 </pre>
 </div>
 
-### Configure EVPN based multi-homing for Host-1
+### Task 2: Configure EVPN based multi-homing for Host-1
 
 Configure Leaf-1 and Leaf-2 to provision all active multi-homing to host-1. The set of links from Host-1 to the Leafs will be configured as an Ethernet Segment on the Leafs. For each Ethernet-Segment, identical ESI along with identical LACP System MAC address should be configured on the Leaf pair. Every Ethernet-Segment has to be configured with its own uniqure LACP System MAC. 
 
