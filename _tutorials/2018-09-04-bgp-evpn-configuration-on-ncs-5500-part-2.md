@@ -31,7 +31,7 @@ There are traditional ways to implement MC-LAG and then there is BGP EVPN based 
 | Prefix independent convergence on attachment circuit (AC) failure not possible | BGP-EVPN provides prefix independent convergence on attachment circuit failure |
 | Only 2-way redundancy is practical (due to requirement of inter-chassis link) | N-way redundancy is possible. |
 
-Note: NCS 5500 platform supports only BGP-EVPN based multi-homing
+Note: NCS 5500 platform supports only BGP-EVPN based multi-homing with 2-way redundancy.
 
 
 ## Reference Topology
