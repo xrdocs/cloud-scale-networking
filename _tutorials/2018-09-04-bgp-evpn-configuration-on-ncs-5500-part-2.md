@@ -14,11 +14,11 @@ EVPN Ethernet segment is a set of Ethernet links that connects a multi-homed dev
 
 On NCS 5500 platform, following modes of operation are supported.
 
-**•	Single-Homing** — A device is single-homed when its connected to only one Leaf or PE. There is no 		redundancy in this mode of operation and it does not need Ethernet Segment to be configured.
+**-	Single-Homing** — A device is single-homed when its connected to only one Leaf or PE. There is no 		redundancy in this mode of operation and it does not need Ethernet Segment to be configured.
 
-**•	Active-Active Multi-Homing** — In active-active multi-homing mode, a device is multi-homed to multiple Leafs/PEs and both the links actively forward the traffic on that Ethernet Segment. This mode of operation is bandwadith efficient and provides per-flow active/active forwarding.  
+**-	Active-Active Multi-Homing** — In active-active multi-homing mode, a device is multi-homed to multiple Leafs/PEs and both the links actively forward the traffic on that Ethernet Segment. This mode of operation is bandwadith efficient and provides per-flow active/active forwarding.  
 
-**•	Single-Active Multi-Homing** — In active-standby multi-homing mode, a device is multi-homed to multiple Leaf/PEs and only one link is in active state to forward the traffic on that Ethernet Segment. In case of failure of the active link the standby link takes over and starts forwarding for that Ethernet Segment.
+**-	Single-Active Multi-Homing** — In active-standby multi-homing mode, a device is multi-homed to multiple Leaf/PEs and only one link is in active state to forward the traffic on that Ethernet Segment. In case of failure of the active link the standby link takes over and starts forwarding for that Ethernet Segment.
 
 
 ## Reference Topology
