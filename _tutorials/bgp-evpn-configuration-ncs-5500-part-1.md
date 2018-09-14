@@ -31,9 +31,9 @@ EVPN uses MAC addresses as routable addresses and distribute them to all partici
 
 In this and next few posts we will cover BGP-EVPN configuration, implementation and verification on NCS 5500 Platform using IOS-XR. The goal of this tutorial is to provide familiarity to BGP-EVPN from configuration perspective and cover the following use cases.
 
-- [Configuring BGP EVPN control-plane and ISIS Segment Routing forwarding plane](https://xrdocs.io/cloud-scale-networking/tutorials/2018-09-04-bgp-evpn-configuration-on-ncs-5500-part-1/)
-- [Configure EVPN based Multi-homing to the Hosts](https://xrdocs.io/cloud-scale-networking/tutorials/2018-09-04-bgp-evpn-configuration-on-ncs-5500-part-2/)
-- [EVPN based Layer-2 VPN Service](https://xrdocs.io/cloud-scale-networking/tutorials/2018-09-04-bgp-evpn-configuration-on-ncs-5500-part-3/)
+- [Configuring BGP EVPN control-plane and ISIS Segment Routing forwarding plane](https://xrdocs.io/cloud-scale-networking/tutorials/bgp-evpn-configuration-ncs-5500-part-1/)
+- [Configure EVPN based Multi-homing to the Hosts](https://xrdocs.io/cloud-scale-networking/tutorials/bgp-evpn-configuration-ncs-5500-part-2/)
+- EVPN based Layer-2 VPN Service
 - EVPN-IRB between Leafs in the network
 
 
@@ -465,4 +465,4 @@ Use “**show bgp l2vpn evpn summary**” cli command to verify the evpn neighbo
 </pre>
 </div>
 
-In this post we covered the configuration and verification of BGP-EVPN control-plane and ISIS-SR based MPLS forwarding plane. In the [next post](https://xrdocs.io/cloud-scale-networking/tutorials/2018-09-04-bgp-evpn-configuration-on-ncs-5500-part-2/) we will leverage the EVPN control-plane and ISIS-SR to provision BGP-EVPN based Multi-Homing of devices.
+In this post we covered the configuration and verification of BGP-EVPN control-plane and ISIS-SR based MPLS forwarding plane. In the [next post](https://xrdocs.io/cloud-scale-networking/tutorials/bgp-evpn-configuration-ncs-5500-part-2/) we will leverage the EVPN control-plane and ISIS-SR to provision BGP-EVPN based Multi-Homing of devices.
