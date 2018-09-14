@@ -22,6 +22,9 @@ On NCS 5500 platform, following modes of operation are supported.
 
 **-	Single-Active Multi-Homing** — In active-standby multi-homing mode, a device is multi-homed to multiple Leaf/PEs and only one link is in active state to forward the traffic on that Ethernet Segment. In case of failure of the active link the standby link takes over and starts forwarding for that Ethernet Segment.
 
+## BGP-EVPN based multi-homing benefits over traditional MC-LAG
+There are traditional ways to implement MC-LAG and then there is BGP EVPN based multi-homing. Following table lists some of the benefits of BGP-EVPN based multi-homing over traditional MC-LAG.
+
 | Traditional MC-LAG | EVPN all-active Multi-Homing with Ethernet-Segment |
 | Dedicated Inter-chassis links required. This needs to be sized according to access bandwidth | Dedicated inter-chassis link not mandatory, but can be used optionally if needed. IP and MPLS based connectivity required between PEs providing multi-homing |
 | State sync between nodes is via proprietary protocol/mechanism | State synchronization between nodes is via BGP |
