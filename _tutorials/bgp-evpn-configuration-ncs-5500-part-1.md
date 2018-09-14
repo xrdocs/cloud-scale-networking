@@ -3,11 +3,13 @@ published: true
 date: '2018-09-04 10:45 -0700'
 title: BGP-EVPN Configuration on NCS 5500 part-1
 author: Ahmad Bilal Siddiqui
-position: hidden
+position: top
 excerpt: >-
-  Configure BGP-EVPN Control-Plane & Segment Routing Forwarding-Plane on NCS
-  5500
+  This is the first part of the series for EVPN configuration on NCS5500. In
+  this post we will focus on configuring BGP-EVPN Control-Plane & Segment
+  Routing Forwarding-Plane.
 tags:
+  - iosxr
   - EVPN
   - NCS 5500
   - ncs5500
