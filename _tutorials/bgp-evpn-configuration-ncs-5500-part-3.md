@@ -25,8 +25,7 @@ Host-1 and Host-5 will be part of the same subnet to communicate over layer-2 st
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
-	Host-1
-
+    Host-1
     interface Bundle-Ether1
      description "Bundle to Leaf-1/2"
      ipv4 address 10.0.0.10 255.255.255.0
