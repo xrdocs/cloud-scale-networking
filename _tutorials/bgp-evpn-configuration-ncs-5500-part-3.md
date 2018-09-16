@@ -7,7 +7,7 @@ position: hidden
 ---
 {% include toc %}
 
-### Topic: Configure BGP-EVPN based Layer-2 VPN service
+# Topic: Configure BGP-EVPN based Layer-2 VPN service
 
 In the [last post](https://xrdocs.io/cloud-scale-networking/tutorials/2018-09-04-bgp-evpn-configuration-on-ncs-5500-part-2/), we configured the BGP-EVPN based Multi-homing of host using Ethernet Segment. In this post, we will provision BGP-EVPN based Layer-2 VPN service between the Leafs and use ISIS Segment Routing for the transport. The EVPN Layer-2 service will enable forwarding between host-1 and host-5 which will be configured on the same subnet.
 
@@ -18,11 +18,13 @@ In this setup, Host-1 and Host-5 belong to the same subnet. Host-1 is dual-homed
 
 ![](https://github.com/xrdocs/cloud-scale-networking/blob/gh-pages/images/evpn-config/EVPN-based-L2-VPN-service.png?raw=true)
 
-## Task 1: Configure Host-1 and Host-5 IP address 
+### Task 1: Configure Host-1 and Host-5 IP address 
 
-Host-1 and Host-5 will be part of the same subnet to communicate over layer-2 stretch. Host-1 is connected dual-homes to uplink Leafs via LACP link aggregation and Host-5 is connected single-homed to Leaf-5. Configure IP address on Host-1’s and Host-5 as follows.
+Host-1 and Host-5 will be part of the same subnet to communicate over layer-2 stretch. Host-1 is connected dual-homed to uplink Leafs via LACP link aggregation and Host-5 is connected single-homed to Leaf-5. Configure IP address on Host-1’s and Host-5 as follows.
 
-
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
     Host-1
 
     interface Bundle-Ether1
@@ -36,14 +38,18 @@ Host-1 and Host-5 will be part of the same subnet to communicate over layer-2 st
      description "Link to Leaf-5"
      ipv4 address 10.0.0.50 255.255.255.0
     !
+</code>
+</pre>
+</div>
 
 
-
-## Task 2: Configure Layer-2 interfaces and Bridge Domain on Leafs
+### Task 2: Configure Layer-2 interfaces and Bridge Domain on Leafs
 
 Configure layer-2 interfaces with dot1q encapsulation for VLAN 10 on Leaf-1 and Leaf-2. Use the following configuration for both Leaf-1, Leaf-2 and Leaf-5.
 
-
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
     Leaf-1 and Leaf-2
 
     interface Bundle-Ether 1.10 l2transport
@@ -57,10 +63,15 @@ Configure layer-2 interfaces with dot1q encapsulation for VLAN 10 on Leaf-1 and 
      encapsulation dot1q 10
      rewrite ingress tag pop 1 symmetric
     !
-
+</code>
+</pre>
+</div>
 
 Configure Bridge domain for the VLAN and add the VLAN tagged interfaces to the bridge-domain. Configure the following on Leaf-1, Leaf-2 and Leaf-5.
 
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
     Leaf-1 and Leaf-2
 
     l2vpn
@@ -79,11 +90,15 @@ Configure Bridge domain for the VLAN and add the VLAN tagged interfaces to the b
        interface TenGigE0/0/0/47.10
        !
     ! 
-
+</code>
+</pre>
+</div>
 
 Verify that the bridge-domain and the related attachment circuits are up. Following output shows that the bridge-domain bd-10’s state is ‘up’, its attachment circuit is ‘up’.
 
-
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
     Leaf-1
 
     RP/0/RP0/CPU0:Leaf-1#show l2vpn bridge-domain bd-name bd-10
@@ -113,7 +128,9 @@ Verify that the bridge-domain and the related attachment circuits are up. Follow
       List of VFIs:
       List of Access VFIs:
     RP/0/RP0/CPU0:Leaf-5#
-
+</code>
+</pre>
+</div>
 
 So far, we have configured local bridging on the Leafs and connected them to the hosts for vlan 10 tagged data. We verified that the local bridging and attachment circuits are ‘up’. In order for Host-1 to communicate to Host-5 via layer-2, we need to configure layer-2 stretch/service between the Leafs to which Hosts are connected. 
 
@@ -122,13 +139,15 @@ The layer-2 service/stretch across the Leafs is achieved by configuring EVPN EVI
 For Layer-2 VPN use case, we are stretching the layer-2 between Leaf-1, Leaf-2 and Leaf-5. Therefore, we will provision Layer-2 VPN service by configure EVI on all three leafs.
 
 
-## Task 3: Configure EVPN EVI on Leaf-1, Leaf-2 for VLAN 10
+### Task 3: Configure EVPN EVI on Leaf-1, Leaf-2 for VLAN 10
 
 First we will configure the EVI on Leaf-1 and Leaf-2, then we will verify that the Ethernet Segment for vlan 10 tagged data is up. 
 
 Configure EVI in EVPN config on Leaf-1 and Leaf-2. Also assign the route-target values for the EVI related network to get advertised and received via BGP EVPN control-plane. Advertise-mac keyword is used to advertise the MAC addresses in EVI to other Leafs part of EVI via BGP EVPN. 
  
-
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
     Leaf-1 and Leaf-2
 
     evpn
@@ -141,25 +160,33 @@ Configure EVI in EVPN config on Leaf-1 and Leaf-2. Also assign the route-target 
       !
      source interface loopback 0
      !
-
+</code>
+</pre>
+</div>
 
 Associate the EVI to bridge-domain for VLAN 10, this is where the attachment-circuit/host is connected to.
 
-
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
     l2vpn
      bridge group bg-1
       bridge-domain bd-10
        evi 10
        !
       !
-
+</code>
+</pre>
+</div>
 
 
 As we have now configured layer-2 service with EVI for Bridge-domain 10, lets verify the Ethernet Segment status to see that the multi-homing is operational for Bridge-domain 10 forwarding. 
 
 Observe in the below output that for Ethernet-segment bundle interface ‘BE1’, there are two next-hops. The next-hops represent each Leaf-1 and Leaf-2 forming Leaf pair for Ethernet Segment. Also in below output we can see that Ethernet-segment state is ‘Up’ and all-active multi-homing is operational. We have one forwarder which is VLAN 10 and Leaf-1 is the elected designated forwarded (DF) for it. 
 
-
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
     Leaf-1 
 
     RP/0/RP0/CPU0:Leaf-1#show evpn ethernet-segment detail 
@@ -199,12 +226,16 @@ Observe in the below output that for Ethernet-segment bundle interface ‘BE1’
                   64008 : nexthop 2.2.2.2
 
     RP/0/RP0/CPU0:Leaf-1#
-
+</code>
+</pre>
+</div>
 
 
 With the following CLI command we can verify that the MAC address of Host-1 is being learnt on Leaf-1 and Leaf-2. MAC address of Host-5 will be learnt on Leaf-1 and Leaf-2 after we configure EVI on Leaf-5 for VLAN 10 layer-2 stretch. 
 
-
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
     Leaf-1 
 
     RP/0/RP0/CPU0:Leaf-1#show l2route evpn mac all 
@@ -223,12 +254,16 @@ With the following CLI command we can verify that the MAC address of Host-1 is b
     -------- -------------- ----------- ----------------------------------------
     0        6c9c.ed6d.1d8b L2VPN       Bundle-Ether1.10                        
     RP/0/RP0/CPU0:Leaf-2#
+</code>
+</pre>
+</div>
 
 
+### Task 4: Configure EVPN EVI on Leaf-5 for VLAN 10 
 
-## Task 4: Configure EVPN EVI on Leaf-5 for VLAN 10 
-
-
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
     On Leaf-5
 
     evpn
@@ -241,25 +276,33 @@ With the following CLI command we can verify that the MAC address of Host-1 is b
       !
      source interface loopback 0
      !
-
+</code>
+</pre>
+</div>
 
 
 Associate the EVI to bridge-domain for VLAN 10, this is where the attachment-circuit/host is connected to.
 
-
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
     l2vpn
      bridge group bg-1
       bridge-domain bd-10
        evi 10
        !
       !
+</code>
+</pre>
+</div>
 
-
-## Task 5: Verify EVPN EVI and Layer-2 Stretch between the Leaf-1, Leaf-2 and Leaf-5
+### Task 5: Verify EVPN EVI and Layer-2 Stretch between the Leaf-1, Leaf-2 and Leaf-5
 
 We have configured the Layer-2 stretch between Leaf-1, Leaf-2 and Leaf-5 using EVPN EVI. In the next steps lets verify the layer-2 connectivity is up and we can reach from one host to another via layer-2. “show evpn evi detail” cli command shows the configured EVI and its associated bridge-domain. It also shows the route-target import and export values as shown in the below output.
 
-
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
     RP/0/RP0/CPU0:Leaf-1#show evpn evi detail
     Sat Sep  1 23:13:01.611 UTC
 
@@ -297,12 +340,17 @@ We have configured the Layer-2 stretch between Leaf-1, Leaf-2 and Leaf-5 using E
        1001:11                        Export               
 
     RP/0/RP0/CPU0:Leaf-1#
-
+</code>
+</pre>
+</div>
 
 Ping from Host-1 to Host-5 and verify that the Hosts are reachable. We can see in the below output that that Host-1 can ping Host-5. Also, below output shows that the MAC address for Host-5 is learnt on Leaf-1 and Leaf-2. Similarly, we are learning the MAC address of Host-1 on Leaf-5. 
 
-
-    Leaf-1 
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
+    Leaf-1
+    
     RP/0/RP0/CPU0:Leaf-1#show l2route evpn mac all 
     Sat Sep  1 22:53:57.880 UTC
     Topo ID  Mac Address    Producer    Next Hop(s)                             
@@ -310,8 +358,6 @@ Ping from Host-1 to Host-5 and verify that the Hosts are reachable. We can see i
     0        6c9c.ed6d.1d8b LOCAL       Bundle-Ether1.10                        
     0        a03d.6f3d.5443 L2VPN       5.5.5.5/64004/ME                        
     RP/0/RP0/CPU0:Leaf-1#
-
-
 
     Leaf-2
 
@@ -323,7 +369,6 @@ Ping from Host-1 to Host-5 and verify that the Hosts are reachable. We can see i
     0        a03d.6f3d.5443 L2VPN       5.5.5.5/64004/ME                        
     RP/0/RP0/CPU0:Leaf-2#
 
-
     Leaf-5
 
     RP/0/RP0/CPU0:Leaf-5#show l2route evpn mac all 
@@ -333,7 +378,9 @@ Ping from Host-1 to Host-5 and verify that the Hosts are reachable. We can see i
     0        6c9c.ed6d.1d8b L2VPN       64005/I/ME                              
     0        a03d.6f3d.5443 LOCAL       TenGigE0/0/0/47.10                      
     RP/0/RP0/CPU0:Leaf-5#
-
+</code>
+</pre>
+</div>
 
 
 We can verify the BGP EVPN control-plane to verify the various routes and mac addresses are advertised and learnt. 
@@ -344,7 +391,9 @@ Eg. of Host-1 MAC learnt ([2][0][48][6c9c.ed6d.1d8b][0]/104)
 
 The route distinguisher value is comprised of router-id:EVI eg. 1.1.1.1:10, 2.2.2.2:10 which are highlighted in bold below.
 
-
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
     Leaf-5
 
     RP/0/RP0/CPU0:Leaf-5#show bgp l2vpn evpn rd 1.1.1.1:10
@@ -388,10 +437,15 @@ The route distinguisher value is comprised of router-id:EVI eg. 1.1.1.1:10, 2.2.
 
     Processed 3 prefixes, 6 paths
     RP/0/RP0/CPU0:Leaf-5#
-
+</code>
+</pre>
+</div>
 
 CLI command “show evpn evi vpn-id 10 mac” can be used to verify the MAC address and Host IP addresses being learnt related to the EVI. In the following output of EVI table from Leaf-5, we can see that we are learning MAC address of Host-1 via EVI 10 on Leaf-5. We can reach to Host-1 MAC address either via next-hop 1.1.1.1 of Leaf-1 or 2.2.2.2 which is Leaf-2. We can run the same command on Leaf-1 and Leaf-2 for verification. 
 
+<div class="highlighter-rouge">
+<pre class="highlight">
+<code>
     Leaf-5
 
     RP/0/RP0/CPU0:Leaf-5#show evpn evi vpn-id 10 mac
@@ -403,7 +457,9 @@ CLI command “show evpn evi vpn-id 10 mac” can be used to verify the MAC addr
     10         MPLS   6c9c.ed6d.1d8b ::               2.2.2.2                                 64004   
     10         MPLS   a03d.6f3d.5443 ::               TenGigE0/0/0/47.10                      64004   
     RP/0/RP0/CPU0:Leaf-5#
-
+</code>
+</pre>
+</div>
 
 
 We are only seeing MAC address and not IP address of the Host in the below out. This is because we configured only Layer-2 service between the Leafs. Once we configure IRB with Host-routing, we will start advertising MAC + IP of the host via EVPN Route-Type-2 and will be able to see IP address in the below table as well as in Leaf’s routing table. In the next post, we will cover EVPN IRB and Host-Routing configuration in detail.
