@@ -25,7 +25,7 @@ Host-1 and Host-5 will be part of the same subnet to communicate over layer-2 st
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
-    Host-1
+	Host-1
 
     interface Bundle-Ether1
      description "Bundle to Leaf-1/2"
@@ -103,10 +103,10 @@ Verify that the bridge-domain and the related attachment circuits are up. Follow
 
     RP/0/RP0/CPU0:Leaf-1#show l2vpn bridge-domain bd-name bd-10
     Legend: pp = Partially Programmed.
-    Bridge group: bg-1, bridge-domain: bd-10, id: 0, state: up, ShgId: 0, MSTi: 0
+    Bridge group: bg-1, bridge-domain: bd-10, id: 0, <mark>state: up,</mark> ShgId: 0, MSTi: 0
       Aging: 300 s, MAC limit: 64000, Action: none, Notification: syslog
       Filter MAC addresses: 0
-      ACs: 1 (1 up), VFIs: 0, PWs: 0 (0 up), PBBs: 0 (0 up), VNIs: 0 (0 up)
+      <mark>ACs: 1 (1 up),</mark> VFIs: 0, PWs: 0 (0 up), PBBs: 0 (0 up), VNIs: 0 (0 up)
       List of ACs:
         BE1.10, state: up, Static MAC addresses: 0
       List of Access PWs:
@@ -118,10 +118,10 @@ Verify that the bridge-domain and the related attachment circuits are up. Follow
 
     RP/0/RP0/CPU0:Leaf-5#show l2vpn bridge-domain bd-name bd-10
     Legend: pp = Partially Programmed.
-    Bridge group: bg-1, bridge-domain: bd-10, id: 0, state: up, ShgId: 0, MSTi: 0
+    Bridge group: bg-1, bridge-domain: bd-10, id: 0, <mark>state: up,</mark> ShgId: 0, MSTi: 0
       Aging: 300 s, MAC limit: 64000, Action: none, Notification: syslog
       Filter MAC addresses: 0
-      ACs: 1 (1 up), VFIs: 0, PWs: 0 (0 up), PBBs: 0 (0 up), VNIs: 0 (0 up)
+      <mark>ACs: 1 (1 up),</mark> VFIs: 0, PWs: 0 (0 up), PBBs: 0 (0 up), VNIs: 0 (0 up)
       List of ACs:
         Te0/0/0/46.10, state: up, Static MAC addresses: 0
       List of Access PWs:
@@ -134,7 +134,7 @@ Verify that the bridge-domain and the related attachment circuits are up. Follow
 
 So far, we have configured local bridging on the Leafs and connected them to the hosts for vlan 10 tagged data. We verified that the local bridging and attachment circuits are ‘up’. In order for Host-1 to communicate to Host-5 via layer-2, we need to configure layer-2 stretch/service between the Leafs to which Hosts are connected. 
 
-The layer-2 service/stretch across the Leafs is achieved by configuring EVPN EVI (EVPN Instance). EVI allows the layer-2 to be stretched via MP-BGP EVPN control-plane across multiple participating Leafs/PEs. An EVI is configured on a per layer-2 bridge basis across Leafs/PEs. Each EVI has a unique route distinguisher and one or more route targets.
+The layer-2 service/stretch across the Leafs is offered by configuring EVPN EVI (EVPN Instance). EVI allows the layer-2 to be stretched via MP-BGP EVPN control-plane across multiple participating Leafs/PEs. An EVI is configured on a per layer-2 bridge basis across Leafs/PEs. Each EVI has a unique route distinguisher and one or more route targets.
 
 For Layer-2 VPN use case, we are stretching the layer-2 between Leaf-1, Leaf-2 and Leaf-5. Therefore, we will provision Layer-2 VPN service by configure EVI on all three leafs.
 
@@ -151,12 +151,12 @@ Configure EVI in EVPN config on Leaf-1 and Leaf-2. Also assign the route-target 
     Leaf-1 and Leaf-2
 
     evpn
-     evi 10
+     <mark>evi 10</mark>
       bgp
        route-target import 1001:11
        route-target export 1001:11
       !
-      advertise-mac
+      <mark>advertise-mac</mark>
       !
      source interface loopback 0
      !
@@ -172,7 +172,7 @@ Associate the EVI to bridge-domain for VLAN 10, this is where the attachment-cir
     l2vpn
      bridge group bg-1
       bridge-domain bd-10
-       evi 10
+       <mark>evi 10</mark>
        !
       !
 </code>
@@ -193,27 +193,27 @@ Observe in the below output that for Ethernet-segment bundle interface ‘BE1’
  
     Ethernet Segment Id      Interface                          Nexthops            
     ------------------------ ---------------------------------- --------------------
-    0011.1111.1111.1111.1111 BE1                                1.1.1.1
-                                                                2.2.2.2
+    0011.1111.1111.1111.1111 BE1                                <mark>1.1.1.1</mark>
+                                                                <mark>2.2.2.2</mark>
       ES to BGP Gates   : Ready
       ES to L2FIB Gates : Ready
       Main port         :
          Interface name : Bundle-Ether1
          Interface MAC  : 00bc.601c.d0da
          IfHandle       : 0x08000044
-         State          : Up
+         <mark>State          : Up</mark>
          Redundancy     : Not Defined
       ESI type          : 0
          Value          : 11.1111.1111.1111.1111
       ES Import RT      : 1111.1111.1111 (Local)
       Source MAC        : 0000.0000.0000 (N/A)
       Topology          :
-         Operational    : MH, All-active
+         <mark>Operational    : MH, All-active</mark>
          Configured     : All-active (AApF) (default)
       Service Carving   : Auto-selection
       Peering Details   : 1.1.1.1[MOD:P:00] 2.2.2.2[MOD:P:00]
       Service Carving Results:
-         Forwarders     : 1
+         <mark>Forwarders     : 1</mark>
          Permanent      : 0
          Elected        : 1
          Not Elected    : 0
@@ -242,7 +242,7 @@ With the following CLI command we can verify that the MAC address of Host-1 is b
     Sat Sep  1 22:45:53.336 UTC
     Topo ID  Mac Address    Producer    Next Hop(s)                             
     -------- -------------- ----------- ----------------------------------------
-    0        6c9c.ed6d.1d8b LOCAL       Bundle-Ether1.10
+    0        <mark>6c9c.ed6d.1d8b<mark> LOCAL       Bundle-Ether1.10
     RP/0/RP0/CPU0:Leaf-1#
 
 
@@ -252,7 +252,7 @@ With the following CLI command we can verify that the MAC address of Host-1 is b
     Sat Sep  1 22:49:43.498 UTC
     Topo ID  Mac Address    Producer    Next Hop(s)                             
     -------- -------------- ----------- ----------------------------------------
-    0        6c9c.ed6d.1d8b L2VPN       Bundle-Ether1.10                        
+    0        <mark>6c9c.ed6d.1d8b L2VPN<mark>       Bundle-Ether1.10                        
     RP/0/RP0/CPU0:Leaf-2#
 </code>
 </pre>
@@ -267,12 +267,12 @@ With the following CLI command we can verify that the MAC address of Host-1 is b
     On Leaf-5
 
     evpn
-     evi 10
+     <mark>evi 10</mark>
       bgp
        route-target import 1001:11
        route-target export 1001:11
       !
-      advertise-mac
+      <mark>advertise-mac</mark>
       !
      source interface loopback 0
      !
@@ -289,7 +289,7 @@ Associate the EVI to bridge-domain for VLAN 10, this is where the attachment-cir
     l2vpn
      bridge group bg-1
       bridge-domain bd-10
-       evi 10
+       <mark>evi 10</mark>
        !
       !
 </code>
@@ -355,7 +355,7 @@ Ping from Host-1 to Host-5 and verify that the Hosts are reachable. We can see i
     Sat Sep  1 22:53:57.880 UTC
     Topo ID  Mac Address    Producer    Next Hop(s)                             
     -------- -------------- ----------- ----------------------------------------
-    0        6c9c.ed6d.1d8b LOCAL       Bundle-Ether1.10                        
+    0        <mark>6c9c.ed6d.1d8b</mark> LOCAL       Bundle-Ether1.10                        
     0        a03d.6f3d.5443 L2VPN       5.5.5.5/64004/ME                        
     RP/0/RP0/CPU0:Leaf-1#
 
@@ -365,7 +365,7 @@ Ping from Host-1 to Host-5 and verify that the Hosts are reachable. We can see i
     Sat Sep  1 23:00:03.487 UTC
     Topo ID  Mac Address    Producer    Next Hop(s)                             
     -------- -------------- ----------- ----------------------------------------
-    0        6c9c.ed6d.1d8b L2VPN       Bundle-Ether1.10                        
+    0        <mark>6c9c.ed6d.1d8b</mark> L2VPN       Bundle-Ether1.10                        
     0        a03d.6f3d.5443 L2VPN       5.5.5.5/64004/ME                        
     RP/0/RP0/CPU0:Leaf-2#
 
@@ -375,7 +375,7 @@ Ping from Host-1 to Host-5 and verify that the Hosts are reachable. We can see i
     Sat Sep  1 23:00:03.785 UTC
     Topo ID  Mac Address    Producer    Next Hop(s)                             
     -------- -------------- ----------- ----------------------------------------
-    0        6c9c.ed6d.1d8b L2VPN       64005/I/ME                              
+    0        <mark>6c9c.ed6d.1d8b</mark> L2VPN       64005/I/ME                              
     0        a03d.6f3d.5443 LOCAL       TenGigE0/0/0/47.10                      
     RP/0/RP0/CPU0:Leaf-5#
 </code>
@@ -402,7 +402,7 @@ The route distinguisher value is comprised of router-id:EVI eg. 1.1.1.1:10, 2.2.
                   i - internal, r RIB-failure, S stale, N Nexthop-discard
     Origin codes: i - IGP, e - EGP, ? - incomplete
        Network            Next Hop            Metric LocPrf Weight Path
-    Route Distinguisher: 1.1.1.1:10
+    <mark>Route Distinguisher: 1.1.1.1:10</mark>
     *>i[1][0011.1111.1111.1111.1111][0]/120
                           1.1.1.1                       100      0 i
     * i                   1.1.1.1                       100      0 i
@@ -424,7 +424,7 @@ The route distinguisher value is comprised of router-id:EVI eg. 1.1.1.1:10, 2.2.
                   i - internal, r RIB-failure, S stale, N Nexthop-discard
     Origin codes: i - IGP, e - EGP, ? - incomplete
        Network            Next Hop            Metric LocPrf Weight Path
-    Route Distinguisher: 2.2.2.2:10
+    <mark>Route Distinguisher: 2.2.2.2:10</mark>
     *>i[1][0011.1111.1111.1111.1111][0]/120
                           2.2.2.2                       100      0 i
     * i                   2.2.2.2                       100      0 i
@@ -453,8 +453,8 @@ CLI command “show evpn evi vpn-id 10 mac” can be used to verify the MAC addr
 
     VPN-ID     Encap  MAC address    IP address       Nexthop                                 Label   
     ---------- ------ -------------- ---------------------------------------- -----------------------------
-    10         MPLS   6c9c.ed6d.1d8b ::               1.1.1.1                                 64004   
-    10         MPLS   6c9c.ed6d.1d8b ::               2.2.2.2                                 64004   
+    10         MPLS   <mark>6c9c.ed6d.1d8b ::               1.1.1.1</mark>                                64004   
+    10         MPLS   <mark>6c9c.ed6d.1d8b ::               2.2.2.2</mark>                                64004   
     10         MPLS   a03d.6f3d.5443 ::               TenGigE0/0/0/47.10                      64004   
     RP/0/RP0/CPU0:Leaf-5#
 </code>
