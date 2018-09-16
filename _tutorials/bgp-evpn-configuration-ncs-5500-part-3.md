@@ -255,6 +255,7 @@ With the following CLI command we can verify that the MAC address of Host-1 is b
     -------- -------------- ----------- ----------------------------------------
     0        <mark>6c9c.ed6d.1d8b L2VPN<mark>       Bundle-Ether1.10                        
     RP/0/RP0/CPU0:Leaf-2#
+
 </code>
 </pre>
 </div>
