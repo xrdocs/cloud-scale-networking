@@ -384,7 +384,7 @@ We can verify the BGP EVPN control-plane to verify the various routes and mac ad
 
 In the below output from Leaf-1 we can see the MAC address of Host-1 and Host-5 are being learnt under their respective route distinguishers. MAC addresses are advertised using EVPN Route-Type-2.
  
-**Example of Host-1 MAC learnt ([2][0][48][6c9c.ed6d.1d8b][0]/104)** 
+Example of Host-1 MAC learnt **([2][0][48][6c9c.ed6d.1d8b][0]/104)** 
 
 The route distinguisher value is comprised of **router-id:EVI eg. 1.1.1.1:10, 2.2.2.2:10** which are highlighted below.
 
