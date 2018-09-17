@@ -123,7 +123,7 @@ Verify that the bridge-domain and the related attachment circuits are up. Follow
       Filter MAC addresses: 0
       <mark>ACs: 1 (1 up),</mark> VFIs: 0, PWs: 0 (0 up), PBBs: 0 (0 up), VNIs: 0 (0 up)
       List of ACs:
-        Te0/0/0/46.10, state: up, Static MAC addresses: 0
+        Te0/0/0/47.10, state: up, Static MAC addresses: 0
       List of Access PWs:
       List of VFIs:
       List of Access VFIs:
