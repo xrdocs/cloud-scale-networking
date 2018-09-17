@@ -9,7 +9,7 @@ position: hidden
 
 # Topic: Configure BGP-EVPN based Layer-2 VPN service
 
-In the [last post](https://xrdocs.io/cloud-scale-networking/tutorials/bgp-evpn-configuration-ncs-5500-part-2/), we configured the BGP-EVPN based Multi-homing of host/CE using EVPN Ethernet Segment. In this post, we will provision BGP-EVPN based Layer-2 VPN service between the Leafs. The EVPN Layer-2 service will enable forwarding between host-1, host-2 and host-5 which will be configured on the same subnet.
+In the [last post](https://xrdocs.io/cloud-scale-networking/tutorials/bgp-evpn-configuration-ncs-5500-part-2/), we configured the BGP-EVPN based Multi-homing of host/CE using EVPN Ethernet Segment. In this post, we will provision BGP-EVPN based Layer-2 VPN service between the Leafs. The EVPN Layer-2 service will enable forwarding between host-1, host-2 and host-5 which are part of the same subnet.
 
 ## Reference Topology:
 ![](https://github.com/xrdocs/cloud-scale-networking/blob/gh-pages/images/evpn-config/Reference-Topology.png?raw=true)
