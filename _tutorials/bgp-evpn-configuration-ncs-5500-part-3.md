@@ -232,7 +232,6 @@ Observe in the below output that for Ethernet-segment bundle interface ‘BE1’
 
 
 With the following CLI command we can verify that the MAC address of Host-1 is being learnt on Leaf-1 and Leaf-2. MAC address of Host-5 will be learnt on Leaf-1 and Leaf-2 after we configure EVI on Leaf-5 for VLAN 10 layer-2 stretch. 
-
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
@@ -261,7 +260,6 @@ With the following CLI command we can verify that the MAC address of Host-1 is b
 
 
 ### Task 4: Configure EVPN EVI on Leaf-5 for VLAN 10 
-
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
