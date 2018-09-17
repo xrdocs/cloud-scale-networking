@@ -235,14 +235,13 @@ With the following CLI command we can verify that the MAC address of Host-1 is b
 <div class="highlighter-rouge">
 <pre class="highlight">
 <code>
-
 	Leaf-1 
 
     RP/0/RP0/CPU0:Leaf-1#show l2route evpn mac all 
     Sat Sep  1 22:45:53.336 UTC
     Topo ID  Mac Address    Producer    Next Hop(s)                             
     -------- -------------- ----------- ----------------------------------------
-    0        <mark>6c9c.ed6d.1d8b<mark> LOCAL       Bundle-Ether1.10
+    0        <mark>6c9c.ed6d.1d8b</mark> LOCAL       Bundle-Ether1.10
     RP/0/RP0/CPU0:Leaf-1#
 
 
@@ -252,9 +251,8 @@ With the following CLI command we can verify that the MAC address of Host-1 is b
     Sat Sep  1 22:49:43.498 UTC
     Topo ID  Mac Address    Producer    Next Hop(s)                             
     -------- -------------- ----------- ----------------------------------------
-    0        <mark>6c9c.ed6d.1d8b L2VPN<mark>       Bundle-Ether1.10                        
+    0        <mark>6c9c.ed6d.1d8b L2VPN</mark>       Bundle-Ether1.10                        
     RP/0/RP0/CPU0:Leaf-2#
-
 </code>
 </pre>
 </div>
