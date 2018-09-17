@@ -1,6 +1,6 @@
 ---
 published: true
-date: '2018-09-04 15:21 -0700'
+date: '2018-09-16 15:21 -0700'
 title: BGP-EVPN Configuration on NCS 5500 part-2
 author: Ahmad Bilal Siddiqui
 position: top
@@ -256,6 +256,6 @@ Verify the Ethernet Segment status by CLI command “show evpn ethernet-segment 
 
 As we verify the Ethernet segment status, it is observed that there is no information of VLAN services and  Designated Forwarder election. Also, the below output only shows Leaf-1’s own next-hop IP address for Ethernet segment, although for all-active multi-homing we should also see peer Leaf’s address as next-hop address. This is due to the reason that we have configured Ethernet segment but have not provisioned a VLAN service for it yet.  
 
-[Task-2](https://xrdocs.io/cloud-scale-networking/tutorials/bgp-evpn-configuration-ncs-5500-part-3/#task-2-configure-layer-2-interfaces-and-bridge-domain-on-leafs) and [Task-3](https://xrdocs.io/cloud-scale-networking/tutorials/bgp-evpn-configuration-ncs-5500-part-3/#task-3-configure-evpn-evi-on-leaf-1-leaf-2-for-vlan-10) of the next post covers, VLAN configuration and service carving for Ethernet Segment followed by the verification of Ethernet Segment
+In the [next post](https://xrdocs.io/cloud-scale-networking/tutorials/bgp-evpn-configuration-ncs-5500-part-3/), we will implement configuration of VLAN and stretching layer-2 bridging for that VLAN between the Leafs. [Task-2](https://xrdocs.io/cloud-scale-networking/tutorials/bgp-evpn-configuration-ncs-5500-part-3/#task-2-configure-layer-2-interfaces-and-bridge-domain-on-leafs) and [Task-3](https://xrdocs.io/cloud-scale-networking/tutorials/bgp-evpn-configuration-ncs-5500-part-3/#task-3-configure-evpn-evi-on-leaf-1-leaf-2-for-vlan-10) focuses on VLAN configuration and service carving for Ethernet Segment.
 
-In the [next post](https://xrdocs.io/cloud-scale-networking/tutorials/bgp-evpn-configuration-ncs-5500-part-3/), we will implement configuration of VLAN and stretching layer-2 bridging for that VLAN between the Leafs.  
+ 
