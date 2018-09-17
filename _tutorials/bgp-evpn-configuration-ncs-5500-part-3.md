@@ -12,7 +12,7 @@ position: hidden
 In the [last post](https://xrdocs.io/cloud-scale-networking/tutorials/bgp-evpn-configuration-ncs-5500-part-2/), we configured the BGP-EVPN based Multi-homing of host/CE using EVPN Ethernet Segment. In this post, we will provision BGP-EVPN based Layer-2 VPN service between the Leafs. The EVPN Layer-2 service will enable forwarding between host-1, host-2 and host-5 which are part of the same subnet.
 
 ## Reference Topology:
-![](https://github.com/xrdocs/cloud-scale-networking/blob/gh-pages/images/evpn-config/Reference-Topology.png?raw=true)
+![](https://github.com/xrdocs/cloud-scale-networking/blob/gh-pages/images/evpn-config/Host-connectivity.png?raw=true)
 
 In this setup, Host-1 and Host-5 belong to the same subnet. Host-1 is dual-homed to Leaf-1 and Leaf-2 while Host-5 is single homed to the Leaf-5. Packets sourced from Host-1 for destination Host-5 will arrive to Leaf-1 or Leaf-2 based on the LAG’s hash calculation. On Leaf the lookup will be performed for destination Host-5 MAC address. Host-5’s MAC address will be learnt on Leaf-1 and Leaf-2 via EVPN control-plane. After the lookup, the traffic will be forwarded to the Host-5 MAC address using EVPN service label and transport label to reach to Leaf-5. 
 
