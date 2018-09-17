@@ -18,7 +18,7 @@ tags:
 
 {% include toc %}
 
-# Topic: Configure BGP-EVPN Control-Plane & MPLS Segment Routing Forwarding-Plane
+# Topic: Configure BGP-EVPN Control-Plane & Segment Routing based MPLS Forwarding-Plane
 
 ## Introduction to BGP-EVPN
 
@@ -33,9 +33,9 @@ EVPN uses MAC addresses as routable addresses and distribute them to all partici
 
 In this and next few posts we will cover BGP-EVPN configuration, implementation and verification on NCS 5500 Platform using IOS-XR. The goal of this tutorial is to provide familiarity to BGP-EVPN from configuration perspective and cover the following use cases.
 
-- [Configuring BGP EVPN control-plane and ISIS Segment Routing forwarding plane](https://xrdocs.io/cloud-scale-networking/tutorials/bgp-evpn-configuration-ncs-5500-part-1/)
+- [Configuring BGP EVPN control-plane and Segment Routing based forwarding plane](https://xrdocs.io/cloud-scale-networking/tutorials/bgp-evpn-configuration-ncs-5500-part-1/)
 - [Configure EVPN based Multi-homing to the Hosts](https://xrdocs.io/cloud-scale-networking/tutorials/bgp-evpn-configuration-ncs-5500-part-2/)
-- EVPN based Layer-2 VPN Service
+- [EVPN based Layer-2 VPN Service](https://xrdocs.io/cloud-scale-networking/tutorials/bgp-evpn-configuration-ncs-5500-part-3/)
 - EVPN-IRB between Leafs in the network
 
 
