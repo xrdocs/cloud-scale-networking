@@ -4,7 +4,7 @@ date: '2018-07-20 16:25 +0200'
 title: 'Security ACL on NCS5500 (Part2): Hybrid ACL'
 author: Nicolas Fevrier
 excerpt: >-
-  Second part on the NCS5500 Access-lists. This time, we focus on the Hybrib
+  Second part on the NCS5500 Access-lists. This time, we focus on the Hybrid
   ACL.
 position: top
 tags:
