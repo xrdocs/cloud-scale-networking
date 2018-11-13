@@ -212,7 +212,7 @@ The following chart will help clarifying it:
 | NCS-55A2-MOD-HD-S | Jericho+ w/o eTCAM | 1 | 786k in LEM + 256-350k in LPM |
 | NCS-55A2-MOD-SE-S | Jericho+ w/o eTCAM | 1 | 786k in LEM + 256-350k in LPM + 4M in eTCAM |
 
-Each ASIC is associated by 4GB of GDDR5 memory (total is the multiplication of number of NPU by 4GB)
+Buffers: Each ASIC is associated by 4GB of GDDR5 memory (total is the multiplication of number of NPU by 4GB)
 
 ### Supported optics
 
