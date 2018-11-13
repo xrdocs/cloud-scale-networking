@@ -190,26 +190,29 @@ With Qumran-MX, Jericho, Jericho+ with Jericho-scale, Jericho+ with large LPM, w
 
 The following chart will help clarifying it:
 
-| PID | ASIC | Route Scale |
-|:-----:|:-----:|:-----:|
-| NC55-36X100G | Jericho w/o eTCAM | 786k in LEM + 256-350k in LPM |
-| NC55-36X100G-S | Jericho w/o eTCAM | 786k in LEM + 256-350k in LPM |
-| NC55-24X100G-SE | Jericho with eTCAM | 786k in LEM + 256-350k in LPM + 2M in eTCAM |
-| NC55-18H18F | Jericho w/o eTCAM | 786k in LEM + 256-350k in LPM |
-| NC55-24H12F-SE | Jericho with eTCAM | 786k in LEM + 256-350k in LPM + 2M in eTCAM |
-| NC55-36X100G-A-SE | Jericho+ with NG eTCAM | 4M in eTCAM |
-| NC55-6x200-DWDM-S | Jericho w/o eTCAM | 786k in LEM + 256-350k in LPM |
-| NC55-MOD-A-S | Jericho+ w/o eTCAM | 786k in LEM + 256-350k in LPM |
-| NCS-5501 | Q-MX w/o eTCAM | 786k in LEM + 256-350k in LPM |
-| NCS-5501-SE | Jericho with eTCAM | 786k in LEM + 256-350k in LPM + 2M in eTCAM |
-| NCS-5502 | Jericho w/o eTCAM | 786k in LEM + 256-350k in LPM |
-| NCS-5502-SE | Jericho with eTCAM | 786k in LEM + 256-350k in LPM + 2M in eTCAM |
-| NCS-55A1-24H | Jericho+ w/o eTCAM | 786k in LEM + 1M-1.3M in LPM |
-| NCS-55A1-36H-S | Jericho+ w/o eTCAM | 786k in LEM + 256-350k in LPM |
-| NCS-55A1-36H-SE-S | Jericho+ with NG eTCAM | 4M in eTCAM |
-| NCS-55A2-MOD-S | Jericho+ w/o eTCAM | 786k in LEM + 256-350k in LPM |
-| NCS-55A2-MOD-HD-S | Jericho+ w/o eTCAM | 786k in LEM + 256-350k in LPM |
+| PID | ASIC type | # of ASICs | Route Scale |
+|:-----:|:-----:|:-----:|:-----:|
+| NC55-36X100G | Jericho w/o eTCAM | 6 | 786k in LEM + 256-350k in LPM |
+| NC55-36X100G-S | Jericho w/o eTCAM | 6 | 786k in LEM + 256-350k in LPM |
+| NC55-24X100G-SE | Jericho with eTCAM | 4 | 786k in LEM + 256-350k in LPM + 2M in eTCAM |
+| NC55-18H18F | Jericho w/o eTCAM | 3 | 786k in LEM + 256-350k in LPM |
+| NC55-24H12F-SE | Jericho with eTCAM | 4 | 786k in LEM + 256-350k in LPM + 2M in eTCAM |
+| NC55-36X100G-A-SE | Jericho+ with NG eTCAM | 4 | 4M in eTCAM |
+| NC55-6x200-DWDM-S | Jericho w/o eTCAM | 2 | 786k in LEM + 256-350k in LPM |
+| NC55-MOD-A-S | Jericho+ w/o eTCAM | 1 | 786k in LEM + 256-350k in LPM |
+| NC55-MOD-A-SE-S | Jericho+ w/ eTCAM | 1 | 786k in LEM + 256-350k in LPM + 4M in eTCAM |
+| NCS-5501 | Q-MX w/o eTCAM | 1 | 786k in LEM + 256-350k in LPM |
+| NCS-5501-SE | Jericho with eTCAM | 1 | 786k in LEM + 256-350k in LPM + 2M in eTCAM |
+| NCS-5502 | Jericho w/o eTCAM | 8 | 786k in LEM + 256-350k in LPM |
+| NCS-5502-SE | Jericho with eTCAM | 8 | 786k in LEM + 256-350k in LPM + 2M in eTCAM |
+| NCS-55A1-24H | Jericho+ w/o eTCAM | 2 | 786k in LEM + 1M-1.3M in LPM |
+| NCS-55A1-36H-S | Jericho+ w/o eTCAM | 4 | 786k in LEM + 256-350k in LPM |
+| NCS-55A1-36H-SE-S | Jericho+ with NG eTCAM | 4 | 4M in eTCAM |
+| NCS-55A2-MOD-S | Jericho+ w/o eTCAM | 1 | 786k in LEM + 256-350k in LPM |
+| NCS-55A2-MOD-HD-S | Jericho+ w/o eTCAM | 1 | 786k in LEM + 256-350k in LPM |
+| NCS-55A2-MOD-SE-S | Jericho+ w/o eTCAM | 1 | 786k in LEM + 256-350k in LPM + 4M in eTCAM |
 
+Each ASIC is associated by 4GB of GDDR5 memory (total is the multiplication of number of NPU by 4GB)
 
 ### Supported optics
 
