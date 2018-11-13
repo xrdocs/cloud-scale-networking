@@ -212,7 +212,12 @@ The following chart will help clarifying it:
 | NCS-55A2-MOD-HD-S | Jericho+ w/o eTCAM | 1 | 786k in LEM + 256-350k in LPM |
 | NCS-55A2-MOD-SE-S | Jericho+ w/o eTCAM | 1 | 786k in LEM + 256-350k in LPM + 4M in eTCAM |
 
-Buffers: Each ASIC is associated by 4GB of GDDR5 memory (total is the multiplication of number of NPU by 4GB)
+Buffers:  
+Each ASIC is associated by 4GB of GDDR5 memory (total is the multiplication of number of NPU by 4GB).  
+The buffer size is not related to the -SE or non-SE aspect (it's not related to TCAM).  
+For more details, refer to Lane's whitepaper:  
+[https://xrdocs.io/cloud-scale-networking/blogs/2018-05-07-ncs-5500-buffering-architecture/](https://xrdocs.io/cloud-scale-networking/blogs/2018-05-07-ncs-5500-buffering-architecture/)
+
 
 ### Supported optics
 
