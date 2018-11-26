@@ -184,6 +184,13 @@ Let's summarize the product IDs in this chart:
 | NC55-900W-DCFW-HD | NCS 5500 DC 900W Power Supply Port-S Intake / Front-to-back | |
 | NC55-MPA-4H-HD-S | 4X100G QSFP28 Temp Hardened MPA | |
 
+### Understanding NCS5500 slot numbering
+
+Line cards count starts from 0, from top to bottom.  
+
+![slot-numbering.png]({{site.baseurl}}/images/slot-numbering.png)
+
+
 ### Products, ASICs and route scale
 
 With Qumran-MX, Jericho, Jericho+ with Jericho-scale, Jericho+ with large LPM, with or without eTCAM, it's not easy to remember which ASIC is used in the various LC and systems and what is the routing scale they can reach.
