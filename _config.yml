@@ -159,6 +159,9 @@ collections:
   tutorials:
     output: true
     permalink: /:collection/:path/
+  dev-corner:
+    output: true
+    permalink: /:collection/:path/
 
 
 # Defaults
@@ -190,6 +193,18 @@ defaults:
   - scope:
       path: ""
       type: tutorials
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+      position: "top"
+# _dev-corner
+  - scope:
+      path: ""
+      type: dev-corner
     values:
       layout: single
       author_profile: true
@@ -451,6 +466,46 @@ prose:
             element: "text"
             label: "Date"
             value: "CURRENT_DATETIME"
+    _dev-corner:
+    - name: "title"
+      field:
+        element: "text"
+        label: "Title"
+        value: ""
+    - name: "author"
+      field:
+        element: "text"
+        label: "Author"
+    - name: "excerpt"
+      field:
+        element: "text"
+        help: "Brief description of the article"
+        label: "Excerpt"
+    - name: "published"
+      field:
+        label: "Published"
+        element: "checkbox"
+        value: false
+    - name: "tags"
+      field:
+        element: "multiselect"
+        label: "Add Tags"
+        placeholder: "Choose Tags"
+        alterable: true
+        options:
+        - name: "Vagrant"
+          value: "vagrant"
+        - name: "IOS-XR"
+          value: "iosxr"
+        - name: "Cisco"
+          value: "cisco"
+        - name: "Linux"
+          value: "linux"
+    - name: "date"
+      field:
+        element: "text"
+        label: "Date"
+        value: "CURRENT_DATETIME"
 
 
 tag_array: []
