@@ -1,15 +1,40 @@
 ---
-published: false
+published: true
 date: '2018-12-05 21:17 +0100'
 title: IOS XR at CiscoLive Europe 2019
+author: Nicolas Fevrier
+excerpt: IOS XR related content at Cisco Live Europe 2019
+tags:
+  - ciscolive
+  - cleur
+  - cleur19
+  - iosxr
+  - xr
+  - asr9000
+  - ncs5500
+  - ncs540
+  - xrv9000
+  - vBNG
+  - disag
+  - automation
+  - telemetry
+  - mdt
+  - evpn
+  - segment routing
+  - srv6
+position: top
 ---
 
+{% include toc icon="table" title="Understanding NCS5500 Resources" %}  
+
+![CLEUR19.jpg]({{site.baseurl}}/images/CLEUR19.jpg){: .align-center}
 
 ## Preparing for CiscoLive Europe 2019
 
 CiscoLive Barcelona will welcome thousands of visitors from January the 28th to February the 1st, 2019.  
 It's a unique opportunity to hear about IOS XR and the platforms powered by this operating system.  
 We propose you a chronological view of the different techtorials, breakout sessions, devnet labs and WISP (Walk-In Self-Paced) labs.  
+Hope to see you there :)
 
 ### Instructor-Led Lab
 
@@ -34,7 +59,7 @@ IOS XR Software Upgrade Method of Procedure Automation with Cisco Software Manag
 [https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=LTRSPG-2515#/](https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=LTRSPG-2515#/)
 
 Friday, Feb 01, 9:00 AM - 1:00 PM  
-IOS-XR hands-on lab. End-to-end story. - **LTRSPG-2414**, by Akshat Sharma and Mikhail Korshunov
+IOS-XR hands-on lab. End-to-end story. - **LTRSPG-2414**, by Akshat Sharma and Mikhail Korshunov  
 [https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=LTRSPG-2414#/](https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=LTRSPG-2414#/)
 
 ### Breakout Sessions
