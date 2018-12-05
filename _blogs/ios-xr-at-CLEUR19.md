@@ -92,7 +92,7 @@ Wednesday, Jan 30, 11:00 AM - 12:30 PM
 Cisco ASR 9000 Architecture - **BRKARC-2003**, by Yongzhong Peng  
 [https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKARC-2003#/](https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKARC-2003#/)
 
-Wednesday, Jan 30, 2:30 PM - 4:00 PM
+Wednesday, Jan 30, 2:30 PM - 4:00 PM  
 Advanced Topics in XR Telemetry - **BRKSPG-2503**, by Viktor Osipchuk  
 [https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKSPG-2503#/](https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKSPG-2503#/)
 
