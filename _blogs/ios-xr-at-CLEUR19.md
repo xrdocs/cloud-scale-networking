@@ -5,10 +5,10 @@ title: IOS XR at CiscoLive Europe 2019
 author: Nicolas Fevrier
 excerpt: IOS XR related content at Cisco Live Europe 2019
 tags:
+  - iosxr
   - ciscolive
   - cleur
   - cleur19
-  - iosxr
   - xr
   - asr9000
   - ncs5500
@@ -25,7 +25,7 @@ tags:
 position: top
 ---
 
-{% include toc icon="table" title="Understanding NCS5500 Resources" %}  
+{% include toc icon="table" title="IOS XR at CLEUR19" %}  
 
 ![CLEUR19.jpg]({{site.baseurl}}/images/CLEUR19.jpg){: .align-center}
 
