@@ -12,8 +12,15 @@ tags:
   - FIB
   - eTCAM
   - Internet
-position: top
+position: hidden
 ---
+
+<meta http-equiv="refresh" content="0; 
+url=https://xrdocs.io/ncs5500/tutorials/ncs5500-fib-programming-speed/">
+
+<link rel="canonical" 
+href="https://xrdocs.io/ncs5500/tutorials/ncs5500-fib-programming-speed/" />
+
 {% include toc icon="table" title="NCS5500 FIB Programming Speed" %} 
 
 You can find more content related to NCS5500 including routing memory management, VRF, URPF, ACLs, Netflow following this [link](https://xrdocs.io/cloud-scale-networking/tutorials/).

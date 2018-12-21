@@ -4,7 +4,7 @@ date: '2017-08-07 13:46 +0200'
 title: Understanding NCS5500 Resources (S01E03)
 author: Nicolas Fevrier
 excerpt: Third post on the NCS5500 Resources focusing on IPv6 prefixes
-position: top
+position: hidden
 tags:
   - ncs5500
   - ncs 5500
@@ -14,6 +14,14 @@ tags:
   - prefixes
   - eTCAM
 ---
+
+<meta http-equiv="refresh" content="0; 
+url=https://xrdocs.io/ncs5500/tutorials/2017-08-07-understanding-ncs5500-resources-s01e03/">
+
+<link rel="canonical" 
+href="https://xrdocs.io/ncs5500/tutorials/2017-08-07-understanding-ncs5500-resources-s01e03/" />
+
+
 {% include toc icon="table" title="Understanding NCS5500 Resources" %} 
 
 You can find more content related to NCS5500 including routing in VRF, URPF, ACLs, Netflow following this [link](https://xrdocs.io/cloud-scale-networking/tutorials/).

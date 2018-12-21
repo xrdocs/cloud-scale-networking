@@ -6,7 +6,7 @@ author: Nicolas Fevrier
 excerpt: >-
   Second part on the NCS5500 Access-lists. This time, we focus on the Hybrid
   ACL.
-position: top
+position: hidden
 tags:
   - iosxr
   - acl
@@ -16,6 +16,14 @@ tags:
   - compressed
   - xr
 ---
+
+
+<meta http-equiv="refresh" content="0; 
+url=https://xrdocs.io/ncs5500/tutorials/security-acl-on-ncs5500-part2-hybrid-acl/">
+
+<link rel="canonical" 
+href="https://xrdocs.io/ncs5500/tutorials/security-acl-on-ncs5500-part2-hybrid-acl/" />
+
 {% include toc icon="table" title="NCS5500 Security Access-lists - Part2: Hybrid ACL" %} 
 
 You can find more content related to NCS5500 including routing memory management, VRF, URPF, Netflow following this [link](https://xrdocs.io/cloud-scale-networking/tutorials/).

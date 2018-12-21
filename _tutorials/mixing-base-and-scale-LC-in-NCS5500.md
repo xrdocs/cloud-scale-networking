@@ -14,8 +14,16 @@ tags:
   - ios xr
   - xr
   - SRD
-Position: top
+position: hidden
 ---
+
+<meta http-equiv="refresh" content="0; 
+url=https://xrdocs.io/ncs5500/tutorials/mixing-base-and-scale-LC-in-NCS5500/">
+
+<link rel="canonical" 
+href="https://xrdocs.io/ncs5500/tutorials/mixing-base-and-scale-LC-in-NCS5500/" />
+
+
 {% include toc icon="table" title="Understanding NCS5500 Resources" %}  
 
 You can find more content related to NCS5500 including routing memory management, VRF, URPF, ACLs, Netflow following this [link](https://xrdocs.io/cloud-scale-networking/tutorials/).

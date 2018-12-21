@@ -4,8 +4,17 @@ date: '2018-07-09 14:55 +0200'
 title: NCS5500 Things to Know / Q&A
 author: Nicolas Fevrier
 excerpt: Various questions and answers related to the NCS5500 platform and its software
-position: top
+position: hidden
 ---
+
+<meta http-equiv="refresh" content="0; 
+url=https://xrdocs.io/ncs5500/tutorials/ncs5500-things-to-know/">
+
+<link rel="canonical" 
+href="https://xrdocs.io/ncs5500/tutorials/ncs5500-things-to-know/" />
+
+
+
 {% include toc icon="table" title="NCS5500 Things to know" %} 
 
 You can find more content related to NCS5500 including routing memory management, VRF, URPF, ACLs, Netflow following this [link](https://xrdocs.io/cloud-scale-networking/tutorials/).

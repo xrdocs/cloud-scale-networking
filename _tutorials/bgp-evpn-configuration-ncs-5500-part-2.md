@@ -3,7 +3,7 @@ published: true
 date: '2018-09-16 15:21 -0700'
 title: BGP-EVPN Configuration on NCS 5500 part-2
 author: Ahmad Bilal Siddiqui
-position: top
+position: hidden
 excerpt: >-
   This post covers the configuration of BGP-EVPN based MC-LAG for Multi-Homing
   of devices on NCS 5500.
@@ -13,6 +13,14 @@ tags:
   - NCS 5500
   - evpn
 ---
+
+
+<meta http-equiv="refresh" content="0; 
+url=https://xrdocs.io/ncs5500/tutorials/bgp-evpn-configuration-ncs-5500-part-2/">
+
+<link rel="canonical" 
+href="https://xrdocs.io/ncs5500/tutorials/bgp-evpn-configuration-ncs-5500-part-2/" />
+
 {% include toc %}
 # Topic: BGP-EVPN based MC-LAG for Multi-Homing of devices
 

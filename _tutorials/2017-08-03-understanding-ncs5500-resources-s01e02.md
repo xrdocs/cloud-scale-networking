@@ -13,9 +13,17 @@ tags:
   - XR
   - IOSXR
   - Memory
-position: top
+position: hidden
 ---
+
+<meta http-equiv="refresh" content="0; 
+url=https://xrdocs.io/ncs5500/tutorials/2017-08-03-understanding-ncs5500-resources-s01e02/">
+
+<link rel="canonical" 
+href="https://xrdocs.io/ncs5500/tutorials/2017-08-03-understanding-ncs5500-resources-s01e02/" />
+
 {% include toc icon="table" title="Understanding NCS5500 Resources" %} 
+
 
 You can find more content related to NCS5500 including routing memory management, VRF, URPF, Netflow following this [link](https://xrdocs.io/cloud-scale-networking/tutorials/).
 

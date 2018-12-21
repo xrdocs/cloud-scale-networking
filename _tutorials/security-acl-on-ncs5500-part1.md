@@ -5,8 +5,15 @@ title: Security ACL on NCS5500 (Part1)
 author: Nicolas Fevrier
 excerpt: First part of a series of posts on NCS5500 Access-lists
 Top: null
-position: top
+position: hidden
 ---
+
+<meta http-equiv="refresh" content="0; 
+url=https://xrdocs.io/ncs5500/tutorials/security-acl-on-ncs5500-part1/">
+
+<link rel="canonical" 
+href="https://xrdocs.io/ncs5500/tutorials/security-acl-on-ncs5500-part1/" />
+
 {% include toc icon="table" title="NCS5500 Security Access-lists - Part1" %} 
 
 You can find more content related to NCS5500 including routing memory management, VRF, URPF, Netflow following this [link](https://xrdocs.io/cloud-scale-networking/tutorials/).

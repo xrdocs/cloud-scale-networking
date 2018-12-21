@@ -9,8 +9,16 @@ tags:
   - ncs5500
   - netflow
   - xr
-Position: hidden
+position: hidden
 ---
+
+<meta http-equiv="refresh" content="0; 
+url=https://xrdocs.io/ncs5500/tutorials/netflow-ncs5500-test-results/">
+
+<link rel="canonical" 
+href="https://xrdocs.io/ncs5500/tutorials/netflow-ncs5500-test-results/" />
+
+
 {% include toc icon="table" title="Netflow Test Results" %} 
 
 You can find more content related to NCS5500 including routing memory management, VRF, URPF, ACLs,  following this [link](https://xrdocs.io/cloud-scale-networking/tutorials/).

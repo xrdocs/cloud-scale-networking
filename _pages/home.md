@@ -11,24 +11,21 @@ date: null
 {% include base_path %}
 
 
-
-<div class="feature__wrapper">    
-    <div class="feature__item--left">
-      <div class="archive__item" style="margin-left: 2em;">
-          <div class="archive__item-teaser center" style="display: block; margin-left: auto; margin-right: auto;">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/8Tq4nyP2wuA" frameborder="0"
-               allowfullscreen></iframe>
+<div class="feature__wrapper">
+    <div class="feature__item--right">
+      <div class="archive__item">
+          <div class="archive__item-teaser center" style="max-height: 400px; max-width: 400px;display: block; margin-left: auto; margin-right: auto;">
+            <a href="{{ base_path }}/blogs/ios-xr-at-CLEUR19/"><img src="{{ base_path }}/images/lp_images/CLEUR19.jpg" alt="" /></a>
           </div>
         <div class="archive__item-body">
-            <h2 class="archive__item-title"><a href="https://www.youtube.com/watch?v=8Tq4nyP2wuA" target="_blank" ></a>Full Internet View
-             on “Base” NCS 5500 Systems</h2>
+            <h2 class="archive__item-title">IOS XR at CiscoLive Europe 2019
+</h2>
             <div class="archive__item-excerpt" style="font-size: 0.65em;">
-            <p>In this video <b>Nicolas Fevrier</b> shows NCS5500 using Jericho-based line cards without external TCAM (also valid for fixed-form
-             systems) handling the current internet table with still significant growth margin. </p>
+              <p>CiscoLive Barcelona will welcome thousands of visitors from January the 28th to February the 1st, 2019.
+              It’s a unique opportunity to hear about IOS XR and the platforms powered by this operating system.</p>
             </div>
-          <p><a href="https://www.youtube.com/watch?v=8Tq4nyP2wuA" target="_blank"  class="btn btn--large">Watch on Youtube</a>
-          <a href="https://xrdocs.io/cloud-scale-networking/tutorials/2017-12-30-full-internet-view-on-base-ncs-5500-systems-s01e04/" target="_blank"
-           class="btn btn--large">Read article</a></p>
+            <p><a href="{{ base_path }}/blogs/ios-xr-at-CLEUR19/" 
+                  class="btn ">Explore!</a></p>
         </div>
       </div>
     </div>
@@ -37,25 +34,47 @@ date: null
 
 
 
-
 <div class="feature__wrapper">    
-    <div class="feature__item--right">
+    <div class="feature__item--left">
       <div class="archive__item" style="margin-left: 2em;">
           <div class="archive__item-teaser center" style="display: block; margin-left: auto; margin-right: auto;">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/lVC3ppgi7ak" frameborder="0"
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/qF3A1coJsvY" frameborder="0"
                allowfullscreen></iframe>
           </div>
         <div class="archive__item-body">
-            <h2 class="archive__item-title"><a href="https://www.youtube.com/watch?v=lVC3ppgi7ak" target="_blank" ></a>
-            Large Routing Tables on “Scale” NCS 5500 Systems</h2>
+            <h2 class="archive__item-title"><a href="https://www.youtube.com/watch?v=qF3A1coJsvY" target="_blank" ></a>
+            Enabling IOS-XR on Third-Party Network Hardware</h2>
             <div class="archive__item-excerpt" style="font-size: 0.65em;">
-            <p>Pushing the limits further. We will take a much larger existing (ie. real) routing table (internet
-             + a very large number of host routes), we will add a projection of the internet table to year 2025 and
-              we will see how it can fit in a Jericho-based system with External TCAM </p>
+            <p>As the ecosystem of the Service provider access market evolves to include disaggregated network devices 
+            as part of the scale-out strategy, Cisco is now enabling IOS-XR on select OCP-compliant network hardware. 
+            We dive deeper into what it takes to work with the OCP and whitebox ecosystem and what IOS-XR is doing in this realm.</p>
             </div>
-          <p><a href="https://www.youtube.com/watch?v=lVC3ppgi7ak" target="_blank"  class="btn btn--large">Watch on Youtube</a>
-          <a href="https://xrdocs.io/cloud-scale-networking/tutorials/2018-01-25-s01e05-large-routing-tables-on-scale-ncs-5500-systems/" target="_blank"
+          <p><a href="https://www.youtube.com/watch?v=qF3A1coJsvY" target="_blank"  class="btn btn--large">Watch on Youtube</a>
+          <a href="{{base_url}}/cloud-scale-networking/blogs/2018-03-08-enabling-ios-xr-on-third-party-network-hardware/" target="_blank"
            class="btn btn--large">Read article</a></p>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+<div class="feature__wrapper">
+    <div class="feature__item--right">
+      <div class="archive__item">
+          <div class="archive__item-teaser center" style="max-height: 400px; max-width: 400px;display: block; margin-left: auto; margin-right: auto;">
+            <a href="{{ base_path }}/blogs/2018-05-22-update-on-buffer/"><img src="{{ base_path }}/images/lp_images/buffering.jpg" alt="" /></a>
+          </div>
+        <div class="archive__item-body">
+            <h2 class="archive__item-title">Substantial article on Router Buffering
+</h2>
+            <div class="archive__item-excerpt" style="font-size: 0.65em;">
+              <p>Buffering requirements for routers have been a much debated and ultimately unresolved topic since the 
+              beginning of the Internet. This paper presents a technical foundation for network designers to assess 
+              buffering requirements based on applications as well as network and traffic characteristics. </p>
+            </div>
+            <p><a href="{{ base_path }}/blogs/2018-05-22-update-on-buffer/" 
+                  class="btn ">Add to the buffer</a></p>
         </div>
       </div>
     </div>
@@ -70,14 +89,16 @@ date: null
     <div class="feature__item--left">
       <div class="archive__item">
           <div class="archive__item-teaser center" style="max-height: 400px; max-width: 400px;display: block; margin-left: auto; margin-right: auto;">
-            <a href="{{ base_path }}/tutorials/Understanding-ncs5500-jericho-plus-systems/"><img src="{{ base_path }}/images/lp_images/asic.jpg" alt="" /></a>
+            <a href="{{ base_path }}/blogs/2018-06-15-persistent-load-balancing/"><img src="{{ base_path }}/images/lp_images/balance.jpg" alt="" /></a>
           </div>
         <div class="archive__item-body">
-            <h2 class="archive__item-title">Understanding NCS5500 Jericho+ Systems and their scalability</h2>
+            <h2 class="archive__item-title">Persistent Load Balancing or “Sticky ECMP”</h2>
             <div class="archive__item-excerpt" style="font-size: 0.65em;">
-              <p>We will introduce and study a second generation of line cards and systems based on an evolution of the Forwarding ASIC.</p>
+              <p>Traditional ECMP or equal cost multipath loadbalances traffic over a number of available paths towards
+               a destination. When one path fails, the traffic gets re-shuffled over the available number of paths.
+               This article applies to NCS5500 & ASR9000 routers.</p>
             </div>
-            <p><a href="{{ base_path }}/tutorials/Understanding-ncs5500-jericho-plus-systems/" 
+            <p><a href="{{ base_path }}/blogs/2018-06-15-persistent-load-balancing/" 
                   class="btn ">Check out!</a></p>
         </div>
       </div>
@@ -85,22 +106,24 @@ date: null
 </div>
 
 
+
 <div class="feature__wrapper">
     <div class="feature__item--right">
       <div class="archive__item">
           <div class="archive__item-teaser center" style="max-height: 400px; max-width: 400px;display: block; margin-left: auto; margin-right: auto;">
-            <a href="{{ base_path }}/tutorials/2018-02-19-netflow-sampling-interval-and-the-mythical-internet-packet-size/"><img src="{{ base_path }}/images/lp_images/interval-graphs.jpg" alt="" /></a>
+            <a href="{{ base_path }}/blogs/2018-03-08-introduction-to-p4-and-p4runtime/"><img src="{{ base_path }}/images/lp_images/p4.jpg" alt="" /></a>
           </div>
         <div class="archive__item-body">
-            <h2 class="archive__item-title">Netflow, Sampling-Interval and the Mythical Internet Packet Size</h2>
+            <h2 class="archive__item-title">Intro to P4 and P4Runtime</h2>
             <div class="archive__item-excerpt" style="font-size: 0.65em;">
-              <p>Clarification of key concepts around Netflow technology and potentially correct some common misconceptions.
-               Particularly we will explain why the “what is the sampling-rate you support?” is not the right question.</p>
+              <p>Programmable NPUs have existed in routing products for a long time. Almost all the routers developed 
+              for the Service Provide and Enterprise market segments have been built with Network Processor Units that 
+              are highly programmable, so as to keep up with the pace of new feature and functional requirements that 
+              are a norm in this market segment.</p>
             </div>
-            <p><a href="{{ base_path }}/tutorials/2018-02-19-netflow-sampling-interval-and-the-mythical-internet-packet-size/" 
-                  class="btn ">Explore!</a></p>
+            <p><a href="{{ base_path }}/blogs/2018-03-08-introduction-to-p4-and-p4runtime/" 
+                  class="btn ">Read more</a></p>
         </div>
       </div>
     </div>
 </div>
-

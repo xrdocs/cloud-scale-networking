@@ -3,7 +3,7 @@ published: true
 date: '2018-09-04 10:45 -0700'
 title: BGP-EVPN Configuration on NCS 5500 part-1
 author: Ahmad Bilal Siddiqui
-position: top
+position: hidden
 excerpt: >-
   This is the first part of the series for EVPN configuration on NCS5500. In
   this post we will focus on configuring BGP-EVPN Control-Plane & Segment
@@ -15,6 +15,12 @@ tags:
   - ncs5500
   - evpn
 ---
+
+<meta http-equiv="refresh" content="0; 
+url=https://xrdocs.io/ncs5500/tutorials/bgp-evpn-configuration-ncs-5500-part-1/">
+
+<link rel="canonical" 
+href="https://xrdocs.io/ncs5500/tutorials/bgp-evpn-configuration-ncs-5500-part-1/" />
 
 {% include toc %}
 

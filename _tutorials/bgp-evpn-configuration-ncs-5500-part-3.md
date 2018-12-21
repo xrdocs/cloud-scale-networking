@@ -3,7 +3,7 @@ published: true
 date: '2018-09-16 15:29 -0700'
 title: BGP-EVPN Configuration on NCS 5500 part-3
 author: Ahmad Bilal Siddiqui
-position: top
+position: hidden
 excerpt: >-
   In this post we will cover the provisioning of BGP-EVPN based Layer-2 VPN
   service
@@ -13,6 +13,14 @@ tags:
   - evpn
   - NCS5500
 ---
+
+
+<meta http-equiv="refresh" content="0; 
+url=https://xrdocs.io/ncs5500/tutorials/bgp-evpn-configuration-ncs-5500-part-3/">
+
+<link rel="canonical" 
+href="https://xrdocs.io/ncs5500/tutorials/bgp-evpn-configuration-ncs-5500-part-3/" />
+
 {% include toc %}
 
 # Topic: Configure BGP-EVPN based Layer-2 VPN service
