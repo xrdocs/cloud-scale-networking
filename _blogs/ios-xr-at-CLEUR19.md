@@ -88,6 +88,10 @@ Wednesday, Jan 30, 8:30 AM - 10:00 AM
 EVPN Deep Dive with IOS-XR Configuration examples for Service Provider Metro and Data Center - **BRKSPG-3965**, by Jiri Chaloupka  
 [https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKSPG-3965#/](https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKSPG-3965#/)
 
+Wednesday, Jan 30, 8:30 AM - 10:00 AM  
+What DC Fabric can teach you about SP Core Design... or Not! - **BRKSPG-2777**, by Shelly Cadora  
+[https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKSPG-2777#/](https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKSPG-2777#/)
+
 Wednesday, Jan 30, 11:00 AM - 1:00 PM  
 Service Provider Programmable SDN solution for the Metro Fabric, powered by Segment Routing and EVPN - **BRKSPG-2518**, by Jiri Chaloupka  
 [https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKSPG-2518#/](https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKSPG-2518#/)  
@@ -103,6 +107,10 @@ Advanced Topics in XR Telemetry - **BRKSPG-2503**, by Mikhail Korshunov
 Wednesday, Jan 30, 4:30 PM - 6:00 PM  
 IOS-XR Runtime - Trust me? Trust me not? - **BRKSPG-1768**, by Dan Backman  
 [https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKSPG-1768#/](https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKSPG-1768#/)
+
+Wednesday, Jan 30, 4:30 PM - 6:00 PM  
+Internet Peering Concepts and Emerging Trends - **BRPSPG-2003**, by Phil Bedard  
+[https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKSPG-2003#/](https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKSPG-2003#/)
 
 Thursday, Jan 31, 8:30 AM - 10:30 AM  
 Cisco vBNG solution based on CSR1000V and XRv 9000 - **BRKSPG-2063**, by Chengsheng Luo and Vimal Dharmavarapu  
