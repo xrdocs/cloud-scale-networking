@@ -88,12 +88,16 @@ Wednesday, Jan 30, 8:30 AM - 10:00 AM
 EVPN Deep Dive with IOS-XR Configuration examples for Service Provider Metro and Data Center - **BRKSPG-3965**, by Jiri Chaloupka  
 [https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKSPG-3965#/](https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKSPG-3965#/)
 
+Wednesday, Jan 30, 11:00 AM - 1:00 PM  
+Service Provider Programmable SDN solution for the Metro Fabric, powered by Segment Routing and EVPN - **BRKSPG-2518**, by Jiri Chaloupka  
+[https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKSPG-2518#/](https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKSPG-2518#/)  
+
 Wednesday, Jan 30, 11:00 AM - 12:30 PM  
 Cisco ASR 9000 Architecture - **BRKARC-2003**, by Yongzhong Peng  
 [https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKARC-2003#/](https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKARC-2003#/)
 
 Wednesday, Jan 30, 2:30 PM - 4:00 PM  
-Advanced Topics in XR Telemetry - **BRKSPG-2503**, by Viktor Osipchuk  
+Advanced Topics in XR Telemetry - **BRKSPG-2503**, by Mikhail Korshunov  
 [https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKSPG-2503#/](https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKSPG-2503#/)
 
 Wednesday, Jan 30, 4:30 PM - 6:00 PM  
@@ -113,9 +117,12 @@ Model-Driven Programmability for Cisco IOS XR - **BRKSPG-2303**, by Santiago Alv
 [https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKSPG-2303#/](https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKSPG-2303#/)
 
 Thursday, Jan 31, 2:30 PM - 4:00 PM  
-Deploying Next Generation SP Access Networks with the NCS540/NCS560 Platforms - BRKSPG-2159, by Osman Hashmi  
+Deploying Next Generation SP Access Networks with the NCS540/NCS560 Platforms - **BRKSPG-2159**, by Osman Hashmi  
 [https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKSPG-2159#/](https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKSPG-2159#/)
 
+Friday, Feb 1, 9:00 AM - 10:30 AM
+Service Provide Network Fabric: How to bring Access Services using EPVN - **BRPSPG-2322**, by Patrice Brissette  
+[https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKSPG-2322#/](https://ciscolive.cisco.com/emea/learn/sessions/content-catalog/?search=BRKSPG-2322#/)  
 
 ### Walk-In Self-Paced Labs
 
