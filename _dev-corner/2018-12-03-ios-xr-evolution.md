@@ -96,3 +96,13 @@ IOS XR is a multi-process, distributed network operating system with tall order 
 - Control plane
 - Data plane
 
+These planes are a categorization of the traffic handled by a router and they provide an abstraction for the architecture of the router software. The planes abstraction helps in hiding a great deal of implementation detail behind a clean and nice facade. The management plane implements the external user interface used by operators to configure and query the system. The control plane is responsible for determining routes to use for traffic flows and generally how traffic should be forwarded. Control plane protocols (e.g. routing protocols) exchange information with other devices. Data plane directs traffic flows through the device. Forwarding is typically performed by hardware (but can be software) and data plane software is responsible for setting up hardware to perform forwarding.
+
+
+![]({{site.baseurl}}/images/dev-corner/xr_ev/4_arch.png){: .align-center}
+
+While the above three planes are perhaps more well known, there is a relatively less visible Infrastructure Plane behind the three planes, providing various key architecture/design patterns that are the subject of the rest of this blog.
+
+
+
+![]({{site.baseurl}}/images/dev-corner/xr_ev/5_infra.png){: .align-center}
