@@ -115,7 +115,7 @@ Some examples of this state/data are configuration data, routing data, interface
 
 In order to make the overall system scalable and highly available, the following architecture patterns are built into the IOS XR after taking into account the state/data attributes mentioned above:
 
-![]({{site.baseurl}}/images/dev-corner/xr_ev/5_infra.png){: .align-center}
+![]({{site.baseurl}}/images/dev-corner/xr_ev/6_pieces.png){: .align-center}
 
 
 ### Distributed state partitioning
@@ -171,7 +171,7 @@ The following is another way to depict the configuration/operational state distr
 
 
 
-![]({{site.baseurl}}/images/dev-corner/xr_ev/6_pieces.png){: .align-center}
+![]({{site.baseurl}}/images/dev-corner/xr_ev/7_partitioning.png){: .align-center}
 
 Thus IOS XR is to be viewed as a fully distributed system with loose coupling between IOS XR instances or nodes. The different IOS XR nodes run independently and the data partitioning also helps with fault tolerance/high-availability and low latency.
 
@@ -188,7 +188,7 @@ The first distribution model uses localization, which performs processing and st
 The second distribution model uses load distribution, in which additional route processors (RPs) are added to the system and processes are distributed across different RPs. Routing protocols, management entities, and system processes are examples of processes that can be distributed using this model.
 
 
-![]({{site.baseurl}}/images/dev-corner/xr_ev/7_partitioning.png){: .align-center}
+![]({{site.baseurl}}/images/dev-corner/xr_ev/8_distribution.png){: .align-center}
 
 ## High Performance Messaging Infrastructure
 
@@ -198,7 +198,7 @@ Messaging is at the core of many architectures including IOS XR and is a difficu
 
 For example, the following picture shows several dimensions which have been analyzed extensively across various applications while developing and evolving the IOS XR's messaging infrastructure and some resulting design patterns:
 
-![]({{site.baseurl}}/images/dev-corner/xr_ev/8_distribution.png){: .align-center}
+![]({{site.baseurl}}/images/dev-corner/xr_ev/9_requirements.png){: .align-center}
 
 Rest of this section looks at the following key design patterns that IOS XR has pioneered.
 
@@ -208,7 +208,7 @@ Synchronous programming is arguably easier to reason about and implement. Synchr
 
 With asynchronous communication the sender and receiver are uncoupled - the sender does not know when the receiver processed a message that was sent. The async communication results in better IPC throughput, less latency and better use of allocated scheduler time slice resulting in less thrashing of processes involved in IPC and better use of multi-core environment. Asynchronous IPC allows an application to function with a minimal number of threads.  
 
-![]({{site.baseurl}}/images/dev-corner/xr_ev/9_requirements.png){: .align-center}
+![]({{site.baseurl}}/images/dev-corner/xr_ev/10_async.png){: .align-center}
 
 ### Group communications
 ### Messaging protocols with pluggable transports
