@@ -42,7 +42,7 @@ IOS XR started off its journey as a NOS for high-end core routers like CRS and m
 
 _Evolution from QNX to Linux_
 
-IOS XR started with QNX as its base OS and then moved to the 64-bit Linux as the base OS. This transition affects the IOS XR's event management, timers, syslog, messaging, pulses, file system, resource management, drivers etc., but due to the IOS XR's modular architecture, the transition turned out to be smooth. 
+IOS XR started with QNX as its base OS and then moved to the 64-bit Linux as the base OS. _This transition affects the IOS XR's event management, timers, syslog, messaging, pulses, file system, resource management, drivers etc._, but due to the IOS XR's modular architecture, the transition turned out to be smooth. 
 
 _Evolution from modular to small form factor systems:_
 
@@ -77,7 +77,7 @@ The Cisco IOS XR Network Operating System (NOS) is developed by not changing the
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/3_strategy.png){: .align-center}
 
-- Appropriate higher level abstractions capture the essence of the system and they are key in driving the subsequent architecture/design patterns.
+- Appropriate higher level abstractions capture the _essence_ of the system and they are key in driving the subsequent architecture/design patterns.
 - Once abstractions are in place, IOS XR has focused on large state management in a router. (State is simply the condition or quality of an entity at an instant in time and it is usually represented by data in the system; hence, state and data are used interchangeably in this blog).
 - Once the state generation and distribution patterns are modeled correctly, the next step is the design and placement of the processes that work with this state.
 - But processes in a router interact with each other within a node (intra-node) and across the nodes (inter-node), often times moving significant amount of data with specific latency requirements. Hence the next important logical step in the architecture is designing a high-performance messaging infrastructure.
@@ -85,7 +85,7 @@ The Cisco IOS XR Network Operating System (NOS) is developed by not changing the
 - The high availability and upgradeability considerations span across all the stages.
 
 
-In the rest of the blog, we dig into the internals of each of the IOS XR architecture strategy steps, and discuss principles and trade-offs in each step. On this journey, we will try to find useful ways of thinking about IOS XR NOS—not just how it is architected, but also why it is architected that way, and what to look for in a good NOS in general.
+In the rest of the blog, we dig into the internals of each of the IOS XR architecture strategy steps, and discuss principles and trade-offs in each step. On this journey, we will try to find useful ways of thinking about IOS XR NOS—not just how it is architected, but also why it is architected that way, and what **to** look for in a good NOS in general.
 
 
 ## Decoupled Planes Abstraction
@@ -96,7 +96,7 @@ IOS XR is a multi-process, distributed network operating system with tall order 
 - Control plane
 - Data plane
 
-These planes are a categorization of the traffic handled by a router and they provide an abstraction for the architecture of the router software. The planes abstraction helps in hiding a great deal of implementation detail behind a clean and nice facade. The management plane implements the external user interface used by operators to configure and query the system. The control plane is responsible for determining routes to use for traffic flows and generally how traffic should be forwarded. Control plane protocols (e.g. routing protocols) exchange information with other devices. Data plane directs traffic flows through the device. Forwarding is typically performed by hardware (but can be software) and data plane software is responsible for setting up hardware to perform forwarding.
+These planes are a categorization of the **traffic** handled by a router and they provide an abstraction for the architecture of the router software. The planes abstraction helps in hiding a great deal of implementation detail behind a clean and nice facade. The management plane implements the external user interface used by operators to configure and query the system. The control plane is responsible for determining routes to use for traffic flows and generally how traffic should be forwarded. Control plane protocols (e.g. routing protocols) exchange information with other devices. Data plane directs traffic flows through the device. Forwarding is typically performed by hardware (but can be software) and data plane software is responsible for setting up hardware to perform forwarding.
 
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/4_arch.png){: .align-center}
@@ -109,9 +109,9 @@ While the above three planes are perhaps more well known, there is a relatively 
 
 ## Scalable, Available State/Data Management Patterns
 
-A NOS in a router produces a lot of state. This router state is created by external inputs (sourced state) as well as internal code flow (generated state). 
+A NOS in a router produces a lot of _state_. This router state is created by external inputs (_sourced state_) as well as internal code flow (_generated state_). 
 
-Some examples of this state/data are configuration data, routing data, interfaces data, high-availability data, feature data (ACL, QoS etc.), statistics, protocol data, environmental data, platform data, operational data etc.  This data, depending on its type, has different access patterns (most data is accessed only by a few entities in the cluster, and that there is a very limited set of data that is accessed very broadly), frequency patterns (a few data items that are going to be very frequently accessed and the vast majority that will be rarely accessed), data set sizes (large routing tables, huge operational data, small configuration etc.) and so on. This influences the data partitioning/placing as well as data distribution and access mechanisms by different entities in the router cluster (discussed a bit later in this blog).
+Some examples of this state/data are configuration data, routing data, interfaces data, high-availability data, feature data (ACL, QoS etc.), statistics, protocol data, environmental data, platform data, operational data etc.  This data, depending on its type, has different _access patterns_ (most data is accessed only by a few entities in the cluster, and that there is a very limited set of data that is accessed very broadly), _frequency patterns_(a few data items that are going to be very frequently accessed and the vast majority that will be rarely accessed), data set sizes (large routing tables, huge operational data, small configuration etc.) and so on. This influences the data _partitioning/placing_ as well as _data distribution_ and access mechanisms by different entities in the router cluster (discussed a bit later in this blog).
 
 In order to make the overall system scalable and highly available, the following architecture patterns are built into the IOS XR after taking into account the state/data attributes mentioned above:
 
@@ -138,11 +138,11 @@ Carefully designed state caching mechanisms at appropriate nodes in the cluster.
 
 ### State replication and consistency mechanisms
 
-Replication is the process of synchronizing several copies of the same state located at different nodes in the router cluster and is used to increase the availability of data and to speed query evaluation. This is a fundamental requirement for IOS XR and provides a generic replication and consistency management scheme for multiple copies of an opaque data set. It supports and scales well for multi-chassis systems providing an asynchronous 1:N replication method that spans one or more chassis.
+**Replication** is the process of synchronizing several copies of the same state located at different nodes in the router cluster and is used to increase the availability of data and to speed query evaluation. This is a fundamental requirement for IOS XR and provides a generic replication and consistency management scheme for multiple copies of an opaque data set. It supports and scales well for multi-chassis systems providing an asynchronous 1:N replication method that spans one or more chassis.
 
-IOS XR also studied various consistency models in the context of distributed router cluster and designed its infrastructure so that applications can choose the required consistency model based on their needs. This is akin to Amazon's Dynamo providing various consistency models and letting application choose the required consistency model while taking into account its availability, performance etc., metrics.
+IOS XR also studied various **consistency** models in the context of distributed router cluster and designed its infrastructure so that applications can choose the required consistency model based on their needs. This is akin to Amazon's Dynamo providing various consistency models and letting application choose the required consistency model while taking into account its availability, performance etc., metrics.
 
-IOS XR also provides distributed virtual file system built on top of its replication framework. The motivation for this distributed file system lies in the high availability requirements of IOS XR router clusters. Nodes can go down and come back online at any time. Applications on these nodes need to access files in a location-independent manner. Designating special nodes as file servers means the entire system is affected if the special nodes go down. This infrastructure is designed as a decentralized as all replicas are designed as connectionless, anonymous peers.
+IOS XR also provides **distributed virtual file system** built on top of its replication framework. The motivation for this distributed file system lies in the high availability requirements of IOS XR router clusters. Nodes can go down and come back online at any time. Applications on these nodes need to access files in a location-independent manner. Designating special nodes as file servers means the entire system is affected if the special nodes go down. This infrastructure is designed as a decentralized as all replicas are designed as connectionless, anonymous peers.
 
 ### User space resident IOS XR state
 
@@ -183,16 +183,16 @@ For scalability, the router cluster processes' load needs to be distributed acro
 - Localization
 - Load distribution
 
-The first distribution model uses localization, which performs processing and storage closer to the resource. With this model, a database specific to a node is located on that node. The storage/data part is already addressed in the previous section. Similarly, processes are placed on a node where they have greater interaction with the resource. For example, Address Resolution Protocol (ARP), interface manager (IM), Bidirectional Failure Detection (BFD), adjacency manager, and Forwarding Information Base (FIB) manager are located on the line cards and are responsible only for managing resources and tables on that line card. This enables IOS XR to achieve faster processing and greater scalability.
+The first distribution model uses **localization**, which performs _processing_ and _storage_ closer to the resource. With this model, a database specific to a node is located on that node. The storage/data part is already addressed in the previous section. Similarly, processes are placed on a node where they have greater interaction with the resource. For example, Address Resolution Protocol (ARP), interface manager (IM), Bidirectional Failure Detection (BFD), adjacency manager, and Forwarding Information Base (FIB) manager are located on the line cards and are responsible only for managing resources and tables on that line card. This enables IOS XR to achieve faster processing and greater scalability.
 
-The second distribution model uses load distribution, in which additional route processors (RPs) are added to the system and processes are distributed across different RPs. Routing protocols, management entities, and system processes are examples of processes that can be distributed using this model.
+The second distribution model uses **load distribution**, in which additional route processors (RPs) are added to the system and processes are distributed across different RPs. Routing protocols, management entities, and system processes are examples of processes that can be distributed using this model.
 
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/8_distribution.png){: .align-center}
 
 ## High Performance Messaging Infrastructure
 
-So far, we talked about scalable data partitioning and intelligent process placement. The next key piece is the messaging infrastructure that lets these processes communicate inter-node and intra-node.
+So far, we talked about _scalable data partitioning_ and _intelligent process placement_. The next key piece is the messaging infrastructure that lets these processes communicate inter-node and intra-node.
 
 Messaging is at the core of many architectures including IOS XR and is a difficult problem. Connecting two pieces is fine but connecting hundreds and thousands is a different ball game. If we look at a modular router chassis with 12,16,18 etc., slots and tens/hundreds of processes per slot, we can see that we are already looking at the problem of messaging among hundreds/thousands of end points. These numbers go up further in multi-chassis clusters. There are a variety of applications (routing protocols, RIBs, FIBs, ACL/QoS etc., features, platform applications, interface managers, manageability agents etc.) and their communication requirements vary drastically w.r.t. scale, reliability, performance etc. 
 
@@ -210,7 +210,7 @@ With asynchronous communication the sender and receiver are uncoupled - the send
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/10_async.png){: .align-center}
 
-We in IOS XR have realized very early on (circa 2000) that to make the system scalable, asynchronous communication is a key construct in the system. The IOS XR's Group Communications, which is covered later, kicked off this journey right off the bat for the inter-node IO. Subsequently, due to extensive scalability analysis and experience gained during the CRS multi-chassis development, the Async IO became a key construct for a lot of intra-node communication as well. We found that applications which run with fewer threads have less effect on scheduler latencies, in general, and consequently are less of a burden on the overall system. With asynchronous IPC, the same sender's thread can have multiple outstanding messages at a time - no need for a thread per message being sent as is the case with synchronous IPC.
+We in IOS XR have realized very early on (circa 2000) that to make the system scalable, asynchronous communication is a key construct in the system. The IOS XR's _Group Communications_, which is covered later, kicked off this journey right off the bat for the inter-node IO. Subsequently, due to extensive scalability analysis and experience gained during the CRS multi-chassis development, the Async IO became a key construct for a lot of intra-node communication as well. We found that applications which run with fewer threads have less effect on scheduler latencies, in general, and consequently are less of a burden on the overall system. With asynchronous IPC, the same sender's thread can have multiple outstanding messages at a time - no need for a thread per message being sent as is the case with synchronous IPC.
 
 Hence IOS-XR is designed as a distributed system with loose coupling among various IOS XR instances across nodes. Different IOS XR nodes run independently; there are no master-slave relationships among the different cards running IOS XR code. The statement of loose coupling among the IOS XR nodes is further stated that the different instances of IOS XR can only learn of each other’s state and share data through asynchronous message passing. The asynchronous IO pattern is supported across point-to-point and point-to-multipoint connections.
 
@@ -243,15 +243,12 @@ The following picture depicts open, closed and membership subset groups.
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/12_subset.png){: .align-center}
 
-In terms of drawing parallels with external software, ZeroMQ supports Group Messaging with some of the above features. Many other message brokers today support the Group Communication pattern. Also in IOS XR Group Communications, messages are queued on the subscriber, which attempts to avoid the problem of slow subscribers. ZeroMQ also supports this pattern.
+In terms of drawing parallels with external software, ZeroMQ supports _Group Messaging_ with some of the above features. Many other message brokers today support the Group Communication pattern. Also in IOS XR Group Communications, messages are queued on the subscriber, which attempts to avoid the problem of slow subscribers. ZeroMQ also supports this pattern.
 
 #### Message guarantee semantics
 
 
-
-
-
-IOS XR Group communication supports fire-and-forget, at least one, most and all reliability semantics with respect to the number of far end entities from which the producer needs to receive acknowledgments.
+IOS XR Group communication supports _fire-and-forget_, at least one, most and all reliability semantics with respect to the number of far end entities from which the producer needs to receive acknowledgments.
 
 
 
@@ -276,7 +273,7 @@ The messaging protocols in IOS XR have been developed with the required abstract
 
 ## Data Distribution and Access Design Patterns 
 
-After scalable data partitioning, intelligent process placement to work with that data, high performance messaging infrastructure to enable communication among the processes, we now explore the next important aspect -  the data distribution and access patterns that applications running in an XR system should use.
+After scalable data partitioning, _intelligent process placement_ to work with that data, high performance messaging infrastructure to enable communication among the processes, we now explore the next important aspect -  the _data distribution_ and _access patterns_ that applications running in an XR system should use.
 
 Note that data distribution and access is inherently different from the messaging infrastructure/IPC mechanism – the messaging infrastructure provides a means of communication, it does not define the approach as to how to present data to other parts of the system that need the data, or how an application locates its resources that it needs for its operation. These issues are fundamental to the applications that run in IOS XR and are reflected in the implicit decisions an application is built upon. 
 
@@ -333,7 +330,7 @@ What is the best way to satisfy these requirements? The IOS XR, after a careful 
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/19_dc-broker.png){: .align-center}
 
-In a data-centric approach, IOS XR applications are structured more around the data that is read or written. The identity of the processes that provide or consume the data is hidden in the infrastructure. Data is located by its description and that acts as the rendezvous point for end applications. To that end, it mimics the publisher-subscriber model – more popularly known as “pub-sub”. Since processes that share data will not be connecting to each other to exchange data, this model is characterized by a looser coupling between processes exchanging data.
+In a _data-centric_ approach, IOS XR applications are structured more around the data that is read or written. The identity of the processes that provide or consume the data is hidden in the infrastructure. Data is located by its description and that acts as the rendezvous point for end applications. To that end, it mimics the publisher-subscriber model – more popularly known as “pub-sub”. Since processes that share data will not be connecting to each other to exchange data, this model is characterized by a looser coupling between processes exchanging data.
 
 The time, space and synchronization decoupling is achieved in IOS XR systems via a broker between producers and consumers. 
 
@@ -361,7 +358,7 @@ That is a mouthful of a description for SysDB but each word in there is importan
 
 - Logically centralized, physically distributed
 
-The configuration and operational data is eventually consumed by various manageability agents interacting with the router on the northbound side. From operations point of view,  it is hugely important to present the manageability agents the configuration/operational data in a centralized fashion irrespective of the internal implementation.  But internally the datastore should be distributed to achieve the required scalability, reliability and responsiveness goals of large systems. IOS XR designed SysDB as a scalable distributed data store that presents a single logical view for the whole system's configuration and operational data. Data is partitioned according to the principles mentioned in the earlier section. Logically centralized/physically distributed is a concept that we see these days being used in many SDN Controllers as they try to present one logical global view of the network state while physically distributing the state across multiple nodes.
+The configuration and operational data is eventually consumed by various manageability agents interacting with the router on the northbound side. From operations point of view,  it is hugely important to present the manageability agents the configuration/operational data in a centralized fashion irrespective of the internal implementation.  But internally the datastore should be distributed to achieve the required scalability, reliability and responsiveness goals of large systems. IOS XR designed SysDB as a scalable _distributed data store_ that presents a _single logical view_ for the whole system's configuration and operational data. Data is partitioned according to the principles mentioned in the earlier section. Logically centralized/physically distributed is a concept that we see these days being used in many SDN Controllers as they try to present one logical global view of the network state while physically distributing the state across multiple nodes.
 
 - Scalable
 
@@ -369,7 +366,7 @@ SysDB is scalable to large number of nodes, large sets of configuration, high vo
 
 One can apply more than two million lines of configuration and IOS XR works without a hiccup! One can retrieve large amounts of operational data from SysDB easily. This scalability can be attributed to proper data partition and distribution of the required processing of the same across the available compute.
 
-Due to carefully designed shared state concurrency and data/processing load distribution across the compute, many applications access the data in parallel yielding greater scalability.
+Due to carefully designed shared _state concurrency_ and _data/processing load distribution_ across the compute, many applications access the data in parallel yielding greater scalability.
 
 - Neutral
 
@@ -387,7 +384,7 @@ The SysDB data is stored in memory (RAM). This is critical for the required perf
 
 - Pub-sub
 
-SysDB is a hierarchical topic based publish-subscribe mechanism that decouples producers and consumers. It is designed to store fairly static data as well as dynamic, fast-changing  and/or high volume data. Subscribers are usually interested in particular events or event patterns, and not in all events. There are different ways of specifying the events of interest, like topic-based, and more sophisticated content-based. In the simplest form, a topic is nothing but a unique string name; every topic is an event service on its own at which publishers and subscribers meet. In SysDB, the topics are unique string tuples. Topic name tuples can also be searched using wildcards, which offer the possibility to subscribe and publish to several topics whose names match a given set of keywords, like an entire sub tree or a specific level in the hierarchy. The actual data format stored in the leaves of the namespace tree is opaque to SysDB.
+SysDB is a hierarchical topic based _publish-subscribe_ mechanism that decouples producers and consumers. It is designed to store fairly static data as well as dynamic, fast-changing  and/or high volume data. Subscribers are usually interested in particular events or event patterns, and not in all events. There are different ways of specifying the events of interest, like topic-based, and more sophisticated _content-based_. In the simplest form, a topic is nothing but a unique string name; every topic is an event service on its own at which publishers and subscribers meet. In SysDB, the topics are unique string tuples. Topic name tuples can also be searched using wildcards, which offer the possibility to subscribe and publish to several topics whose names match a given set of keywords, like an entire sub tree or a specific level in the hierarchy. The actual data format stored in the leaves of the namespace tree is opaque to SysDB.
 
 - Highly Available
 
@@ -398,7 +395,7 @@ Active/standby HA is supported.
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/22_proc-centric.png){: .align-center}
 
-In the process-centric model, specific processes own the data, and any process interested in the data must contact the owning process to retrieve or update the data. Processes discover each other through a distributed directory services and register with each other for their interest on data.
+In the process-centric model, specific processes own the data, and any process interested in the data must contact the owning process to retrieve or update the data. Processes discover each other through a _distributed directory services_ and register with each other for their interest on data.
 
 One main benefit of the process-centric approach is the ability of the consumer to efficiently get liveness information about the producer. In cases where that liveness impacts the usability of the data, this is essential. This is not possible in a true data-centric system, as the producer is kept anonymously behind the publishing mechanism.
 
@@ -412,17 +409,17 @@ There are many use cases among router applications where process-centric model t
 
 
 
-IOS XR is a modular system with separate and upgradeable components.
+IOS XR is a _modular system_ with separate and _upgradeable components_.
 
 The fact that IOS XR services run outside of the kernel in separate address spaces means that the crash of an IOS XR process is isolated and does not crash the system and, in general, does not crash other processes. Thus, a measure of fault isolation is available and it can be exploited for purposes of service upgrade. Restartable processes are a major aspect of the high availability of an IOS XR system and all IOS XR processes are required to be restartable.
 
-Decoupled planes abstraction, explained earlier, also helps in the high availability of the system.
+_Decoupled planes abstraction_, explained earlier, also helps in the high availability of the system.
 
-For restart and redundancy support, in general, checkpointing and replication services for local as well as remote checkpointing/replication are available so that restarted applications can start up warm or even hot. Replication services that allow checkpointing to more than one replica at a time are also available.
+For restart and redundancy support, in general, _checkpointing_ and _replication_ services for local as well as remote checkpointing/replication are available so that restarted applications can start up warm or even hot. Replication services that allow checkpointing to more than one replica at a time are also available.
 
-IOS XR also supports many levels of redundancy in the system, including switch-over of paired RPs, OIR scenarios and process-level and role redundancy.
+IOS XR also supports many levels of _redundancy_ in the system, including switch-over of paired RPs, OIR scenarios and process-level and role redundancy.
 
-IOS XR has runtime monitoring of CPU and memory resources, so that applications that are using up too much of either of these system resources may be terminated or have their scheduling semantics modified to reduce their impact on the rest of that node.
+IOS XR has _runtime monitoring_ of CPU and memory resources, so that applications that are using up too much of either of these system resources may be terminated or have their scheduling semantics modified to reduce their impact on the rest of that node.
 
 IOS XR also supports NSF (Non-stop Forwarding), GR protocols and NSR (Non-stop Routing).
 
@@ -432,15 +429,15 @@ The overall coordination of a router cluster, comprised of either single chassis
 
 The modularity of IOS XR makes it possible to upgrade individual or smaller pieces of the software. That is, the same architectural features that accomplish fault isolation can also be exploited to achieve a finer-grain level of software upgradeability. The problem of software upgradeability starts at the smallest unit of software divisibility and goes to collections of these units. It is not at all a given with an IOS XR system that a software upgrade has much of an impact on the system. Much effort continually goes into reducing the impact of software upgrades, and it is the architecture of an IOS XR system, as well as the software organization, that enables this process.
 
-Because much of an IOS XR process’s code may actually reside in shared libraries/DLLs, it is possible to replace/upgrade a portion of a process’s code by loading a new DLL. Because IOS XR processes are restartable, all that is required to pick up a new version of a DLL is to restart a process. Even some IOS XR processes do not restart, but simply unload and reload newer versions of DLLs.
+Because much of an IOS XR process’s code may actually reside in _shared libraries_/DLLs, it is possible to replace/upgrade a portion of a process’s code by loading a new DLL. Because IOS XR processes are restartable, all that is required to pick up a new version of a DLL is to restart a process. Even some IOS XR processes do not restart, but simply unload and reload newer versions of DLLs.
 
 The fundamental building block of IOS XR is the component. This is the minimum version-able unit of software. A component is potentially field replaceable. A component may contain a process’s executable file, DLLs for sharing code between processes, binary files for implementing a portion of the CLI, text files describing configuration rules, or other related data. A typical example of an IOS XR component is Border Gateway Protocol (BGP). The BGP is a component in the Cisco IOS XR system that includes the BGP process, the configuration and operational models and associated processes.
 
-IOS XR software is organized into packages at the highest level. Packages are a collection of components and contain meta-data that indicates the compatibility of the components in the package with other components. Packages contain features that can be installed/activated/deactivated at runtime on an individual node, a set of nodes, or across the entire IOS XR system.
+IOS XR software is organized into _packages_ at the highest level. Packages are a collection of components and contain meta-data that indicates the compatibility of the components in the package with other components. Packages contain features that can be installed/activated/deactivated at runtime on an individual node, a set of nodes, or across the entire IOS XR system.
 
 ## Conclusion
 
-The blog started off by giving a brief introduction to IOS XR's rapid evolution over the years. It then explained the architecture strategy via five steps - decoupled plane abstractions, state management, process distribution, high performance messaging infrastructure and data distribution/access patterns. It also looked into the high availability and upgradeability aspects of IOS XR that span across the various architecture stages. This logical sequencing, followed by details on each, hopefully gave you a better perspective of the design thought process.
+The blog started off by giving a brief introduction to IOS XR's rapid evolution over the years. It then explained the architecture strategy via five steps - _decoupled plane abstractions, state management, process distribution, high performance messaging infrastructure and data distribution/access patterns._ It also looked into the high availability and upgradeability aspects of IOS XR that span across the various architecture stages. This logical sequencing, followed by details on each, hopefully gave you a better perspective of the design thought process.
 
 I hope this blog gave good insights into various powerful architectural patterns built into IOS XR and how the IOS XR has pioneered various popular scalable and highly available frameworks in the context of a NOS. More importantly, it tries to give a sense of what it takes to build a carrier grade NOS and how much of a key role the infrastructure plays in a well designed NOS. 
 
