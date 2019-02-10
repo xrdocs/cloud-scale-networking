@@ -65,7 +65,7 @@ _Evolution from CLI/SNMP to Telemetry/Programmable Interfaces_
 CLI and SNMP are the traditional router management interfaces. But over the last few years, there is a major push towards programmable interfaces via YANG models and data streaming via Telemetry. The IOS XR has evolved to support this need by leveraging the strengths of its model driven datastore SysDB (more on this later) and extending its capabilities.
 Each of the above is a significant evolution and demonstrates IOS XR's ability to evolve and take on new challenges.
 
-Each of the above is a significant evolution and demonstrates IOS XR's ability to evolve and take on new challenges.
+Each of the above is a significant evolution and demonstrates IOS XR's ability to evolve and take on new challenges ✅
 {: .notice--success}
 
 
