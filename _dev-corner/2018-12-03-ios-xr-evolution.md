@@ -165,10 +165,55 @@ Microservice is a hot buzzword in the industry today. There is no golden rule fo
 | The system should have automated testing in place.                                                                                                                                    | Many automated testing suites exist and more are being developed.                                                                                                                                                                                                                                                                                                                                                     |
 | Two or more loosely coupled components                                                                                                                                                | The smallest software building block is a component. A component can be a DLL or process. Each component has metadata which defines the characteristic of that component.                                                                                                                                                                                                                                             |
 
+
+The following is another way to depict the configuration/operational state distribution in a IOS XR router cluster:
+
+
+
+
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/6_pieces.png){: .align-center}
+
+Thus IOS XR is to be viewed as a fully distributed system with loose coupling between IOS XR instances or nodes. The different IOS XR nodes run independently and the data partitioning also helps with fault tolerance/high-availability and low latency.
+
+
+## Process Distribution Across Available Compute
+
+For scalability, the router cluster processes' load needs to be distributed across the available compute. The IOS XR uses two modes of distribution.
+
+- Localization
+- Load distribution
+
+The first distribution model uses localization, which performs processing and storage closer to the resource. With this model, a database specific to a node is located on that node. The storage/data part is already addressed in the previous section. Similarly, processes are placed on a node where they have greater interaction with the resource. For example, Address Resolution Protocol (ARP), interface manager (IM), Bidirectional Failure Detection (BFD), adjacency manager, and Forwarding Information Base (FIB) manager are located on the line cards and are responsible only for managing resources and tables on that line card. This enables IOS XR to achieve faster processing and greater scalability.
+
+The second distribution model uses load distribution, in which additional route processors (RPs) are added to the system and processes are distributed across different RPs. Routing protocols, management entities, and system processes are examples of processes that can be distributed using this model.
+
+
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/7_partitioning.png){: .align-center}
+
+## High Performance Messaging Infrastructure
+
+So far, we talked about scalable data partitioning and intelligent process placement. The next key piece is the messaging infrastructure that lets these processes communicate inter-node and intra-node.
+
+Messaging is at the core of many architectures including IOS XR and is a difficult problem. Connecting two pieces is fine but connecting hundreds and thousands is a different ball game. If we look at a modular router chassis with 12,16,18 etc., slots and tens/hundreds of processes per slot, we can see that we are already looking at the problem of messaging among hundreds/thousands of end points. These numbers go up further in multi-chassis clusters. There are a variety of applications (routing protocols, RIBs, FIBs, ACL/QoS etc., features, platform applications, interface managers, manageability agents etc.) and their communication requirements vary drastically w.r.t. scale, reliability, performance etc. 
+
+For example, the following picture shows several dimensions which have been analyzed extensively across various applications while developing and evolving the IOS XR's messaging infrastructure and some resulting design patterns:
+
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/8_distribution.png){: .align-center}
+
+Rest of this section looks at the following key design patterns that IOS XR has pioneered.
+
+### Asynchronous IO
+
+Synchronous programming is arguably easier to reason about and implement. Synchronous communication requires that the sender and the receiver be coupled together during the message exchange. Since the receiver may not be ready to receive a message when it is sent, synchronous communication requires that the sender be blocked until the message is processed by the receiver, and it is some sort of acknowledgement or reply from the receiver that allows the sender to be unblocked. Thus, with synchronous IPC, the sender and receiver are essentially in lockstep for the duration of the message exchange. 
+
+With asynchronous communication the sender and receiver are uncoupled - the sender does not know when the receiver processed a message that was sent. The async communication results in better IPC throughput, less latency and better use of allocated scheduler time slice resulting in less thrashing of processes involved in IPC and better use of multi-core environment. Asynchronous IPC allows an application to function with a minimal number of threads.  
+
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/9_requirements.png){: .align-center}
+
+### Group communications
+### Messaging protocols with pluggable transports
+
+
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/10_async.png){: .align-center}
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/11_group-comm.png){: .align-center}
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/12_subset.png){: .align-center}
