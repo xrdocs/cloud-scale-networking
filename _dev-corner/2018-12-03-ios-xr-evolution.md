@@ -69,3 +69,30 @@ Each of the above is a significant evolution and demonstrates IOS XR's ability t
 {: .notice--success}
 
 
+## The IOS XR Architecture Strategy
+
+So how does one architect a carrier grade NOS?
+
+The Cisco IOS XR Network Operating System (NOS) is developed by not changing the solution to an existing problem but rather asking a different question by looking at the customer's networking needs for decades to come.  The high level and heavily simplified IOS XR architecture strategy can be explained via the following six steps:
+
+![]({{site.baseurl}}/images/dev-corner/xr_ev/3_strategy.png){: .align-center}
+
+- Appropriate higher level abstractions capture the essence of the system and they are key in driving the subsequent architecture/design patterns.
+- Once abstractions are in place, IOS XR has focused on large state management in a router. (State is simply the condition or quality of an entity at an instant in time and it is usually represented by data in the system; hence, state and data are used interchangeably in this blog).
+- Once the state generation and distribution patterns are modeled correctly, the next step is the design and placement of the processes that work with this state.
+- But processes in a router interact with each other within a node (intra-node) and across the nodes (inter-node), often times moving significant amount of data with specific latency requirements. Hence the next important logical step in the architecture is designing a high-performance messaging infrastructure.
+- The final step, once the messaging infrastructure is in place, is to understand different data access and distribution patterns of various applications over the messaging infrastructure and design those constructs.
+- The high availability and upgradeability considerations span across all the stages.
+
+
+In the rest of the blog, we dig into the internals of each of the IOS XR architecture strategy steps, and discuss principles and trade-offs in each step. On this journey, we will try to find useful ways of thinking about IOS XR NOS—not just how it is architected, but also why it is architected that way, and what to look for in a good NOS in general.
+
+
+## Decoupled Planes Abstraction
+
+IOS XR is a multi-process, distributed network operating system with tall order goals as mentioned earlier. In order to deliver on those goals, strong architectural abstractions are necessary. The IOS XR is architecturally divided into the following three planes:
+
+- Management plane
+- Control plane
+- Data plane
+
