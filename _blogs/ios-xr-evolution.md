@@ -5,7 +5,8 @@ title: IOS XR Evolution
 position: hidden
 excerpt: >-
            In this blog we will discuss IOS XR’s software architecture,
-           that is typically invisible, and describe IOS XR's architecture from its foundations up.author: Jag Tangirala
+           that is typically invisible, and describe IOS XR's architecture from its foundations up.
+author: Jag Tangirala
 tags:
   - iosxr
   - cisco
