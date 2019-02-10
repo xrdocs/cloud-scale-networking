@@ -36,3 +36,5 @@ Before we get into the details of the above IOS XR architecture patterns in deta
 
 
 
+
+
