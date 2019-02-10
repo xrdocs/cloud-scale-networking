@@ -350,7 +350,9 @@ ENS, on the other hand is a decentralized flat topic based pub-sub messaging inf
 
 If we compare between ENS and SysDB, ENS creates direct links between distributed nodes, whereas SysDB is a logically centralized node which must be written to then read from. In this respect, this is similar to the comparison between ZeroMQ and Redis respectively. ZeroMQ/ENS is primarily a messaging infrastructure where as Redis/SysDB is primarily a database. SysDB is covered in more detail in the following information section.
 
-**SysDB** - Logically centralized, physically distributed, scalable, neutral, in-memory, highly available, model driven, pub-sub datastore
+**SysDB** - Logically centralized, physically distributed, scalable, neutral, in-memory, highly available, model driven, pub-sub datastore 
+{: .notice--primary}
+
 
 That is a mouthful of a description for SysDB but each word in there is important and collectively they define the concept and the power of SysDB. Configuration and operational data is significant part of the router state mentioned above and the IOS XR's SysDB is an advanced datastore to hold this data in a NOS.
 
