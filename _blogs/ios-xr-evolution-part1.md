@@ -36,36 +36,6 @@ Before we get into the details of the above IOS XR architecture patterns in deta
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/2_table.png){: .align-center}
 
-_Evolution from Core to Core and Edge_
-
-
-IOS XR started off its journey as a NOS for high-end core routers like CRS and moved into the edge domain with the ASR9K series. The SP carrier class router demands from core and edge domains, and differing platform variations/features/packages between these two domains, have validated and strengthened  IOS XR's modularity.
-
-
-_Evolution from QNX to Linux_
-
-IOS XR started with QNX as its base OS and then moved to the 64-bit Linux as the base OS. _This transition affects the IOS XR's event management, timers, syslog, messaging, pulses, file system, resource management, drivers etc._, but due to the IOS XR's modular architecture, the transition turned out to be smooth. 
-
-_Evolution from modular to small form factor systems:_
-
-Another evolution the IOS XR has made is its transition to support small form factor platforms (single CPU, 1RU/2RU boxes) and centralized platforms along with modular platforms where it started its journey. This reflects the IOS XR's ability to not just scale up but scale down.
-
-_Evolution from routing to routing and optical networking products_
-
-IOS XR has branched itself to support NCS400, NCS1000 like optical networking products. This required bringing in various optical networking specific software stacks and modularizing/removing some routing stacks/features.
-
-_Evolution from custom silicon to merchant silicon_
-
-IOS XR is designed to originally support high performance and feature/resource rich custom ASICs as the forwarding engines. Yet recently it has made a smooth transition to support various merchant silicon ASICs and forwarding paradigms. This is possible due to proper hardware forwarding abstractions and modularity built into the IOS XR's architecture.
-
-_Evolution from Cisco only hardware to Cisco hardware, Whiteboxes and virtual routers_
-
-Supporting whiteboxes or running as a virtual router requires right hardware abstractions at the lower layers. IOS XR has recently evolved to support these use cases.
-
-_Evolution from CLI/SNMP to Telemetry/Programmable Interfaces_
-
-CLI and SNMP are the traditional router management interfaces. But over the last few years, there is a major push towards programmable interfaces via YANG models and data streaming via Telemetry. The IOS XR has evolved to support this need by leveraging the strengths of its model driven datastore SysDB (more on this later) and extending its capabilities.
-Each of the above is a significant evolution and demonstrates IOS XR's ability to evolve and take on new challenges.
 
 Each of the above is a significant evolution and demonstrates IOS XR's ability to evolve and take on new challenges ✅
 {: .notice--success}
