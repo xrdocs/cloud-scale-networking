@@ -1,11 +1,12 @@
 ---
-published: true
+published: false
 date: '2018-12-03 10:23 -0800'
 title: IOS XR Evolution
 position: hidden
 excerpt: >-
-           In this blog we will discuss IOS XR’s software architecture,
-           that is typically invisible, and describe IOS XR's architecture from its foundations up.author: Jag Tangirala
+  In this blog we will discuss IOS XR’s software architecture, that is typically
+  invisible, and describe IOS XR's architecture from its foundations up.author:
+  Jag Tangirala
 tags:
   - iosxr
   - cisco
@@ -442,5 +443,4 @@ The blog started off by giving a brief introduction to IOS XR's rapid evolution 
 
 I hope this blog gave good insights into various powerful architectural patterns built into IOS XR and how the IOS XR has pioneered various popular scalable and highly available frameworks in the context of a NOS. More importantly, it tries to give a sense of what it takes to build a carrier grade NOS and how much of a key role the infrastructure plays in a well designed NOS. 
 
-The IOS XR anticipated and baked in many architectural patterns that are considered trendy and cutting edge today - and the IOS XR evolution continues as networking scene keeps changing around it as it has been over the last several years.  IOS XR kept the foundations simple which made complex things possible over the years. These solid foundations and continuous evolutions made IOS XR the best NOS for decades to come. For IOS XR, the change is a process and the future is the destination. 
-
+The IOS XR anticipated and baked in many architectural patterns that are considered trendy and cutting edge today - and the IOS XR evolution continues as networking scene keeps changing around it as it has been over the last several years.  IOS XR kept the foundations simple which made complex things possible over the years. These solid foundations and continuous evolutions made IOS XR the best NOS for decades to come. For IOS XR, the change is a process and the future is the destination.
