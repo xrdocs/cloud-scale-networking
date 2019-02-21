@@ -30,6 +30,9 @@ IOS XR is designed taking into account the data distribution and access patterns
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/15_data.png){: .align-center}
 
+{% capture "connect_text" %}
+
+
 ### Data Distribution and Access Characteristics
 
 #### Data Distribution Characteristics
@@ -63,6 +66,13 @@ Similarly, frequency of access of data items is highly variable, with a few data
 
 For some data, consumer consumes the data obtained from the producer as is. In some cases, consumers need to transform the received data.
 
+{% endcapture %}
+
+
+<div class="notice--info">
+  {{ connect_text | markdownify }}
+ </div>
+ 
 ### Design Patterns
 
 Based on the above examples, we can observe some usage patterns. There is small, frequently and broadly accessed data and large, infrequently and sparsely accessed data. There are large volumes of data that need to be moved to a lot of nodes and there are small volumes of data that need to be moved to a lot of nodes.
