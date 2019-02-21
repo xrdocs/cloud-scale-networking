@@ -73,7 +73,7 @@ For some data, consumer consumes the data obtained from the producer as is. In s
   {{ connect_text | markdownify }}
  </div>
  
-### Design Patterns
+#### Design Patterns
 
 Based on the above examples, we can observe some usage patterns. There is small, frequently and broadly accessed data and large, infrequently and sparsely accessed data. There are large volumes of data that need to be moved to a lot of nodes and there are small volumes of data that need to be moved to a lot of nodes.
 
@@ -83,7 +83,7 @@ In some cases, once data moves to a location, it needs to stay there in a databa
 
 What is the best way to satisfy these requirements? The IOS XR, after a careful consideration of data access metrics like the breadth of access, data size, frequency of access, degree of producer/consumer decoupling, liveness, data transformation requirements, is built around the following two fundamental data distribution/access patterns:
 
-#### Data-centric
+##### Data-centric
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/19_dc-broker.png){: .align-center}
 
@@ -158,7 +158,7 @@ Active/standby HA is supported.
  </div>
 
 
-#### Process-centric
+##### Process-centric
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/22_proc-centric.png){: .align-center}
 
