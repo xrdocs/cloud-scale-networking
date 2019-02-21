@@ -90,7 +90,7 @@ In order to make the overall system scalable and highly available, the following
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/6_pieces.png){: .align-center}
 
 
-### Distributed state partitioning
+#### Distributed state partitioning
 
 It's available across the available compute nodes (route processors, line card processors, external compute processors etc., across the route cluster) 
 
@@ -100,15 +100,15 @@ It's available across the available compute nodes (route processors, line card p
 
 For example, system databases specific to the line card, such as interface-related configurations, interface states, and so on, are stored on the line card. Run-time configuration flows to the node (route processor, line card etc.) where it is applicable.
 
-### Shared state concurrency
+#### Shared state concurrency
 
 When two or more processes have some shared state between them, XR is designed for concurrent data access by multiple clients.  For example, configuration and operational data can be accessed by multiple internal/external clients simultaneously.
 
-### Caching mechanisms
+#### Caching mechanisms
 
 Carefully designed state caching mechanisms at appropriate nodes in the cluster.
 
-### State replication and consistency mechanisms
+#### State replication and consistency mechanisms
 
 **Replication** is the process of synchronizing several copies of the same state located at different nodes in the router cluster and is used to increase the availability of data and to speed query evaluation. This is a fundamental requirement for IOS XR and provides a generic replication and consistency management scheme for multiple copies of an opaque data set. It supports and scales well for multi-chassis systems providing an asynchronous 1:N replication method that spans one or more chassis.
 
@@ -116,13 +116,13 @@ IOS XR also studied various **consistency** models in the context of distributed
 
 IOS XR also provides **distributed virtual file system** built on top of its replication framework. The motivation for this distributed file system lies in the high availability requirements of IOS XR router clusters. Nodes can go down and come back online at any time. Applications on these nodes need to access files in a location-independent manner. Designating special nodes as file servers means the entire system is affected if the special nodes go down. This infrastructure is designed as a decentralized as all replicas are designed as connectionless, anonymous peers.
 
-### User space resident IOS XR state
+#### User space resident IOS XR state
 
 This dimension deals with distribution of state within a node between user and kernel spaces. Since IOS XR has started its journey with QNX micro kernel, the IOS XR's state resides completely outside the kernel. IOS XR has maintained this pattern as it moved from QNX to Linux as its base operating system. 
 
 This clean separation between user and kernel space enables several advantages like better stability of the system, lot more freedom to bring in, modify and optimize user space code and increased modularity and independent upgradeability of kernel/user space code modules. For example, the IOS XR TCP/IP stack is completely home grown and resides in the user space. It is designed while keeping high end NOS in mind with a lot of optimizations/features. This stack plays a key role in IOS XR BGP and various other protocols/features' high performance numbers.
 
-### Microservices
+#### Microservices
 
 Microservice is a hot buzzword in the industry today. There is no golden rule for the architecture in microservice. If we go by different architectures implemented in the industry, we can see everybody has their own flavor of microservice architecture. There is no perfect or certain definition of microservice. Rather microservices architecture can be summarized by certain characteristics or principles. Of course, when IOS XR was designed, there was no microservices buzzword, but since the IOS XR focused on modularity, loose coupling, high availability etc., many of the microservice characteristics are built into the IOS XR's architecture. For example, the following table below captures key microservice characteristics and the IOS XR's corresponding behavior against each item:
 
