@@ -148,7 +148,7 @@ The following is another way to depict the configuration/operational state distr
 Thus IOS XR is to be viewed as a fully distributed system with loose coupling between IOS XR instances or nodes. The different IOS XR nodes run independently and the data partitioning also helps with fault tolerance/high-availability and low latency.
 
 
-## Process Distribution Across Available Compute
+### Process Distribution Across Available Compute
 
 For scalability, the router cluster processes' load needs to be distributed across the available compute. The IOS XR uses two modes of distribution.
 
