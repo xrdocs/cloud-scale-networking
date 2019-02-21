@@ -33,9 +33,9 @@ IOS XR is designed taking into account the data distribution and access patterns
 {% capture "connect_text" %}
 
 
-### Data Distribution and Access Characteristics
+#### Data Distribution and Access Characteristics
 
-#### Data Distribution Characteristics
+##### Data Distribution Characteristics
 
 Data distribution has four sub characteristics - size of the data, number of consumers, liveness of producers/consumers and tracking of producer.
 
@@ -58,7 +58,7 @@ Many of the applications would also want to track the producers of the data for 
 In some cases, the data producer needs to be aware of individual consumers. In most cases, the producer needs to know only about the aggregate set of consumers, but in some cases, more intimate knowledge of the consumer is needed. For example, consider the case of RIB downloading routes to various FIBs across the routing cluster. Typically, this is done by putting all the consumers in a group and multicasting to them. If one consumer restarts, the producer should start a separate download session to that consumer so that it is aware of all the updates thus far while continuing to update the remaining consumers.  The producer cannot suspend downloads to the other consumers because network events may happen at the same time and delaying downloads results in an unacceptable network convergence.  Once the restarting consumer catches up with the rest of the group, the producer has to merge the consumer back with the larger multicast group.
 
 
-#### Data Access Characteristics
+##### Data Access Characteristics
 
 On the data access front, if we look at breadth of data access, most data is accessed only by a few entities in the router cluster, and that there is a very limited set of data that is accessed very broadly. One fine example for this is BGP’s private internal RIB structures. This data is referenced solely by BGP itself and the manageability agents.  It is extremely large, and in many cases, is the majority of the data in the router cluster.  BGP uses this data for computing routes and then injects specific paths into the RIB.  Feature (ACL, QoS etc.) data is another example of data with small breadth of access in terms of number clients. By contrast, there are other data items, such as the interface database, system configuration etc., that are referenced by almost every other process in the router cluster. 
 
