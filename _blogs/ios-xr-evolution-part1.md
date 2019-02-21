@@ -243,4 +243,4 @@ The messaging protocols in IOS XR have been developed with the required abstract
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/14_messaging.png){: .align-center}
 
-Enough for the first part. Time to take a break, refill your coffee and proceed with [second part](https://xrdocs.io/cloud-scale-networking/blogs/ios-xr-evolution-part2/). 
+Enough for the first part. Take a break, refill your coffee and proceed with [second part](https://xrdocs.io/cloud-scale-networking/blogs/ios-xr-evolution-part2/) to learn more about other concepts, such as data distribution & access design patterns, HA foundation and upgrade architecture. 
