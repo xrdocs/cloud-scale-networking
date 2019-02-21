@@ -18,7 +18,7 @@ tags:
 This is part two of a blog about IOS XR’s software architecture. If you missed part 1, it's better to start [with it.](https://xrdocs.io/cloud-scale-networking/blogs/ios-xr-evolution-part1/)                                                                                                                                       
 
 
-## Data Distribution and Access Design Patterns 
+### Data Distribution and Access Design Patterns 
 
 After scalable data partitioning, _intelligent process placement_ to work with that data, high performance messaging infrastructure to enable communication among the processes, we now explore the next important aspect -  the _data distribution_ and _access patterns_ that applications running in an XR system should use.
 
@@ -170,7 +170,7 @@ Since the producer of the data is aware of the data semantics, efficient data st
 
 There are many use cases among router applications where process-centric model turns out to be the best choice and IOS XR makes the optimal use of this construct.
 
-## High Availability Foundation
+### High Availability Foundation
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/23_ha.png){: .align-center}
 
@@ -192,7 +192,7 @@ IOS XR also supports NSF (Non-stop Forwarding), GR protocols and NSR (Non-stop R
 
 The overall coordination of a router cluster, comprised of either single chassis or multiple chassis, requires that there be communications within the cluster, some sense of the topology of the cluster, and some consistent decision making capabilities within the cluster.  To do this, the IOS XR has a top-level control protocol that is responsible for electing an overall leader of the cluster and computing the topology of the cluster. 
 
-## Upgradeability Architecture
+### Upgradeability Architecture
 
 The modularity of IOS XR makes it possible to upgrade individual or smaller pieces of the software. That is, the same architectural features that accomplish fault isolation can also be exploited to achieve a finer-grain level of software upgradeability. The problem of software upgradeability starts at the smallest unit of software divisibility and goes to collections of these units. It is not at all a given with an IOS XR system that a software upgrade has much of an impact on the system. Much effort continually goes into reducing the impact of software upgrades, and it is the architecture of an IOS XR system, as well as the software organization, that enables this process.
 
