@@ -60,7 +60,7 @@ The Cisco IOS XR Network Operating System (NOS) is developed by not changing the
 In the rest of the blog, we dig into the internals of each of the IOS XR architecture strategy steps, and discuss principles and trade-offs in each step. On this journey, we will try to find useful ways of thinking about IOS XR NOS—not just how it is architected, but also why it is architected that way, and what **to** look for in a good NOS in general.
 
 
-## Decoupled Planes Abstraction
+### Decoupled Planes Abstraction
 
 IOS XR is a multi-process, distributed network operating system with tall order goals as mentioned earlier. In order to deliver on those goals, strong architectural abstractions are necessary. The IOS XR is architecturally divided into the following three planes:
 
@@ -68,7 +68,7 @@ IOS XR is a multi-process, distributed network operating system with tall order 
 - Control plane
 - Data plane
 
-These planes are a categorization of the **traffic** handled by a router and they provide an abstraction for the architecture of the router software. The planes abstraction helps in hiding a great deal of implementation detail behind a clean and nice facade. The management plane implements the external user interface used by operators to configure and query the system. The control plane is responsible for determining routes to use for traffic flows and generally how traffic should be forwarded. Control plane protocols (e.g. routing protocols) exchange information with other devices. Data plane directs traffic flows through the device. Forwarding is typically performed by hardware (but can be software) and data plane software is responsible for setting up hardware to perform forwarding.
+These planes are a categorization of the traffic handled by a router and they provide an abstraction for the architecture of the router software. The planes abstraction helps in hiding a great deal of implementation detail behind a clean and nice facade. The management plane implements the external user interface used by operators to configure and query the system. The control plane is responsible for determining routes to use for traffic flows and generally how traffic should be forwarded. Control plane protocols (e.g. routing protocols) exchange information with other devices. Data plane directs traffic flows through the device. Forwarding is typically performed by hardware (but can be software) and data plane software is responsible for setting up hardware to perform forwarding.
 
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/4_arch.png){: .align-center}
@@ -79,7 +79,7 @@ While the above three planes are perhaps more well known, there is a relatively 
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/5_infra.png){: .align-center}
 
-## Scalable, Available State/Data Management Patterns
+### Scalable, Available State/Data Management Patterns
 
 A NOS in a router produces a lot of _state_. This router state is created by external inputs (_sourced state_) as well as internal code flow (_generated state_). 
 
