@@ -73,7 +73,7 @@ These planes are a categorization of the traffic handled by a router and they pr
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/4_arch.png){: .align-center}
 
-While the above three planes are perhaps more well known, there is a relatively less visible Infrastructure Plane behind the three planes, providing various key architecture/design patterns that are the subject of the rest of this blog.
+While the above three planes are perhaps more well known, there is a relatively less visible _Infrastructure Plane_ behind the three planes, providing various key architecture/design patterns that are the subject of the rest of this blog.
 
 
 
