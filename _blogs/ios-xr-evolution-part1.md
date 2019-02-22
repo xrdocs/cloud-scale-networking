@@ -174,6 +174,10 @@ For example, the following picture shows several dimensions which have been anal
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/9_requirements.png){: .align-center}
 
 Rest of this section looks at the following key design patterns that IOS XR has pioneered.
+- Asynchronous IO
+- Group communications
+- Messaging protocols with pluggable transports
+
 
 #### Asynchronous IO
 
