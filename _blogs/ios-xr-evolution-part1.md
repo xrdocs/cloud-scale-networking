@@ -49,12 +49,12 @@ The Cisco IOS XR Network Operating System (NOS) is developed by not changing the
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/3_strategy.png){: .align-center}
 
-- Appropriate higher level abstractions capture the _essence_ of the system and they are key in driving the subsequent architecture/design patterns.
-- Once abstractions are in place, IOS XR has focused on large state management in a router. (State is simply the condition or quality of an entity at an instant in time and it is usually represented by data in the system; hence, state and data are used interchangeably in this blog).
-- Once the state generation and distribution patterns are modeled correctly, the next step is the design and placement of the processes that work with this state.
-- But processes in a router interact with each other within a node (intra-node) and across the nodes (inter-node), often times moving significant amount of data with specific latency requirements. Hence the next important logical step in the architecture is designing a high-performance messaging infrastructure.
-- The final step, once the messaging infrastructure is in place, is to understand different data access and distribution patterns of various applications over the messaging infrastructure and design those constructs.
-- The high availability and upgradeability considerations span across all the stages.
+- Appropriate _higher level abstractions_ capture the essence of the system and they are key in driving the subsequent architecture/design patterns.
+- Once abstractions are in place, IOS XR has focused on large _state management_ in a router. (State is simply the condition or quality of an entity at an instant in time and it is usually represented by data in the system; hence, state and data are used interchangeably in this blog).
+- Once the state generation and distribution patterns are modeled correctly, the next step is the design and _placement of the processes_ that work with this state.
+- But processes in a router interact with each other within a node (intra-node) and across the nodes (inter-node), often times moving significant amount of data with specific latency requirements. Hence the next important logical step in the architecture is designing a _high-performance messaging infrastructure_.
+- The final step, once the messaging infrastructure is in place, is to understand different _data access and distribution patterns_ of various applications over the messaging infrastructure and design those constructs.
+- The _high availability and upgradeability_ considerations span across all the stages.
 
 
 In the rest of the blog, we dig into the internals of each of the IOS XR architecture strategy steps, and discuss principles and trade-offs in each step. On this journey, we will try to find useful ways of thinking about IOS XR NOS—not just how it is architected, but also why it is architected that way, and what to look for in a good NOS in general.
