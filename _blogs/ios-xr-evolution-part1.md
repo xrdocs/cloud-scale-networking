@@ -222,10 +222,10 @@ The following picture depicts open, closed and membership subset groups.
 
 In terms of drawing parallels with external software, ZeroMQ supports _Group Messaging_ with some of the above features. Many other message brokers today support the Group Communication pattern. Also in IOS XR Group Communications, messages are queued on the subscriber, which attempts to avoid the problem of slow subscribers. ZeroMQ also supports this pattern.
 
-    ###### Message guarantee semantics
+###### Message guarantee semantics
 
 
-    IOS XR Group communication supports _fire-and-forget_, at least one, most and all reliability semantics with respect to the number of far end entities from which the producer needs to receive acknowledgments.
+IOS XR Group communication supports _fire-and-forget_, at least one, most and all reliability semantics with respect to the number of far end entities from which the producer needs to receive acknowledgments.
 
 
 
