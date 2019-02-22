@@ -86,6 +86,12 @@ A NOS in a router produces a lot of _state_. This router state is created by ext
 Some examples of this state/data are configuration data, routing data, interfaces data, high-availability data, feature data (ACL, QoS etc.), statistics, protocol data, environmental data, platform data, operational data etc.  This data, depending on its type, has different _access patterns_ (most data is accessed only by a few entities in the cluster, and that there is a very limited set of data that is accessed very broadly), _frequency patterns_(a few data items that are going to be very frequently accessed and the vast majority that will be rarely accessed), data set sizes (large routing tables, huge operational data, small configuration etc.) and so on. This influences the data _partitioning/placing_ as well as _data distribution_ and access mechanisms by different entities in the router cluster (discussed a bit later in this blog).
 
 In order to make the overall system scalable and highly available, the following architecture patterns are built into the IOS XR after taking into account the state/data attributes mentioned above:
+1. Distributed state partitioning
+2. Shared state concurrency
+3. Caching mechanisms
+4. State replication and consistency mechanisms
+5. Use space resident IOS XR state
+6. Microservices
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/6_pieces.png){: .align-center}
 
