@@ -57,7 +57,7 @@ The Cisco IOS XR Network Operating System (NOS) is developed by not changing the
 - The _high availability and upgradeability_ considerations span across all the stages.
 
 
-In the rest of the blog, we dig into the internals of each of the IOS XR architecture strategy steps, and discuss principles and trade-offs in each step. On this journey, we will try to find useful ways of thinking about IOS XR NOS—not just how it is architected, but also why it is architected that way, and what to look for in a good NOS in general.
+In the rest of the blog, we dig into the internals of each of the IOS XR architecture strategy steps, and discuss principles and trade-offs in each step. On this journey, we will try to find useful ways of thinking about IOS XR NOS — not just how it is architected, but also why it is architected that way, and what to look for in a good NOS in general.
 
 
 ### Decoupled Planes Abstraction
