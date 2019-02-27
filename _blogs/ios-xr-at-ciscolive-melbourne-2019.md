@@ -36,6 +36,7 @@ LABSP-2969:  Cisco IOSXRv Installation lab
 
 Tuesday, Mar 05, 2:00 PM - 6:00 PM  
 TECSPG-2397: ASR9000 Evolution for Mass-Scale Modern Network Services  
+by Patrick Warichet, Geoffrey Kim and Yongzhong Peng  
 [https://ciscolive.cisco.com/anz/learn/sessions/session-catalog/?search=TECSPG-2397#/](https://ciscolive.cisco.com/anz/learn/sessions/session-catalog/?search=TECSPG-2397#/)
 
 ### Breakout Sessions
