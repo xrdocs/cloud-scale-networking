@@ -42,7 +42,7 @@ TECSPG-2397: ASR9000 Evolution for Mass-Scale Modern Network Services
 
 Wednesday, Mar 06, 8:30 AM - 10:00 AM  
 BRKSPG-3213: EVPN Deepdive with IOS XR configuration example for service providers Metro and Data Center  
-by Jiri Chaloupka
+by Jiri Chaloupka  
 [https://ciscolive.cisco.com/anz/learn/sessions/session-catalog/?search=BRKSPG-3213#/](https://ciscolive.cisco.com/anz/learn/sessions/session-catalog/?search=BRKSPG-3213#/)
 
 Thursday, Mar 07, 8:30 AM - 10:30 AM  
@@ -56,6 +56,6 @@ by Patrick Warichet
 [https://ciscolive.cisco.com/anz/learn/sessions/session-catalog/?search=BRKSPG-2681#/](https://ciscolive.cisco.com/anz/learn/sessions/session-catalog/?search=BRKSPG-2681#/)
 
 Friday, Mar 08, 9:40 AM - 11:10 AM
-BRKSPG-2682: Spines, Leafs, Trees and Meshes: a comparison of service provider network designs and tradeoffs 
-by LJ Wobker
+BRKSPG-2682: Spines, Leafs, Trees and Meshes: a comparison of service provider network designs and tradeoffs  
+by LJ Wobker  
 [https://ciscolive.cisco.com/anz/learn/sessions/session-catalog/?search=BRKSPG-2682#/](https://ciscolive.cisco.com/anz/learn/sessions/session-catalog/?search=BRKSPG-2682#/)
