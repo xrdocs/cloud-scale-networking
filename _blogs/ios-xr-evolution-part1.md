@@ -121,6 +121,8 @@ The state is partitioned and available across the available compute nodes (route
 
 For example, system databases specific to the line card, such as interface-related configurations, interface states, and so on, are stored on the line card. Run-time configuration flows to the node (route processor, line card etc.) where it is applicable.
 
+The different IOS XR nodes run independently and the data partitioning also helps with fault tolerance/high-availability and low latency.
+
 #### Shared state concurrency
 
 When two or more processes have some shared state between them, IOS XR is designed for concurrent data access by multiple clients.  For example, configuration and operational data can be accessed by multiple internal/external clients simultaneously.
@@ -160,14 +162,6 @@ Microservice is a hot buzzword in the industry today. There is no golden rule fo
 | Two or more loosely coupled components                                                                                                                                                | The smallest software building block is a component. A component can be a DLL or process. Each component has metadata which defines the characteristic of that component.                                                                                                                                                                                                                                             |
 
 
-The following is another way to depict the configuration/operational state distribution in a IOS XR router cluster:
-
-
-
-
-![]({{site.baseurl}}/images/dev-corner/xr_ev/7_partitioning.png){: .align-center}
-
-Thus IOS XR is to be viewed as a fully distributed system with loose coupling between IOS XR instances or nodes. The different IOS XR nodes run independently and the data partitioning also helps with fault tolerance/high-availability and low latency.
 
 
 ### Process Distribution Across Available Compute
