@@ -111,8 +111,8 @@ In order to make the overall system scalable and highly available, the following
 
 The state is partitioned and available across the available compute nodes (route processors, line card processors, external compute processors etc., across the route cluster) as follows: 
 
-1. the sourced state is partitioned across available compute as required. 
-2. the generated state is kept on the source node as much as possible.
+1. sourced state is partitioned across available compute as required. 
+2. generated state is kept on the source node as much as possible.
 3. data is distributed in such a way as to minimize communication among nodes
 
 For example, system databases specific to the line card, such as interface-related configurations, interface states, and so on, are stored on the line card. Run-time configuration flows to the node (route processor, line card etc.) where it is applicable.
