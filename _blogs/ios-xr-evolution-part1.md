@@ -87,6 +87,9 @@ While the above three planes are perhaps more well known, there is a relatively 
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/5_infra.png){: .align-center}
 
+_Picture 4: The Invisible Infra Plane Supoorting The Architecture Patterns_
+
+
 ### Scalable, Available State/Data Management Patterns
 
 A NOS in a router produces a lot of _state_. This router state is created by external inputs (_sourced state_) as well as internal code flow (_generated state_). 
