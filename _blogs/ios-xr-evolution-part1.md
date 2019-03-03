@@ -109,7 +109,7 @@ In order to make the overall system scalable and highly available, the following
 
 #### Distributed state partitioning
 
-It's available across the available compute nodes (route processors, line card processors, external compute processors etc., across the route cluster) 
+The state is partitioned and available across the available compute nodes (route processors, line card processors, external compute processors etc., across the route cluster) as follows: 
 
 1. the sourced state is partitioned across available compute as required. 
 2. the generated state is kept on the source node as much as possible.
