@@ -53,6 +53,8 @@ The Cisco IOS XR Network Operating System (NOS) is developed by not changing the
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/3_strategy.png){: .align-center}
 
+_Picture 2: IOS XR Architecture Strategy_
+
 - Appropriate _higher level abstractions_ capture the essence of the system and they are key in driving the subsequent architecture/design patterns.
 - Once abstractions are in place, IOS XR has focused on large _state management_ in a router. (State is simply the condition or quality of an entity at an instant in time and it is usually represented by data in the system; hence, state and data are used interchangeably in this blog).
 - Once the state generation and distribution patterns are modeled correctly, the next step is the design and _placement of the processes_ that work with this state.
