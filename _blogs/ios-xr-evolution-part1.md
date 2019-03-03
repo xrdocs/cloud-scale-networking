@@ -127,7 +127,7 @@ When two or more processes have some shared state between them, XR is designed f
 
 #### Caching mechanisms
 
-Carefully designed state caching mechanisms at appropriate nodes in the cluster.
+Carefully designed state caching mechanisms at appropriate nodes in the cluster exist in the system.
 
 #### State replication and consistency mechanisms
 
