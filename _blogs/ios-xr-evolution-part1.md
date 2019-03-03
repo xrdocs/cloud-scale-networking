@@ -123,7 +123,7 @@ For example, system databases specific to the line card, such as interface-relat
 
 #### Shared state concurrency
 
-When two or more processes have some shared state between them, XR is designed for concurrent data access by multiple clients.  For example, configuration and operational data can be accessed by multiple internal/external clients simultaneously.
+When two or more processes have some shared state between them, IOS XR is designed for concurrent data access by multiple clients.  For example, configuration and operational data can be accessed by multiple internal/external clients simultaneously.
 
 #### Caching mechanisms
 
