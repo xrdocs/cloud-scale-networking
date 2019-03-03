@@ -79,6 +79,8 @@ These planes are a categorization of the traffic handled by a router and they pr
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/4_arch.png){: .align-center}
 
+_Picture 3: Decoupled IOS XR Planes_
+
 While the above three planes are perhaps more well known, there is a relatively less visible _Infrastructure Plane_ behind the three planes, providing various key architecture/design patterns that are the subject of the rest of this blog.
 
 
