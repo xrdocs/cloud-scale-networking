@@ -131,7 +131,7 @@ Carefully designed state caching mechanisms at appropriate nodes in the cluster 
 
 #### State replication and consistency mechanisms
 
-*Replication* is the process of synchronizing several copies of the same state located at different nodes in the router cluster and is used to increase the availability of data and to speed query evaluation. This is a fundamental requirement for IOS XR and provides a generic replication and consistency management scheme for multiple copies of an opaque data set. It supports and scales well for multi-chassis systems providing an asynchronous 1:N replication method that spans one or more chassis.
+*Replication* is the process of synchronizing several copies of the same state located at different nodes in the router cluster and is used to increase the availability of data and to speed up query evaluation. This is a fundamental requirement for IOS XR and provides a generic replication and consistency management scheme for multiple copies of an opaque data set. It supports and scales well for multi-chassis systems providing an asynchronous 1:N replication method that spans one or more chassis.
 
 IOS XR also studied various *consistency* models in the context of distributed router cluster and designed its infrastructure so that applications can choose the required consistency model based on their needs. This is akin to Amazon's Dynamo providing various consistency models and letting application choose the required consistency model while taking into account its availability, performance etc., metrics.
 
