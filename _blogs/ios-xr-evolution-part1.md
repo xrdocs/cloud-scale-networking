@@ -106,6 +106,9 @@ In order to make the overall system scalable and highly available, the following
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/6_pieces.png){: .align-center}
 
+_Picture 5: State Management Architecture Patterns_
+
+
 
 #### Distributed state partitioning
 
