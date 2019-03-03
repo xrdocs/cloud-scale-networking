@@ -41,7 +41,7 @@ IOS XR is designed taking into account the data distribution and access patterns
 
 Data distribution has four sub characteristics - size of the data, number of consumers, liveness of producers/consumers and tracking of producer.
 
-For example, FIB routes is an example of a large amount of data that is going to be consumed by a large number of nodes in a distributed routing cluster. Operational data is an example of a large set of data that is going to be consumed by a few management agents. Throughput and latency are two performance metrics that matter in data distribution.
+FIB routes is an example of a large amount of data that is going to be consumed by a large number of nodes in a distributed routing cluster. Operational data is an example of a large set of data that is going to be consumed by a few management agents. Throughput and latency are two performance metrics that matter in data distribution.
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/16_rib.png){: .align-center}
 
