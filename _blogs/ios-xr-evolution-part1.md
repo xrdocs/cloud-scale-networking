@@ -66,7 +66,7 @@ _Picture 2: IOS XR Architecture Strategy_
 In the rest of the blog, we dig into the internals of each of the IOS XR architecture strategy steps, and discuss principles and trade-offs in each step. On this journey, we will try to find useful ways of thinking about IOS XR NOS — not just how it is architected, but also why it is architected that way, and what to look for in a good NOS in general.
 
 
-### Decoupled Planes Abstraction
+### Higher Level Abstractions: Decoupled Planes
 
 IOS XR is a multi-process, distributed network operating system with tall order goals as mentioned earlier. In order to deliver on those goals, strong architectural abstractions are necessary. The IOS XR is architecturally divided into the following three planes:
 
