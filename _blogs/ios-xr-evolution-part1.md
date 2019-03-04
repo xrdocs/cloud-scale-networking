@@ -255,8 +255,6 @@ IOS XR Group communication supports _fire-and-forget_, at least one, most, and a
 
 _Picture 10: Group Communications Acknowledgement Options From Members_
 
-
-
 One can find similar semantics in Kafka and other messaging systems. For example, Kafka supports the following:
 
 - No acknowledgement, fire and forget. Acks=0.
