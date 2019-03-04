@@ -252,7 +252,7 @@ In terms of drawing parallels with external software, ZeroMQ supports _Group Mes
 IOS XR Group communication supports _fire-and-forget_, at least one, most, and all reliability semantics with respect to the number of far end entities from which the producer needs to receive acknowledgments.
 
 
-  ![Ack_Options.png]({{site.baseurl}}/images/Ack_Options.png)
+  ![Ack_Options.png]({{site.baseurl}}/images/Ack_Options.png){: .align-center}
 
 _Picture 10: Group Communications Acknowledgement Options From Members_
 
