@@ -269,9 +269,6 @@ The messaging protocols in IOS XR have been developed with the required abstract
 
 ![Pluggable_Transports4.png]({{site.baseurl}}/images/Pluggable_Transports4.png)
 
-
-
-
 _Picture 11: Group Communications Pluggable Transports_
 
 Enough for the first part. Take a break, refill your coffee, and proceed with [second part](https://xrdocs.io/cloud-scale-networking/blogs/ios-xr-evolution-part2/) to learn more about other concepts, such as data distribution & access design patterns, HA foundation and upgrade architecture.
