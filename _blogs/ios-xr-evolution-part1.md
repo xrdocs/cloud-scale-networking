@@ -253,7 +253,7 @@ IOS XR Group communication supports _fire-and-forget_, at least one, most, and a
 
 ![Group_Com_Reliability.png]({{site.baseurl}}/images/Group_Com_Reliability.png)
 
-_Picture 10: Message Guarantee Semantics_
+_Picture 10: Group Communications Acknowledgement Options From Members_
 
 
 
