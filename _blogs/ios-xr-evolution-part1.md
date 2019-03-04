@@ -222,6 +222,9 @@ In a modular router, there are many applications that implicitly have a requirem
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/11_group-comm.png){: .align-center}
 
+_Picture 8: Group Communications_
+
+
 Because of these characteristics, IOS XR Group Services offers a very scalable communication method when multiple nodes are involved. _Reliable_, _multicast_, and _asynchronous_ are the key words worth noting above. If we take the reliability away from the Group Communications, it is akin to the Pub-Sub pattern, where a message is directed at many subscribers and publishers, and subscribers are completely decoupled.
 
 Pub-sub is aimed at scalability, where the publisher pushes data without really worrying about who the subscribers are, when they come online/subscribe to receive messages, whether they are able to receive/keep up with the messages, whether they have crashed/joined late, etc. The subscribers in Group Communication connect to the multicast group on the network to which the publisher sends the messages. But a simple pub-sub pattern without reliability built into it doesn't cut it for NOS applications' needs. Hence, IOS XR Group Communications stack also provides several advanced features like the following:
