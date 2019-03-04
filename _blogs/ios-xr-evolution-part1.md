@@ -182,9 +182,12 @@ So far, we talked about _scalable data partitioning_ and _intelligent process pl
 
 Messaging is at the core of many architectures including IOS XR and is a difficult problem. Connecting two pieces is fine, but connecting hundreds and thousands is a different ball game. If we look at a modular router chassis with 12,16,18, etc. slots and tens/hundreds of processes per slot, we can see that we are already looking at the problem of messaging among hundreds/thousands of end points. These numbers go up further in multi-chassis clusters. There are a variety of applications (routing protocols, RIBs, FIBs, ACL/QoS, etc., features, platform applications, interface managers, manageability agents, etc.) and their communication requirements vary drastically w.r.t. scale, reliability, performance, etc. 
 
-For example, the following picture shows several dimensions which have been analyzed extensively across various applications while developing and evolving the IOS XR's messaging infrastructure and some resulting design patterns:
+For example, the following picture shows several dimensions which have been analyzed extensively across various applications while developing and evolving the IOS XR's messaging infrastructure and some resulting architecture patterns:
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/9_requirements.png){: .align-center}
+
+_Picture 6: Messaging Infrastructure Architecture Patterns_
+
 
 The rest of this section looks at the following key design patterns that IOS XR has pioneered.
 - Asynchronous IO
