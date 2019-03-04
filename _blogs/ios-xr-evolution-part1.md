@@ -266,6 +266,7 @@ Similarly, RabbitMQ also has control over number of unacknowledged messages in f
 #### Messaging protocols with pluggable transports
 
 The messaging protocols in IOS XR have been developed with the required abstractions at the south bound layer so that they can be transported over various layers. For example, they can be transported over Ethernet, various switch fabric, Linux TCP/IP stack, IOS XR TCP/IP stack, etc. These protocols can also support multiple transport layers simultaneously. For example, Group Communications in CRS platforms is supported over Ethernet and switch fabric simultaneously. This is akin to ZeroMQ supporting multiple transports (inproc, ipc, tcp, pgm) to support threads in one process, processes in one box, processes in one network, and multicast group based communication.
+![]({{site.baseurl}}/images/Inside_IOS_XR%20copy.png)
 
 ![Pluggable_Transports.png]({{site.baseurl}}/images/Pluggable_Transports.png)
 _Picture 11: Group Communications Pluggable Transports_
