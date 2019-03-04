@@ -242,6 +242,8 @@ The following picture depicts open, closed, and membership subset groups.
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/12_subset.png){: .align-center}
 
+_Picture 9: Group Types_
+
 In terms of drawing parallels with external software, ZeroMQ supports _Group Messaging_ with some of the above features. Many other message brokers today support the Group Communication pattern. Also in IOS XR Group Communications, messages are queued on the subscriber, which attempts to avoid the problem of slow subscribers. ZeroMQ also supports this pattern.
 
 ###### Message guarantee semantics
