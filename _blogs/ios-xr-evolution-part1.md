@@ -33,7 +33,7 @@ Around this time, Cisco had embarked on building the next generation Network Ope
 
 ![IOS_XR_Arch_Patterns.png]({{site.baseurl}}/images/IOS_XR_Arch_Patterns.png)
 
-_Picture 1: Requirements and Architecture Patterns_
+_Picture 1: Requirements and Resultant Architecture Patterns_
                           
 
 Before we get into the details of the above IOS XR architecture patterns in detail in the rest of the blog, it is worth quickly going through a summary of how the IOS XR has evolved over the years. There are several dimensions across which the IOS XR has demonstrated its modularity and adaptability capabilities, with some major evolutions over the years. The following table summarizes these evolutions:
