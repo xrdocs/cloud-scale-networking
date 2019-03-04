@@ -176,8 +176,6 @@ The first distribution model uses *localization*, which performs _processing_ an
 The second distribution model uses *load distribution*, in which additional route processors (RPs) are added to the system and processes are distributed across different RPs. Routing protocols, management entities, and system processes are examples of processes that can be distributed using this model.
 
 
-![]({{site.baseurl}}/images/dev-corner/xr_ev/8_distribution.png){: .align-center}
-
 ### High Performance Messaging Infrastructure
 
 So far, we talked about _scalable data partitioning_ and _intelligent process placement_. The next key piece is the messaging infrastructure that lets these processes communicate inter-node and intra-node.
