@@ -203,6 +203,9 @@ With asynchronous communication the sender and receiver are uncoupled - the send
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/10_async.png){: .align-center}
 
+_Picture 7: Synchronous and Asynchronous IO_
+
+
 We in IOS XR have realized very early on (circa 2000) that to make the system scalable, asynchronous communication is a key construct in the system. The IOS XR's _Group Communications_, which is covered later, kicked off this journey right off the bat for the inter-node IO. Subsequently, due to extensive scalability analysis and experience gained during the CRS multi-chassis development, the Async IO became a key construct for a lot of intra-node communication as well. We found that applications which run with fewer threads have less effect on scheduler latencies, in general, and consequently are less of a burden on the overall system. With asynchronous IPC, the same sender's thread can have multiple outstanding messages at a time––no need for a thread per message being sent, as is the case with synchronous IPC.
 
 Hence IOS-XR is designed as a distributed system with loose coupling among various IOS XR instances across nodes. Different IOS XR nodes run independently; there are no master-slave relationships among the different cards running IOS XR code. The statement of loose coupling among the IOS XR nodes is further stated that the different instances of IOS XR can only learn of each other’s state and share data through asynchronous message passing. The asynchronous IO pattern is supported across point-to-point and point-to-multipoint connections.
