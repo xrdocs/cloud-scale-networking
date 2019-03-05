@@ -1,7 +1,7 @@
 ---
 published: true
 date: '2018-12-03 10:23 -0800'
-title: IOS XR Evolution - Part 1
+title: Inside IOS XR  - Part 1
 position: hidden
 excerpt: >-
   In this blog we will discuss IOS XR’s software architecture, that is typically
@@ -273,4 +273,4 @@ The messaging protocols in IOS XR have been developed with the required abstract
 
 _Picture 11: Group Communications Pluggable Transports_
 
-That concludes the first part. Take a break, refill your coffee. Pretty soon we will publish second part, where you can learn more about other concepts, such as _data distribution & access design patterns, high availability_ and _upgradeability architecture_. Stay tuned! 
+That concludes the first part. Take a break, refill your coffee. Pretty soon we will publish second part, where you can learn more about other concepts, such as _data distribution & access design patterns, high availability_ and _upgradeability architecture_. Stay tuned!
