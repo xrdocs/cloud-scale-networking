@@ -1,7 +1,7 @@
 ---
 published: true
 date: '2018-12-03 10:30 -0800'
-title: IOS XR Evolution - Part 2
+title: Inside IOS XR - Part 2
 position: hidden
 excerpt: >-
   In this blog we will discuss IOS XR’s software architecture, that is typically
