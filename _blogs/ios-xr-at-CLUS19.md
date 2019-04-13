@@ -36,11 +36,9 @@ It's a unique opportunity to hear about IOS XR and the platforms powered by this
 We propose you a chronological view of the different techtorials, breakout sessions, devnet labs and WISP (Walk-In Self-Paced) labs.  
 Hope to see you there :)
 
-### Instructor-Led Lab
+### Instructor-Led Lab (priced in addition to the Main Conference pass)
 
-TBD  
-Network Function Virtualization (NFV) using IOS-XR - **BRKSPG-2724**, by Syed Hassan  
-[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2724#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2724#/)
+
 
 TBD -  Not found
 Intermediate - IOS-XR Overview and Hands-on Configuration - **LTRARC-2002**, by Mohammad Ali and Ramiro Garza Rios  
@@ -63,6 +61,8 @@ IOS-XR hands-on lab. End-to-end story. - **LTRSPG-2414**, by Akshat Sharma and M
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRSPG-2414#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRSPG-2414#/)
 
 ### Breakout Sessions
+
+
 
 TBD
 Network Function Virtualization (NFV) using IOS-XR - **BRKSPG-2724**, by Syed Hassan  
@@ -105,6 +105,10 @@ TBD
 Advanced Topics in XR Telemetry - **BRKSPG-2503**, by Benoit Clase & Mikhail Korshunov  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2503#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2503#/)
 
+TBD
+Carrier Grade Disaggregation with IOS XR - **BRKSPG-2015**, by Mikhail Korshunov,
+[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2015#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2015#/)
+
 TBD - Not found
 IOS-XR Runtime - Trust me? Trust me not? - **BRKSPG-1768**, by Dan Backman  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-1768#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-1768#/)
@@ -145,21 +149,20 @@ by Xin Bai and Ahmad Bilal Siddiqui
 
 ### DevNet Workshop
 
-Monday, Jan 28, 2:00 PM - 2:45 PM  
-Wednesday, Jan 30, 2:00 PM - 2:45 PM  
+TBD
 DevNet Workshop - Building IP Core Network with OpenConfig - **DEVWKS-1644**, by Sakthi Saravanan Malli Somanathan and S. Suprita  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-1644#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-1644#/)
 
-Monday, Jan 28, 3:00 PM - 3:45 PM and Thursday  
-DevNet Workshop - Introduction to Using gRPC-based Protocol for Model-Driven Management of IOS-XR - **DEVWKS-1381**, Jan 31, 9:00 AM - 9:45 AM, by S. Suprita and Michael Cho  
+TBD
+DevNet Workshop - Introduction to Using gRPC-based Protocol for Model-Driven Management of IOS-XR - **DEVWKS-1381**, by S. Suprita and Michael Cho  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-1381#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-1381#/)
 
-Wednesday, Jan 30, 3:00 PM - 3:45 PM and Thursday, Jan 31, 5:00 PM - 5:45 PM  
+TBD
 DevNet Workshop - Bringing Programmability to Service Provider Deployments with IOS-XR - **DEVWKS-2936**, by Akshat Sharma  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-2936#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-2936#/)
 
 ### Techtorial (priced in addition to the Main Conference pass)
 
-Monday, Jan 28, 2:30 PM - 6:45 PM  
+Sunday, June 09, 02:00 PM - 06:00 PM
 Next Generation Network Architectures: Design, Deployment and Operations - **TECSPG-2801**, by Syed Hassan and Kashif Islam  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=TECSPG-2801#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=TECSPG-2801#/)
