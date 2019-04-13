@@ -40,15 +40,18 @@ Hope to see you there :)
 
 
 
-TBD -  Not found
-Intermediate - IOS-XR Overview and Hands-on Configuration - **LTRARC-2002**, by Mohammad Ali and Ramiro Garza Rios  
-[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRARC-2002#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRARC-2002#/)
+Tuesday, June 11, 01:00 PM - 05:00 PM
+
+Intermediate - IOS-XR Overview and Hands-on Configuration - **LTRRST-2002**, by Mohammad Ali and Ramiro Garza Rios  
+[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRRST-2002#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRRST-2002#/)
 
 Thursday, June 13, 08:00 AM - 12:00 PM
+
 Cisco IOS XR Programmability - **LTRSPG-2601**, by Santiago Alvarez and David Smith  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRSPG-2601#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRSPG-2601#/)
 
 Tuesday, June 11, 08:00 AM - 12:00 PM
+
 IOS-XR EVPN Hands-On Lab - **LTRSPG-2968**, by Jiri Chaloupka  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRSPG-2968#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRSPG-2968#/)
 
@@ -57,6 +60,7 @@ IOS XR Software Upgrade Method of Procedure Automation with Cisco Software Manag
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRSPG-2515#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRSPG-2515#/)
 
 Tuesday, June 11, 01:00 PM - 05:00 PM
+
 IOS-XR hands-on lab. End-to-end story. - **LTRSPG-2414**, by Akshat Sharma and Mikhail Korshunov  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRSPG-2414#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRSPG-2414#/)
 
@@ -94,10 +98,10 @@ TBD
 EVPN Deep Dive with IOS-XR Configuration examples for Service Provider Metro and Data Center - **BRKSPG-3965**, by Jiri Chaloupka  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3965#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3965#/)
 
-TBD - Not found
+TBD
 
-What DC Fabric can teach you about SP Core Design... or Not! - **BRKSPG-2777**, by Shelly Cadora  
-[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2777#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2777#/)
+The Life Changing Magic of Automating Segment Routing and MPLS - **BRKMPL-2210**, by Shelly Cadora 
+[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKMPL-2210#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKMPL-2210#/)
 
 TBD
 
@@ -124,7 +128,7 @@ TBD - Not found
 IOS-XR Runtime - Trust me? Trust me not? - **BRKSPG-1768**, by Dan Backman  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-1768#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-1768#/)
 
-TBD - Not found
+TBD
 
 Internet Peering Concepts and Emerging Trends - **BRPSPG-2003**, by Phil Bedard  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2003#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2003#/)
