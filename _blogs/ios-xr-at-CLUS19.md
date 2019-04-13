@@ -65,75 +65,92 @@ IOS-XR hands-on lab. End-to-end story. - **LTRSPG-2414**, by Akshat Sharma and M
 
 
 TBD
+
 Network Function Virtualization (NFV) using IOS-XR - **BRKSPG-2724**, by Syed Hassan  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2724#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2724#/)
 
-Tuesday, Jan 29, 2:30 PM - 4:00 PM  
-Brave New World: Web Scale Network Automation goes Mainstream - **BRKSPG-2013**, by Akshat Sharma 
+TBD
 
+Brave New World: Web Scale Network Automation goes Mainstream - **BRKSPG-2013**, by Akshat Sharma 
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2013#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2013#/)
 
 TBD - Not Found
+
 SP Security - Leveraging BGP FlowSpec to protect your infrastructure - **BRKSPG-3012**, by Nicolas Fevrier  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3012#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3012#/)
 
 TBD
+
 Disaggregating Network Devices and Software : A reality check ! - **BRKSPG-2698**, by Syed Hassan and Steve Iatrou  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2698#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2698#/)
 
 TBD
+
 Introduction to the Next Generation IOS-XR architecture - **BRKSPG-2069**, by Akshat Sharma  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2069#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2069#/)
 
 TBD
+
 EVPN Deep Dive with IOS-XR Configuration examples for Service Provider Metro and Data Center - **BRKSPG-3965**, by Jiri Chaloupka  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3965#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3965#/)
 
 TBD - Not found
+
 What DC Fabric can teach you about SP Core Design... or Not! - **BRKSPG-2777**, by Shelly Cadora  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2777#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2777#/)
 
 TBD
+
 Service Provider Programmable Intent-Based Networking, Powered by Segment Routing and EVPN - **BRKSPG-2518**, by Phil Bedard  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2518#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2518#/)  
 
 TBD
+
 Cisco ASR 9000 Architecture - **BRKARC-2003**, by Yongzhong Peng  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKARC-2003#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKARC-2003#/)
 
 TBD
+
 Advanced Topics in XR Telemetry - **BRKSPG-2503**, by Benoit Clase & Mikhail Korshunov  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2503#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2503#/)
 
 TBD
+
 Carrier Grade Disaggregation with IOS XR - **BRKSPG-2015**, by Mikhail Korshunov,
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2015#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2015#/)
 
 TBD - Not found
+
 IOS-XR Runtime - Trust me? Trust me not? - **BRKSPG-1768**, by Dan Backman  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-1768#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-1768#/)
 
 TBD - Not found
+
 Internet Peering Concepts and Emerging Trends - **BRPSPG-2003**, by Phil Bedard  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2003#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2003#/)
 
 TBD - Not found
+
 Cisco vBNG solution based on CSR1000V and XRv 9000 - **BRKSPG-2063**, by Chengsheng Luo and Vimal Dharmavarapu  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2063#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2063#/)
 
 TBD
+
 NCS5500: Deepdive in the Merchant Silicon High-end SP Routers - **BRKARC-3000**, by Nicolas Fevrier  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2900#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2900#/)
 
 TBD
+
 YDK and Model Driven Programmability with Python - **BRKPRG-2632**, by Santiago Alvarez  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKPRG-2632#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKPRG-2632#/)
 
 TBD
+
 Deploying Next Generation SP Access Networks with the NCS540/NCS560 Platforms - **BRKSPG-2159**, by Osman Hashmi  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2159#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2159#/)
 
 TBD
+
 Service Provide Network Fabric: How to bring Access Services using EPVN - **BRKSPG-3002**, by Patrice Brissette  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3002#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3002#/)  
 
@@ -150,19 +167,23 @@ by Xin Bai and Ahmad Bilal Siddiqui
 ### DevNet Workshop
 
 TBD
+
 DevNet Workshop - Building IP Core Network with OpenConfig - **DEVWKS-1644**, by Sakthi Saravanan Malli Somanathan and S. Suprita  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-1644#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-1644#/)
 
 TBD
+
 DevNet Workshop - Introduction to Using gRPC-based Protocol for Model-Driven Management of IOS-XR - **DEVWKS-1381**, by S. Suprita and Michael Cho  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-1381#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-1381#/)
 
 TBD
+
 DevNet Workshop - Bringing Programmability to Service Provider Deployments with IOS-XR - **DEVWKS-2936**, by Akshat Sharma  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-2936#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-2936#/)
 
 ### Techtorial (priced in addition to the Main Conference pass)
 
 Sunday, June 09, 02:00 PM - 06:00 PM
+
 Next Generation Network Architectures: Design, Deployment and Operations - **TECSPG-2801**, by Syed Hassan and Kashif Islam  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=TECSPG-2801#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=TECSPG-2801#/)
