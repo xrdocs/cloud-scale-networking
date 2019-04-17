@@ -126,9 +126,9 @@ The configuration and operational data is eventually consumed by various managea
 
 SysDB is scalable to large number of nodes, large sets of configuration, high volume operational data and to frequently changing operational data.
 
-One can apply more than two million lines of configuration and IOS XR works without a hiccup! One can retrieve large amounts of operational data from SysDB easily. This scalability can be attributed to proper data partition and distribution of the required processing of the same across the available compute.
+One can apply more than two million lines of configuration and IOS XR works without a hiccup! One can retrieve large amounts of operational data from SysDB easily. This scalability can be attributed to proper data partition, and distribution of the required processing of the same, across the available compute.
 
-Due to carefully designed shared _state concurrency_ and _data/processing load distribution_ across the compute, many applications access the data in parallel yielding greater scalability.
+Due to carefully designed shared _state concurrency_ many applications can also access the data in parallel yielding greater scalability.
 
 - Neutral
 
