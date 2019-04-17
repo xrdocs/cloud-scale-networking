@@ -134,7 +134,7 @@ Due to carefully designed shared _state concurrency_ many applications can also 
 
 SysDB stores data in a format that is independent of the data formats of the manageability agents that it interacts with in the northbound direction and application backends it interacts with in the southbound direction. This is important for decoupling SysDB producers and consumers.  All manageability agents work on the same data and any new manageability agent support can be easily added.
 
-With SysDB applications do not have to track the data by its location, nor do they have to track the location of the data providers. Since the applications are unaware of the identity or location of data providers/consumers, they are unaffected if these parties crash or relocate.
+With SysDB, applications do not have to track the data by its location, nor do they have to track the location of the data providers. Since the applications are unaware of the identity or location of data providers/consumers, they are unaffected if these parties crash or relocate.
 
 - Model Driven
 
