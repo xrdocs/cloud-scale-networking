@@ -77,7 +77,7 @@ For some data, consumer consumes the data obtained from the producer as is. In s
  
 #### Design Patterns
 
-Based on the above examples, we can observe some usage patterns. There is small, frequently and broadly accessed data and large, infrequently and sparsely accessed data. There are large volumes of data that need to be moved to a lot of nodes and there are small volumes of data that need to be moved to a lot of nodes.
+Based on the above examples, we can observe some usage patterns. There is _small_, _frequently and broadly_ accessed data and _large, infrequently_ and _sparsely_ accessed data. There are large volumes of data that need to be moved to a lot of nodes and there are small volumes of data that need to be moved to a lot of nodes.
 
 For some of this data distribution, throughput or latency or both matter. 
 
