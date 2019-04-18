@@ -113,7 +113,7 @@ If we compare between ENS and SysDB, ENS creates direct links between distribute
 {: .notice--primary}
 
 
-That is a mouthful of a description for SysDB but each word in there is important and collectively they define the concept and the power of SysDB. Configuration and operational data is significant part of the router state mentioned above and the IOS XR's SysDB is an advanced datastore to hold this data in a NOS.
+That is a mouthful of a description for SysDB but each word in there is important and collectively they define the concept and the power of SysDB. _Configuration_ and _operational data_ is a significant part of the router state mentioned above and the IOS XR's SysDB is an advanced datastore to hold this data in a NOS.
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/21_sysdb.png){: .align-center}
 
