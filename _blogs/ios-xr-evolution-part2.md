@@ -26,9 +26,7 @@ After scalable data partitioning, intelligent process placement to work with tha
 
 Note that data distribution and access is inherently different from the messaging infrastructure/IPC mechanism – the messaging infrastructure provides a means of communication, it does not define the approach as to how to present data to other parts of the system that need the data, or how an application locates its resources that it needs for its operation. These issues are fundamental to the applications that run in IOS XR and are reflected in the implicit decisions an application is built upon. 
 
-Understanding inherent data characteristics of router (fixed chassis pizza-box, modular chassis with route processors, line cards or big multi-chassis systems), is essential in designing and optimizing the NOS properly. 
-
-IOS XR is designed taking into account the data distribution and access patterns in a small single CPU IOS XR router to a large distributed router built from multiple chassis. Based on these insights, the IOS XR NOS data access and distribution characteristics can be categorized as follows:
+Understanding inherent data characteristics of router, is essential in designing and optimizing the NOS properly. IOS XR is designed taking into account the data distribution and access patterns in a small single CPU IOS XR router to a large distributed router built from multiple chassis. Based on these insights, the IOS XR NOS data access and distribution characteristics can be categorized as follows:
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/15_data.png){: .align-center}
 
