@@ -15,9 +15,9 @@ tags:
 {% include toc %}
 {% include base_path %}
 
-This is part two of the blog about the IOS XR’s software architecture. If you missed part 1, it's better to start [with it.](https://xrdocs.io/cloud-scale-networking/blogs/ios-xr-evolution-part1/) In the first part we covered the following concepts: Decoupled Planes Abstraction, Available State/Data Management Patterns, Process Distribution Across Available Compute and High Performance Messaging Infrastructure. 
+This is part two of the blog about the IOS XR’s software architecture. If you missed part 1, it's better to start [with it.](https://xrdocs.io/cloud-scale-networking/blogs/ios-xr-evolution-part1/) In the first part, under the _IOS XR Architecture Strategy_, we covered the following concepts: _Decoupled Planes Abstraction, State Management, Process Distribution Across Available Compute_ and _High Performance Messaging Infrastructure_. 
 
-Second part would be focused on Data Distrubution along with design patterns, HA & upgrade approaches with some internal components like SysDB. 
+This second part covers the  _Data Distrubution and Access Design Patterns_ and _High Availability & Upgradeability_. 
 
 
 ### Data Distribution and Access Design Patterns 
