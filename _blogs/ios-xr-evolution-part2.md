@@ -45,7 +45,7 @@ FIB routes is an example of a large amount of data that is going to be consumed 
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/17_oper.png){: .align-center}
 
-Many of the data sharing applications would want to know the state of producer(s), i.e. if the producer is active or has gone down so that they can take an appropriate action. Again,a good example of this is the interaction between a routing protocol and RIB. If a protocol has populated routes to RIB, the RIB should be notified when the protocol goes down so that it can stale the routes, and in the event that the protocol does not come back, it would want to delete those routes and promote backup routes, if any.
+Many of the data sharing applications would want to know the state of producer(s), i.e. if the producer is active or has gone down so that they can take an appropriate action. Again,a good example of this is the interaction between a routing protocol and RIB. If a protocol has populated routes to RIB, the RIB should be notified when the protocol goes down so that it can stale the routes, and in the event that the protocol does not come back, it can delete those routes and promote backup routes, if any.
 
 
 
