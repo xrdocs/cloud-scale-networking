@@ -22,7 +22,7 @@ This second part covers the  _Data Distrubution and Access Design Patterns_ and 
 
 ### Data Distribution and Access Design Patterns 
 
-After scalable data partitioning, intelligent process placement to work with that data and a high performance messaging infrastructure to enable communication among the processes working with this data, we now explore the next important aspect -  the _data distribution_ and _access patterns_ that applications running in an XR system should use.
+After scalable data partitioning, intelligent process placement to work with that data and a high performance messaging infrastructure to enable communication among the processes working with this data, we now explore the next important aspect -  the _data distribution_ and _access patterns_ that applications running in an XR system use.
 
 Note that data distribution and access is inherently different from the messaging infrastructure/IPC mechanism – the messaging infrastructure provides a means of communication, it does not define the approach as to how to present data to other parts of the system that need the data, or how an application locates its resources that it needs for its operation. These issues are fundamental to the applications that run in IOS XR and are reflected in the implicit decisions an application is built upon. 
 
