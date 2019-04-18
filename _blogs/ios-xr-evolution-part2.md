@@ -146,7 +146,7 @@ The SysDB data is stored in memory (RAM). This is critical for the required perf
 
 - Pub-sub
 
-SysDB is a hierarchical topic based _publish-subscribe_ mechanism that decouples producers and consumers. It is designed to store fairly static data as well as dynamic, fast-changing  and/or high volume data. Subscribers are usually interested in particular events or event patterns, and not in all events. There are different ways of specifying the events of interest, like topic-based, and more sophisticated _content-based_. In the simplest form, a topic is nothing but a unique string name; every topic is an event service on its own at which publishers and subscribers meet. In SysDB, the topics are unique string tuples. Topic name tuples can also be searched using wildcards, which offer the possibility to subscribe and publish to several topics whose names match a given set of keywords, like an entire sub tree or a specific level in the hierarchy. The actual data format stored in the leaves of the namespace tree is opaque to SysDB.
+SysDB is a hierarchical topic based _publish-subscribe_ mechanism that decouples producers and consumers. It is designed to store fairly static data as well as dynamic, fast-changing  and/or high volume data. Subscribers are usually interested in particular events or event patterns, and not in all events. There are different ways of specifying the events of interest, like _topic-based_, and more sophisticated _content-based_. 
 
 - Highly Available
 
