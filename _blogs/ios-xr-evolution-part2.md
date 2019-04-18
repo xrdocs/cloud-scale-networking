@@ -30,6 +30,8 @@ Understanding inherent data characteristics of router, is essential in designing
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/15_data.png){: .align-center}
 
+The following _informational_ section gives additional details about these characteristics.
+
 {% capture "connect_text" %}
 
 
