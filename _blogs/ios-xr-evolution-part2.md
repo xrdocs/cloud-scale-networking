@@ -37,7 +37,7 @@ Understanding inherent data characteristics of router, is essential in designing
 
 ##### Data Distribution Characteristics
 
-Data distribution has four sub characteristics - size of the data, number of consumers, liveness of producers/consumers and tracking of producer.
+Data distribution has four sub characteristics - _size of the data, number of consumers, liveness of producers/consumers_ and _tracking of producer_.
 
 FIB routes is an example of a large amount of data that is going to be consumed by a large number of nodes in a distributed routing cluster. Operational data is an example of a large set of data that is going to be consumed by a few management agents. Throughput and latency are two performance metrics that matter in this kind of data distribution.
 
