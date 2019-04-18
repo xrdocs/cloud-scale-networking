@@ -89,7 +89,7 @@ What is the best way to satisfy these requirements? The IOS XR, after a careful 
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/19_dc-broker.png){: .align-center}
 
-In a _data-centric_ approach, IOS XR applications are structured more around the data that is read or written. The identity of the processes that provide or consume the data is hidden in the infrastructure. Data is located by its description and that acts as the rendezvous point for end applications. To that end, it mimics the publisher-subscriber model – more popularly known as “pub-sub”. Since processes that share data will not be connecting to each other to exchange data, this model is characterized by a looser coupling between processes exchanging data.
+In a _data-centric_ approach, IOS XR applications are structured around the data that is read or written. The identity of the processes that provide or consume the data is hidden in the infrastructure. Data is located by its description and that acts as the rendezvous point for end applications. To that end, it mimics the publisher-subscriber model – more popularly known as “pub-sub”. Since processes that share data will not be connecting to each other to exchange data, this model is characterized by a looser coupling between processes exchanging data.
 
 The time, space and synchronization decoupling is achieved in IOS XR systems via a broker between producers and consumers. 
 
