@@ -104,7 +104,7 @@ The above categorization is very important to design a good NOS. For example, if
 
 ENS, on the other hand is a _decentralized flat topic based pub-sub messaging infrastructure_ that actually moves data from one place to another with reliability semantics. It is useful for the distribution of data that is written by one process to one or more processes on different nodes (a _push_ model).  ENS also works equally well in a _pull_ model. Readers can come up and pull the data from the writer somewhere in the system. It is decentralized as it is a collection of brokers spread across all nodes.
 
-If we compare between ENS and SysDB, ENS creates direct links between distributed nodes, whereas SysDB is a logically centralized node which must be written to then read from. In this respect, this is similar to the comparison between ZeroMQ and Redis respectively. _ZeroMQ/ENS is primarily a messaging infrastructure where as Redis/SysDB is primarily a database_. SysDB is covered in more detail in the following information section.
+If we compare between ENS and SysDB, ENS creates direct links between distributed nodes, whereas SysDB is a logically centralized node which must be written to then read from. In this respect, this is similar to the comparison between ZeroMQ and Redis respectively. _ZeroMQ/ENS is primarily a messaging infrastructure where as Redis/SysDB is primarily a database_. SysDB is covered in more detail in the following informational section.
 
 {% capture "connect_text" %}
 
