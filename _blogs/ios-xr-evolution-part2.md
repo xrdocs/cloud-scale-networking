@@ -119,6 +119,7 @@ That is a mouthful of a description for SysDB but each word in there is importan
 
 
 
+
 - Logically centralized, physically distributed
 
 The configuration and operational data is eventually consumed by various manageability agents interacting with the router on the northbound side. From operations point of view,  it is hugely important to present manageability agents the configuration/operational data in a centralized fashion irrespective of the internal implementation.  But internally the datastore should be distributed to achieve the required scalability, reliability and responsiveness goals of large systems. IOS XR designed SysDB as a scalable _distributed data store_ that presents a _single logical view_ for the whole system's configuration and operational data. Data is partitioned according to the principles mentioned elsewhere in this blog. Logically centralized/physically distributed is a concept that we see these days being used in many SDN Controllers as they try to present one logical global view of the network state while physically distributing the state across multiple nodes.
