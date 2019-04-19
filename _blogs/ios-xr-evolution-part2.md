@@ -140,7 +140,7 @@ With SysDB, applications do not have to track the data by its _location_, nor do
 
 - Model Driven
 
-SysDB data is modeled and has evolved over the years to support native and Openconfig Yang models. For many years, XR has provided programmatic access to operational data. 
+SysDB data is modeled and has evolved over the years to support native and Openconfig Yang models. For many years, XR has provided programmatic access to configuration and operational data. 
 
 - In-memory
 
