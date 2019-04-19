@@ -208,7 +208,7 @@ IOS XR software is organized into _packages_ at the highest level. Packages are 
 
 ## Conclusion
 
-The blog started off by giving a brief introduction to IOS XR's rapid evolution over the years. It then explained the architecture strategy via five steps - _decoupled plane abstractions, state management, process distribution, high performance messaging infrastructure and data distribution/access patterns._ It also looked into the high availability and upgradeability aspects of IOS XR that span across the various architecture stages. This logical sequencing, followed by details on each, hopefully gave you a better perspective of the design thought process.
+The blog started off by giving a brief introduction to IOS XR's rapid evolution over the years. It then explained the architecture strategy via six steps - _decoupled plane abstractions, state management, process distribution, high performance messaging infrastructure, data distribution/access patterns and high availability and upgradeability_. This logical sequencing, followed by details on each, hopefully gave you a better perspective of the IO XR design thought process.
 
 I hope this blog gave good insights into various powerful architectural patterns built into IOS XR and how the IOS XR has pioneered various popular scalable and highly available frameworks in the context of a NOS. More importantly, it tries to give a sense of what it takes to build a carrier grade NOS and how much of a key role the infrastructure plays in a well designed NOS. 
 
