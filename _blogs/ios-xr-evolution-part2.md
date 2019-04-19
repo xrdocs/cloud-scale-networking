@@ -81,7 +81,7 @@ Based on the above examples, we can observe some usage patterns. There is _small
 
 For some of this data distribution, _throughput_ or _latency_ or both matter. 
 
-In some cases, once data moves to a location, it needs to stay there in a database for the subsequent accesses. In some cases, producer and consumer are completely decoupled, while in some other cases, they need to track each other. In some instances, data is consumed as is between producer and consumer and in some other instances the data transformation is required.
+In some cases, once data moves to a location, it needs to stay there in a database for the subsequent accesses. In some cases, producer and consumer are completely decoupled, while in some other cases, they need to track each other. In some instances, data is consumed as is between producer and consumer and in some other instances a data transformation is required.
 
 What is the best way to satisfy these requirements? The IOS XR, after a careful consideration of data access metrics like the _breadth of access, data size, frequency of access, degree of producer/consumer decoupling, liveness, data transformation_ requirements, is built around the following _two_ fundamental data distribution/access patterns:
 
