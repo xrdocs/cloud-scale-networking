@@ -95,8 +95,8 @@ The _time, space_ and _synchronization_ decoupling is achieved in IOS XR systems
 
 IOS XR designed the following two data-centric infrastructures based on the needs:
 
-- SysDB - primarily a database with pub-sub messaging support.
-- ENS (Event Notification System) - A data centric pub-sub messaging network.
+- **SysDB** - primarily a database with pub-sub messaging support.
+- **ENS** (Event Notification System) - a data centric pub-sub messaging network.
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/20_ens.png){: .align-center}
 
