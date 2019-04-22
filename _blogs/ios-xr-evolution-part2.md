@@ -192,7 +192,7 @@ IOS XR also supports many levels of _redundancy_ in the system, including switch
 
 IOS XR has _runtime monitoring_ of CPU and memory resources, so that applications that are using up too much of either of these system resources may be terminated or have their scheduling semantics modified to reduce their impact on the rest of that node.
 
-IOS XR also supports NSF (Non-stop Forwarding), GR protocols and NSR (Non-stop Routing).
+IOS XR also supports NSF (Non-stop Forwarding), GR (Graceful Restart) protocols and NSR (Non-stop Routing).
 
 The overall coordination of a router cluster, comprised of either single chassis or multiple chassis, requires that there be communications within the cluster, some sense of the topology of the cluster, and some consistent decision making capabilities within the cluster. To do this, the IOS XR has a top-level control protocol that is responsible for electing an overall leader of the cluster and computing the topology of the cluster. 
 
