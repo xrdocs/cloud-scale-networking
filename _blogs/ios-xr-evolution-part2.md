@@ -1,6 +1,6 @@
 ---
 published: true
-date: '2018-12-03 10:30 -0800'
+date: '2019-04-22 10:30 -0800'
 title: Inside IOS XR - Part 2
 position: top
 excerpt: >-
