@@ -2,7 +2,7 @@
 published: true
 date: '2018-12-03 10:30 -0800'
 title: Inside IOS XR - Part 2
-position: hidden
+position: top
 excerpt: >-
   In this blog we will discuss IOS XR’s software architecture, that is typically
   invisible, and describe IOS XR's architecture from its foundations up.
