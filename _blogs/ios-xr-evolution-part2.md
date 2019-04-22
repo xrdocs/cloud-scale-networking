@@ -180,6 +180,8 @@ There are many use cases among router applications where a process-centric model
 
 
 
+Various software architecture constructs shown above lay a strong high availability foundation for IOS XR.
+
 IOS XR is a _modular system_ with separate and _upgradeable components_.
 
 The fact that IOS XR services run outside of the kernel in separate address spaces means that the crash of an IOS XR process is isolated and does not crash the system, and in general does not crash other processes. Thus, a measure of fault isolation is available, and it can be exploited for purposes of service upgrade. Restartable processes are a major aspect of the high availability of an IOS XR system, and all IOS XR processes are required to be restartable.
