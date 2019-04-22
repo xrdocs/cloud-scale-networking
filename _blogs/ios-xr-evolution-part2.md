@@ -15,18 +15,18 @@ tags:
 {% include toc %}
 {% include base_path %}
 
-This is part two of the blog about the IOS XR’s software architecture. If you missed part 1, it's better to start [with it.](https://xrdocs.io/cloud-scale-networking/blogs/ios-xr-evolution-part1/) In the first part, under the _IOS XR Architecture Strategy_, we covered the following concepts: _Decoupled Planes Abstraction, State Management, Process Distribution Across Available Compute_ and _High Performance Messaging Infrastructure_. 
+This is part two of the blog about the IOS XR’s software architecture. If you missed part 1, it's better to start [with it.](https://xrdocs.io/cloud-scale-networking/blogs/ios-xr-evolution-part1/) In the first part, under the _IOS XR Architecture Strategy_, we covered the following concepts: _Decoupled Planes Abstraction, State Management, Process Distribution Across Available Compute_, and _High Performance Messaging Infrastructure_. 
 
-This second part covers the  _Data Distrubution and Access Design Patterns_ and _High Availability & Upgradeability_. 
+This second part covers the _Data Distrubution and Access Design Patterns_ and _High Availability & Upgradeability_. 
 
 
 ### Data Distribution and Access Design Patterns 
 
-After scalable data partitioning, intelligent process placement to work with that data and a high performance messaging infrastructure to enable communication among the processes working with this data, we now explore the next important aspect -  the _data distribution_ and _access patterns_ that applications running in an XR system use.
+After scalable data partitioning, intelligent process placement to work with that data, and a high performance messaging infrastructure to enable communication among the processes working with this data, we now explore the next important aspect––the _data distribution_ and _access patterns_ that applications running in an XR system use.
 
-Note that data distribution and access is inherently different from the messaging infrastructure/IPC mechanism – the messaging infrastructure provides a means of communication, it does not define the approach as to how to present data to other parts of the system that need the data, or how an application locates its resources that it needs for its operation. These issues are fundamental to the applications that run in IOS XR and are reflected in the implicit decisions an application is built upon. 
+Note that data distribution and access is inherently different from the messaging infrastructure/IPC mechanism––the messaging infrastructure provides a means of communication; it does not define the approach as to how to present data to other parts of the system that need the data, or how an application locates its resources that it needs for its operation. These issues are fundamental to the applications that run in IOS XR and are reflected in the implicit decisions an application is built upon. 
 
-Understanding inherent data characteristics of router, is essential in designing and optimizing the NOS properly. IOS XR is designed taking into account the data distribution and access patterns in a small single CPU IOS XR router to a large distributed router built from multiple chassis. Based on these insights, the IOS XR NOS data access and distribution characteristics can be pictorially categorized as follows:
+Understanding the inherent data characteristics of a router is essential in designing and optimizing the NOS properly. IOS XR is designed taking into account the data distribution and access patterns in a small single CPU IOS XR router to a large distributed router built from multiple chassis. Based on these insights, the IOS XR NOS data access and distribution characteristics can be pictorially categorized as follows:
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/15_data.png){: .align-center}
 
@@ -39,7 +39,7 @@ The following _informational_ section gives additional details about these chara
 
 ##### Data Distribution Characteristics
 
-Data distribution has four sub characteristics - _size of the data, number of consumers, liveness of producers/consumers_ and _tracking of producer_.
+Data distribution has four sub characteristics: _size of the data, number of consumers, liveness of producers/consumers_, and _tracking of producer_.
 
 FIB routes is an example of a large amount of data that is going to be consumed by a large number of nodes in a distributed routing cluster. Operational data is an example of a large set of data that is going to be consumed by a few management agents. Throughput and latency are two performance metrics that matter in this kind of data distribution.
 
@@ -47,7 +47,7 @@ FIB routes is an example of a large amount of data that is going to be consumed 
 
 ![]({{site.baseurl}}/images/dev-corner/xr_ev/17_oper.png){: .align-center}
 
-Many of the data sharing applications would want to know the state of producer(s), i.e. if the producer is active or has gone down so that they can take an appropriate action. Again,a good example of this is the interaction between a routing protocol and RIB. If a protocol has populated routes to RIB, the RIB should be notified when the protocol goes down so that it can stale the routes, and in the event that the protocol does not come back, it can delete those routes and promote backup routes, if any.
+Many of the data sharing applications would want to know the state of producer(s); i.e. if the producer is active or has gone down so that they can take an appropriate action. Again, a good example of this is the interaction between a routing protocol and RIB. If a protocol has populated routes to RIB, the RIB should be notified when the protocol goes down so that it can stale the routes, and in the event that the protocol does not come back, it can delete those routes and promote backup routes, if any.
 
 
 
@@ -57,16 +57,16 @@ Many of the data sharing applications would want to know the state of producer(s
 
 Many of the applications would also want to track producers of the data for various purposes. Going back to the RIB example, the routing protocols populating routes to RIB are the producers and RIB is the consumer. RIB explicitly tracks each such producer so that when all the producers are done with their routes, RIB declares routing convergence. This is an important state for the operation of the router.
 
-In some cases, the data producer needs to be aware of individual consumers. In most cases, the producer needs to know only about the aggregate set of consumers, but in some cases, more intimate knowledge of the consumer is needed. For example, consider the case of RIB downloading routes to various FIBs across the routing cluster. Typically, this is done by putting all the consumers in a group and multicasting to them. If one consumer restarts, the producer should start a separate download session to that consumer so that it is aware of all the updates thus far while continuing to update the remaining consumers.  The producer cannot suspend downloads to the other consumers because network events may happen at the same time and delaying downloads results in an unacceptable network convergence.  Once the restarting consumer catches up with the rest of the group, the producer has to merge the consumer back with the larger multicast group.
+In some cases, the data producer needs to be aware of individual consumers. In most cases, the producer needs to know only about the aggregate set of consumers, but in some cases, more intimate knowledge of the consumer is needed. For example, consider the case of RIB downloading routes to various FIBs across the routing cluster. Typically, this is done by putting all the consumers in a group and multicasting to them. If one consumer restarts, the producer should start a separate download session to that consumer so that it is aware of all the updates thus far while continuing to update the remaining consumers. The producer cannot suspend downloads to the other consumers because network events may happen at the same time and delaying downloads results in an unacceptable network convergence. Once the restarting consumer catches up with the rest of the group, the producer has to merge the consumer back with the larger multicast group.
 
 
 ##### Data Access Characteristics
 
-On the data access front, if we look at breadth of data access, most data is accessed only by a few entities in the router cluster, and that there is a very limited set of data that is accessed very broadly. One fine example for this is BGP’s private internal RIB structures. This data is referenced solely by BGP itself and the manageability agents.  It is extremely large, and in many cases, is the majority of the data in the router cluster.  BGP uses this data for computing routes and then injects specific paths into the RIB.  Feature (ACL, QoS etc.) data is another example of data with small breadth of access in terms of number clients. By contrast, there are other data items, such as the interface database, system configuration etc., that are referenced by almost every other process in the router cluster. 
+On the data access front, if we look at breadth of data access, most data is accessed only by a few entities in the router cluster, and there is a very limited set of data that is accessed very broadly. One fine example for this is BGP’s private internal RIB structures. This data is referenced solely by BGP itself and the manageability agents. It is extremely large, and in many cases, is the majority of the data in the router cluster.  BGP uses this data for computing routes and then injects specific paths into the RIB. Feature (ACL, QoS, etc.) data is another example of data with small breadth of access in terms of number clients. By contrast, there are other data items, such as the interface database, system configuration, etc., that are referenced by almost every other process in the router cluster. 
 
-Similarly, frequency of access of data items is highly variable, with a few data items that are very frequently accessed and the vast majority that are rarely accessed. For example, BGP provides an excellent example of a great deal of data that is accessed infrequently.  Since BGP only makes incremental changes, once a path is in BGP’s internal RIB, and advertised to the RIB processes and any neighbors, that information may not be accessed again until the advertising BGP session fails.  This could easily be days or weeks.  On the high frequency side, the interface database can be accessed extremely frequently, such as every time an application needs to resolve an interface name into a data structure, access interface dependent statistics or configuration. Thus routing and configuration are a couple of examples of data that is accessed infrequently while statistics, interfaces are data that are accessed frequently.
+Similarly, frequency of access of data items is highly variable, with a few data items that are very frequently accessed and the vast majority that are rarely accessed. For example, BGP provides an excellent example of a great deal of data that is accessed infrequently. Since BGP only makes incremental changes, once a path is in BGP’s internal RIB, and advertised to the RIB processes and any neighbors, that information may not be accessed again until the advertising BGP session fails.  This could easily be days or weeks. On the high frequency side, the interface database can be accessed extremely frequently, such as every time an application needs to resolve an interface name into a data structure, access interface dependent statistics, or configuration. Thus, routing and configuration are a couple of examples of data that is accessed infrequently while statistics and interfaces are data that are accessed frequently.
 
-For some data, consumer consumes the data obtained from the producer as is. In some cases, consumers need to transform the received data.
+For some data, the consumer consumes the data obtained from the producer as is. In some cases, consumers need to transform the received data.
 
 {% endcapture %}
 
