@@ -15,7 +15,7 @@ date: null
     <div class="feature__item--right">
       <div class="archive__item">
           <div class="archive__item-teaser center" style="max-height: 400px; max-width: 400px;display: block; margin-left: auto; margin-right: auto;">
-            <a href="{{ base_path }}/blogs/ios-xr-evolution-part1/"><img src="{{ base_path }}/images/dev-corner/xr_ev/4_arch.png" alt="" /></a>
+            <a href="{{ base_path }}/blogs/ios-xr-evolution-part1/"><img src="{{ base_path }}/images/dev-corner/xr_ev/IOS-XR.png" alt="" /></a>
           </div>
         <div class="archive__item-body">
             <h2 class="archive__item-title">Inside IOS XR
