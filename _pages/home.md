@@ -24,8 +24,8 @@ date: null
               <p>In this series, Jag will explore the part of IOS XR that is typically invisible, and describe IOS XR’s architecture from its foundations up. Why the architecture looks like it does? How key architecture patterns looks like? Interested in occasional parallels with other scalable and high-performance software? You definitely want to check this blog!</p>
             </div>
             <p><a href="{{ base_path }}/blogs/ios-xr-evolution-part1/" 
-                  class="btn ">Part 1</a></p>
-            <p><a href="{{ base_path }}/blogs/ios-xr-evolution-part2/" 
+                  class="btn ">Part 1</a>  
+               <a href="{{ base_path }}/blogs/ios-xr-evolution-part2/" 
                   class="btn ">Part 2</a></p>
         </div>
       </div>
