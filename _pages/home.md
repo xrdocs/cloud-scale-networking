@@ -15,17 +15,18 @@ date: null
     <div class="feature__item--right">
       <div class="archive__item">
           <div class="archive__item-teaser center" style="max-height: 400px; max-width: 400px;display: block; margin-left: auto; margin-right: auto;">
-            <a href="{{ base_path }}/blogs/ios-xr-at-CLEUR19/"><img src="{{ base_path }}/images/lp_images/CLEUR19.jpg" alt="" /></a>
+            <a href="{{ base_path }}/blogs/ios-xr-evolution-part1/"><img src="{{ base_path }}/images/dev-corner/xr_ev/4_arch.png" alt="" /></a>
           </div>
         <div class="archive__item-body">
-            <h2 class="archive__item-title">IOS XR at CiscoLive Europe 2019
+            <h2 class="archive__item-title">Inside IOS XR
 </h2>
             <div class="archive__item-excerpt" style="font-size: 0.65em;">
-              <p>CiscoLive Barcelona will welcome thousands of visitors from January the 28th to February the 1st, 2019.
-              It’s a unique opportunity to hear about IOS XR and the platforms powered by this operating system.</p>
+              <p>In this series, Jag will explore the part of IOS XR that is typically invisible, and describe IOS XR’s architecture from its foundations up. Why the architecture looks like it does? How key architecture patterns looks like? Interested in occasional parallels with other scalable and high-performance software? You definitely want to check this blog!</p>
             </div>
-            <p><a href="{{ base_path }}/blogs/ios-xr-at-CLEUR19/" 
-                  class="btn ">Explore!</a></p>
+            <p><a href="{{ base_path }}/blogs/ios-xr-evolution-part1/" 
+                  class="btn ">Part 1</a></p>
+            <p><a href="{{ base_path }}/blogs/ios-xr-evolution-part2/" 
+                  class="btn ">Part 2</a></p>
         </div>
       </div>
     </div>
