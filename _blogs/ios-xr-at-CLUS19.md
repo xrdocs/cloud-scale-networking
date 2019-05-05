@@ -7,8 +7,6 @@ excerpt: IOS XR related content at Cisco Live US 2019
 tags:
   - iosxr
   - ciscolive
-  - cleur
-  - cleur19
   - xr
   - asr9000
   - ncs5500
@@ -22,6 +20,7 @@ tags:
   - evpn
   - segment routing
   - srv6
+  - clus
 position: hidden
 ---
 
