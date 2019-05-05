@@ -55,105 +55,85 @@ Tuesday, June 11, 08:00 AM - 12:00 PM
 IOS-XR EVPN Hands-On Lab - **LTRSPG-2968**, by Jiri Chaloupka  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRSPG-2968#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRSPG-2968#/)
 
-TBD - Not found
-IOS XR Software Upgrade Method of Procedure Automation with Cisco Software Manager - **LTRSPG-2515**, by Aleksandar Vidakovic, Klaudiusz Staniek and James Wei  
-[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRSPG-2515#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRSPG-2515#/)
-
-Tuesday, June 11, 01:00 PM - 05:00 PM
-
-IOS-XR hands-on lab. End-to-end story. - **LTRSPG-2414**, by Akshat Sharma and Mikhail Korshunov  
-[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRSPG-2414#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRSPG-2414#/)
 
 ### Breakout Sessions
 
 
 
-TBD
+Tuesday, June 11, 01:00 PM - 03:00 PM
 
-Network Function Virtualization (NFV) using IOS-XR - **BRKSPG-2724**, by Syed Hassan  
+Network Function Virtualization (NFV) using IOS-XR - **BRKSPG-2724**, by Alexander Orel  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2724#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2724#/)
 
-TBD
+Wednesday, June 12, 01:00 PM - 03:00 PM
 
 Brave New World: Web Scale Network Automation goes Mainstream - **BRKSPG-2013**, by Akshat Sharma 
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2013#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2013#/)
 
-TBD - Not Found
 
-SP Security - Leveraging BGP FlowSpec to protect your infrastructure - **BRKSPG-3012**, by Nicolas Fevrier  
-[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3012#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3012#/)
+Wednesday, June 12, 08:30 AM - 10:00 AM
 
-TBD
-
-Disaggregating Network Devices and Software : A reality check ! - **BRKSPG-2698**, by Syed Hassan and Steve Iatrou  
+Disaggregating Network Devices and Software : A reality check ! - **BRKSPG-2698**, by Syed Hassan and Jeff Apcar  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2698#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2698#/)
 
-TBD
+Tuesday, June 11, 04:00 PM - 05:30 PM
 
-Introduction to the Next Generation IOS-XR architecture - **BRKSPG-2069**, by Akshat Sharma  
+Introduction to the Next Generation IOS-XR architecture - **BRKSPG-2069**, by Patrick Warichet andAkshat Sharma  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2069#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2069#/)
 
-TBD
+Wednesday, June 12, 08:00 AM - 10:00 AM
 
 EVPN Deep Dive with IOS-XR Configuration examples for Service Provider Metro and Data Center - **BRKSPG-3965**, by Jiri Chaloupka  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3965#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3965#/)
 
-TBD
+Thursday, June 13, 08:00 AM - 10:00 AM
 
 The Life Changing Magic of Automating Segment Routing and MPLS - **BRKMPL-2210**, by Shelly Cadora 
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKMPL-2210#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKMPL-2210#/)
 
-TBD
+Tuesday, June 11, 01:00 PM - 03:00 PM
 
 Service Provider Programmable Intent-Based Networking, Powered by Segment Routing and EVPN - **BRKSPG-2518**, by Phil Bedard  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2518#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2518#/)  
 
-TBD
+Wednesday, June 12, 04:00 PM - 05:30 PM
 
 Cisco ASR 9000 Architecture - **BRKARC-2003**, by Yongzhong Peng  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKARC-2003#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKARC-2003#/)
 
-TBD
+Thursday, June 13, 01:00 PM - 02:30 PM
 
-Advanced Topics in XR Telemetry - **BRKSPG-2503**, by Benoit Clase & Mikhail Korshunov  
+Advanced Topics in Cisco OS Telemetry - **BRKSPG-2503**, by Benoit Clase & Mikhail Korshunov  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2503#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2503#/)
 
-TBD
+Wednesday, June 12, 01:00 PM - 02:00 PM
 
 Carrier Grade Disaggregation with IOS XR - **BRKSPG-2015**, by Mikhail Korshunov,
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2015#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2015#/)
 
-TBD - Not found
 
-IOS-XR Runtime - Trust me? Trust me not? - **BRKSPG-1768**, by Dan Backman  
-[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-1768#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-1768#/)
+Monday, June 10, 08:30 AM - 10:00 AM
 
-TBD
-
-Internet Peering Concepts and Emerging Trends - **BRPSPG-2003**, by Phil Bedard  
+Internet Peering Concepts and Emerging Trends - **BRKSPG-2003**, by Phil Bedard  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2003#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2003#/)
 
-TBD - Not found
 
-Cisco vBNG solution based on CSR1000V and XRv 9000 - **BRKSPG-2063**, by Chengsheng Luo and Vimal Dharmavarapu  
-[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2063#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2063#/)
-
-TBD
+Monday, June 10, 01:00 PM - 03:00 PM
 
 NCS5500: Deepdive in the Merchant Silicon High-end SP Routers - **BRKARC-3000**, by Nicolas Fevrier  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2900#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2900#/)
 
-TBD
+Wednesday, June 12, 08:30 AM - 10:00 AM
 
 YDK and Model Driven Programmability with Python - **BRKPRG-2632**, by Santiago Alvarez  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKPRG-2632#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKPRG-2632#/)
 
-TBD
+Thursday, June 13, 10:30 AM - 12:00 PM
 
 Deploying Next Generation SP Access Networks with the NCS540/NCS560 Platforms - **BRKSPG-2159**, by Osman Hashmi  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2159#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2159#/)
 
-TBD
+Tuesday, June 11, 08:00 AM - 10:00 AM
 
 Service Provide Network Fabric: How to bring Access Services using EPVN - **BRKSPG-3002**, by Patrice Brissette  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3002#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3002#/)  
@@ -170,17 +150,29 @@ by Xin Bai and Ahmad Bilal Siddiqui
 
 ### DevNet Workshop
 
-TBD
+Monday, June 10, 02:00 PM - 02:45 PM
+
+Thursday, June 13, 09:00 AM - 09:45 AM
+
+
 
 DevNet Workshop - Building IP Core Network with OpenConfig - **DEVWKS-1644**, by Sakthi Saravanan Malli Somanathan and S. Suprita  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-1644#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-1644#/)
 
-TBD
+Tuesday, June 11, 03:00 PM - 03:45 PM
+
+Wednesday, June 12, 05:00 PM - 05:45 PM
+
+
 
 DevNet Workshop - Introduction to Using gRPC-based Protocol for Model-Driven Management of IOS-XR - **DEVWKS-1381**, by S. Suprita and Michael Cho  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-1381#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-1381#/)
 
-TBD
+Wednesday, June 12, 04:00 PM - 04:45 PM
+
+Thursday, June 13, 10:00 AM - 10:45 AM
+
+
 
 DevNet Workshop - Bringing Programmability to Service Provider Deployments with IOS-XR - **DEVWKS-2936**, by Akshat Sharma  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-2936#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-2936#/)
