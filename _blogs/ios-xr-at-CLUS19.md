@@ -41,17 +41,14 @@ Hope to see you there :)
 
 
 Tuesday, June 11, 01:00 PM - 05:00 PM
-
 Intermediate - IOS-XR Overview and Hands-on Configuration - **LTRRST-2002**, by Mohammad Ali and Ramiro Garza Rios  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRRST-2002#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRRST-2002#/)
 
 Thursday, June 13, 08:00 AM - 12:00 PM
-
 Cisco IOS XR Programmability - **LTRSPG-2601**, by Santiago Alvarez and David Smith  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRSPG-2601#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRSPG-2601#/)
 
 Tuesday, June 11, 08:00 AM - 12:00 PM
-
 IOS-XR EVPN Hands-On Lab - **LTRSPG-2968**, by Jiri Chaloupka  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRSPG-2968#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRSPG-2968#/)
 
