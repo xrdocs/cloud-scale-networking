@@ -39,7 +39,7 @@ Hope to see you there :)
 
 
 
-Tuesday, June 11, 01:00 PM - 05:00 PM
+Tuesday, June 11, 01:00 PM - 05:00 PM <br>
 Intermediate - IOS-XR Overview and Hands-on Configuration - **LTRRST-2002**, by Mohammad Ali and Ramiro Garza Rios  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRRST-2002#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRRST-2002#/)
 
