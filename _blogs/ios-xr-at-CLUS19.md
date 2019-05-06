@@ -86,7 +86,7 @@ Service Provider Programmable Intent-Based Networking, Powered by Segment Routin
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2518#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2518#/)  
 
 Tuesday, June 11, 02:30 PM - 03:30 PM<br>
-How to migrate the MPLS network from RSVP-TE to SR-TE - **BRKMPL-2130**
+How to migrate the MPLS network from RSVP-TE to SR-TE - **BRKMPL-2130**,
 by Pei-Yao Wang 
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2518#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2518#/)  
 
