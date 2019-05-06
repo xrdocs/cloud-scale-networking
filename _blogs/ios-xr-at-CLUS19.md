@@ -85,6 +85,11 @@ Tuesday, June 11, 01:00 PM - 03:00 PM<br>
 Service Provider Programmable Intent-Based Networking, Powered by Segment Routing and EVPN - **BRKSPG-2518**, by Phil Bedard  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2518#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2518#/)  
 
+Tuesday, June 11, 02:30 PM - 03:30 PM<br>
+How to migrate the MPLS network from RSVP-TE to SR-TE - **BRKMPL-2130**
+by Pei-Yao Wang 
+[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2518#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2518#/)  
+
 Wednesday, June 12, 04:00 PM - 05:30 PM<br>
 Cisco ASR 9000 Architecture - **BRKARC-2003**, by Yongzhong Peng  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKARC-2003#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKARC-2003#/)
