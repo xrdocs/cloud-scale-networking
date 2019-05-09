@@ -110,7 +110,7 @@ Internet Peering Concepts and Emerging Trends - **BRKSPG-2003**, by Phil Bedard
 
 Monday, June 10, 01:00 PM - 03:00 PM<br>
 NCS5500: Deepdive in the Merchant Silicon High-end SP Routers - **BRKARC-3000**, by Nicolas Fevrier  
-[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3000#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3000#/)
+[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKARC-3000#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKARC-3000#/)
 
 Wednesday, June 12, 08:30 AM - 10:00 AM<br>
 YDK and Model Driven Programmability with Python - **BRKPRG-2632**, by Santiago Alvarez  
