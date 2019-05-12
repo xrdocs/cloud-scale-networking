@@ -77,6 +77,14 @@ Wednesday, June 12, 08:00 AM - 10:00 AM<br>
 EVPN Deep Dive with IOS-XR Configuration examples for Service Provider Metro and Data Center - **BRKSPG-3965**, by Jiri Chaloupka  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3965#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3965#/)
 
+Tuesday, June 11, 08:00 AM - 10:00 AM<br>
+5G Mobile Transport Design and Deployment - **BRKSPM-2034**, by Jakub Horn and Ravikumar Narahari  
+[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3965#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3965#/)
+
+Monday, June 10, 08:00 AM - 10:00 AM<br>
+Introduction to SRv6 technology - **BRKSPG-3001**, by Jakub Horn  
+[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3965#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3965#/)
+
 Thursday, June 13, 08:00 AM - 10:00 AM<br>
 The Life Changing Magic of Automating Segment Routing and MPLS - **BRKMPL-2210**, by Shelly Cadora 
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKMPL-2210#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKMPL-2210#/)
