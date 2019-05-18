@@ -15,6 +15,29 @@ date: null
     <div class="feature__item--right">
       <div class="archive__item">
           <div class="archive__item-teaser center" style="max-height: 400px; max-width: 400px;display: block; margin-left: auto; margin-right: auto;">
+            <a href="{{ base_path }}/blogs/ios-xr-at-CLUS19/"><img src="{{ base_path }}/images/CLUS19.jpg" alt="" /></a>
+          </div>
+        <div class="archive__item-body">
+            <h2 class="archive__item-title">IOS XR at CiscoLive San Diego 2019
+</h2>
+            <div class="archive__item-excerpt" style="font-size: 0.65em;">
+              <p>CiscoLive San Diego will welcome thousands of visitors from June 9th to 13th, 2019.  
+              It’s a unique opportunity to hear about IOS XR and the platforms powered by this operating system.</p>
+            </div>
+            <p><a href="{{ base_path }}/blogs/ios-xr-at-CLEUR19/" 
+                  class="btn ">Explore!</a></p>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+
+<div class="feature__wrapper">
+    <div class="feature__item--right">
+      <div class="archive__item">
+          <div class="archive__item-teaser center" style="max-height: 400px; max-width: 400px;display: block; margin-left: auto; margin-right: auto;">
             <a href="{{ base_path }}/blogs/ios-xr-evolution-part1/"><img src="{{ base_path }}/images/dev-corner/xr_ev/IOS-XR.png" alt="" /></a>
           </div>
         <div class="archive__item-body">
