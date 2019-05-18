@@ -24,7 +24,7 @@ date: null
               <p>CiscoLive San Diego will welcome thousands of visitors from June 9th to 13th, 2019.  
               It’s a unique opportunity to hear about IOS XR and the platforms powered by this operating system.</p>
             </div>
-            <p><a href="{{ base_path }}/blogs/ios-xr-at-CLEUR19/" 
+            <p><a href="{{ base_path }}/blogs/ios-xr-at-CLUS19/" 
                   class="btn ">Explore!</a></p>
         </div>
       </div>
