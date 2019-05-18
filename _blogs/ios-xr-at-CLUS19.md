@@ -32,7 +32,7 @@ position: hidden
 
 CiscoLive San Diego will welcome thousands of visitors from June 9th to 13th, 2019.  
 It's a unique opportunity to hear about IOS XR and the platforms powered by this operating system.  
-We propose you a chronological view of the different techtorials, breakout sessions, devnet labs and WISP (Walk-In Self-Paced) labs.  
+We propose you a view of the different techtorials, breakout sessions, devnet labs and WISP (Walk-In Self-Paced) labs.  
 Hope to see you there :)
 
 ### Instructor-Led Lab (priced in addition to the Main Conference pass)
