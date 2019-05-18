@@ -150,6 +150,11 @@ DevNet Workshop - Building IP Core Network with OpenConfig - **DEVWKS-1644**, by
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-1644#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-1644#/)
 
 Tuesday, June 11, 03:00 PM - 03:45 PM<br>
+DevNet Workshop - Getting started with your own collector for Telemetry - **DEVWKS-1980**, by Mikhail Korshunov
+[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-1980#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-1980#/)
+
+
+Tuesday, June 11, 03:00 PM - 03:45 PM<br>
 Wednesday, June 12, 05:00 PM - 05:45 PM<br>
 DevNet Workshop - Introduction to Using gRPC-based Protocol for Model-Driven Management of IOS-XR - **DEVWKS-1381**, by S. Suprita and Michael Cho  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-1381#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-1381#/)
@@ -159,8 +164,17 @@ Thursday, June 13, 10:00 AM - 10:45 AM<br>
 DevNet Workshop - Bringing Programmability to Service Provider Deployments with IOS-XR - **DEVWKS-2936**, by Akshat Sharma  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-2936#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-2936#/)
 
+
 ### Techtorial (priced in addition to the Main Conference pass)
 
 Sunday, June 09, 02:00 PM - 06:00 PM<br>
 Next Generation Network Architectures: Design, Deployment and Operations - **TECSPG-2801**, by Syed Hassan and Kashif Islam  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=TECSPG-2801#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=TECSPG-2801#/)
+
+### World of Solutions
+
+Don't forget to check Service Provider area in WoS. We will have bunch of nice demos: 
+
+- IOS-XR Innovations;
+- Transport Architecture;
+
