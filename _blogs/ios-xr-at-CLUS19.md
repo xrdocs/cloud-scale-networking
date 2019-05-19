@@ -85,7 +85,7 @@ Service Provider Programmable Intent-Based Networking, Powered by Segment Routin
 Tuesday, June 11, 02:30 PM - 03:30 PM<br>
 How to migrate the MPLS network from RSVP-TE to SR-TE - **BRKMPL-2130**,
 by Pei-Yao Wang 
-[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2518#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2518#/)  
+[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKMPL-2130#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKMPL-2130#/)  
 
 Wednesday, June 12, 08:30 AM - 10:00 AM<br>
 Disaggregating Network Devices and Software : A reality check ! - **BRKSPG-2698**, by Syed Hassan and Jeff Apcar  
@@ -172,4 +172,3 @@ Don't forget to check Service Provider area in WoS. We will have bunch of nice d
 
 - IOS-XR Innovations;
 - Transport Architecture;
-
