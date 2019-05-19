@@ -54,7 +54,7 @@ Cisco IOS XR Programmability - **LTRSPG-2601**, by Santiago Alvarez and David Sm
 
 Monday, June 10, 08:00 AM - 10:00 AM<br>
 Introduction to SRv6 technology - **BRKSPG-3001**, by Jakub Horn  
-[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3965#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3965#/)
+[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3001#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3001#/)
 
 Monday, June 10, 08:30 AM - 10:00 AM<br>
 Internet Peering Concepts and Emerging Trends - **BRKSPG-2003**, by Phil Bedard  
@@ -72,7 +72,7 @@ Service Provide Network Fabric: How to bring Access Services using EPVN - **BRKS
 
 Tuesday, June 11, 08:00 AM - 10:00 AM<br>
 5G Mobile Transport Design and Deployment - **BRKSPM-2034**, by Jakub Horn and Ravikumar Narahari 
-[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3965#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3965#/)
+[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2034#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2034#/)
 
 Tuesday, June 11, 01:00 PM - 03:00 PM<br>
 Network Function Virtualization (NFV) using IOS-XR - **BRKSPG-2724**, by Alexander Orel  
