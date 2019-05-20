@@ -21,7 +21,7 @@ tags:
   - segment routing
   - srv6
   - clus
-position: hidden
+position: top
 ---
 
 {% include toc icon="table" title="IOS XR at CLUS19" %}  
