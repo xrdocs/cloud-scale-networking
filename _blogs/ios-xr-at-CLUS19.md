@@ -159,6 +159,10 @@ Thursday, June 13, 10:00 AM - 10:45 AM<br>
 DevNet Workshop - Bringing Programmability to Service Provider Deployments with IOS-XR - **DEVWKS-2936**, by Akshat Sharma  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-2936#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-2936#/)
 
+Monday, June 10, 09:00 AM - 09:45 AM<br>
+Wednesday, June 12, 09:00 AM - 09:45 AM<br>
+DevNet Workshop-Getting started with migration from CLI to model-driven configuration on IOS XR devices - **DEVWKS-1446**, by Munish Nayyar  
+[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-1446#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-1446#/)
 
 ### Techtorial (priced in addition to the Main Conference pass)
 
