@@ -56,6 +56,10 @@ Monday, June 10, 08:00 AM - 10:00 AM<br>
 Introduction to SRv6 technology - **BRKSPG-3001**, by Jakub Horn  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3001#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-3001#/)
 
+Monday, June 10, 08:00 AM - 10:00 AM<br>
+5G xHaul Transport - **BRKSPM-2012**, by Muhammad Waris Sagheer  
+[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPM-2012#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPM-2012#/)
+
 Monday, June 10, 08:30 AM - 10:00 AM<br>
 Internet Peering Concepts and Emerging Trends - **BRKSPG-2003**, by Phil Bedard  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2003#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2003#/)
