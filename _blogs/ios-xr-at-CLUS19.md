@@ -47,6 +47,11 @@ Intermediate - IOS-XR Overview and Hands-on Configuration - **LTRRST-2002**, by 
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRRST-2002#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRRST-2002#/)
 
 Thursday, June 13, 08:00 AM - 12:00 PM<br>
+SP SDN - Segment Routing in Action - **LTRMPL-2201**, By Jose Liste, Derek Tay, Vinit Jain
+[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRMPL-2201#/]
+(https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRMPL-2201#/)
+
+Thursday, June 13, 08:00 AM - 12:00 PM<br>
 Cisco IOS XR Programmability - **LTRSPG-2601**, by Santiago Alvarez and David Smith  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRSPG-2601#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRSPG-2601#/)
 
@@ -63,7 +68,6 @@ Monday, June 10, 08:00 AM - 10:00 AM<br>
 Monday, June 10, 08:30 AM - 10:00 AM<br>
 Internet Peering Concepts and Emerging Trends - **BRKSPG-2003**, by Phil Bedard  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2003#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2003#/)
-
 
 Monday, June 10, 01:00 PM - 03:00 PM<br>
 NCS5500: Deepdive in the Merchant Silicon High-end SP Routers - **BRKARC-3000**, by Nicolas Fevrier  
@@ -100,6 +104,10 @@ Wednesday, June 12, 08:30 AM - 10:00 AM<br>
 YDK and Model Driven Programmability with Python - **BRKPRG-2632**, by Santiago Alvarez  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKPRG-2632#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKPRG-2632#/)
 
+Wednesday, June 12, 08:00 AM - 10:00 AM
+Segment Routing: Technology deep-dive and advanced use cases - **BRKRST-3122**, By Jose Liste
+[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKRST-3122#/]
+(https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKRST-3122#/)
 
 Wednesday, June 12, 08:00 AM - 10:00 AM<br>
 EVPN Deep Dive with IOS-XR Configuration examples for Service Provider Metro and Data Center - **BRKSPG-3965**, by Jiri Chaloupka  
@@ -149,6 +157,7 @@ DevNet Workshop - Building IP Core Network with OpenConfig - **DEVWKS-1644**, by
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-1644#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-1644#/)
 
 Tuesday, June 11, 03:00 PM - 03:45 PM<br>
+Wednesday, June 12, 05:00 PM - 05:45 PM<br>
 DevNet Workshop - Getting started with your own collector for Telemetry - **DEVWKS-1980**, by Mikhail Korshunov
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-1980#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=DEVWKS-1980#/)
 
