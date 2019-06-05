@@ -48,8 +48,7 @@ Intermediate - IOS-XR Overview and Hands-on Configuration - **LTRRST-2002**, by 
 
 Thursday, June 13, 08:00 AM - 12:00 PM<br>
 SP SDN - Segment Routing in Action - **LTRMPL-2201**, By Jose Liste, Derek Tay, Vinit Jain
-[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRMPL-2201#/]
-(https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRMPL-2201#/)
+[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRMPL-2201#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRMPL-2201#/)
 
 Thursday, June 13, 08:00 AM - 12:00 PM<br>
 Cisco IOS XR Programmability - **LTRSPG-2601**, by Santiago Alvarez and David Smith  
@@ -106,8 +105,7 @@ YDK and Model Driven Programmability with Python - **BRKPRG-2632**, by Santiago 
 
 Wednesday, June 12, 08:00 AM - 10:00 AM
 Segment Routing: Technology deep-dive and advanced use cases - **BRKRST-3122**, By Jose Liste
-[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKRST-3122#/]
-(https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKRST-3122#/)
+[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKRST-3122#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKRST-3122#/)
 
 Wednesday, June 12, 08:00 AM - 10:00 AM<br>
 EVPN Deep Dive with IOS-XR Configuration examples for Service Provider Metro and Data Center - **BRKSPG-3965**, by Jiri Chaloupka  
