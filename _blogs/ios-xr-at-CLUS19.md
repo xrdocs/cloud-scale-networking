@@ -132,7 +132,7 @@ Carrier Grade Disaggregation with IOS XR - **BRKSPG-2015**, by Mikhail Korshunov
 
 Wednesday, June 12, 01:00 PM - 03:00 PM<br>
 EVPN: Network Virtualization Solution for Next Generation Enterprise DCs, DC Interconnections, and SPDCs - **BRKMPL-3333**, by Lukas Krattiger, Jiri Chaloupka, Ali Sajassi
-[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2015#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2015#/)
+[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKMPL-3333#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKMPL-3333#/)
 
 Wednesday, June 12, 04:00 PM - 05:30 PM<br>
 Cisco ASR 9000 Architecture - **BRKARC-2003**, by Yongzhong Peng  
