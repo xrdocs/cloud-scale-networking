@@ -183,13 +183,11 @@ Next Generation Network Architectures: Design, Deployment and Operations - **TEC
 
 ### Last, but not Least: Demos: World of Solutions & DevNet
 
-Don't forget to check Service Provider area in WoS. We will have bunch of nice demos: 
-
-- WoS: IOS-XR Innovations;
+- **WoS: IOS-XR Innovations**<br>
 Stop by at  booth to get insights into the latest innovations in IOS XR. Learn more about operational simplification with ZTP, leverage the power of Programmability to talk to your device, monitor network with fast & efficient Streaming Telemetry and host your applications on the network element. In addition to that check how 3rd party IGP protocol - Open/R easily integrates with IOS-XR.                                                                   
 
-- WoS: Transport Architecture;
+- **WoS: Transport Architecture**<br>
 See building blocks of intent-based SR traffic engineering: Per-flow automated steering providing intent-based traffic forwarding with flow level granularity, SR IGP flexible algorithms for intent-based network slicing, and MPLS performance measurement. See Cisco's peering infrastructure technology and Cisco Crosswork monitor peering networks, identify inefficiencies and threats, and enact network change.
 
-- DevNet: IOS-XR Programmability  
+- **DevNet: IOS-XR Programmability**<br>  
 Demo demonstrates a basic BGP peering deployment using OpenConfig data models. It uses two ASBRs and a Linux host acting as a controller where the automation scripts are executed. The controller uses the following open source tools: for Configuration Management - YANG development kit (YDK) and for Streaming Telemetry: Pipeline and Kafka. Configuration changes are implemented in Python with YDK using the Openconfig interface and BGP models. Operational validations are implemented in Python using a simple Kafka consumer that monitors interface and BGP session state using the respective OpenConfig models.
