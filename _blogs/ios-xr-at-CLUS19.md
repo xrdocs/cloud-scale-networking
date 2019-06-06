@@ -181,7 +181,7 @@ Sunday, June 09, 02:00 PM - 06:00 PM<br>
 Next Generation Network Architectures: Design, Deployment and Operations - **TECSPG-2801**, by Syed Hassan and Kashif Islam  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=TECSPG-2801#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=TECSPG-2801#/)
 
-### Last, but not Least: Demos: World of Solutions & DevNet
+### Demos: World of Solutions & DevNet
 
 - **WoS: IOS-XR Innovations**<br>
 Stop by at  booth to get insights into the latest innovations in IOS XR. Learn more about operational simplification with ZTP, leverage the power of Programmability to talk to your device, monitor network with fast & efficient Streaming Telemetry and host your applications on the network element. In addition to that check how 3rd party IGP protocol - Open/R easily integrates with IOS-XR.                                                                   
