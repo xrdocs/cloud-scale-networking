@@ -99,7 +99,7 @@ There are four primary steps to enable a NOS on third-party hardware:
   There are a number of hardware platforms that are already [OCP-compliant](http://www.opencompute.org/wiki/Networking/SpecsAndDesigns#Accepted_Hardware) and several others that are [still under review](http://www.opencompute.org/wiki/Networking/SpecsAndDesigns#Shared_hardware_specifications_still_under_review).  
 
 
-  In this blog we describe integration with one of the hardware platforms we selected based on our customer requirements: the  [Edgecore-AS7816-64x](http://www.opencompute.org/products/edgecore-networks-as7816-64x-100gbe-data-center-switch-torspine-switch-2/), 100GBE platform that provides line-rate L2 and L3 forwarding across 64 x QSFP28 ports.
+  In this blog we describe integration with one of the hardware platforms we selected based on our customer requirements: the Edgecore-AS7816-64x, 100GBE platform that provides line-rate L2 and L3 forwarding across 64 x QSFP28 ports.
   {: .notice--warning}
 
 
