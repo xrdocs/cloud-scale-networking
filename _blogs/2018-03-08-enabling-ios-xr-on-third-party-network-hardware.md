@@ -181,7 +181,7 @@ There are four primary steps to enable a NOS on third-party hardware:
   <div class="notice--primary" style="background-color: #bac5de; font-size: 1.1em !important;"><div class="text-center"><p><b>3. Integrate the ASIC SDK</b></p></div></div>   
 
   While the OEM vendor provides the APIs/modules
-  that expose functionality of the platform components such as fans, psu modules, leds and sfps, The ASIC SDK comes from the ASIC vendor. For example, [Edgecore-AS7816-64x](http://www.opencompute.org/products/edgecore-networks-as7816-64x-100gbe-data-center-switch-torspine-switch-2/) platform uses the Broadcom Tomahawk II (56970) ASIC.     
+  that expose functionality of the platform components such as fans, psu modules, leds and sfps, The ASIC SDK comes from the ASIC vendor. For example, Edgecore-AS7816-64x platform uses the Broadcom Tomahawk II (56970) ASIC.     
 
   Broadcom provides an Open API on top of their SDK called [OpenNSL](http://broadcom-switch.github.io/OpenNSL/doc/html/index.html) for integration with a Hardware Abstraction Layer (HAL) in the NOS.
 
@@ -258,7 +258,7 @@ The network operator can then pull and load the container image directly onto th
 
 So, the burning question: What does the integration of IOS-XR on OCP hardware actually look like?.  
 
-Since I have an [Edgecore-AS7816-64X](http://www.opencompute.org/products/edgecore-networks-as7816-64x-100gbe-data-center-switch-torspine-switch-2/) lying around, let's begin by setting up a DHCP server to respond with a default-url option and a web server with the ONIE-compatible NOS installer for IOS-XR.  
+Since I have an Edgecore-AS7816-64X lying around, let's begin by setting up a DHCP server to respond with a default-url option and a web server with the ONIE-compatible NOS installer for IOS-XR.  
 
 The relevant ISC-DHCP server config snippet is shown below:    
 
