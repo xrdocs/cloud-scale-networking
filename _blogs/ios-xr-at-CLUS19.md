@@ -54,6 +54,17 @@ Thursday, June 13, 08:00 AM - 12:00 PM<br>
 Cisco IOS XR Programmability - **LTRSPG-2601**, by Santiago Alvarez and David Smith  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRSPG-2601#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=LTRSPG-2601#/)
 
+### Exec Presentations
+
+Tuesday, June 11, 02:00 PM - 05:00 PM<br>
+Cisco SP Power Session - **PSOSPG-1020**, by Bill Gartner, Jonathan Davidson, Michael Glickman, Sumeet Arora, Kishen Mangat, Jerome Katz     
+[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=PSOSPG-1020#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=PSOSPG-1020#/)
+
+Wednesday, June 12, 01:00 PM - 01:30 PM<br>
+Service Provider Innovation in Action - **INTSPG-1204**, by Sumeet Arora
+[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=INTSPG-1204#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=INTSPG-1204#/)
+
+
 ### Breakout Sessions
 
 Monday, June 10, 08:00 AM - 10:00 AM<br>
@@ -116,7 +127,11 @@ Brave New World: Web Scale Network Automation goes Mainstream - **BRKSPG-2013**,
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2013#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2013#/)
 
 Wednesday, June 12, 01:00 PM - 02:00 PM<br>
-Carrier Grade Disaggregation with IOS XR - **BRKSPG-2015**, by Mikhail Korshunov,
+Carrier Grade Disaggregation with IOS XR - **BRKSPG-2015**, by Mikhail Korshunov
+[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2015#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2015#/)
+
+Wednesday, June 12, 01:00 PM - 03:00 PM<br>
+EVPN: Network Virtualization Solution for Next Generation Enterprise DCs, DC Interconnections, and SPDCs - **BRKMPL-3333**, by Lukas Krattiger, Jiri Chaloupka, Ali Sajassi
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2015#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2015#/)
 
 Wednesday, June 12, 04:00 PM - 05:30 PM<br>
@@ -126,6 +141,11 @@ Cisco ASR 9000 Architecture - **BRKARC-2003**, by Yongzhong Peng
 Thursday, June 13, 08:00 AM - 10:00 AM<br>
 The Life Changing Magic of Automating Segment Routing and MPLS - **BRKMPL-2210**, by Shelly Cadora 
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKMPL-2210#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKMPL-2210#/)
+
+Thursday, June 13, 08:00 AM - 09:00 AM<br>
+5G Timing & Synchronization Architecture - **BRKSPG-2011**, by Shahid Ajmeri 
+[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2011#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2011#/)
+
 
 Thursday, June 13, 10:30 AM - 12:00 PM<br>
 Deploying Next Generation SP Access Networks with the NCS540/NCS560 Platforms - **BRKSPG-2159**, by Osman Hashmi  
