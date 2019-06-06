@@ -36,7 +36,7 @@ With the recent announcement that [IOS-XR will now be available on a curated set
 
 This time I'd like to explain what it takes to enable a Network Operating System (NOS) on whitebox hardware and showcase how IOS-XR  with suitable abstractions at the platform integration layer enabled us to port it to select OCP-compliant hardware for the Service Provider Access market.
 
-In the video below - we show IOS-XR running on [OCP compliant hardware](http://www.opencompute.org/products/edgecore-networks-as7816-64x-100gbe-data-center-switch-torspine-switch-2/), installed and brought up using ONIE and seamlessly integrated with the platform's capabilities:
+In the video below - we show IOS-XR running on OCP compliant hardware, installed and brought up using ONIE and seamlessly integrated with the platform's capabilities:
 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/qF3A1coJsvY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
