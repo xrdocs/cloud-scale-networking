@@ -26,7 +26,7 @@ This means that a flow that was before taking path "1", could now be taking path
 This reshifting occurs because the hash of althogh the flow remains the same resulting in the same bucket, but the bucket may get reassigned to a new path.
 
 
-To understand flows, buckets and traditional ECMP a bit better, you could reference the Loadbalancing [Architecture document](https://supportforums.cisco.com/t5/service-providers-documents/asr9000-xr-load-balancing-architecture-and-characteristics/ta-p/3124809) and consult the [Cisco Live ID 2904](https://www.ciscolive.com/global/on-demand-library/?search=2904&search.event=ciscoliveus2017&search.event=ciscoliveus2015&search.event=ciscoliveus2014#/) from Las Vegas 2017.
+To understand flows, buckets and traditional ECMP a bit better, you could reference the Loadbalancing [Architecture document](https://supportforums.cisco.com/t5/service-providers-documents/asr9000-xr-load-balancing-architecture-and-characteristics/ta-p/3124809) and consult the Cisco Live ID 2904 from Las Vegas 2017.
 
  
  
