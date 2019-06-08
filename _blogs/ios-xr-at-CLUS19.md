@@ -105,6 +105,11 @@ How to migrate the MPLS network from RSVP-TE to SR-TE - **BRKMPL-2130**,
 by Pei-Yao Wang 
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKMPL-2130#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKMPL-2130#/)  
 
+Tuesday, June 11, 04:00 PM - 05:30 PM<br>
+Introduction to the Next Generation IOS-XR architecture - BRKSPG-2069, by Akshat Sharma
+[https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2069#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2069#/)
+
+
 Wednesday, June 12, 08:30 AM - 10:00 AM<br>
 Disaggregating Network Devices and Software : A reality check ! - **BRKSPG-2698**, by Syed Hassan and Jeff Apcar  
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2698#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2698#/)
