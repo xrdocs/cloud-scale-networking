@@ -106,7 +106,7 @@ by Pei-Yao Wang
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKMPL-2130#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKMPL-2130#/)  
 
 Tuesday, June 11, 04:00 PM - 05:30 PM<br>
-Introduction to the Next Generation IOS-XR architecture - BRKSPG-2069, by Akshat Sharma
+Introduction to the Next Generation IOS-XR architecture - **BRKSPG-2069**, by Akshat Sharma
 [https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2069#/](https://www.ciscolive.com/us/learn/sessions/session-catalog.html?search=BRKSPG-2069#/)
 
 
