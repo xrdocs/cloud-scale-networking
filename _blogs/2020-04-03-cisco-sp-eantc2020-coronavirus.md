@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 date: '2020-04-03 17:49 -0700'
 title: cisco-sp-eantc2020-coronavirus
 author: Jose Liste
