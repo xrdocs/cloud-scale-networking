@@ -11,9 +11,9 @@ tags:
   - iosxr
   - cisco
 ---
-## A New Post
+## An update on Cisco's Service Provider line of business at EANTC 2020 Interop event  
 
-The 2020 EANTC Multi-Vendor Interoperability event took place in Berlin from March, 2nd to March, 13th 2020. To protect our employees and others from the COVID-19 pandemic that was exploding in Europe at the time, the Service Provider team made the tough decision to opt-out from this year’s event.
+The 2020 EANTC Multi-Vendor Interoperability event took place in Berlin from March, 2nd to March, 13th 2020. In order to protect our employees and other participants from COVID-19, the Service Provider team made the tough decision to opt-out from this year’s event.
 
-As a result, you won’t see any Cisco IOS-XR routing platforms - ASR9K, NCS5500 or NCS540 - be part of the test results publicly shared by EANTC on March, 31st.
+As a result, you will not see Cisco IOS-XR routing platforms - ASR9K, NCS5500 or NCS540 - be part of the test results publicly shared by EANTC on March, 31st 2020.
 
