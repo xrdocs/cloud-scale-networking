@@ -13,4 +13,7 @@ tags:
 ---
 ## A New Post
 
-Enter text in [Markdown](http://daringfireball.net/projects/markdown/). Use the toolbar above, or click the **?** button for formatting help.
+The 2020 EANTC Multi-Vendor Interoperability event took place in Berlin from March, 2nd to March, 13th 2020. To protect our employees and others from the COVID-19 pandemic that was exploding in Europe at the time, the Service Provider team made the tough decision to opt-out from this year’s event.
+
+As a result, you won’t see any Cisco IOS-XR routing platforms - ASR9K, NCS5500 or NCS540 - be part of the test results publicly shared by EANTC on March, 31st.
+
