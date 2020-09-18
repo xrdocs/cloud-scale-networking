@@ -164,7 +164,7 @@ There are four primary steps to enable a NOS on third-party hardware:
          </div>
           with hardware specific hooks implemented in hardware platform  specific directories:  
          <div style="word-wrap: break-word;">
-         <blockquote><p><a href="https://github.com/opencomputeproject/OpenNetworkLinux/tree/master/packages/platforms/accton/x86-64/x86-64-accton-as7816-64x/onlp/builds/src/module/src">https://github.com/opencomputeproject/OpenNetworkLinux/tree/master/packages/platforms/accton/x86-64/x86-64-accton-as7816-64x/onlp/builds/src/module/src</a>
+         <!-- <blockquote><p><a href="https://github.com/opencomputeproject/OpenNetworkLinux/tree/master/packages/platforms/accton/x86-64/x86-64-accton-as7816-64x/onlp/builds/src/module/src">https://github.com/opencomputeproject/OpenNetworkLinux/tree/master/packages/platforms/accton/x86-64/x86-64-accton-as7816-64x/onlp/builds/src/module/src</a> -->
          </p>
          </blockquote>
          </div>  
