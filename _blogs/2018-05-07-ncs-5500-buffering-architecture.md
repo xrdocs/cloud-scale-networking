@@ -14,15 +14,15 @@ tags:
   - cisco
 ---
 
-{% include toc icon="table" title="NCS 5500 Buffering Architecture" %}
+<!-- {% include toc icon="table" title="NCS 5500 Buffering Architecture" %}
 
-{% include base_path %}
+{% include base_path %} -->
 
-<meta http-equiv="refresh" content="0; 
-url=https://xrdocs.io/ncs5500/blogs/2018-05-07-ncs-5500-buffering-architecture/">
+<!-- <meta http-equiv="refresh" content="0; 
+url=https://xrdocs.io/ncs5500/blogs/2018-05-07-ncs-5500-buffering-architecture/"> -->
 
-<link rel="canonical" 
-href="https://xrdocs.io/ncs5500/blogs/2018-05-07-ncs-5500-buffering-architecture/" />
+<!-- <link rel="canonical" 
+href="https://xrdocs.io/ncs5500/blogs/2018-05-07-ncs-5500-buffering-architecture/" /> -->
 
 The NCS 5500 uses an innovative design to provide deep buffering while maintaining high performance and power efficiency. This paper explores this design and shows its strengths over traditional forwarding architectures. It also will address criticism of these optimizations coming from other vendors.
 
