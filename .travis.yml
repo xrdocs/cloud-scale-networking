@@ -1,17 +1,9 @@
 language: ruby
 rvm:
-- 2.3.3
+- 2.4
 branches:
   only:
   - gh-pages
 script:
 - bundle exec jekyll build --config _config.yml
 - bundle exec htmlproofer ./_site --external_only --only-4xx --url-ignore \"/#.*/,/getting-started\"
-notifications:
-  slack:
-    rooms:
-      - secure: PkPpJ4ICMhdm3lv7iQ0Xs7hU1Qca5FA8nceYJ8v1KE72keshYirKidIMdvCMgBzT9D2lWJ9uzqSGN89TF3rwPnijB6Kl5x9bqEcVBPj/VYETfEzXt7NQ0WhuxEo1rwnjV8Vx6SqKHyoW4o2ojPOhS6vR7fMYXvCSqPDGJ9WPeNHAYSoaba7+znrqqxwNiNHoNLa5siiraBxCjPArKuaeYhxsDwjTp20cGuittd2qs1oMgnCXtRUmMnEC7MMnrNn3n/DqQ/LZDcoN/YASK6GqizPN8hEx7PKjf7WXsKsT3qTQkUA6RO1PX4Swuh0Hi2qGgnXBzgF8wFjnmJIqPG408+XHOQIsely+Dr+Gd+62DlYdReaxydMyYfdcf2rzRMJScWQP2hNzfU7NNFhUeil0iLpzMDftZDwvcpJUEA9GLc9s3sFufyWPJyFNnVjKo0FOjkyhvCmX26fmQfAdcq7Tbs/jNR7NAoHRtjF+POD17P/6TtVX8MqV7l7qRM4KzQQt7CCmDi6hpXgZtsRHkNnbTxJU5Hxix1TeI+oVOjFnrzygDjOvaVlMoIyrphMqAnSQDnH+ZG9bCsYmqCV4w/vKrErD0LUDHViZK82oxc9ERUfyWX7ae8zpQGd/ctBqiHyiGQsJ0FodPQlguun+vbdXfBAWnxltc3zQt+BYvJkydew=
-    on_success: never
-    on_failure: always
-    template:
-      - "Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository_slug}@%{branch} by %{author} %{result}. Click on the build number to see details."

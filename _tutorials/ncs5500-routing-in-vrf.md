@@ -571,7 +571,7 @@ Per-VRF
  - Potential forwarding loop during local traffic diversion to support PIC
  - No support for EIBGP multipath
 
-A lot of litterature is available for free on places like [CiscoLive (London 2013 BRKIPM-2265)](http://d2zmdbbm9feqrf.cloudfront.net/2013/eur/pdf/BRKIPM-2265.pdf) (pdf file).
+<!-- A lot of litterature is available for free on places like [CiscoLive (London 2013 BRKIPM-2265)](http://d2zmdbbm9feqrf.cloudfront.net/2013/eur/pdf/BRKIPM-2265.pdf) (pdf file). -->
 
 Let's verify that per-ce allocation is not changing anything in the resource usage:
 
