@@ -88,7 +88,7 @@ There are four primary steps to enable a NOS on third-party hardware:
 
   This may seem obvious but is an
   important first step to ensure smooth portability of the vendor software on third party network hardware.   
-  Since we are using OCP-compliant hardware, we get to utilize the [ONL driver code/modules on github](https://github.com/opencomputeproject/OpenNetworkLinux/tree/master/packages/platforms).
+  Since we are using OCP-compliant hardware, we get to utilize the [ONL driver code/modules on github](https://github.com/opencomputeproject/OpenNetworkLinux/).
 
   Ultimately when selecting a NOS, integrators look for hardware with a mix of:    
 
